@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "crisryantan.com",
+  "description": "Cris Ryan Tan",
   "version": "1.0.0",
-  "author": "Hunter Chang",
+  "author": "Cris Ryan Tan",
   "dependencies": {
     "gatsby": "^2.20.12",
     "gatsby-plugin-manifest": "^2.3.3",

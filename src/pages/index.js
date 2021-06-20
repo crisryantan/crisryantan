@@ -5,8 +5,8 @@ import Gallery from '../components/Gallery'
 import Layout from '../components/layout'
 
 const HomeIndex = () => {
-  const siteTitle = 'Gatsby Starter - Strata'
-  const siteDescription = 'Site description'
+  const siteTitle = 'crisryantan.com'
+  const siteDescription = 'Cris Ryan Tan'
 
   return (
     <Layout>

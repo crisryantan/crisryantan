@@ -19,26 +19,27 @@ const HomeIndex = () => {
         <section id="one">
           <header className="major">
             <h2>
-              Ipsum lorem dolor aliquam ante commodo
-              <br />
-              magna sed accumsan arcu neque.
+              About
             </h2>
           </header>
           <p>
-            Accumsan orci faucibus id eu lorem semper. Eu ac iaculis ac nunc
-            nisi lorem vulputate lorem neque cubilia ac in adipiscing in curae
-            lobortis tortor primis integer massa adipiscing id nisi accumsan
-            pellentesque commodo blandit enim arcu non at amet id arcu magna.
-            Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate
-            lorem neque cubilia.
+            <div>
+              I have over 8 years worth of experience as a Front End Developer for various companies and have honed my skills with Javascript, HTML and CSS.
+            </div>
+
+            <div style={{
+              marginTop: 12,
+            }}>
+              My professional experience includes bringing the wireframes of the UI/UX designer to life through technologies and frameworks all over the years like Backbone, Angular and React. I have experience in collaborating with Back End Engineers, Product Managers to create a stellar finished product.
+            </div>
           </p>
-          <ul className="actions">
+          {/* <ul className="actions">
             <li>
               <a href="#" className="button">
                 Learn More
               </a>
             </li>
-          </ul>
+          </ul> */}
         </section>
 
         <section id="two">
@@ -57,11 +58,6 @@ const HomeIndex = () => {
 
         <section id="three">
           <h2>Get In Touch</h2>
-          <p>
-            Accumsan pellentesque commodo blandit enim arcu non at amet id arcu
-            magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem
-            vulputate lorem neque lorem ipsum dolor.
-          </p>
           <div className="row">
             <div className="8u 12u$(small)">
               <form method="post" action="#">
@@ -104,23 +100,23 @@ const HomeIndex = () => {
                   <h3 className="icon fa-home">
                     <span className="label">Address</span>
                   </h3>
-                  1234 Somewhere Rd.
+                  5 POPE STREET
                   <br />
-                  Nashville, TN 00000
+                  RYDE, NSW
                   <br />
-                  United States
+                  AUSTRALIA
                 </li>
                 <li>
                   <h3 className="icon fa-mobile">
                     <span className="label">Phone</span>
                   </h3>
-                  000-000-0000
+                  0433-697-883
                 </li>
                 <li>
                   <h3 className="icon fa-envelope-o">
                     <span className="label">Email</span>
                   </h3>
-                  <a href="#">hello@untitled.tld</a>
+                  <a href="#">crisryantan@gmail.com</a>
                 </li>
               </ul>
             </div>

@@ -10,11 +10,13 @@ const Header = () => (
         <img src={avatar} alt="" />
       </a>
       <h1>
-        <strong>I am Strata</strong>, a super simple
+        <strong>I am Cris Ryan Tan</strong>, Software Engineer
         <br />
-        responsive site template freebie
+        {' '}and Entrepreneur.{' '}
         <br />
-        crafted by <a href="http://html5up.net">HTML5 UP</a>.
+        <div>
+          Co-founder of <a href="http://Blitzstack.io">Blitzstack.io</a>.
+        </div>
       </h1>
     </div>
     <Footer />

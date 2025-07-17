@@ -1,0 +1,18 @@
+[build]
+  command = "npm run clean && rm -rf .cache && npm run build"
+  publish = "public"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "10"
+  GATSBY_CPU_COUNT = "2"
+
+[dev]
+  command = "npm run develop"
+  publish = "public"
+  framework = "gatsby"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200 

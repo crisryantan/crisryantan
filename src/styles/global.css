@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-blitz-charcoal bg-blitz-white;
+    font-feature-settings: 'cv11', 'ss01', 'ss02', 'ss03', 'ss04';
+  }
+
+  ::selection {
+    @apply bg-blitz-accent/20 text-blitz-primary;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-blitz-sand/30;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-blitz-lavender/60 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-blitz-lavender;
+  }
+
+  /* Focus outline for accessibility */
+  *:focus {
+    @apply outline-none ring-2 ring-blitz-accent/50 ring-offset-2 ring-offset-blitz-white;
+  }
+
+  /* Typography */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold text-blitz-primary;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center px-6 py-3 border-2 border-blitz-primary text-base font-medium rounded-lg shadow-soft text-blitz-primary bg-gradient-subtle hover:bg-blitz-primary hover:text-blitz-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blitz-primary transition-all duration-200 hover:shadow-hover hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center px-6 py-3 border-2 border-blitz-primary text-base font-medium rounded-lg text-blitz-primary bg-transparent hover:bg-blitz-primary hover:text-blitz-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blitz-primary transition-all duration-200 hover:shadow-soft;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center px-4 py-2 text-base font-medium rounded-lg text-blitz-charcoal hover:text-blitz-primary hover:bg-blitz-sand/50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blitz-soft transition-all duration-200;
+  }
+
+  .section-padding {
+    @apply px-6 sm:px-8 lg:px-12;
+  }
+
+  .max-width-container {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blitz-primary via-blitz-soft to-blitz-accent;
+  }
+
+  .card {
+    @apply bg-blitz-white rounded-xl shadow-soft border border-blitz-lavender/20 overflow-hidden hover:shadow-hover transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .card-minimal {
+    @apply bg-blitz-white rounded-lg border border-blitz-lavender/10 overflow-hidden hover:border-blitz-lavender/30 transition-all duration-200;
+  }
+
+  .link-hover {
+    @apply text-blitz-soft hover:text-blitz-accent transition-colors duration-200 underline-offset-2 hover:underline;
+  }
+
+  .section-divider {
+    @apply border-t border-blitz-lavender/20;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 text-xs font-medium bg-blitz-sand text-blitz-primary rounded-full;
+  }
+
+  .badge-accent {
+    @apply bg-blitz-accent/10 text-blitz-primary;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-subtle {
+    @apply bg-gradient-to-br from-blitz-primary/5 via-blitz-soft/5 to-blitz-accent/5;
+  }
+
+  /* Blog Post Prose Styling */
+  .prose-blitz {
+    @apply text-blitz-charcoal;
+  }
+
+  .prose-blitz h1,
+  .prose-blitz h2,
+  .prose-blitz h3,
+  .prose-blitz h4,
+  .prose-blitz h5,
+  .prose-blitz h6 {
+    @apply text-blitz-primary font-bold;
+  }
+
+  .prose-blitz h2 {
+    @apply text-2xl md:text-3xl mt-12 mb-6;
+  }
+
+  .prose-blitz h3 {
+    @apply text-xl md:text-2xl mt-8 mb-4;
+  }
+
+  .prose-blitz p {
+    @apply mb-6 leading-relaxed text-blitz-charcoal/80;
+  }
+
+  .prose-blitz a {
+    @apply text-blitz-soft hover:text-blitz-accent transition-colors duration-200 underline-offset-2 hover:underline;
+  }
+
+  .prose-blitz ul,
+  .prose-blitz ol {
+    @apply mb-6 ml-6;
+  }
+
+  .prose-blitz li {
+    @apply mb-2;
+  }
+
+  .prose-blitz blockquote {
+    @apply border-l-4 border-blitz-soft bg-blitz-sand/30 p-6 my-8 italic;
+  }
+
+  .prose-blitz code {
+    @apply bg-blitz-sand px-2 py-1 rounded text-sm font-mono text-blitz-primary;
+  }
+
+  .prose-blitz pre {
+    @apply bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-8;
+  }
+
+  .prose-blitz pre code {
+    @apply bg-transparent text-blitz-white p-0;
+  }
+}

@@ -7,30 +7,30 @@ import Hero from '../components/Hero'
 const blogPosts = [
   {
     id: 1,
+    title: 'AI-Assisted Coding Workflows: Delegating vs Leveraging',
+    excerpt:
+      'A comprehensive guide to maximizing productivity with AI coding assistants through systematic delegation and active collaboration patterns.',
+    date: 'December 30, 2025',
+    readTime: '15 min read',
+    link: '/blog/ai-coding-workflows',
+  },
+  {
+    id: 2,
+    title: 'From SDK to SSR: Performance Optimization Lessons Across Frameworks',
+    excerpt:
+      'How systematic performance optimization reduced page load times by 68% in React/Remix applications, applying lessons learned from SDK development.',
+    date: 'December 29, 2025',
+    readTime: '12 min read',
+    link: '/blog/sdk-to-ssr-performance-optimization',
+  },
+  {
+    id: 3,
     title: 'Building Scalable React Applications',
     excerpt:
       'Best practices and patterns for building maintainable React applications at scale.',
     date: 'March 15, 2024',
     readTime: '5 min read',
     link: '/blog/scalable-react',
-  },
-  {
-    id: 2,
-    title: 'The Future of Web Development',
-    excerpt:
-      'Exploring emerging trends and technologies shaping the future of web development.',
-    date: 'March 10, 2024',
-    readTime: '7 min read',
-    link: '/blog/future-web-dev',
-  },
-  {
-    id: 3,
-    title: 'Optimizing Web Performance',
-    excerpt:
-      'Techniques and strategies for improving website performance and user experience.',
-    date: 'March 5, 2024',
-    readTime: '6 min read',
-    link: '/blog/web-performance',
   },
 ]
 

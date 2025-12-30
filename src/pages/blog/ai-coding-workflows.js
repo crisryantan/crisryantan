@@ -52,74 +52,39 @@ const AICodingWorkflowsPage = () => {
 
           {/* Article Content */}
           <div className="prose-blitz">
-            <h2>The Evolution of AI-Assisted Development</h2>
+            <h2>How AI Changed My Coding Workflow</h2>
 
-            <p>
-              The landscape of software development has transformed dramatically with the advent of AI coding assistants.
-              Tools like Cursor, Claude Code, and Devin have evolved from simple autocomplete suggestions to sophisticated
-              autonomous agents capable of implementing complex features end-to-end. But with great power comes the need
-              for systematic workflows - knowing when to delegate tasks completely versus when to actively collaborate is
-              the difference between 10x productivity gains and frustrating rabbit holes.
+            <p className="text-blitz-charcoal/70 italic text-sm mb-6">
+              Special thanks to my teammate Minh Le at Lorikeet, whose insights on AI-assisted development workflows have been invaluable to my learning of this topic.
             </p>
 
             <p>
-              After extensive experimentation with AI coding tools across various projects, I've distilled my approach into
-              two fundamental workflows: <strong>Delegating</strong> for known tasks and <strong>Leveraging</strong> for
-              discovery-driven work. This framework has transformed how I approach development, allowing me to complete
-              weeks of work in days while maintaining high code quality.
+              When AI coding tools first came out, I thought they were just fancy autocomplete.
+              Type a comment, get some boilerplate, move on. But modern AI coding assistants? They've
+              completely changed the game. We're not talking about autocomplete anymore. We're talking about agents
+              that can actually implement entire features while you grab coffee.
             </p>
 
-            <h2>The AI Coding Toolbox</h2>
-
-            <h3>Available Tools and Their Strengths</h3>
-
-            <div className="grid md:grid-cols-2 gap-6 my-8">
-              <div className="bg-gradient-to-br from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-6 rounded-lg">
-                <h4 className="text-xl font-semibold text-blitz-primary mb-4">Cursor Team Plan</h4>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                    <span>Centralized tooling, billing, and analytics</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                    <span>Composer model for multi-file changes</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                    <span>agents.md for documenting patterns</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                    <span><a href="https://linear.app/integrations/cursor" className="text-blitz-accent hover:underline" target="_blank" rel="noopener noreferrer">Linear integration</a> for seamless task management</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="bg-gradient-to-br from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-6 rounded-lg">
-                <h4 className="text-xl font-semibold text-blitz-primary mb-4">Autonomous Agents</h4>
-                <ul className="space-y-2 text-sm">
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                    <span>Devin: Full-stack task execution</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                    <span>Claude Code: Multi-step workflows</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                    <span>Super Whisper: Speech-to-ticket creation</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <p>
+              Here's the thing though: just because these tools are powerful doesn't mean you should throw tasks at
+              them randomly and hope for the best. I learned this the hard way after watching several AI-generated PRs
+              turn into complete messes. The breakthrough came when I realized there are really just two ways to work
+              with AI: either you <strong>delegate</strong> something and walk away, or you <strong>leverage</strong> AI
+              as your pair programming partner. Knowing which approach to use? That's what separates getting 10x
+              productivity from ending up in frustrating rabbit holes.
+            </p>
 
             <h2>The Coding Task Spectrum</h2>
 
             <p>
-              Understanding where a task falls on the knowledge spectrum is crucial for choosing the right workflow.
-              Not all coding tasks are created equal - they exist on a spectrum from perfectly defined to completely exploratory.
+              So here's the mental model that helped me figure this out: think of any coding task on a spectrum.
+              On one end, you have tasks where you know <em>exactly</em> what needs to happen. Like "remove this
+              feature flag" or "add unit tests for this service." On the other end? Tasks where you're still
+              figuring things out, like "why is this page so slow?" or "how should we architect this new feature?"
+            </p>
+
+            <p>
+              Where your task falls on this spectrum tells you everything about how to work with AI.
             </p>
 
             <div className="my-8">
@@ -159,9 +124,63 @@ const AICodingWorkflowsPage = () => {
             <h2>Workflow #1: Delegating (Assign and Forget)</h2>
 
             <p>
-              Delegating is the art of providing an AI agent with a well-defined task and letting it work autonomously.
-              This workflow shines when you know exactly what needs to be done and can articulate it clearly. The goal
-              is <strong>one-shot completion</strong> - you assign the task, review the output, and ship it.
+              Let's talk about delegation. This is where AI really shines and where most of your productivity
+              gains will come from. The idea is simple: you write up what needs to happen, hand it to an AI agent,
+              and go work on something else. Come back later, review what it did, and ship it. That's it.
+            </p>
+
+            <p>
+              The key is that you need to know <em>exactly</em> what you want. If you're writing a spec and find yourself
+              saying "figure out the best way to do this," that's a red flag. You're not delegating anymore, you're
+              just hoping the AI makes good architectural decisions for you. (Spoiler: it won't.)
+            </p>
+
+            <h3>Tools for Delegation</h3>
+
+            <p>
+              Modern AI coding tools offer autonomous agent capabilities that can work on tasks independently while you
+              focus on other things. The workflow is seamless: create a task in your project management tool, connect it
+              to your AI coding assistant (many tools offer integrations with Linear, GitHub Issues, or Jira), assign it
+              to an agent, and let it work autonomously.
+            </p>
+
+            <p>
+              For example, we use cloud-based AI agents that can handle delegated tasks in the background. The key is
+              having a clear handoff process, the agent needs to know exactly what to do, where to find relevant code,
+              and what success looks like.
+            </p>
+
+            <div className="my-8 max-w-3xl mx-auto">
+              <img
+                src={require('../../assets/images/cursor-cloud-agent.avif').default}
+                alt="Cloud-based AI agents interface showing task delegation"
+                className="w-full rounded-lg border border-blitz-accent/20 shadow-lg"
+              />
+              <p className="text-sm text-blitz-charcoal/60 italic mt-2 text-center">
+                Cloud-based AI agents can handle delegated tasks autonomously
+              </p>
+            </div>
+
+            <p>
+              Look for tools that support{' '}
+              <a
+                href="https://linear.app/integrations/cursor"
+                className="text-blitz-accent hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                project management integrations
+              </a>
+              {' '}to streamline your delegation workflow. The smoother the handoff from ticket to implementation, the
+              more effective your delegation becomes.
+            </p>
+
+            <p>
+              In our team, we've found a pretty convenient workflow (not an endorsement, just what works for us):
+              when non-engineers flag an issue or bug in Slack, they can use <code>@linear create a ticket based on this context</code>
+              to instantly create a properly formatted ticket with all the relevant discussion. Then we just assign it to an agent
+              and let it handle the investigation and fix. It's seamless because everything stays in the tools we're already using,
+              no context switching required.
             </p>
 
             <h3>When to Delegate</h3>
@@ -246,7 +265,7 @@ const AICodingWorkflowsPage = () => {
 Please add dark mode to the app.`}
                 </pre>
                 <p className="text-sm text-red-700 mt-3">
-                  Too vague - no context, no examples, no constraints.
+                  This is too vague, no context, no examples, no constraints.
                 </p>
               </div>
 
@@ -273,20 +292,31 @@ Tests: Add test verifying localStorage update`}
             <h3>The One-to-Two Review Loop Rule</h3>
 
             <p>
-              A critical principle of delegation: <strong>limit review loops to a maximum of two</strong>.
-              If the agent doesn't get it right after one round of feedback, the task is either poorly
-              specified or too complex for autonomous completion. At this point, reject the PR and handle
-              it manually - continuing to iterate with the agent often leads to diminishing returns and
-              accumulated technical debt.
+              Here's a rule that's saved me so much time: if the AI doesn't get it right after one round
+              of feedback, just do it yourself. Seriously. I used to go back and forth with agents trying to get them to understand what I wanted. You know what I
+              learned? After round two, you're just wasting time.
+            </p>
+
+            <p>
+              If it's not right after one correction, either your spec was unclear (fix it for next time)
+              or the task is too complex for delegation (should have been a leveraging session). Don't
+              fall into the trap of endless iterations. Reject the PR and handle it manually.
             </p>
 
             <h2>Workflow #2: Leveraging (Active Collaboration)</h2>
 
             <p>
-              Leveraging is fundamentally different from delegating. Instead of assigning and forgetting,
-              you maintain an <strong>active, multi-turn conversation</strong> with the AI, steering it
-              toward the solution through continuous feedback. This requires 100% of your attention but
-              yields exceptional results for complex, exploratory tasks.
+              Now let's talk about leveraging, which is completely different. This is where you sit down
+              with your AI assistant and work through a problem together. You're not assigning and walking
+              away. You're having a conversation. You're steering, correcting, exploring options. It's
+              like pair programming, except your pair is an AI that can instantly read through your entire
+              codebase.
+            </p>
+
+            <p>
+              This requires your full attention. You can't leverage AI while answering Slack messages or
+              sitting in a meeting. But when you need to figure something out, solve something complex,
+              or explore architectural options? This is where the magic happens.
             </p>
 
             <h3>When to Leverage</h3>
@@ -329,10 +359,10 @@ Tests: Add test verifying localStorage update`}
 
             <h3>The Leveraging Protocol</h3>
 
-            <div className="my-8">
-              <div className="bg-blitz-charcoal text-blitz-white p-8 rounded-lg">
-                <p className="text-xl font-semibold mb-6">Active Collaboration Workflow</p>
-                <pre className="text-sm leading-relaxed">
+            <div className="my-8 max-w-2xl">
+              <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-6 rounded-lg">
+                <p className="text-xl font-semibold mb-6 text-blitz-primary">Active Collaboration Workflow</p>
+                <pre className="text-xs leading-relaxed text-blitz-charcoal overflow-x-auto">
 {`┌─────────────────────────────────────────┐
 │ 1. Discovery Phase                      │
 │    → Ask AI to explore codebase         │
@@ -371,24 +401,38 @@ Tests: Add test verifying localStorage update`}
             <h3>The Critical Skill: Interrupting Effectively</h3>
 
             <p>
-              The most important skill when leveraging AI is <strong>knowing when to interrupt</strong>.
-              Agent mistakes compound - if the AI takes a wrong turn early, everything built on that
-              foundation will be flawed. Interrupt immediately when you spot:
+              Okay, this is probably the most important thing I'll tell you about leveraging AI:
+              <strong>interrupt early and often</strong>. I cannot stress this enough. When your AI assistant starts
+              heading in the wrong direction, don't wait. Don't let it finish. Don't think "maybe it'll
+              figure it out." It won't. Mistakes compound.
+            </p>
+
+            <p>
+              If the AI is applying the wrong pattern, using the wrong data structure, or making security
+              mistakes, stop it immediately. Every line of code built on a flawed assumption just makes
+              the problem worse. I've seen people let agents write 500 lines of code in the wrong direction
+              because they didn't want to interrupt. Don't be that person.
+            </p>
+
+            <p>
+              Interrupt when you see:
             </p>
 
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li>Wrong architectural pattern being applied</li>
-              <li>Incorrect assumptions about data structures</li>
+              <li>Incorrect assumptions about your data structures</li>
               <li>Missing edge cases or error handling</li>
-              <li>Performance anti-patterns</li>
-              <li>Security vulnerabilities</li>
+              <li>Performance anti-patterns creeping in</li>
+              <li>Security vulnerabilities (especially injection risks)</li>
             </ul>
 
             <h3>Providing Context: The Make-or-Break Factor</h3>
 
             <p>
-              The quality of your prompts dramatically impacts output quality. Always provide
-              <strong> exact code references</strong> rather than general terms:
+              Here's another thing that separates good AI collaboration from frustrating ones: being
+              specific with your context. Don't say "update the API service." There are probably five
+              different API services in your codebase. Which one? Be surgical. Give file paths, line
+              numbers, function names. The more precise you are, the better the output.
             </p>
 
             <div className="grid md:grid-cols-2 gap-6 my-8">
@@ -454,7 +498,7 @@ You: "Let's go with option 3. Start with the TokenManager interface."`}
 
             <pre className="bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-6">
 {`You: "Prototype a real-time notification system. Just get something
-     working quickly - don't worry about production quality."
+     working quickly, don't worry about production quality."
 
 AI: [Implements basic WebSocket solution]
 
@@ -498,6 +542,84 @@ You: "Good, this reveals we need:
      Continue with the error handling implementation.
      We'll fix these notes after."`}
             </pre>
+
+            <h2>Advanced Pattern: Codifying Your Debugging Process</h2>
+
+            <p>
+              You can codify your systematic debugging workflows into
+              reusable patterns. Think about it when you're hunting for a bug, you probably follow the same process
+              every time. Check recent git commits, look at related files, trace the data flow, check the tests, etc.
+            </p>
+
+            <p>
+              Instead of manually guiding your AI through this process every time, you can create a documented workflow
+              or custom instruction set. Now when you say "help me debug this checkout issue," your AI assistant
+              automatically knows to:
+            </p>
+
+            <ul className="list-disc list-inside space-y-2 ml-4">
+              <li>Check recent commits in the checkout-related files</li>
+              <li>Look for changes in payment processing logic</li>
+              <li>Review error logs and test failures</li>
+              <li>Trace the user flow through the code</li>
+              <li>Check for timing/race conditions</li>
+            </ul>
+
+            <p>
+              The agent works autonomously through your systematic debugging process and comes back with either
+              "found the bug" or "didn't find the bug, here's what I checked." Either way, you saved 30 minutes
+              of manual investigation. Many AI coding tools support custom instructions, project-level prompts, or
+              skill systems to encode these workflows. Check out my{' '}
+              <Link to="/blog/claude-skills-institutional-knowledge" className="text-blitz-accent hover:underline">
+                blog post on turning expertise into reusable workflows
+              </Link>
+              {' '}to learn more.
+            </p>
+
+            <h2>The Missing Piece: Context Is Everything</h2>
+
+            <p>
+              Okay, this is huge. One thing I see people struggle with is giving AI the right context about their
+              codebase. You can't just say "update the context" and expect your AI to know what you mean. Is it
+              React Context? Some other state management? A feature flag?
+            </p>
+
+            <p>
+              Here's what works: create a documentation file (like <code>agents.md</code> or <code>.ai-context.md</code>)
+              in your repo that explains your codebase patterns. Not the whole architecture diagram. Just the stuff
+              that's confusing or non-obvious:
+            </p>
+
+            <div className="bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-6">
+              <pre className="text-sm">
+{`# Codebase Patterns for AI Agents
+
+## State Management
+- **CLS Store**: Our custom store in src/store/cls-store.ts
+  - Used for conversation-level state
+  - Accessible via useCLSStore() hook
+
+- **React Context**: Only for theme and auth
+  - ThemeContext in src/contexts/theme
+  - AuthContext in src/contexts/auth
+
+## Feature Flags
+- Managed via config/features.ts
+- Check flags with useFeature('FLAG_NAME')
+- NEVER check feature flags in server-side loaders
+
+## Common Gotchas
+- "Context" usually means CLS Store, not React Context
+- All API calls go through src/lib/api-client.ts
+- Database queries must use the transaction wrapper`}
+              </pre>
+            </div>
+
+            <p>
+              Now when you tell your AI "update the context to include user preferences," it knows exactly what
+              you mean. No more back-and-forth clarifying which "context" you're talking about. This single file
+              has probably saved our team hours of miscommunication.
+            </p>
 
             <h2>The Anti-Pattern: Unfocused Multitasking</h2>
 
@@ -579,26 +701,26 @@ You: "Good, this reveals we need:
               </div>
             </div>
 
-            <h2>Responsibility and Code Ownership</h2>
+            <h2>You Own the Output, Always</h2>
 
             <p>
-              The most important principle of AI-assisted development: <strong>you own the output,
-              not the AI</strong>. Every line of code generated by an AI agent is your responsibility.
-              This means:
+              Let's get one thing crystal clear: <strong>every line of AI-generated code is your
+              responsibility</strong>. Not the AI's. Yours. I don't care if Claude wrote it, Devin
+              wrote it, or GPT-47 wrote it. When it breaks in production, when it has a security
+              vulnerability, when it's unmaintainable, that's on you.
             </p>
 
-            <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Review all generated code thoroughly</li>
-              <li>Understand every architectural decision</li>
-              <li>Verify security implications</li>
-              <li>Test edge cases and error paths</li>
-              <li>Ensure maintainability and documentation</li>
-            </ul>
+            <p>
+              This means you need to review everything. Understand the architectural decisions.
+              Check for security issues. Test the edge cases. Make sure it's maintainable. AI
+              tools are incredible productivity multipliers, but they're tools. The quality of
+              your product still depends on your judgment, not the AI's.
+            </p>
 
             <p>
-              AI assistants are powerful force multipliers, but they are tools - not replacements for
-              engineering judgment. The quality of the final product depends entirely on the quality
-              of your oversight and decision-making.
+              I've seen teams ship AI-generated code because "the tests passed" without actually
+              reviewing what it does. Don't do this. Tests validate behavior, not correctness or
+              maintainability or security. You still need to read the code.
             </p>
 
             <h2>Practical Examples</h2>
@@ -666,7 +788,7 @@ AI: [Displays timing analysis]
 
 You: "Perfect. The stats and activity queries don't depend on
      each other. Start by parallelizing those. Also, I notice
-     we're fetching full user objects but only using IDs - let's
+     we're fetching full user objects but only using IDs, let's
      optimize that too."
 
 AI: [Implements parallel queries + selective fetching]
@@ -798,70 +920,41 @@ You: "Excellent. Now add performance instrumentation so we can
               </div>
             </div>
 
-            <h2>Measuring Success</h2>
-
-            <p>
-              Track these metrics to evaluate your AI-assisted workflow effectiveness:
-            </p>
-
-            <div className="grid md:grid-cols-3 gap-6 my-8">
-              <div className="bg-gradient-to-br from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-6 rounded-lg">
-                <h4 className="font-semibold text-blitz-primary mb-3">Delegation Metrics</h4>
-                <ul className="space-y-2 text-sm">
-                  <li>First-attempt success rate</li>
-                  <li>Average review loops</li>
-                  <li>Time to completion</li>
-                  <li>Rejection rate</li>
-                </ul>
-              </div>
-
-              <div className="bg-gradient-to-br from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-6 rounded-lg">
-                <h4 className="font-semibold text-blitz-primary mb-3">Leveraging Metrics</h4>
-                <ul className="space-y-2 text-sm">
-                  <li>Session duration</li>
-                  <li>Interruption frequency</li>
-                  <li>Code quality scores</li>
-                  <li>Post-merge bug rate</li>
-                </ul>
-              </div>
-
-              <div className="bg-gradient-to-br from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-6 rounded-lg">
-                <h4 className="font-semibold text-blitz-primary mb-3">Overall Impact</h4>
-                <ul className="space-y-2 text-sm">
-                  <li>Velocity increase</li>
-                  <li>Technical debt trends</li>
-                  <li>Code review time saved</li>
-                  <li>Developer satisfaction</li>
-                </ul>
-              </div>
-            </div>
-
             <h2>Building Team Capabilities</h2>
 
             <p>
-              Individual productivity gains are valuable, but the real power comes from elevating
-              entire teams. Document your learnings systematically:
+              Okay, so you've figured out how to be productive with AI. That's great for you. But
+              if you're on a team, the real win is getting everyone else up to speed too. And that
+              means documenting what works and what doesn't.
             </p>
 
-            <h3>The agents.md Pattern</h3>
+            <h3>Expanding on the agents.md Pattern</h3>
 
             <p>
-              Maintain a shared knowledge base (like agents.md in Notion) that captures:
+              Remember that <code>agents.md</code> file I mentioned earlier for context patterns?
+              That's just the start. Turn it into a living document that captures everything your
+              team learns about working with AI:
             </p>
 
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li><strong>Failure Patterns:</strong> What tasks consistently fail with AI agents?</li>
-              <li><strong>Success Templates:</strong> Proven specifications that work reliably</li>
-              <li><strong>Context Guidelines:</strong> How to provide effective context for your codebase</li>
-              <li><strong>Agent Strengths:</strong> Which agent excels at which types of tasks?</li>
+              <li><strong>Failure Patterns:</strong> "Don't ask AI to refactor auth logic, it always misses edge cases"</li>
+              <li><strong>Success Templates:</strong> Proven task specifications that work reliably</li>
+              <li><strong>Context Guidelines:</strong> How to reference your specific codebase patterns</li>
+              <li><strong>Agent Strengths:</strong> "Use Devin for full features, Claude Code for debugging, Cursor for quick edits"</li>
             </ul>
+
+            <p>
+              Keep this in Notion or your wiki. Make it searchable. Update it when you learn something
+              new. This is how you go from "some people on the team use AI sometimes" to "everyone on
+              the team is 3x more productive."
+            </p>
 
             <h3>Team Workflow Evolution</h3>
 
             <div className="my-8">
-              <div className="bg-blitz-charcoal text-blitz-white p-8 rounded-lg">
-                <p className="text-xl font-semibold mb-6">Maturity Progression</p>
-                <pre className="text-sm leading-relaxed">
+              <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-8 rounded-lg">
+                <p className="text-xl font-semibold mb-6 text-blitz-primary">Maturity Progression</p>
+                <pre className="text-sm leading-relaxed text-blitz-charcoal">
 {`Stage 1: Individual Adoption
 └─ Engineers experiment with AI tools
    └─ Ad-hoc usage patterns
@@ -919,7 +1012,7 @@ Stage 4: Institutional Knowledge
 
             <p>
               <strong>Solution:</strong> Remember that you own the output. Review with the same rigor
-              you'd apply to human-written code - tests validate behavior, not correctness or maintainability.
+              you'd apply to human-written code, tests validate behavior, not correctness or maintainability.
             </p>
 
             <h3>Pitfall 4: Context Overload</h3>
@@ -931,39 +1024,7 @@ Stage 4: Institutional Knowledge
 
             <p>
               <strong>Solution:</strong> Be surgical with context. Point to specific files, functions,
-              and patterns. More context isn't always better - precision matters more than quantity.
-            </p>
-
-            <h2>The Future of AI-Assisted Development</h2>
-
-            <p>
-              We're still in the early days of AI-assisted development. Current tools are impressive
-              but have clear limitations. As these tools evolve, I expect:
-            </p>
-
-            <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>
-                <strong>Better Context Understanding:</strong> Agents that maintain long-term project
-                context and understand architectural patterns implicitly
-              </li>
-              <li>
-                <strong>Smarter Delegation:</strong> Tools that can self-assess task complexity and
-                suggest whether delegation or collaboration is appropriate
-              </li>
-              <li>
-                <strong>Proactive Assistance:</strong> Agents that identify refactoring opportunities,
-                security issues, and performance bottlenecks without explicit prompting
-              </li>
-              <li>
-                <strong>Team Coordination:</strong> Multi-agent systems that can collaborate on
-                different aspects of complex features while maintaining consistency
-              </li>
-            </ul>
-
-            <p>
-              But regardless of how sophisticated these tools become, the fundamental principles will
-              remain: clear communication, systematic workflows, and human judgment. AI is a force
-              multiplier, not a replacement for engineering expertise.
+              and patterns. More context isn't always better, precision matters more than quantity.
             </p>
 
             <h2>Key Takeaways</h2>
@@ -1005,32 +1066,36 @@ Stage 4: Institutional Knowledge
               </ol>
             </div>
 
-            <h2>Conclusion</h2>
+            <h2>Wrapping Up</h2>
 
             <p>
-              AI-assisted development represents a fundamental shift in how we write software. The
-              engineers who thrive in this new paradigm won't be those who resist AI or those who
-              blindly trust it - they'll be those who develop systematic workflows for human-AI collaboration.
+              Look, AI is changing how we write code. That's just reality. The engineers who figure
+              this out early are going to have a massive advantage over those who don't. But it's not
+              about blindly trusting AI or rejecting it entirely. It's about developing a systematic
+              approach to human-AI collaboration.
             </p>
 
             <p>
-              The delegate vs leverage framework provides a mental model for approaching any development
-              task: identify where you are on the knowledge spectrum, choose the appropriate workflow,
-              and execute with discipline. This systematic approach transforms AI from an unpredictable
-              toy into a reliable productivity multiplier.
+              The delegate vs leverage framework is that system. Is your task well-defined? Delegate it.
+              Is it exploratory or complex? Leverage AI as your pair programmer. It's really that simple.
             </p>
 
             <p>
-              Start small - pick a straightforward feature flag removal or refactoring task and practice
-              delegation with a well-written spec. Then try a leveraging session on a performance
-              optimization or architectural design. Over time, you'll develop intuition for which
-              workflow fits each situation, and your productivity will compound.
+              Start with something easy. Pick a feature flag removal or a simple refactor. Write a good
+              spec, delegate it, see what happens. Then try a leveraging session on something harder,
+              like performance optimization or debugging a race condition. You'll quickly develop intuition
+              for which approach fits which situation.
             </p>
 
             <p>
-              The future belongs to engineers who can effectively collaborate with AI while maintaining
-              high standards for code quality, architecture, and maintainability. Master these workflows
-              now, and you'll be positioned to lead in the AI-augmented development era.
+              And remember: document everything. Create that <code>agents.md</code> file. Build Claude
+              Skills for your common workflows. Share what works with your team. The goal isn't just to
+              make yourself more productive. It's to make your entire team unstoppable.
+            </p>
+
+            <p>
+              The engineers who master these workflows now will be the ones leading teams in five years.
+              Don't wait. Start practicing today.
             </p>
           </div>
 

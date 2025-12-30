@@ -7,6 +7,15 @@ import Hero from '../components/Hero'
 const blogPosts = [
   {
     id: 1,
+    title: 'Claude Skills: Turning Personal Expertise into Team Superpowers',
+    excerpt:
+      'How Claude Skills transform individual knowledge into institutional capability, making specialized expertise available to your entire team automatically.',
+    date: 'December 30, 2025',
+    readTime: '10 min read',
+    link: '/blog/claude-skills-institutional-knowledge',
+  },
+  {
+    id: 2,
     title: 'AI-Assisted Coding Workflows: Delegating vs Leveraging',
     excerpt:
       'A comprehensive guide to maximizing productivity with AI coding assistants through systematic delegation and active collaboration patterns.',
@@ -15,22 +24,13 @@ const blogPosts = [
     link: '/blog/ai-coding-workflows',
   },
   {
-    id: 2,
+    id: 3,
     title: 'From SDK to SSR: Performance Optimization Lessons Across Frameworks',
     excerpt:
       'How systematic performance optimization reduced page load times by 68% in React/Remix applications, applying lessons learned from SDK development.',
     date: 'December 29, 2025',
     readTime: '12 min read',
     link: '/blog/sdk-to-ssr-performance-optimization',
-  },
-  {
-    id: 3,
-    title: 'Building Scalable React Applications',
-    excerpt:
-      'Best practices and patterns for building maintainable React applications at scale.',
-    date: 'March 15, 2024',
-    readTime: '5 min read',
-    link: '/blog/scalable-react',
   },
 ]
 

@@ -7,30 +7,39 @@ import Hero from '../components/Hero'
 const blogPosts = [
   {
     id: 1,
-    title: 'AI-Assisted Coding Workflows: Delegating vs Leveraging',
+    title: 'Maximizing Productivity with AI Coding Agents',
     excerpt:
-      'A comprehensive guide to maximizing productivity with AI coding assistants through systematic delegation and active collaboration patterns.',
-    date: 'December 30, 2025',
-    readTime: '15 min read',
-    link: '/blog/ai-coding-workflows',
+      'A comprehensive guide to AI coding tools, team workflows, and building institutional knowledge for AI-assisted development.',
+    date: 'January 20, 2026',
+    readTime: '14 min read',
+    link: '/blog/ai-agents-productivity',
   },
   {
     id: 2,
+    title: 'Claude Skills: Turning Personal Expertise into Team Superpowers',
+    excerpt:
+      'How Claude Skills transform individual knowledge into institutional capability, making specialized expertise available to your entire team automatically.',
+    date: 'December 30, 2025',
+    readTime: '10 min read',
+    link: '/blog/claude-skills-institutional-knowledge',
+  },
+  {
+    id: 3,
+    title: 'AI-Assisted Coding Workflows: Delegating vs Leveraging',
+    excerpt:
+      'Learn the mental model for working with AI coding assistants: when to delegate tasks and walk away vs when to leverage AI as your pair programming partner.',
+    date: 'December 30, 2025',
+    readTime: '12 min read',
+    link: '/blog/ai-coding-workflows',
+  },
+  {
+    id: 4,
     title: 'From SDK to SSR: Performance Optimization Lessons Across Frameworks',
     excerpt:
       'How systematic performance optimization reduced page load times by 68% in React/Remix applications, applying lessons learned from SDK development.',
     date: 'December 29, 2025',
     readTime: '12 min read',
     link: '/blog/sdk-to-ssr-performance-optimization',
-  },
-  {
-    id: 3,
-    title: 'Building Scalable React Applications',
-    excerpt:
-      'Best practices and patterns for building maintainable React applications at scale.',
-    date: 'March 15, 2024',
-    readTime: '5 min read',
-    link: '/blog/scalable-react',
   },
 ]
 

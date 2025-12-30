@@ -170,12 +170,36 @@ const WebPerformancePage = () => {
 
             <h2>React/Remix Performance Optimization Patterns</h2>
 
+            <p>
+              The performance instrumentation quickly revealed our bottlenecks. Armed with real data showing
+              exactly where time was being spent, we applied three key optimization patterns. Each pattern
+              addresses a specific type of performance issue we discovered through our timing analysis.
+            </p>
+
+            <p>
+              These aren't theoretical optimizations, they're battle-tested patterns recommended by the Remix
+              team and taught in depth by Kent C. Dodds in his{' '}
+              <a
+                href="https://frontendmasters.com/courses/advanced-remix/"
+                className="text-blitz-accent hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Advanced Remix Frontend Masters course
+              </a>
+              . These patterns took our slowest pages from unusable to fast. Here's what worked:
+            </p>
+
             <h3>Pattern 1: Parallel Query Execution</h3>
 
             <p>
-              One of the most common performance anti-patterns in async JavaScript is inadvertently
-              sequential execution of independent queries. When queries do not depend on each other's
-              results, they should run in parallel.
+              The first issue we found? Queries that didn't depend on each other were running one after another
+              instead of simultaneously. This is one of the most common performance anti-patterns in async
+              JavaScript. When queries are independent, they should run in parallel, period.
+            </p>
+
+            <p>
+              Here's what we were doing wrong and how we fixed it:
             </p>
 
             <p><strong>Before (sequential - slow):</strong></p>
@@ -647,41 +671,48 @@ const results = await Promise.all(
               apply these patterns to transform your application's performance.
             </p>
 
-            <h2>Scaling the Knowledge: From Personal Learning to Team Capability</h2>
+            <h2>From Personal Learning to Team Capability</h2>
 
             <p>
-              Throughout this optimization journey, I documented every step, every decision, and every
-              lesson learned. This documentation became the foundation for something bigger: a
-              <strong> Claude Code skill</strong> that enables my entire team to apply these performance
-              optimization patterns consistently.
+              After solving these performance challenges, I documented everything I learned and turned it into
+              a <strong>Claude Skill</strong> called <code>remix-performance-optimizer</code>. This transformed
+              my personal expertise into institutional knowledge that anyone on my team can leverage automatically.
             </p>
 
             <p>
-              The <code>remix-performance-optimizer</code> skill encapsulates the systematic methodology
-              into an automated workflow. Now, when any team member encounters performance issues on the
-              client side, they can leverage this skill to:
+              Now when teammates encounter slow pages, Claude automatically applies these same optimization patterns
+              without needing to remember the methodology or search through documentation. It's like uploading
+              kung fu directly into Claude's brain - individual expertise becomes a team superpower.
             </p>
 
-            <ul className="list-disc list-inside space-y-2 ml-4">
-              <li>Automatically instrument loaders with performance markers</li>
-              <li>Analyze query dependencies and identify optimization opportunities</li>
-              <li>Apply defer patterns with skeleton UI based on bottleneck analysis</li>
-              <li>Restructure sequential queries into parallel execution</li>
-              <li>Generate production-ready code following established patterns</li>
-            </ul>
-
-            <p>
-              This represents the evolution from individual expertise to <strong>institutional knowledge</strong>.
-              What started as lessons learned at Rokt, applied successfully at Lorikeet, has now become a
-              reusable capability that amplifies the entire team's ability to deliver performant applications.
-            </p>
-
-            <p>
-              The journey from identifying a problem, to solving it, to documenting it, to automating it for
-              others is what transforms good engineering into great engineering culture. Performance optimization
-              is no longer dependent on tribal knowledge or individual expertise, it is now a systematic,
-              repeatable process accessible to everyone on the team.
-            </p>
+            <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border-l-4 border-blitz-accent p-6 my-8 rounded-r-lg">
+              <p className="font-semibold text-blitz-charcoal mb-2">
+                Want to learn how to turn your expertise into team capability?
+              </p>
+              <p className="text-sm text-blitz-charcoal/80 mb-3">
+                I wrote a detailed guide on using Claude Skills to transform personal knowledge into institutional
+                capability that works automatically for your entire team.
+              </p>
+              <Link
+                to="/blog/claude-skills-institutional-knowledge"
+                className="inline-flex items-center text-blitz-accent hover:underline font-medium"
+              >
+                Read: Claude Skills - Turning Personal Expertise into Team Superpowers
+                <svg
+                  className="w-4 h-4 ml-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
+            </div>
           </div>
 
           {/* Navigation */}

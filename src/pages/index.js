@@ -6,6 +6,15 @@ import Hero from '../components/Hero'
 
 const blogPosts = [
   {
+    id: 0,
+    title: 'Compression, Preloading, and Tree-Shaking: Cutting Load Times by 75% at Lorikeet',
+    excerpt:
+      'How a performance audit uncovered three independent optimizations that cut cold load transfer by 75%, reduced widget load time to 681ms, and trimmed 630KB from our bundles, and how they amplified each other.',
+    date: 'February 15, 2026',
+    readTime: '10 min read',
+    link: '/blog/cutting-load-times-at-lorikeet',
+  },
+  {
     id: 1,
     title: 'Maximizing Productivity with AI Coding Agents',
     excerpt:

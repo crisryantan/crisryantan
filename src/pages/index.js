@@ -6,6 +6,15 @@ import Hero from '../components/Hero'
 
 const blogPosts = [
   {
+    id: 0,
+    title: 'The Web Performance Trifecta: Compression, Preloading, and Code Splitting at Lorikeet',
+    excerpt:
+      'How we reduced cold load transfer by 75%, cut widget load time to under 700ms, and trimmed 630KB from our bundles through three complementary performance optimizations.',
+    date: 'February 15, 2026',
+    readTime: '10 min read',
+    link: '/blog/lorikeet-web-performance-trifecta',
+  },
+  {
     id: 1,
     title: 'Maximizing Productivity with AI Coding Agents',
     excerpt:

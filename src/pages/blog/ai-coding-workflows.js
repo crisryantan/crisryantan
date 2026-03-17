@@ -204,7 +204,11 @@ const AICodingWorkflowsPage = () => {
 
             <h3>The Delegation Protocol</h3>
 
-            <p>Successful delegation follows a systematic process:</p>
+            <p>
+              Over time I've settled into a pretty consistent flow for
+              delegation. It's nothing fancy, but having these steps explicit
+              keeps me from cutting corners on the spec:
+            </p>
 
             <pre className="bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-6">
               {`1. Write a Clear Specification
@@ -291,6 +295,71 @@ Tests: Add test verifying localStorage update`}
               manually.
             </p>
 
+            <h3>Real Example: Jest to Vitest Migration</h3>
+
+            <p>
+              This one burned me. We had a straightforward-sounding task:
+              migrate our test suite from Jest to Vitest. Clear input, clear
+              output, well-documented migration path. Textbook delegation,
+              right?
+            </p>
+
+            <p>
+              I wrote up a solid spec: swap the test runner, update the config,
+              replace Jest globals with Vitest equivalents, make sure everything
+              passes. Handed it to a Cursor agent and went to work on something
+              else.
+            </p>
+
+            <p>
+              First pass came back and it looked reasonable. The syntax
+              migration was clean: <code>jest.fn()</code> became{' '}
+              <code>vi.fn()</code>, <code>jest.mock()</code> became{' '}
+              <code>vi.mock()</code>, imports were updated. But then Buildkite
+              went red.
+            </p>
+
+            <p>
+              The problem wasn't the test syntax. It was the config. Vitest
+              handles module resolution differently than Jest, and our monorepo
+              setup with custom path aliases needed specific resolver config
+              that the agent didn't understand. It also missed that some of our
+              Jest config was split across <code>jest.config.ts</code>,{' '}
+              <code>jest.setup.ts</code>, and CI-specific overrides in the
+              Buildkite pipeline.
+            </p>
+
+            <p>
+              I gave it one round of feedback pointing at the failing CI logs
+              and the config files it missed. Second attempt still broke, this
+              time because of how Vitest handles CSS module mocks differently.
+              That's when I applied the rule: two loops, done. Time to switch
+              modes.
+            </p>
+
+            <p>
+              I pulled it into a leveraging session instead. With the AI as my
+              pair, I walked through each Buildkite failure, traced the config
+              differences, and we figured out the resolver and mock setup
+              together. What the agent couldn't see autonomously, like how our
+              CI environment had different module resolution than local dev, we
+              diagnosed interactively in about 30 minutes.
+            </p>
+
+            <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">
+              <p className="font-semibold text-blitz-charcoal mb-3">
+                The Takeaway:
+              </p>
+              <p className="text-blitz-charcoal/80">
+                The syntax migration was a perfect delegation task. But the
+                config and CI integration? That was a leveraging task hiding
+                inside a delegation task. The 1-2 loop rule caught it early.
+                Without it, I would've spent hours going back and forth on
+                config tweaks through an agent that couldn't see the full
+                picture. Instead, I switched workflows and shipped it.
+              </p>
+            </div>
+
             <h2>Workflow #2: Leveraging (Active Collaboration)</h2>
 
             <p>
@@ -351,6 +420,12 @@ Tests: Add test verifying localStorage update`}
             </div>
 
             <h3>The Leveraging Protocol</h3>
+
+            <p>
+              When I sit down for a leveraging session, it usually follows this
+              rhythm. The key thing is that you're driving the whole time, not
+              just watching:
+            </p>
 
             <div className="my-8 max-w-2xl">
               <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-6 rounded-lg">
@@ -549,52 +624,20 @@ You: "Good, this reveals we need:
      We'll fix these notes after."`}
             </pre>
 
-            <h2>The Anti-Pattern: Unfocused Multitasking</h2>
-
-            <p>
-              One of the most common mistakes is trying to manage multiple AI
-              agents simultaneously without proper delegation. This creates
-              several problems:
-            </p>
-
             <div className="bg-red-50 border-l-4 border-red-500 p-6 my-8">
-              <p className="font-semibold text-red-700 mb-4">
-                Why Multitasking Multiple Agents Fails:
+              <p className="font-semibold text-red-700 mb-3">
+                Watch out: Don't try to juggle multiple leveraging sessions.
               </p>
-              <ul className="space-y-3 text-red-900">
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-3 text-xl">✗</span>
-                  <div>
-                    <strong>Context Loss:</strong> Switching between agents
-                    causes you to lose the mental model of each task, leading to
-                    poor decisions and missed issues.
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-3 text-xl">✗</span>
-                  <div>
-                    <strong>Compound Errors:</strong> Without focused attention,
-                    each agent makes mistakes that build on each other,
-                    requiring extensive rework.
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-3 text-xl">✗</span>
-                  <div>
-                    <strong>Poor Output Quality:</strong> Agents produce code
-                    that works in isolation but doesn't integrate well because
-                    you weren't paying attention to architectural consistency.
-                  </div>
-                </li>
-              </ul>
+              <p className="text-red-900 text-sm">
+                I've tried running two active AI collaboration sessions
+                side-by-side. It doesn't work. You lose the mental model of each
+                task, mistakes compound because you're not catching them early,
+                and the output quality drops because you're not steering either
+                session properly. If a task needs your full attention, give it
+                your full attention. If it doesn't, it's a delegation task, not
+                a leveraging task.
+              </p>
             </div>
-
-            <p>
-              <strong>The Solution:</strong> If a task is suitable for
-              autonomous work, fully delegate it and review later. If it
-              requires active collaboration, give it 100% of your attention.
-              Don't try to split focus across multiple leveraging sessions.
-            </p>
 
             <h2>Decision Framework: Delegate or Leverage?</h2>
 
@@ -864,60 +907,6 @@ You: "Excellent. Now add performance instrumentation so we can
                 </ul>
               </div>
             </div>
-
-            <h2>Common Pitfalls and How to Avoid Them</h2>
-
-            <h3>Pitfall 1: Over-Delegation</h3>
-
-            <p>
-              <strong>Symptom:</strong> Delegating complex architectural
-              decisions because "the AI should figure it out."
-            </p>
-
-            <p>
-              <strong>Solution:</strong> Use the decision framework. If you
-              can't write a clear spec with success criteria, it's a leverage
-              task, not a delegation task.
-            </p>
-
-            <h3>Pitfall 2: Under-Leveraging</h3>
-
-            <p>
-              <strong>Symptom:</strong> Manually implementing everything because
-              "I could do it faster than explaining it to the AI."
-            </p>
-
-            <p>
-              <strong>Solution:</strong> Practice leveraging workflows on
-              lower-stakes tasks. The upfront time investment in collaboration
-              pays dividends through learning and exploration.
-            </p>
-
-            <h3>Pitfall 3: Insufficient Review</h3>
-
-            <p>
-              <strong>Symptom:</strong> Shipping AI-generated code with minimal
-              review because tests pass.
-            </p>
-
-            <p>
-              <strong>Solution:</strong> Remember that you own the output.
-              Review with the same rigor you'd apply to human-written code,
-              tests validate behavior, not correctness or maintainability.
-            </p>
-
-            <h3>Pitfall 4: Context Overload</h3>
-
-            <p>
-              <strong>Symptom:</strong> Providing massive context dumps hoping
-              the AI will "figure out" what's relevant.
-            </p>
-
-            <p>
-              <strong>Solution:</strong> Be surgical with context. Point to
-              specific files, functions, and patterns. More context isn't always
-              better, precision matters more than quantity.
-            </p>
 
             <h2>Key Takeaways</h2>
 

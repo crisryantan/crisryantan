@@ -7,7 +7,8 @@ import Hero from '../components/Hero'
 const blogPosts = [
   {
     id: 0,
-    title: 'Compression, Preloading, and Tree-Shaking: Cutting Load Times by 75% at Lorikeet',
+    title:
+      'Compression, Preloading, and Tree-Shaking: Cutting Load Times by 75% at Lorikeet',
     excerpt:
       'How a performance audit uncovered three independent optimizations that cut cold load transfer by 75%, reduced widget load time to 681ms, and trimmed 630KB from our bundles, and how they amplified each other.',
     date: 'February 15, 2026',
@@ -43,7 +44,8 @@ const blogPosts = [
   },
   {
     id: 4,
-    title: 'From SDK to SSR: Performance Optimization Lessons Across Frameworks',
+    title:
+      'From SDK to SSR: Performance Optimization Lessons Across Frameworks',
     excerpt:
       'How systematic performance optimization reduced page load times by 68% in React/Remix applications, applying lessons learned from SDK development.',
     date: 'December 29, 2025',
@@ -81,8 +83,11 @@ const HomePage = ({ data }) => {
                 end-to- end testing.
               </p>
               <p className="text-lg text-blitz-charcoal/80 leading-relaxed">
-                Passionate about user experience, clean code, and staying
-                current with emerging technologies.
+                Passionate about web performance optimization, AI-assisted
+                development workflows, and staying current with emerging
+                technologies. I write about cutting load times, building AI
+                coding agents, and turning engineering expertise into scalable
+                team capabilities.
               </p>
               <p className="text-lg text-blitz-charcoal/80 leading-relaxed mt-4">
                 As the co-founder of{' '}
@@ -124,11 +129,11 @@ const HomePage = ({ data }) => {
                   <ul className="space-y-2 text-blitz-charcoal/70">
                     <li className="flex items-center">
                       <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3"></span>
-                      HTML5, CSS3
+                      React.js, Next.js, Remix
                     </li>
                     <li className="flex items-center">
                       <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3"></span>
-                      React.js, Next.js
+                      Tailwind CSS, React Router
                     </li>
                     <li className="flex items-center">
                       <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3"></span>
@@ -160,7 +165,11 @@ const HomePage = ({ data }) => {
                   <ul className="space-y-2 text-blitz-charcoal/70">
                     <li className="flex items-center">
                       <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3"></span>
-                      Node.js
+                      Node.js, tRPC
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3"></span>
+                      Prisma, PostgreSQL
                     </li>
                     <li className="flex items-center">
                       <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3"></span>
@@ -206,6 +215,21 @@ const HomePage = ({ data }) => {
                     </li>
                   </ul>
                 </div>
+                <div>
+                  <h3 className="font-semibold text-blitz-primary mb-3">
+                    AI-Assisted Development
+                  </h3>
+                  <ul className="space-y-2 text-blitz-charcoal/70">
+                    <li className="flex items-center">
+                      <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3"></span>
+                      AI Coding Agents & Workflows
+                    </li>
+                    <li className="flex items-center">
+                      <span className="w-2 h-2 bg-blitz-soft rounded-full mr-3"></span>
+                      Claude Skills & Prompt Engineering
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -219,6 +243,163 @@ const HomePage = ({ data }) => {
             Experience
           </h2>
           <div className="max-w-4xl mx-auto space-y-16">
+            {/* Lorikeet */}
+            <div className="card p-8">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+                <div>
+                  <h3 className="text-2xl font-semibold text-blitz-primary">
+                    Senior Software Engineer
+                  </h3>
+                  <p className="text-blitz-soft font-medium">
+                    Lorikeet - Sydney Australia
+                  </p>
+                </div>
+                <span className="text-blitz-charcoal/60 text-sm mt-2 md:mt-0">
+                  Sept 2025 - Present
+                </span>
+              </div>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-blitz-soft mt-1 mr-3 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-blitz-charcoal/80">
+                    Shipped <strong>Concierge</strong>, rebuilding Brands into
+                    Concierges as the hub for multi-channel CX config.
+                    Standardized channel-level settings as the single source of
+                    truth, aligned with a DB migration and large backfills to
+                    cut duplication and make multi-env changes safer.
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-blitz-soft mt-1 mr-3 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-blitz-charcoal/80">
+                    Shipped <strong>Coach</strong>, an AI agent that explains
+                    metric shifts, diagnoses root causes, and recommends fixes,
+                    turning reporting data into actionable insights.
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-blitz-soft mt-1 mr-3 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-blitz-charcoal/80">
+                    Built partner reporting for{' '}
+                    <strong>Quality Score, CSAT, and containment rate</strong>,
+                    giving partners visibility into key CX metrics across their
+                    support operations.
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-blitz-soft mt-1 mr-3 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-blitz-charcoal/80">
+                    Optimized SSR performance in React/Remix by instrumenting
+                    loaders with performance markers, identifying bottleneck
+                    queries, and applying parallel execution and deferred
+                    streaming patterns.{' '}
+                    <strong>
+                      Cut average page load time from 2.2s to ~700ms (~68%
+                      reduction)
+                    </strong>
+                    .
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-blitz-soft mt-1 mr-3 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-blitz-charcoal/80">
+                    Audited the full infrastructure stack for compression and
+                    bundle size gaps. Enabled Brotli on Cloud CDN,{' '}
+                    <strong>reducing web app cold load transfer by 75%</strong>{' '}
+                    (1.56 MB to 392 KB). Reduced chat bundle size by ~630 KB
+                    through tree-shaking, eliminating 87% of one chunk.
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-blitz-soft mt-1 mr-3 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-blitz-charcoal/80">
+                    Built a preparative iframe preloading mechanism for the
+                    embeddable chat widget, achieving an{' '}
+                    <strong>85% cache hit rate</strong> and cutting widget
+                    time-to-ready from 1.24s to 681ms.
+                  </span>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-5 h-5 text-blitz-soft mt-1 mr-3 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span className="text-blitz-charcoal/80">
+                    Implemented role-based access control and laid the
+                    groundwork for platform-wide PII redaction, enabling safer
+                    data handling across workflows and reporting.
+                  </span>
+                </li>
+              </ul>
+            </div>
+
             {/* Rokt */}
             <div className="card p-8">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
@@ -231,7 +412,7 @@ const HomePage = ({ data }) => {
                   </p>
                 </div>
                 <span className="text-blitz-charcoal/60 text-sm mt-2 md:mt-0">
-                  2019 - Present
+                  2019 - May 2025
                 </span>
               </div>
               <ul className="space-y-4">

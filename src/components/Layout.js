@@ -16,6 +16,7 @@ const Layout = ({ children }) => {
   const navLinks = [
     { name: 'About', href: '/#about' },
     { name: 'Experience', href: '/#experience' },
+    { name: 'Blog', href: '/#blog' },
     { name: 'Contact', href: '/#contact' },
   ]
 
@@ -208,8 +209,7 @@ const Layout = ({ children }) => {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-center md:text-left">
               <p className="text-sm text-blitz-charcoal">
-                © {new Date().getFullYear()} Cris Ryan Tan. All rights
-                reserved.
+                © {new Date().getFullYear()} Cris Ryan Tan. All rights reserved.
               </p>
               <p className="text-xs text-blitz-charcoal/70 mt-1">
                 Built with Gatsby, React, and Tailwind CSS

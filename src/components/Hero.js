@@ -30,9 +30,10 @@ const Hero = () => {
             </h1>
 
             <p className="text-xl md:text-2xl text-blitz-charcoal/80 font-light leading-relaxed">
-              Senior Full-stack Engineer specializing in building exceptional
-              digital experiences. I design and develop high-performance web
-              applications with modern technologies.
+              Senior Full-stack Engineer specializing in web performance
+              optimization and AI-assisted development. I build high-performance
+              applications and leverage AI to accelerate engineering
+              productivity.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">

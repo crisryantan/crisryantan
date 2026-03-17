@@ -55,41 +55,53 @@ const AICodingWorkflowsPage = () => {
             <h2>How AI Changed My Coding Workflow</h2>
 
             <p className="text-blitz-charcoal/70 italic text-sm mb-6">
-              Special thanks to my teammate Minh Le at Lorikeet, whose insights on AI-assisted development workflows have been invaluable to my learning of this topic.
+              Special thanks to my teammate Minh Le at Lorikeet, whose insights
+              on AI-assisted development workflows have been invaluable to my
+              learning of this topic.
             </p>
 
             <p>
-              When AI coding tools first came out, I thought they were just fancy autocomplete.
-              Type a comment, get some boilerplate, move on. But modern AI coding assistants? They've
-              completely changed the game. We're not talking about autocomplete anymore. We're talking about agents
-              that can actually implement entire features while you grab coffee.
+              When AI coding tools first came out, I thought they were just
+              fancy autocomplete. Type a comment, get some boilerplate, move on.
+              But modern AI coding assistants? They've completely changed the
+              game. We're not talking about autocomplete anymore. We're talking
+              about agents that can actually implement entire features while you
+              grab coffee.
             </p>
 
             <p>
-              Here's the thing though: just because these tools are powerful doesn't mean you should throw tasks at
-              them randomly and hope for the best. I learned this the hard way after watching several AI-generated PRs
-              turn into complete messes. The breakthrough came when I realized there are really just two ways to work
-              with AI: either you <strong>delegate</strong> something and walk away, or you <strong>leverage</strong> AI
-              as your pair programming partner. Knowing which approach to use? That's what separates getting 10x
+              Here's the thing though: just because these tools are powerful
+              doesn't mean you should throw tasks at them randomly and hope for
+              the best. I learned this the hard way after watching several
+              AI-generated PRs turn into complete messes. The breakthrough came
+              when I realized there are really just two ways to work with AI:
+              either you <strong>delegate</strong> something and walk away, or
+              you <strong>leverage</strong> AI as your pair programming partner.
+              Knowing which approach to use? That's what separates getting 10x
               productivity from ending up in frustrating rabbit holes.
             </p>
 
             <h2>The Coding Task Spectrum</h2>
 
             <p>
-              So here's the mental model that helped me figure this out: think of any coding task on a spectrum.
-              On one end, you have tasks where you know <em>exactly</em> what needs to happen. Like "remove this
-              feature flag" or "add unit tests for this service." On the other end? Tasks where you're still
-              figuring things out, like "why is this page so slow?" or "how should we architect this new feature?"
+              So here's the mental model that helped me figure this out: think
+              of any coding task on a spectrum. On one end, you have tasks where
+              you know <em>exactly</em> what needs to happen. Like "remove this
+              feature flag" or "add unit tests for this service." On the other
+              end? Tasks where you're still figuring things out, like "why is
+              this page so slow?" or "how should we architect this new feature?"
             </p>
 
             <p>
-              Where your task falls on this spectrum tells you everything about how to work with AI.
+              Where your task falls on this spectrum tells you everything about
+              how to work with AI.
             </p>
 
             <div className="my-8">
               <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-8 rounded-lg">
-                <p className="text-center text-xl mb-6 font-semibold text-blitz-primary">Task Knowledge Spectrum</p>
+                <p className="text-center text-xl mb-6 font-semibold text-blitz-primary">
+                  Task Knowledge Spectrum
+                </p>
                 <div className="relative h-16 bg-gradient-to-r from-blitz-soft/60 via-blitz-accent/40 to-blitz-accent/60 rounded-lg mb-4">
                   <div className="absolute left-0 top-0 h-full flex items-center pl-4 text-sm font-semibold text-blitz-charcoal">
                     Known Tasks
@@ -100,7 +112,9 @@ const AICodingWorkflowsPage = () => {
                 </div>
                 <div className="grid grid-cols-2 gap-4 mt-6 text-sm">
                   <div className="bg-blitz-soft/10 border border-blitz-soft/30 p-4 rounded">
-                    <p className="font-semibold mb-2 text-blitz-primary">Known Tasks (Delegate)</p>
+                    <p className="font-semibold mb-2 text-blitz-primary">
+                      Known Tasks (Delegate)
+                    </p>
                     <ul className="space-y-1 text-blitz-charcoal/80">
                       <li>• Removing feature flags</li>
                       <li>• Adding unit tests</li>
@@ -109,7 +123,9 @@ const AICodingWorkflowsPage = () => {
                     </ul>
                   </div>
                   <div className="bg-blitz-accent/10 border border-blitz-accent/30 p-4 rounded">
-                    <p className="font-semibold mb-2 text-blitz-primary">Unknown Tasks (Leverage)</p>
+                    <p className="font-semibold mb-2 text-blitz-primary">
+                      Unknown Tasks (Leverage)
+                    </p>
                     <ul className="space-y-1 text-blitz-charcoal/80">
                       <li>• Diagnosing race conditions</li>
                       <li>• Architectural design</li>
@@ -124,18 +140,25 @@ const AICodingWorkflowsPage = () => {
             <h2>Workflow #1: Delegating (Assign and Forget)</h2>
 
             <p>
-              Let's talk about delegation. This is where AI really shines and where most of your productivity
-              gains will come from. The idea is simple: you write up what needs to happen, hand it to an{' '}
-              <Link to="/blog/ai-agents-productivity" className="text-blitz-accent hover:underline">
+              Let's talk about delegation. This is where AI really shines and
+              where most of your productivity gains will come from. The idea is
+              simple: you write up what needs to happen, hand it to an{' '}
+              <Link
+                to="/blog/ai-agents-productivity"
+                className="text-blitz-accent hover:underline"
+              >
                 AI agent
               </Link>
-              , and go work on something else. Come back later, review what it did, and ship it. That's it.
+              , and go work on something else. Come back later, review what it
+              did, and ship it. That's it.
             </p>
 
             <p>
-              The key is that you need to know <em>exactly</em> what you want. If you're writing a spec and find yourself
-              saying "figure out the best way to do this," that's a red flag. You're not delegating anymore, you're
-              just hoping the AI makes good architectural decisions for you. (Spoiler: it won't.)
+              The key is that you need to know <em>exactly</em> what you want.
+              If you're writing a spec and find yourself saying "figure out the
+              best way to do this," that's a red flag. You're not delegating
+              anymore, you're just hoping the AI makes good architectural
+              decisions for you. (Spoiler: it won't.)
             </p>
 
             <h3>When to Delegate</h3>
@@ -148,29 +171,32 @@ const AICodingWorkflowsPage = () => {
                 <li className="flex items-start">
                   <span className="text-green-500 mr-3 text-xl">✓</span>
                   <div>
-                    <strong>Feature Flag Cleanup:</strong> "Remove the ENABLE_NEW_CHECKOUT feature flag
-                    and all conditional logic, keeping the new code path."
+                    <strong>Feature Flag Cleanup:</strong> "Remove the
+                    ENABLE_NEW_CHECKOUT feature flag and all conditional logic,
+                    keeping the new code path."
                   </div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 mr-3 text-xl">✓</span>
                   <div>
-                    <strong>Unit Test Generation:</strong> "Add unit tests for the UserService class,
-                    mocking the database layer."
+                    <strong>Unit Test Generation:</strong> "Add unit tests for
+                    the UserService class, mocking the database layer."
                   </div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 mr-3 text-xl">✓</span>
                   <div>
-                    <strong>Diagnosed Bug Fixes:</strong> "Fix the off-by-one error in pagination.ts:142
-                    that causes the last page to be skipped."
+                    <strong>Diagnosed Bug Fixes:</strong> "Fix the off-by-one
+                    error in pagination.ts:142 that causes the last page to be
+                    skipped."
                   </div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-green-500 mr-3 text-xl">✓</span>
                   <div>
-                    <strong>Reference-Based Changes:</strong> "Update the Reply to Customer button to
-                    match the style in CustomerActions.tsx:45-67."
+                    <strong>Reference-Based Changes:</strong> "Update the Reply
+                    to Customer button to match the style in
+                    CustomerActions.tsx:45-67."
                   </div>
                 </li>
               </ul>
@@ -178,12 +204,10 @@ const AICodingWorkflowsPage = () => {
 
             <h3>The Delegation Protocol</h3>
 
-            <p>
-              Successful delegation follows a systematic process:
-            </p>
+            <p>Successful delegation follows a systematic process:</p>
 
             <pre className="bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-6">
-{`1. Write a Clear Specification
+              {`1. Write a Clear Specification
    ├─ State the exact outcome
    ├─ Provide code references
    ├─ Include examples
@@ -208,14 +232,17 @@ const AICodingWorkflowsPage = () => {
             <h3>Writing Effective Delegation Specs</h3>
 
             <p>
-              The quality of your specification directly determines success rate. Here's a comparison:
+              The quality of your specification directly determines success
+              rate. Here's a comparison:
             </p>
 
             <div className="grid md:grid-cols-2 gap-6 my-8">
               <div className="border border-red-300 bg-red-50 p-6 rounded-lg">
-                <h4 className="text-lg font-semibold text-red-700 mb-3">Poor Spec (30% success)</h4>
+                <h4 className="text-lg font-semibold text-red-700 mb-3">
+                  Poor Spec (30% success)
+                </h4>
                 <pre className="text-sm text-red-900 whitespace-pre-wrap bg-red-100 p-4 rounded">
-{`Task: Add dark mode support
+                  {`Task: Add dark mode support
 
 Please add dark mode to the app.`}
                 </pre>
@@ -225,9 +252,11 @@ Please add dark mode to the app.`}
               </div>
 
               <div className="border border-green-300 bg-green-50 p-6 rounded-lg">
-                <h4 className="text-lg font-semibold text-green-700 mb-3">Good Spec (85% success)</h4>
+                <h4 className="text-lg font-semibold text-green-700 mb-3">
+                  Good Spec (85% success)
+                </h4>
                 <pre className="text-sm text-green-900 whitespace-pre-wrap bg-green-100 p-4 rounded">
-{`Task: Add dark mode toggle to Settings page
+                  {`Task: Add dark mode toggle to Settings page
 
 Reference: See ThemeContext.tsx for theme state
 Location: Add toggle to SettingsPage.tsx:67
@@ -247,31 +276,37 @@ Tests: Add test verifying localStorage update`}
             <h3>The One-to-Two Review Loop Rule</h3>
 
             <p>
-              Here's a rule that's saved me so much time: if the AI doesn't get it right after one round
-              of feedback, just do it yourself. Seriously. I used to go back and forth with agents trying to get them to understand what I wanted. You know what I
-              learned? After round two, you're just wasting time.
+              Here's a rule that's saved me so much time: if the AI doesn't get
+              it right after one round of feedback, just do it yourself.
+              Seriously. I used to go back and forth with agents trying to get
+              them to understand what I wanted. You know what I learned? After
+              round two, you're just wasting time.
             </p>
 
             <p>
-              If it's not right after one correction, either your spec was unclear (fix it for next time)
-              or the task is too complex for delegation (should have been a leveraging session). Don't
-              fall into the trap of endless iterations. Reject the PR and handle it manually.
+              If it's not right after one correction, either your spec was
+              unclear (fix it for next time) or the task is too complex for
+              delegation (should have been a leveraging session). Don't fall
+              into the trap of endless iterations. Reject the PR and handle it
+              manually.
             </p>
 
             <h2>Workflow #2: Leveraging (Active Collaboration)</h2>
 
             <p>
-              Now let's talk about leveraging, which is completely different. This is where you sit down
-              with your AI assistant and work through a problem together. You're not assigning and walking
-              away. You're having a conversation. You're steering, correcting, exploring options. It's
-              like pair programming, except your pair is an AI that can instantly read through your entire
-              codebase.
+              Now let's talk about leveraging, which is completely different.
+              This is where you sit down with your AI assistant and work through
+              a problem together. You're not assigning and walking away. You're
+              having a conversation. You're steering, correcting, exploring
+              options. It's like pair programming, except your pair is an AI
+              that can instantly read through your entire codebase.
             </p>
 
             <p>
-              This requires your full attention. You can't leverage AI while answering Slack messages or
-              sitting in a meeting. But when you need to figure something out, solve something complex,
-              or explore architectural options? This is where the magic happens.
+              This requires your full attention. You can't leverage AI while
+              answering Slack messages or sitting in a meeting. But when you
+              need to figure something out, solve something complex, or explore
+              architectural options? This is where the magic happens.
             </p>
 
             <h3>When to Leverage</h3>
@@ -284,29 +319,32 @@ Tests: Add test verifying localStorage update`}
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-3 text-xl">→</span>
                   <div>
-                    <strong>Architectural Decisions:</strong> "Help me design a caching layer for our API.
-                    Consider Redis vs in-memory vs file-based approaches."
+                    <strong>Architectural Decisions:</strong> "Help me design a
+                    caching layer for our API. Consider Redis vs in-memory vs
+                    file-based approaches."
                   </div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-3 text-xl">→</span>
                   <div>
-                    <strong>Bug Diagnosis:</strong> "We have a race condition in the checkout flow. Help
-                    me trace the issue through the payment processing pipeline."
+                    <strong>Bug Diagnosis:</strong> "We have a race condition in
+                    the checkout flow. Help me trace the issue through the
+                    payment processing pipeline."
                   </div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-3 text-xl">→</span>
                   <div>
-                    <strong>Feature Discovery:</strong> "I want to add real-time collaboration to our
-                    document editor. Let's explore options and trade-offs."
+                    <strong>Feature Discovery:</strong> "I want to add real-time
+                    collaboration to our document editor. Let's explore options
+                    and trade-offs."
                   </div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-3 text-xl">→</span>
                   <div>
-                    <strong>Performance Optimization:</strong> "Our dashboard is loading slowly. Help me
-                    profile and identify bottlenecks."
+                    <strong>Performance Optimization:</strong> "Our dashboard is
+                    loading slowly. Help me profile and identify bottlenecks."
                   </div>
                 </li>
               </ul>
@@ -316,9 +354,11 @@ Tests: Add test verifying localStorage update`}
 
             <div className="my-8 max-w-2xl">
               <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-6 rounded-lg">
-                <p className="text-xl font-semibold mb-6 text-blitz-primary">Active Collaboration Workflow</p>
+                <p className="text-xl font-semibold mb-6 text-blitz-primary">
+                  Active Collaboration Workflow
+                </p>
                 <pre className="text-xs leading-relaxed text-blitz-charcoal overflow-x-auto">
-{`┌─────────────────────────────────────────┐
+                  {`┌─────────────────────────────────────────┐
 │ 1. Discovery Phase                      │
 │    → Ask AI to explore codebase         │
 │    → Request multiple approaches        │
@@ -356,22 +396,24 @@ Tests: Add test verifying localStorage update`}
             <h3>The Critical Skill: Interrupting Effectively</h3>
 
             <p>
-              Okay, this is probably the most important thing I'll tell you about leveraging AI:
-              <strong>interrupt early and often</strong>. I cannot stress this enough. When your AI assistant starts
-              heading in the wrong direction, don't wait. Don't let it finish. Don't think "maybe it'll
-              figure it out." It won't. Mistakes compound.
+              Okay, this is probably the most important thing I'll tell you
+              about leveraging AI:
+              <strong>interrupt early and often</strong>. I cannot stress this
+              enough. When your AI assistant starts heading in the wrong
+              direction, don't wait. Don't let it finish. Don't think "maybe
+              it'll figure it out." It won't. Mistakes compound.
             </p>
 
             <p>
-              If the AI is applying the wrong pattern, using the wrong data structure, or making security
-              mistakes, stop it immediately. Every line of code built on a flawed assumption just makes
-              the problem worse. I've seen people let agents write 500 lines of code in the wrong direction
-              because they didn't want to interrupt. Don't be that person.
+              If the AI is applying the wrong pattern, using the wrong data
+              structure, or making security mistakes, stop it immediately. Every
+              line of code built on a flawed assumption just makes the problem
+              worse. I've seen people let agents write 500 lines of code in the
+              wrong direction because they didn't want to interrupt. Don't be
+              that person.
             </p>
 
-            <p>
-              Interrupt when you see:
-            </p>
+            <p>Interrupt when you see:</p>
 
             <ul className="list-disc list-inside space-y-2 ml-4">
               <li>Wrong architectural pattern being applied</li>
@@ -384,15 +426,19 @@ Tests: Add test verifying localStorage update`}
             <h3>Providing Context: The Make-or-Break Factor</h3>
 
             <p>
-              Here's another thing that separates good AI collaboration from frustrating ones: being
-              specific with your context. Don't say "update the API service." There are probably five
-              different API services in your codebase. Which one? Be surgical. Give file paths, line
-              numbers, function names. The more precise you are, the better the output.
+              Here's another thing that separates good AI collaboration from
+              frustrating ones: being specific with your context. Don't say
+              "update the API service." There are probably five different API
+              services in your codebase. Which one? Be surgical. Give file
+              paths, line numbers, function names. The more precise you are, the
+              better the output.
             </p>
 
             <div className="grid md:grid-cols-2 gap-6 my-8">
               <div className="bg-red-50 border border-red-300 p-6 rounded-lg">
-                <h4 className="font-semibold text-red-700 mb-3">Vague Context ❌</h4>
+                <h4 className="font-semibold text-red-700 mb-3">
+                  Vague Context ❌
+                </h4>
                 <p className="text-sm text-red-900 italic">
                   "Update the API call service to handle retries better."
                 </p>
@@ -402,10 +448,12 @@ Tests: Add test verifying localStorage update`}
               </div>
 
               <div className="bg-green-50 border border-green-300 p-6 rounded-lg">
-                <h4 className="font-semibold text-green-700 mb-3">Precise Context ✓</h4>
+                <h4 className="font-semibold text-green-700 mb-3">
+                  Precise Context ✓
+                </h4>
                 <p className="text-sm text-green-900 italic">
-                  "In src/services/api/subscriber.service.ts:87-120, add exponential
-                  backoff to the fetchSubscriberData method."
+                  "In src/services/api/subscriber.service.ts:87-120, add
+                  exponential backoff to the fetchSubscriberData method."
                 </p>
                 <p className="text-sm text-green-700 mt-3">
                   Agent knows exactly where to look and what to modify.
@@ -418,12 +466,12 @@ Tests: Add test verifying localStorage update`}
             <h3>Pattern 1: Read and Propose</h3>
 
             <p>
-              Start by having the AI explore the codebase and propose multiple approaches before
-              committing to implementation.
+              Start by having the AI explore the codebase and propose multiple
+              approaches before committing to implementation.
             </p>
 
             <pre className="bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-6">
-{`You: "Read src/auth/* and propose three approaches for adding
+              {`You: "Read src/auth/* and propose three approaches for adding
      OAuth2 support. Consider our existing session management."
 
 AI: [Explores codebase, identifies patterns]
@@ -447,12 +495,13 @@ You: "Let's go with option 3. Start with the TokenManager interface."`}
             <h3>Pattern 2: Rapid Prototyping</h3>
 
             <p>
-              Use AI to quickly prototype solutions without direction, helping you discover
-              missed requirements early. Then throw away the prototype and implement properly.
+              Use AI to quickly prototype solutions without direction, helping
+              you discover missed requirements early. Then throw away the
+              prototype and implement properly.
             </p>
 
             <pre className="bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-6">
-{`You: "Prototype a real-time notification system. Just get something
+              {`You: "Prototype a real-time notification system. Just get something
      working quickly, don't worry about production quality."
 
 AI: [Implements basic WebSocket solution]
@@ -468,12 +517,13 @@ You: "Good, this reveals we need:
             <h3>Pattern 3: Test Pattern Replication</h3>
 
             <p>
-              Provide one or two example tests showing your mocking and assertion patterns,
-              then have the AI generate comprehensive test coverage following those patterns.
+              Provide one or two example tests showing your mocking and
+              assertion patterns, then have the AI generate comprehensive test
+              coverage following those patterns.
             </p>
 
             <pre className="bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-6">
-{`You: "Look at these two tests in auth.test.ts:
+              {`You: "Look at these two tests in auth.test.ts:
      - Lines 15-32: Shows how we mock the database
      - Lines 45-58: Shows our assertion style
 
@@ -484,12 +534,13 @@ You: "Good, this reveals we need:
             <h3>Pattern 4: Incremental Review Notes</h3>
 
             <p>
-              As you actively collaborate, keep a running list of minor issues to address after
-              the main work is complete. This prevents context-switching and maintains momentum.
+              As you actively collaborate, keep a running list of minor issues
+              to address after the main work is complete. This prevents
+              context-switching and maintains momentum.
             </p>
 
             <pre className="bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-6">
-{`You: "The main logic looks good. I'm noting these for cleanup:
+              {`You: "The main logic looks good. I'm noting these for cleanup:
      - Add JSDoc to public methods
      - Extract magic number to constant
      - Handle edge case for empty arrays
@@ -501,8 +552,9 @@ You: "Good, this reveals we need:
             <h2>The Anti-Pattern: Unfocused Multitasking</h2>
 
             <p>
-              One of the most common mistakes is trying to manage multiple AI agents simultaneously
-              without proper delegation. This creates several problems:
+              One of the most common mistakes is trying to manage multiple AI
+              agents simultaneously without proper delegation. This creates
+              several problems:
             </p>
 
             <div className="bg-red-50 border-l-4 border-red-500 p-6 my-8">
@@ -513,30 +565,34 @@ You: "Good, this reveals we need:
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 text-xl">✗</span>
                   <div>
-                    <strong>Context Loss:</strong> Switching between agents causes you to lose the mental
-                    model of each task, leading to poor decisions and missed issues.
+                    <strong>Context Loss:</strong> Switching between agents
+                    causes you to lose the mental model of each task, leading to
+                    poor decisions and missed issues.
                   </div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 text-xl">✗</span>
                   <div>
-                    <strong>Compound Errors:</strong> Without focused attention, each agent makes mistakes
-                    that build on each other, requiring extensive rework.
+                    <strong>Compound Errors:</strong> Without focused attention,
+                    each agent makes mistakes that build on each other,
+                    requiring extensive rework.
                   </div>
                 </li>
                 <li className="flex items-start">
                   <span className="text-red-500 mr-3 text-xl">✗</span>
                   <div>
-                    <strong>Poor Output Quality:</strong> Agents produce code that works in isolation but
-                    doesn't integrate well because you weren't paying attention to architectural consistency.
+                    <strong>Poor Output Quality:</strong> Agents produce code
+                    that works in isolation but doesn't integrate well because
+                    you weren't paying attention to architectural consistency.
                   </div>
                 </li>
               </ul>
             </div>
 
             <p>
-              <strong>The Solution:</strong> If a task is suitable for autonomous work, fully delegate it
-              and review later. If it requires active collaboration, give it 100% of your attention.
+              <strong>The Solution:</strong> If a task is suitable for
+              autonomous work, fully delegate it and review later. If it
+              requires active collaboration, give it 100% of your attention.
               Don't try to split focus across multiple leveraging sessions.
             </p>
 
@@ -581,23 +637,29 @@ You: "Good, this reveals we need:
             <h2>You Own the Output, Always</h2>
 
             <p>
-              Let's get one thing crystal clear: <strong>every line of AI-generated code is your
-              responsibility</strong>. Not the AI's. Yours. I don't care if Claude wrote it, Devin
-              wrote it, or GPT-47 wrote it. When it breaks in production, when it has a security
-              vulnerability, when it's unmaintainable, that's on you.
+              Let's get one thing crystal clear:{' '}
+              <strong>
+                every line of AI-generated code is your responsibility
+              </strong>
+              . Not the AI's. Yours. I don't care if Claude wrote it, Devin
+              wrote it, or GPT-47 wrote it. When it breaks in production, when
+              it has a security vulnerability, when it's unmaintainable, that's
+              on you.
             </p>
 
             <p>
-              This means you need to review everything. Understand the architectural decisions.
-              Check for security issues. Test the edge cases. Make sure it's maintainable. AI
-              tools are incredible productivity multipliers, but they're tools. The quality of
-              your product still depends on your judgment, not the AI's.
+              This means you need to review everything. Understand the
+              architectural decisions. Check for security issues. Test the edge
+              cases. Make sure it's maintainable. AI tools are incredible
+              productivity multipliers, but they're tools. The quality of your
+              product still depends on your judgment, not the AI's.
             </p>
 
             <p>
-              I've seen teams ship AI-generated code because "the tests passed" without actually
-              reviewing what it does. Don't do this. Tests validate behavior, not correctness or
-              maintainability or security. You still need to read the code.
+              I've seen teams ship AI-generated code because "the tests passed"
+              without actually reviewing what it does. Don't do this. Tests
+              validate behavior, not correctness or maintainability or security.
+              You still need to read the code.
             </p>
 
             <h2>Practical Examples</h2>
@@ -605,9 +667,11 @@ You: "Good, this reveals we need:
             <h3>Example 1: Feature Flag Removal (Delegate)</h3>
 
             <div className="bg-blitz-accent/5 p-6 rounded-lg my-6">
-              <p className="font-semibold text-blitz-primary mb-4">Task Specification:</p>
+              <p className="font-semibold text-blitz-primary mb-4">
+                Task Specification:
+              </p>
               <pre className="bg-white border border-blitz-charcoal/20 p-4 rounded text-sm overflow-x-auto">
-{`Title: Remove ENABLE_TOPICS_V2 feature flag
+                {`Title: Remove ENABLE_TOPICS_V2 feature flag
 
 Context:
 The ENABLE_TOPICS_V2 feature flag has been enabled in production
@@ -632,16 +696,19 @@ Success Criteria:
 - Application builds without warnings`}
               </pre>
               <p className="text-sm text-blitz-charcoal/70 mt-4">
-                <strong>Outcome:</strong> Assigned to Devin, completed in 12 minutes with zero review loops needed.
+                <strong>Outcome:</strong> Assigned to Devin, completed in 12
+                minutes with zero review loops needed.
               </p>
             </div>
 
             <h3>Example 2: Performance Optimization (Leverage)</h3>
 
             <div className="bg-blitz-accent/5 p-6 rounded-lg my-6">
-              <p className="font-semibold text-blitz-primary mb-4">Collaboration Session:</p>
+              <p className="font-semibold text-blitz-primary mb-4">
+                Collaboration Session:
+              </p>
               <pre className="bg-white border border-blitz-charcoal/20 p-4 rounded text-sm overflow-x-auto">
-{`You: "Our dashboard page is loading slowly. Help me profile and
+                {`You: "Our dashboard page is loading slowly. Help me profile and
      identify bottlenecks. Start by examining the loader in
      app/routes/dashboard.tsx"
 
@@ -680,8 +747,9 @@ You: "Excellent. Now add performance instrumentation so we can
      lib/monitoring/performance.ts:23-45"`}
               </pre>
               <p className="text-sm text-blitz-charcoal/70 mt-4">
-                <strong>Outcome:</strong> Active session over 45 minutes, reduced page load from 2.3s to 650ms,
-                discovered and fixed three additional edge cases during collaboration.
+                <strong>Outcome:</strong> Active session over 45 minutes,
+                reduced page load from 2.3s to 650ms, discovered and fixed three
+                additional edge cases during collaboration.
               </p>
             </div>
 
@@ -802,48 +870,53 @@ You: "Excellent. Now add performance instrumentation so we can
             <h3>Pitfall 1: Over-Delegation</h3>
 
             <p>
-              <strong>Symptom:</strong> Delegating complex architectural decisions because "the AI
-              should figure it out."
+              <strong>Symptom:</strong> Delegating complex architectural
+              decisions because "the AI should figure it out."
             </p>
 
             <p>
-              <strong>Solution:</strong> Use the decision framework. If you can't write a clear spec
-              with success criteria, it's a leverage task, not a delegation task.
+              <strong>Solution:</strong> Use the decision framework. If you
+              can't write a clear spec with success criteria, it's a leverage
+              task, not a delegation task.
             </p>
 
             <h3>Pitfall 2: Under-Leveraging</h3>
 
             <p>
-              <strong>Symptom:</strong> Manually implementing everything because "I could do it faster
-              than explaining it to the AI."
+              <strong>Symptom:</strong> Manually implementing everything because
+              "I could do it faster than explaining it to the AI."
             </p>
 
             <p>
-              <strong>Solution:</strong> Practice leveraging workflows on lower-stakes tasks. The
-              upfront time investment in collaboration pays dividends through learning and exploration.
+              <strong>Solution:</strong> Practice leveraging workflows on
+              lower-stakes tasks. The upfront time investment in collaboration
+              pays dividends through learning and exploration.
             </p>
 
             <h3>Pitfall 3: Insufficient Review</h3>
 
             <p>
-              <strong>Symptom:</strong> Shipping AI-generated code with minimal review because tests pass.
+              <strong>Symptom:</strong> Shipping AI-generated code with minimal
+              review because tests pass.
             </p>
 
             <p>
-              <strong>Solution:</strong> Remember that you own the output. Review with the same rigor
-              you'd apply to human-written code, tests validate behavior, not correctness or maintainability.
+              <strong>Solution:</strong> Remember that you own the output.
+              Review with the same rigor you'd apply to human-written code,
+              tests validate behavior, not correctness or maintainability.
             </p>
 
             <h3>Pitfall 4: Context Overload</h3>
 
             <p>
-              <strong>Symptom:</strong> Providing massive context dumps hoping the AI will "figure out"
-              what's relevant.
+              <strong>Symptom:</strong> Providing massive context dumps hoping
+              the AI will "figure out" what's relevant.
             </p>
 
             <p>
-              <strong>Solution:</strong> Be surgical with context. Point to specific files, functions,
-              and patterns. More context isn't always better, precision matters more than quantity.
+              <strong>Solution:</strong> Be surgical with context. Point to
+              specific files, functions, and patterns. More context isn't always
+              better, precision matters more than quantity.
             </p>
 
             <h2>Key Takeaways</h2>
@@ -851,32 +924,35 @@ You: "Excellent. Now add performance instrumentation so we can
             <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-8 rounded-lg my-8">
               <ol className="space-y-4 text-lg">
                 <li>
-                  <strong>1. Choose the Right Workflow:</strong> Delegate known tasks with clear specs,
-                  leverage AI for discovery and complex problem-solving.
+                  <strong>1. Choose the Right Workflow:</strong> Delegate known
+                  tasks with clear specs, leverage AI for discovery and complex
+                  problem-solving.
                 </li>
                 <li>
-                  <strong>2. Specification Quality Matters:</strong> For delegation, invest time in
-                  clear, detailed specs with examples and references.
+                  <strong>2. Specification Quality Matters:</strong> For
+                  delegation, invest time in clear, detailed specs with examples
+                  and references.
                 </li>
                 <li>
-                  <strong>3. Interrupt Early and Often:</strong> When leveraging, correct mistakes
-                  immediately before they compound.
+                  <strong>3. Interrupt Early and Often:</strong> When
+                  leveraging, correct mistakes immediately before they compound.
                 </li>
                 <li>
-                  <strong>4. Provide Precise Context:</strong> Use exact file paths and line numbers
-                  instead of vague references.
+                  <strong>4. Provide Precise Context:</strong> Use exact file
+                  paths and line numbers instead of vague references.
                 </li>
                 <li>
-                  <strong>5. Limit Review Loops:</strong> Maximum 1-2 rounds for delegated tasks,
-                  reject and handle manually if unsuccessful.
+                  <strong>5. Limit Review Loops:</strong> Maximum 1-2 rounds for
+                  delegated tasks, reject and handle manually if unsuccessful.
                 </li>
                 <li>
-                  <strong>6. Own the Output:</strong> You're responsible for all AI-generated code -
-                  review thoroughly and maintain quality standards.
+                  <strong>6. Own the Output:</strong> You're responsible for all
+                  AI-generated code - review thoroughly and maintain quality
+                  standards.
                 </li>
                 <li>
-                  <strong>7. Stay Focused:</strong> Give leveraging sessions 100% attention, batch
-                  review delegated tasks later.
+                  <strong>7. Stay Focused:</strong> Give leveraging sessions
+                  100% attention, batch review delegated tasks later.
                 </li>
               </ol>
             </div>
@@ -884,27 +960,30 @@ You: "Excellent. Now add performance instrumentation so we can
             <h2>Wrapping Up</h2>
 
             <p>
-              Look, AI is changing how we write code. That's just reality. The engineers who figure
-              this out early are going to have a massive advantage over those who don't. But it's not
-              about blindly trusting AI or rejecting it entirely. It's about developing a systematic
-              approach to human-AI collaboration.
+              Look, AI is changing how we write code. That's just reality. The
+              engineers who figure this out early are going to have a massive
+              advantage over those who don't. But it's not about blindly
+              trusting AI or rejecting it entirely. It's about developing a
+              systematic approach to human-AI collaboration.
             </p>
 
             <p>
-              The delegate vs leverage framework is that system. Is your task well-defined? Delegate it.
-              Is it exploratory or complex? Leverage AI as your pair programmer. It's really that simple.
+              The delegate vs leverage framework is that system. Is your task
+              well-defined? Delegate it. Is it exploratory or complex? Leverage
+              AI as your pair programmer. It's really that simple.
             </p>
 
             <p>
-              Start with something easy. Pick a feature flag removal or a simple refactor. Write a good
-              spec, delegate it, see what happens. Then try a leveraging session on something harder,
-              like performance optimization or debugging a race condition. You'll quickly develop intuition
-              for which approach fits which situation.
+              Start with something easy. Pick a feature flag removal or a simple
+              refactor. Write a good spec, delegate it, see what happens. Then
+              try a leveraging session on something harder, like performance
+              optimization or debugging a race condition. You'll quickly develop
+              intuition for which approach fits which situation.
             </p>
 
             <p>
-              The engineers who master these workflows now will be the ones leading teams in five years.
-              Don't wait. Start practicing today.
+              The engineers who master these workflows now will be the ones
+              leading teams in five years. Don't wait. Start practicing today.
             </p>
           </div>
 

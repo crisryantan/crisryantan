@@ -38,7 +38,7 @@ const blogPosts = [
     title: 'AI-Assisted Coding Workflows: Delegating vs Leveraging',
     excerpt:
       'Learn the mental model for working with AI coding assistants: when to delegate tasks and walk away vs when to leverage AI as your pair programming partner.',
-    date: 'December 30, 2025',
+    date: 'March 17, 2026',
     readTime: '12 min read',
     link: '/blog/ai-coding-workflows',
   },

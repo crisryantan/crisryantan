@@ -40,7 +40,7 @@ const AICodingWorkflowsPage = () => {
               AI-Assisted Coding Workflows: Delegating vs Leveraging
             </h1>
             <div className="flex flex-wrap items-center text-blitz-charcoal/60 text-sm mb-6">
-              <time className="mr-4">December 30, 2025</time>
+              <time className="mr-4">March 17, 2026</time>
               <span className="mr-4">•</span>
               <span className="mr-4">12 min read</span>
               <span className="mr-4">•</span>

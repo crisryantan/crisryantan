@@ -5,6 +5,42 @@
 @tailwind utilities;
 
 @layer base {
+  /*
+   * blitz palette as space-separated RGB channels so Tailwind's
+   * rgb(var(--x) / <alpha-value>) tokens resolve with opacity modifiers.
+   * Dark mode simply swaps these values — every text-blitz-* / bg-blitz-*
+   * utility across the site adapts with no markup changes.
+   */
+  :root {
+    --blitz-primary: 10 37 64; /* #0A2540 deep navy — headings */
+    --blitz-primary-light: 30 58 95;
+    --blitz-accent: 24 255 255; /* #18FFFF electric cyan */
+    --blitz-soft: 0 191 165; /* #00BFA5 teal */
+    --blitz-coral: 255 111 97; /* #FF6F61 */
+    --blitz-coral-light: 255 154 145;
+    --blitz-sand: 245 245 220; /* #F5F5DC warm neutral surface */
+    --blitz-sand-light: 250 250 245;
+    --blitz-charcoal: 34 40 49; /* #222831 body text */
+    --blitz-lavender: 163 157 206; /* #A39DCE divider */
+    --blitz-white: 255 255 255; /* page background */
+    color-scheme: light;
+  }
+
+  .dark {
+    --blitz-primary: 226 232 240; /* light slate — headings on dark */
+    --blitz-primary-light: 203 213 225;
+    --blitz-accent: 45 255 255; /* keep cyan vivid */
+    --blitz-soft: 45 212 191; /* teal-400, brighter for contrast */
+    --blitz-coral: 251 146 120;
+    --blitz-coral-light: 255 170 150;
+    --blitz-sand: 20 28 44; /* elevated surface */
+    --blitz-sand-light: 15 22 36;
+    --blitz-charcoal: 205 213 226; /* body text on dark */
+    --blitz-lavender: 92 104 132; /* dimmer divider */
+    --blitz-white: 8 12 22; /* deep navy-black page bg */
+    color-scheme: dark;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -12,6 +48,9 @@
   body {
     @apply text-blitz-charcoal bg-blitz-white;
     font-feature-settings: 'cv11', 'ss01', 'ss02', 'ss03', 'ss04';
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease;
   }
 
   ::selection {
@@ -37,8 +76,8 @@
   }
 
   /* Focus outline for accessibility */
-  *:focus {
-    @apply outline-none ring-2 ring-blitz-accent/50 ring-offset-2 ring-offset-blitz-white;
+  *:focus-visible {
+    @apply outline-none ring-2 ring-blitz-accent/60 ring-offset-2 ring-offset-blitz-white;
   }
 
   /* Typography */
@@ -53,6 +92,34 @@
 
   p {
     @apply leading-relaxed;
+  }
+
+  /* When the custom cursor is mounted, hide the native one (desktop / fine pointer only) */
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+
+  /*
+   * Reduced-motion safety net. Framer's MotionConfig reducedMotion="user" handles
+   * JS-driven motion; this neutralizes CSS keyframes (aurora, float, shimmer) and
+   * smooth scroll for users who ask for less motion.
+   */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+    html.has-custom-cursor,
+    html.has-custom-cursor * {
+      cursor: auto !important;
+    }
   }
 }
 
@@ -82,11 +149,11 @@
   }
 
   .card {
-    @apply bg-blitz-white rounded-xl shadow-soft border border-blitz-lavender/20 overflow-hidden hover:shadow-hover transition-all duration-300 hover:-translate-y-1;
+    @apply bg-blitz-white rounded-xl shadow-soft border border-blitz-lavender/20 overflow-hidden transition-all duration-300;
   }
 
   .card-minimal {
-    @apply bg-blitz-white rounded-lg border border-blitz-lavender/10 overflow-hidden hover:border-blitz-lavender/30 transition-all duration-200;
+    @apply bg-blitz-white rounded-lg border border-blitz-lavender/10 overflow-hidden transition-all duration-200;
   }
 
   .link-hover {
@@ -104,6 +171,15 @@
   .badge-accent {
     @apply bg-blitz-accent/10 text-blitz-primary;
   }
+
+  /* In dark mode, black drop-shadows vanish — use a subtle ring/border highlight instead. */
+  .dark .card {
+    @apply shadow-none ring-1 ring-white/5 border-white/10;
+  }
+
+  .dark .card-minimal {
+    @apply border-white/10;
+  }
 }
 
 @layer utilities {
@@ -116,13 +192,62 @@
     @apply text-blitz-charcoal;
   }
 
+  /*
+   * Several posts hand-authored presentational boxes (comparison cards, callouts,
+   * tables) with fixed light-palette utilities that don't follow the theme. Remap
+   * them for dark mode — light tints become dark tints, dark text becomes light —
+   * via higher specificity than the raw utility, with no edits to post markup.
+   * Saturated bars (bg-blue-500 / bg-amber-500 + text-white) are already readable
+   * and left as-is, as are the text-*-500 ✓/✗ marks.
+   */
+  .dark .prose-blitz div.bg-white {
+    background-color: rgb(var(--blitz-sand));
+    border-color: rgb(var(--blitz-lavender) / 0.18);
+  }
+  .dark .prose-blitz .bg-gray-200 {
+    background-color: rgb(var(--blitz-lavender) / 0.25);
+  }
+  .dark .prose-blitz .bg-green-50,
+  .dark .prose-blitz .bg-green-100 {
+    background-color: rgb(34 197 94 / 0.1);
+  }
+  .dark .prose-blitz .bg-red-50,
+  .dark .prose-blitz .bg-red-100 {
+    background-color: rgb(244 63 94 / 0.1);
+  }
+  .dark .prose-blitz .border-green-300 {
+    border-color: rgb(34 197 94 / 0.35);
+  }
+  .dark .prose-blitz .border-red-300 {
+    border-color: rgb(244 63 94 / 0.35);
+  }
+  .dark .prose-blitz .text-green-600 {
+    color: #4ade80;
+  }
+  .dark .prose-blitz .text-green-700,
+  .dark .prose-blitz .text-green-800,
+  .dark .prose-blitz .text-green-900 {
+    color: #86efac;
+  }
+  .dark .prose-blitz .text-red-600 {
+    color: #f87171;
+  }
+  .dark .prose-blitz .text-red-700,
+  .dark .prose-blitz .text-red-800,
+  .dark .prose-blitz .text-red-900 {
+    color: #fca5a5;
+  }
+  .dark .prose-blitz .text-blue-700 {
+    color: #93c5fd;
+  }
+
   .prose-blitz h1,
   .prose-blitz h2,
   .prose-blitz h3,
   .prose-blitz h4,
   .prose-blitz h5,
   .prose-blitz h6 {
-    @apply text-blitz-primary font-bold;
+    @apply text-blitz-primary font-bold scroll-mt-28;
   }
 
   .prose-blitz h2 {
@@ -150,6 +275,27 @@
     @apply mb-2;
   }
 
+  /*
+   * Normalize the hand-authored icon/check lists. Authors used a mix of
+   * space-y-2/3/4, giving inconsistent, often too-large item gaps. Pin every
+   * spaced ul/ol in prose to a single compact gap (higher specificity than the
+   * raw Tailwind space-y-* utility, so it wins without !important). Scoped to
+   * lists so non-list stacks (e.g. diagram blocks) keep their own spacing.
+   */
+  .prose-blitz ul[class*='space-y-'] > :not([hidden]) ~ :not([hidden]),
+  .prose-blitz ol[class*='space-y-'] > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0.5rem;
+  }
+
+  /*
+   * Accented callout boxes (border-l-4 + p-6) used across every post had a bit
+   * much left inset. Trim ~10px off the left padding (24px → 14px) consistently
+   * for all of them via one rule (higher specificity than the p-6 shorthand).
+   */
+  .prose-blitz [class~='border-l-4'][class~='p-6'] {
+    padding-left: 0.875rem;
+  }
+
   .prose-blitz blockquote {
     @apply border-l-4 border-blitz-soft bg-blitz-sand/30 p-6 my-8 italic;
   }
@@ -158,11 +304,31 @@
     @apply bg-blitz-sand px-2 py-1 rounded text-sm font-mono text-blitz-primary;
   }
 
+  /* Code blocks stay dark in both themes (charcoal token flips to light in dark mode). */
   .prose-blitz pre {
-    @apply bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-8;
+    background-color: #0d1424;
+    @apply text-slate-100 p-6 rounded-lg overflow-x-auto my-8 ring-1 ring-white/10;
   }
 
   .prose-blitz pre code {
-    @apply bg-transparent text-blitz-white p-0;
+    @apply bg-transparent text-slate-100 p-0;
+  }
+
+  /*
+   * Progressive prose reveal. These classes are added by ArticleLayout's
+   * IntersectionObserver ONLY for below-the-fold children when motion is allowed,
+   * so no-JS / reduced-motion / crawler renders keep the prose fully visible.
+   */
+  .prose-blitz > .prose-hidden {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .prose-blitz > .prose-in {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
   }
 }

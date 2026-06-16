@@ -43,6 +43,14 @@
 
   html {
     scroll-behavior: smooth;
+    /*
+     * Match the themed page background on <html>, not just <body>. On mobile the
+     * URL bar shows/hides during scroll and briefly exposes the <html> backdrop
+     * behind <body>; without this it defaults to white and flashes on every
+     * toggle (very visible in dark mode) — the "whole page blinks while
+     * scrolling" report. This flips with the theme via the CSS variable.
+     */
+    background-color: rgb(var(--blitz-white));
   }
 
   body {

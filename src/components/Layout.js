@@ -133,7 +133,7 @@ const Layout = ({ children }) => {
   }, [])
 
   return (
-    <div className="min-h-screen bg-blitz-white">
+    <div className="min-h-[100svh] bg-blitz-white">
       {/* Navigation */}
       <m.nav
         initial={{ y: '-120%' }}

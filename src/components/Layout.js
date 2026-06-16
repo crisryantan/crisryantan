@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 import { m, AnimatePresence } from 'motion/react'
 import ThemeToggle from './ThemeToggle'
@@ -105,18 +105,30 @@ const Layout = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
-  const lastY = useRef(0)
 
   useEffect(() => {
-    const handleScroll = () => {
+    let raf = 0
+    let lastCommitted = window.scrollY
+    const update = () => {
+      raf = 0
       const y = window.scrollY
       setIsScrolled(y > 10)
-      // Hide the bar when scrolling down past the hero, reveal on scroll up.
-      setHidden(y > lastY.current && y > 160)
-      lastY.current = y
+      // Only flip hide/show once movement clears an 8px threshold. Mobile momentum
+      // and iOS rubber-banding produce tiny up/down jitter that would otherwise
+      // toggle the bar every frame and make it blink.
+      const delta = y - lastCommitted
+      if (Math.abs(delta) < 8) return
+      setHidden(delta > 0 && y > 160)
+      lastCommitted = y
     }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (raf) cancelAnimationFrame(raf)
+    }
   }, [])
 
   return (
@@ -128,7 +140,7 @@ const Layout = ({ children }) => {
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 z-50 w-full transition-colors duration-300 ${
           isScrolled || isMenuOpen
-            ? 'bg-blitz-white/80 shadow-soft backdrop-blur-md'
+            ? 'bg-blitz-white/95 shadow-soft md:bg-blitz-white/80 md:backdrop-blur-md'
             : 'bg-transparent'
         }`}
       >

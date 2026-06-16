@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import { m } from 'motion/react'
 import ArticleLayout from '../../components/ArticleLayout'
+import CountUp from '../../components/motion/CountUp'
 
 const CuttingLoadTimesAtLorikeetPage = () => {
   return (
@@ -47,13 +49,17 @@ const CuttingLoadTimesAtLorikeetPage = () => {
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div>
-            <p className="text-3xl font-bold text-blitz-accent">75%</p>
+            <p className="text-3xl font-bold text-blitz-accent">
+              <CountUp value={75} suffix="%" />
+            </p>
             <p className="text-sm text-blitz-charcoal/70">
               Web app cold load reduction (1.56 MB to 392 KB)
             </p>
           </div>
           <div>
-            <p className="text-3xl font-bold text-blitz-accent">681ms</p>
+            <p className="text-3xl font-bold text-blitz-accent">
+              <CountUp value={681} suffix="ms" />
+            </p>
             <p className="text-sm text-blitz-charcoal/70">
               Chat widget time-to-ready (down from 1.24s)
             </p>
@@ -68,7 +74,9 @@ const CuttingLoadTimesAtLorikeetPage = () => {
             </p>
           </div>
           <div>
-            <p className="text-3xl font-bold text-blitz-accent">630KB</p>
+            <p className="text-3xl font-bold text-blitz-accent">
+              <CountUp value={630} suffix="KB" />
+            </p>
             <p className="text-sm text-blitz-charcoal/70">
               Trimmed from chat bundles via tree-shaking
             </p>
@@ -432,7 +440,7 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               Without Preload
             </p>
             <p className="text-sm font-mono text-blitz-charcoal/60">
-              1,242ms to ready
+              <CountUp value={1242} suffix="ms to ready" />
             </p>
           </div>
           <div className="space-y-2">
@@ -441,12 +449,20 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                 /widget
               </span>
               <div className="flex-1 h-6 relative">
-                <div
-                  className="absolute inset-y-0 bg-blue-500 rounded flex items-center justify-center text-white font-mono"
-                  style={{ left: '0%', width: '27.8%' }}
+                <m.div
+                  className="absolute inset-y-0 bg-blue-500 rounded flex items-center justify-center overflow-hidden text-white font-mono"
+                  style={{ left: '0%' }}
+                  initial={{ width: '0%' }}
+                  whileInView={{ width: '27.8%' }}
+                  viewport={{ once: true, margin: '-15%' }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: 0.05,
+                  }}
                 >
                   362ms
-                </div>
+                </m.div>
               </div>
             </div>
             <div className="flex items-center gap-3 text-xs">
@@ -454,12 +470,20 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                 /tickets
               </span>
               <div className="flex-1 h-6 relative">
-                <div
-                  className="absolute inset-y-0 bg-blue-400 rounded flex items-center justify-center text-white font-mono"
-                  style={{ left: '27.8%', width: '20.8%' }}
+                <m.div
+                  className="absolute inset-y-0 bg-blue-400 rounded flex items-center justify-center overflow-hidden text-white font-mono"
+                  style={{ left: '27.8%' }}
+                  initial={{ width: '0%' }}
+                  whileInView={{ width: '20.8%' }}
+                  viewport={{ once: true, margin: '-15%' }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: 0.15,
+                  }}
                 >
                   270ms
-                </div>
+                </m.div>
               </div>
             </div>
             <div className="flex items-center gap-3 text-xs">
@@ -467,12 +491,20 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                 13 assets
               </span>
               <div className="flex-1 h-6 relative">
-                <div
-                  className="absolute inset-y-0 bg-amber-500 rounded flex items-center justify-center text-white font-mono"
-                  style={{ left: '27.8%', width: '67.7%' }}
+                <m.div
+                  className="absolute inset-y-0 bg-amber-500 rounded flex items-center justify-center overflow-hidden text-white font-mono"
+                  style={{ left: '27.8%' }}
+                  initial={{ width: '0%' }}
+                  whileInView={{ width: '67.7%' }}
+                  viewport={{ once: true, margin: '-15%' }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: 0.25,
+                  }}
                 >
                   ~880ms
-                </div>
+                </m.div>
               </div>
             </div>
           </div>
@@ -485,7 +517,7 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               With Preload
             </p>
             <p className="text-sm font-mono text-green-600">
-              769ms to ready (38% faster)
+              <CountUp value={769} suffix="ms to ready (38% faster)" />
             </p>
           </div>
           <div className="space-y-2">
@@ -494,12 +526,20 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                 /widget
               </span>
               <div className="flex-1 h-6 relative">
-                <div
-                  className="absolute inset-y-0 bg-blue-500 rounded flex items-center justify-center text-white font-mono"
-                  style={{ left: '0%', width: '25.2%' }}
+                <m.div
+                  className="absolute inset-y-0 bg-blue-500 rounded flex items-center justify-center overflow-hidden text-white font-mono"
+                  style={{ left: '0%' }}
+                  initial={{ width: '0%' }}
+                  whileInView={{ width: '25.2%' }}
+                  viewport={{ once: true, margin: '-15%' }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: 0.05,
+                  }}
                 >
                   328ms
-                </div>
+                </m.div>
               </div>
             </div>
             <div className="flex items-center gap-3 text-xs">
@@ -507,12 +547,20 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                 /tickets
               </span>
               <div className="flex-1 h-6 relative">
-                <div
-                  className="absolute inset-y-0 bg-blue-400 rounded flex items-center justify-center text-white font-mono"
-                  style={{ left: '25.2%', width: '22.8%' }}
+                <m.div
+                  className="absolute inset-y-0 bg-blue-400 rounded flex items-center justify-center overflow-hidden text-white font-mono"
+                  style={{ left: '25.2%' }}
+                  initial={{ width: '0%' }}
+                  whileInView={{ width: '22.8%' }}
+                  viewport={{ once: true, margin: '-15%' }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: 0.15,
+                  }}
                 >
                   296ms
-                </div>
+                </m.div>
               </div>
             </div>
             <div className="flex items-center gap-3 text-xs">

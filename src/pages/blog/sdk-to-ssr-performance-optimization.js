@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import ArticleLayout from '../../components/ArticleLayout'
+import CountUp from '../../components/motion/CountUp'
 
 const WebPerformancePage = () => {
   return (
@@ -147,7 +148,10 @@ const WebPerformancePage = () => {
         </p>
         <ul className="space-y-2 text-lg">
           <li>
-            ✨ <strong>68% lower latency</strong>
+            ✨{' '}
+            <strong>
+              <CountUp value={68} suffix="% lower latency" />
+            </strong>
           </li>
           <li>
             🚀 <strong>Roughly 3x faster</strong> perceived load time

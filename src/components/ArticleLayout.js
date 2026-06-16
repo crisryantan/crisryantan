@@ -75,19 +75,25 @@ const ArticleLayout = ({
       revealIO = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add('prose-in')
-              revealIO.unobserve(e.target)
-            }
+            if (!e.isIntersecting) return
+            // Tables cascade their rows in; everything else fades the block in.
+            e.target.classList.add(
+              e.target.classList.contains('rows-hidden')
+                ? 'rows-in'
+                : 'prose-in'
+            )
+            revealIO.unobserve(e.target)
           })
         },
         { threshold: 0.05, rootMargin: '0px 0px -6% 0px' }
       )
       Array.from(el.children).forEach((child) => {
-        if (child.getBoundingClientRect().top > window.innerHeight * 0.85) {
-          child.classList.add('prose-hidden')
-          revealIO.observe(child)
-        }
+        if (child.getBoundingClientRect().top <= window.innerHeight * 0.85)
+          return
+        child.classList.add(
+          child.tagName === 'TABLE' ? 'rows-hidden' : 'prose-hidden'
+        )
+        revealIO.observe(child)
       })
     }
 

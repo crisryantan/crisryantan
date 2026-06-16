@@ -331,4 +331,32 @@
       opacity 0.6s ease,
       transform 0.6s ease;
   }
+
+  /*
+   * Staggered table-row reveal. ArticleLayout adds rows-hidden/rows-in to a table
+   * only when JS + motion are present, so no-JS / crawler / reduced-motion renders
+   * show every row. Opacity-only (transforms on <tr> render inconsistently).
+   */
+  .prose-blitz table.rows-hidden tbody tr {
+    opacity: 0;
+  }
+  .prose-blitz table.rows-in tbody tr {
+    opacity: 1;
+    transition: opacity 0.45s ease;
+  }
+  .prose-blitz table.rows-in tbody tr:nth-child(2) {
+    transition-delay: 0.06s;
+  }
+  .prose-blitz table.rows-in tbody tr:nth-child(3) {
+    transition-delay: 0.12s;
+  }
+  .prose-blitz table.rows-in tbody tr:nth-child(4) {
+    transition-delay: 0.18s;
+  }
+  .prose-blitz table.rows-in tbody tr:nth-child(5) {
+    transition-delay: 0.24s;
+  }
+  .prose-blitz table.rows-in tbody tr:nth-child(n + 6) {
+    transition-delay: 0.3s;
+  }
 }

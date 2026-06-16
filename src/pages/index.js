@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Seo from '../components/SEO'
 import Hero from '../components/Hero'
+import StatsStrip from '../components/sections/StatsStrip'
 import About from '../components/sections/About'
 import Experience from '../components/sections/Experience'
 import BlogPreview from '../components/sections/BlogPreview'
@@ -12,6 +13,7 @@ const HomePage = () => (
   <Layout>
     <Seo title="Home" />
     <Hero />
+    <StatsStrip />
     <About />
     <Experience />
     <BlogPreview />

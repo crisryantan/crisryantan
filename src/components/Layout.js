@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'gatsby'
 import { m, AnimatePresence } from 'motion/react'
 import ThemeToggle from './ThemeToggle'
+import Reveal from './motion/Reveal'
 
 const navLinks = [
   { name: 'About', href: '/#about' },
@@ -256,11 +257,8 @@ const Layout = ({ children }) => {
       {/* Footer */}
       <footer className="border-t border-blitz-lavender/20 bg-gradient-subtle">
         <div className="max-width-container section-padding py-12">
-          <m.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.5 }}
+          <Reveal
+            amount={0.4}
             className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0"
           >
             <div className="text-center md:text-left">
@@ -289,7 +287,7 @@ const Layout = ({ children }) => {
                 </m.a>
               ))}
             </div>
-          </m.div>
+          </Reveal>
         </div>
       </footer>
     </div>

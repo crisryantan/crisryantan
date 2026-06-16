@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Link } from 'gatsby'
-import { m } from 'motion/react'
+import { m, useInView } from 'motion/react'
 import ArticleLayout from '../../components/ArticleLayout'
 import CountUp from '../../components/motion/CountUp'
+import BeforeAfterBars from '../../components/motion/BeforeAfterBars'
 
 const CuttingLoadTimesAtLorikeetPage = () => {
+  // Drive the waterfall bars from a controlled animate prop (whileInView doesn't
+  // fire its entrance under LazyMotion); one observer for the whole diagram.
+  const waterfallRef = useRef(null)
+  const waterfallIn = useInView(waterfallRef, { once: true, amount: 0.3 })
+
   return (
     <ArticleLayout
       title="Compression, Preloading, and Tree-Shaking: Cutting Load Times by 75% at Lorikeet"
@@ -230,124 +236,27 @@ const CuttingLoadTimesAtLorikeetPage = () => {
         size. The top 5 largest assets tell the story:
       </p>
 
-      <table className="w-full border-collapse border border-blitz-charcoal/20 my-6">
-        <thead>
-          <tr className="bg-blitz-charcoal/5">
-            <th className="border border-blitz-charcoal/20 p-3 text-left">
-              Asset
-            </th>
-            <th className="border border-blitz-charcoal/20 p-3 text-right">
-              Before
-            </th>
-            <th className="border border-blitz-charcoal/20 p-3 text-right">
-              After
-            </th>
-            <th className="border border-blitz-charcoal/20 p-3 text-right">
-              Reduction
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              <code>components</code>
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              267 KB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              85 KB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              68%
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              <code>customer.store</code>
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              198 KB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              61 KB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              69%
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              <code>entry.client</code>
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              126 KB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              40 KB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              69%
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              <code>hub</code>
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              44 KB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              13 KB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              71%
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              <code>browser.client</code>
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              27 KB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              9 KB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              69%
-            </td>
-          </tr>
-          <tr className="bg-blitz-charcoal/5 font-semibold">
-            <td className="border border-blitz-charcoal/20 p-3">
-              Web app total (33 assets)
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              1.56 MB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              392 KB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right text-green-600">
-              75%
-            </td>
-          </tr>
-          <tr className="bg-blitz-charcoal/5 font-semibold">
-            <td className="border border-blitz-charcoal/20 p-3">
-              Chat widget total (17 assets + font)
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              1.81 MB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              795 KB
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right text-green-600">
-              56%
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <BeforeAfterBars
+        items={[
+          { label: 'components', before: 267, after: 85, reduction: 68 },
+          { label: 'customer.store', before: 198, after: 61, reduction: 69 },
+          { label: 'entry.client', before: 126, after: 40, reduction: 69 },
+          { label: 'hub', before: 44, after: 13, reduction: 71 },
+          { label: 'browser.client', before: 27, after: 9, reduction: 69 },
+        ]}
+      />
+
+      <p className="text-sm text-blitz-charcoal/70">
+        Across the full set: the web app dropped{' '}
+        <strong className="text-blitz-primary">
+          1.56 MB → 392 KB (<CountUp value={75} suffix="%" /> smaller)
+        </strong>{' '}
+        across 33 assets, and the chat widget{' '}
+        <strong className="text-blitz-primary">
+          1.81 MB → 795 KB (<CountUp value={56} suffix="%" /> smaller)
+        </strong>{' '}
+        across 17 assets plus the font.
+      </p>
 
       <p>
         The chat widget reduction is lower because the woff2 font (346 kB) is
@@ -432,7 +341,7 @@ const CuttingLoadTimesAtLorikeetPage = () => {
         applied. Final combined numbers appear in the Compounding Effect
         section.
       </p>
-      <div className="my-8 space-y-6">
+      <div ref={waterfallRef} className="my-8 space-y-6">
         {/* Without Preload */}
         <div className="bg-blitz-charcoal/5 rounded-lg p-5">
           <div className="flex items-baseline justify-between mb-4">
@@ -450,11 +359,10 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               </span>
               <div className="flex-1 h-6 relative">
                 <m.div
-                  className="absolute inset-y-0 bg-blue-500 rounded flex items-center justify-center overflow-hidden text-white font-mono"
-                  style={{ left: '0%' }}
-                  initial={{ width: '0%' }}
-                  whileInView={{ width: '27.8%' }}
-                  viewport={{ once: true, margin: '-15%' }}
+                  className="absolute inset-y-0 origin-left bg-blue-500 rounded flex items-center justify-center overflow-hidden text-white font-mono"
+                  style={{ left: '0%', width: '27.8%' }}
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: waterfallIn ? 1 : 0 }}
                   transition={{
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],
@@ -471,11 +379,10 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               </span>
               <div className="flex-1 h-6 relative">
                 <m.div
-                  className="absolute inset-y-0 bg-blue-400 rounded flex items-center justify-center overflow-hidden text-white font-mono"
-                  style={{ left: '27.8%' }}
-                  initial={{ width: '0%' }}
-                  whileInView={{ width: '20.8%' }}
-                  viewport={{ once: true, margin: '-15%' }}
+                  className="absolute inset-y-0 origin-left bg-blue-400 rounded flex items-center justify-center overflow-hidden text-white font-mono"
+                  style={{ left: '27.8%', width: '20.8%' }}
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: waterfallIn ? 1 : 0 }}
                   transition={{
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],
@@ -492,11 +399,10 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               </span>
               <div className="flex-1 h-6 relative">
                 <m.div
-                  className="absolute inset-y-0 bg-amber-500 rounded flex items-center justify-center overflow-hidden text-white font-mono"
-                  style={{ left: '27.8%' }}
-                  initial={{ width: '0%' }}
-                  whileInView={{ width: '67.7%' }}
-                  viewport={{ once: true, margin: '-15%' }}
+                  className="absolute inset-y-0 origin-left bg-amber-500 rounded flex items-center justify-center overflow-hidden text-white font-mono"
+                  style={{ left: '27.8%', width: '67.7%' }}
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: waterfallIn ? 1 : 0 }}
                   transition={{
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],
@@ -527,11 +433,10 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               </span>
               <div className="flex-1 h-6 relative">
                 <m.div
-                  className="absolute inset-y-0 bg-blue-500 rounded flex items-center justify-center overflow-hidden text-white font-mono"
-                  style={{ left: '0%' }}
-                  initial={{ width: '0%' }}
-                  whileInView={{ width: '25.2%' }}
-                  viewport={{ once: true, margin: '-15%' }}
+                  className="absolute inset-y-0 origin-left bg-blue-500 rounded flex items-center justify-center overflow-hidden text-white font-mono"
+                  style={{ left: '0%', width: '25.2%' }}
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: waterfallIn ? 1 : 0 }}
                   transition={{
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],
@@ -548,11 +453,10 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               </span>
               <div className="flex-1 h-6 relative">
                 <m.div
-                  className="absolute inset-y-0 bg-blue-400 rounded flex items-center justify-center overflow-hidden text-white font-mono"
-                  style={{ left: '25.2%' }}
-                  initial={{ width: '0%' }}
-                  whileInView={{ width: '22.8%' }}
-                  viewport={{ once: true, margin: '-15%' }}
+                  className="absolute inset-y-0 origin-left bg-blue-400 rounded flex items-center justify-center overflow-hidden text-white font-mono"
+                  style={{ left: '25.2%', width: '22.8%' }}
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: waterfallIn ? 1 : 0 }}
                   transition={{
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],
@@ -568,12 +472,19 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                 11 assets
               </span>
               <div className="flex-1 h-6 relative">
-                <div
-                  className="absolute inset-y-0 bg-green-500 rounded"
+                <m.div
+                  className="absolute inset-y-0 origin-left rounded bg-green-500"
                   style={{
                     left: '25.2%',
                     width: '1.5%',
                     minWidth: '6px',
+                  }}
+                  initial={{ scaleX: 0 }}
+                  animate={waterfallIn ? { scaleX: 1 } : { scaleX: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: 0.25,
                   }}
                 />
                 <span
@@ -589,9 +500,16 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                 2 assets
               </span>
               <div className="flex-1 h-6 relative">
-                <div
-                  className="absolute inset-y-0 bg-amber-500 rounded"
+                <m.div
+                  className="absolute inset-y-0 origin-left rounded bg-amber-500"
                   style={{ left: '25.2%', width: '7.3%' }}
+                  initial={{ scaleX: 0 }}
+                  animate={waterfallIn ? { scaleX: 1 } : { scaleX: 0 }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: 0.35,
+                  }}
                 />
                 <span
                   className="absolute top-1/2 -translate-y-1/2 text-blitz-charcoal/60 font-mono whitespace-nowrap text-xs"
@@ -657,7 +575,7 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               769ms
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              38% faster
+              <CountUp value={38} suffix="% faster" />
             </td>
           </tr>
           <tr>
@@ -671,7 +589,7 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               11 / 13
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              85% cache hit
+              <CountUp value={85} suffix="% cache hit" />
             </td>
           </tr>
           <tr>
@@ -685,7 +603,7 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               1,928ms
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              50% less
+              <CountUp value={50} suffix="% less" />
             </td>
           </tr>
         </tbody>
@@ -821,7 +739,7 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               73 KB
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              87%
+              <CountUp value={87} suffix="%" />
             </td>
           </tr>
           <tr>
@@ -835,7 +753,7 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               167 KB
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              45%
+              <CountUp value={45} suffix="%" />
             </td>
           </tr>
           <tr>
@@ -863,7 +781,7 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               2,013 KB
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right text-green-600">
-              28%
+              <CountUp value={28} suffix="%" />
             </td>
           </tr>
         </tbody>
@@ -945,7 +863,7 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               681ms
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              11% faster
+              <CountUp value={11} suffix="% faster" />
             </td>
           </tr>
           <tr>
@@ -959,7 +877,7 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               956ms
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              23% faster
+              <CountUp value={23} suffix="% faster" />
             </td>
           </tr>
           <tr>
@@ -973,7 +891,7 @@ const CuttingLoadTimesAtLorikeetPage = () => {
               52ms
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              88% faster
+              <CountUp value={88} suffix="% faster" />
             </td>
           </tr>
         </tbody>

@@ -6,13 +6,8 @@ import CountUp from '../motion/CountUp'
 // four so the band reads as a punchy summary, not a wall of numbers.
 const stats = [
   { value: 10, suffix: '+', label: 'Years building for the web' },
-  {
-    value: 2,
-    prefix: '$',
-    suffix: 'M+',
-    label: 'Daily revenue powered at Rokt',
-  },
-  { value: 75, suffix: '%', label: 'Cold-load reduction at Lorikeet' },
+  { value: 40, suffix: '%', label: 'Smaller script size' },
+  { value: 75, suffix: '%', label: 'Cold-load reduction' },
   { value: 68, suffix: '%', label: 'Faster SSR page loads' },
 ]
 

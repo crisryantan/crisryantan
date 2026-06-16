@@ -22,7 +22,7 @@ const item = {
 const NotFoundPage = () => (
   <Layout>
     <Seo title="404: Not found" />
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-32">
+    <section className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-6 py-32">
       <AuroraBackground />
       <m.div
         variants={container}

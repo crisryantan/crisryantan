@@ -5,12 +5,11 @@
 const blogPosts = [
   {
     id: 0,
-    title:
-      'Shipping Was the Easy Part: How to Prove a Performance Win Actually Mattered',
+    title: "Making It Faster Was the Easy Part. Making Anyone Care Wasn't.",
     excerpt:
-      'Two performance initiatives cut our SDK time to interactive by 10-12% from p50 out to p95, worth an estimated 0.3-1.9% of revenue on the surface they touch. Here is how we measured the impact, and the two A/B skills that made the method repeatable.',
+      'We took 10-12% off our web SDK time to interactive, holding from the median out to p95. Writing the code was the easy bit. Here is how I worked out what it was actually worth, and the two A/B skills that made the method stick.',
     date: 'August 30, 2026',
-    readTime: '10 min read',
+    readTime: '9 min read',
     category: 'Performance',
     link: '/blog/proving-performance-wins',
   },

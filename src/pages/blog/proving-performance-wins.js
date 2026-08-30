@@ -8,7 +8,7 @@ const ProvingPerformanceWinsPage = () => {
   return (
     <ArticleLayout
       title="Shipping Was the Easy Part: How to Prove a Performance Win Actually Mattered"
-      description="Two SDK performance initiatives cut boot latency by 113ms at p50 and 474ms at p95. The engineering took weeks. Proving it moved the business took longer, and nearly produced four wrong answers first."
+      description="Two SDK performance initiatives cut boot latency 10-12%, and the win held from p50 all the way out to p95. The engineering took weeks. Proving it moved the business took longer, and nearly produced four wrong answers first."
       date="August 30, 2026"
       readTime="14 min read"
       category="Performance"
@@ -16,14 +16,15 @@ const ProvingPerformanceWinsPage = () => {
       tags={['Performance', 'Experimentation', 'A/B Testing', 'Claude Skills']}
     >
       <p className="text-lg text-blitz-charcoal/70 italic mb-8">
-        <strong>TL;DR:</strong> I shipped two performance initiatives to a
-        third-party web SDK this quarter: splitting the service container so the
-        offer path loads lazily, and resequencing controller startup so
-        transport stops waiting on application readiness. Together they cut
-        render time-to-interactive by 113ms at p50 and 474ms at p95. The code
-        was the easy part. Getting a number my VP could act on took four failed
-        measurements, a placebo build, and a 13x sample rescue. This is that
-        story, and the two skills I wrote so nobody has to repeat it.
+        <strong>TL;DR:</strong> I rejoined a company whose codebase I already
+        knew, spent a few months running ordinary frontend performance
+        techniques through its web SDK, and two of them turned out to matter
+        enormously. Combined, they cut boot time-to-interactive by{' '}
+        <strong>10-12%</strong>, and the win held from the median all the way
+        out to p95. The code was the easy part. Getting a number my VP could act
+        on took four failed measurements, a placebo build, and a 13x sample
+        rescue. This is that story, and the two skills I wrote so nobody has to
+        repeat it.
       </p>
 
       <h2>Nobody Claps for 46 Milliseconds</h2>
@@ -87,18 +88,18 @@ const ProvingPerformanceWinsPage = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div>
             <p className="text-3xl font-bold text-blitz-accent">
-              <CountUp value={113} prefix="−" suffix="ms" />
+              <CountUp value={11} prefix="−" suffix="%" />
             </p>
             <p className="text-sm text-blitz-charcoal/70">
-              Render time-to-interactive at p50
+              Boot time-to-interactive at the median
             </p>
           </div>
           <div>
             <p className="text-3xl font-bold text-blitz-accent">
-              <CountUp value={474} prefix="−" suffix="ms" />
+              <CountUp value={12} prefix="−" suffix="%" />
             </p>
             <p className="text-sm text-blitz-charcoal/70">
-              Render time-to-interactive at p95
+              Boot time-to-interactive at p95, so the win holds in the tail
             </p>
           </div>
           <div>
@@ -121,106 +122,151 @@ const ProvingPerformanceWinsPage = () => {
       </div>
 
       <p>
-        That last pair of numbers is the reason anyone outside my team cared.
-        Same work, same commits, two different sentences. "We cut boot latency
-        113ms at p50" is a status update. "This is worth an estimated 0.3-1.9%
-        of revenue on the surface it touches" is a decision input. The
-        engineering did not change between those two sentences. The measurement
-        did.
-      </p>
-
-      <h2>The Two Changes</h2>
-
-      <h3>1. Chunking the Service Container</h3>
-
-      <p>
-        The SDK's controller has a dependency-injection root that built roughly
-        forty services eagerly, in one synchronous block, before anything could
-        happen. It was a class whose field-declaration order was load-bearing:
-        reorder two lines and a dependency became <code>undefined</code>. Worse,
-        one factory ran mid-construction and received a half-built{' '}
-        <code>this</code>, which worked only because of what that factory
-        happened to destructure first.
+        The 10-12% band matters more than any single figure, because a win that
+        holds from p50 to p95 is a different animal from one that only shows up
+        in an average. It means the slowest sessions, the ones on tired phones
+        and bad networks where people actually abandon, got the same
+        proportional relief as the fast ones.
       </p>
 
       <p>
-        We replaced it with a functional factory of memoized closures, then
-        split the offer-rendering subtree into its own lazily-fetched chunk. The
-        container object is now getters over <code>once()</code>-wrapped
-        builders, so each service is constructed on first read instead of at
-        boot, and the offer path is fetched in parallel with the work that has
-        to happen anyway.
+        And that last pair of numbers is the reason anyone outside my team
+        cared. Same work, same commits, two different sentences. "We made boot
+        11% faster" is a status update. "This is worth an estimated 0.3-1.9% of
+        revenue on the surface it touches" is a decision input. The engineering
+        did not change between those two sentences. The measurement did.
+      </p>
+
+      <h2>Coming Back Knowing Where the Debt Was</h2>
+
+      <p>
+        Some context on how this started, because I don't think the result was
+        mostly about cleverness. I'm a boomerang. I worked here, left, worked
+        elsewhere, and came back. That turns out to be an unreasonable advantage
+        for performance work, because the expensive part of speeding up a mature
+        codebase is not writing the optimization. It is knowing which slow
+        things are slow for a good reason and which are slow because nobody got
+        around to them. I already had that map. Some of the debt I had helped
+        create.
       </p>
 
       <p>
-        The refactor shipped behavior-identical first: a <code>warmAll()</code>{' '}
-        pass built every service in the original order before the factory
-        returned, so construction timing and every constructor side effect were
-        preserved. Only after that landed did we start deferring. That ordering
-        matters, because it meant the risky change and the measurable change
-        were never in the same deploy.
+        So I did not begin with a profiler and a blank mind. I began with a list
+        I had been carrying around for years: the places I remembered as
+        needlessly eager, needlessly serial, or needlessly large. Then I let my
+        brain run at full blast for a few months, cycling through candidates
+        fast and cheaply instead of picking one and marrying it. Most of them
+        went nowhere. Two of them turned out to be worth more than everything
+        else combined.
+      </p>
+
+      <h3>None of the Techniques Were Clever</h3>
+
+      <p>
+        This is the part I want to be honest about, because performance writing
+        tends to imply exotic insight. Nothing in the portfolio was exotic. It
+        was the standard frontend performance checklist, applied by someone who
+        knew where to point it:
+      </p>
+
+      <ul>
+        <li>
+          <strong>Code splitting.</strong> Take a subtree most sessions don't
+          need in the first moments, move it into its own dynamically imported
+          chunk, and fetch it in parallel with work that has to happen anyway.
+        </li>
+        <li>
+          <strong>Bundle reduction.</strong> Drop legacy polyfills, raise the
+          compile target behind an explicit browser-support floor, consolidate
+          duplicated helpers, and keep looking at what the bundler actually
+          emits rather than what you assume it emits.
+        </li>
+        <li>
+          <strong>Ordering async work.</strong> Walk the await chains and find
+          the sequential awaits that never had a data dependency on each other.
+          Then find the places waiting on the strictest available signal when a
+          weaker, earlier one was sufficient. This category was quietly the most
+          valuable and the least interesting to write.
+        </li>
+        <li>
+          <strong>Phasing bootstrap.</strong> Split startup into what genuinely
+          has to finish before the user sees anything, and what was only there
+          first because someone wrote it first.
+        </li>
+        <li>
+          <strong>Deleting always-on work behind disabled features.</strong>{' '}
+          Paths that still cost every single session even when the feature they
+          exist for is switched off everywhere.
+        </li>
+        <li>
+          <strong>The usual small mechanics.</strong> Memoize hot factories,
+          make event subscriptions lazy and refcounted instead of eager, cancel
+          superseded in-flight requests, and prune speculative preloads that had
+          stopped paying for themselves.
+        </li>
+        <li>
+          <strong>Measurement infrastructure, first.</strong> Before most of the
+          above, a bundle-size budget in CI that comments the delta on every
+          pull request. Size regressions became a review conversation instead of
+          a discovery three months later.
+        </li>
+      </ul>
+
+      <p>
+        That last bullet is the one I'd defend hardest to a skeptical manager.
+        Instrumentation is not overhead you add when you have spare time, it is
+        what makes every subsequent optimization arguable.
+      </p>
+
+      <h3>Leverage First, Delegate Second</h3>
+
+      <p>
+        The pace only worked because of how I split the work with AI, and it
+        followed exactly the model I wrote about in{' '}
+        <Link
+          to="/blog/ai-coding-workflows"
+          className="text-blitz-accent hover:underline"
+        >
+          AI-Assisted Coding Workflows: Delegating vs Leveraging
+        </Link>
+        . Exploration is a leverage problem, not a delegation problem. When I
+        did not yet know whether a candidate was real, I stayed in the loop
+        constantly: read this hot path with me, tell me what is awaited
+        sequentially here, show me what this actually pulls into the bundle,
+        argue against my hypothesis. Fast rounds, tight feedback, my judgment on
+        every turn. That is how a list of vague memories became a ranked set of
+        candidates in days rather than months.
       </p>
 
       <p>
-        Measured at 50/50 across 5.6M boots per arm, container construction time
-        moved like this:
+        Delegation came second, after a candidate proved out and the shape of
+        the change was no longer in question. At that point the work is
+        mechanical and wide: apply the pattern across the call sites, keep the
+        behavior identical, write the tests, handle the failure mode. That is
+        where you hand it off and go start the next investigation. Getting those
+        two modes the wrong way round is the most common way I see people waste
+        an AI workflow, delegating the thinking and then micromanaging the
+        typing.
       </p>
 
-      <BeforeAfterBars
-        unit="ms"
-        reductionSuffix="% faster"
-        items={[
-          { label: 'construct p50', before: 1.35, after: 1.01, reduction: 26 },
-          { label: 'construct p75', before: 3.23, after: 2.54, reduction: 21 },
-          { label: 'construct p90', before: 7.54, after: 6.24, reduction: 17 },
-          {
-            label: 'construct p99',
-            before: 34.83,
-            after: 30.13,
-            reduction: 13,
-          },
-        ]}
-      />
+      <h3>What the Two Winners Had in Common</h3>
 
       <p>
-        The deferral introduced one new failure mode worth naming: if the offer
-        chunk is needed before it arrives, the container has to build it cold.
-        In production that happened on <strong>0.027% of boots</strong> — the
-        warm path wins the race essentially always. I mention it because "what
-        does the treatment break" is a question the guardrails have to answer
-        before anyone is allowed to celebrate the primary metric.
+        Both of the changes that mattered removed a <em>wait</em> rather than
+        making anything compute faster. One stopped a large piece of work
+        sitting on the critical path when it did not need to be there. The other
+        stopped two components waiting on a stricter readiness signal than
+        either of them actually required.
       </p>
 
       <p>
-        Standalone, in its own randomized arm, container chunking was worth{' '}
-        <strong>−55.2ms of render time-to-interactive (−4.30%)</strong> on
-        single-boot sessions.
-      </p>
-
-      <h3>2. Resequencing Controller Startup</h3>
-
-      <p>
-        The second change removed a wait rather than making anything compute
-        faster, and that distinction turns out to determine whether a change is
-        measurable at all.
+        That distinction turns out to decide whether a change is measurable at
+        all, which is where this story stops being about engineering.
       </p>
 
       <p>
-        Our launcher creates a controller iframe and talks to it over a
-        MessageChannel. Both ends were waiting on something stricter than they
-        needed. The launcher exposed its RPC surface only after the iframe{' '}
-        <code>load</code> event, and the controller requested its port only
-        after constructing the whole service container. Neither dependency was
-        real: the iframe <code>load</code> event describes document loading, and
-        can fire well after the controller has explicitly said it is ready.
-      </p>
-
-      <p>
-        So we split startup into transport and application phases. Transport now
-        starts immediately, the launcher exposes its surface right after
-        appending the iframe, and core creation resolves on whichever of{' '}
-        <code>onReady()</code> or <code>onFrameLoaded</code> arrives first
-        instead of hard-waiting on the slower one.
+        Here is the isolated readout for the second of the two, measured in its
+        own randomized arm:
       </p>
 
       <table className="w-full border-collapse border border-blitz-charcoal/20 my-6">
@@ -243,7 +289,7 @@ const ProvingPerformanceWinsPage = () => {
         <tbody>
           <tr>
             <td className="border border-blitz-charcoal/20 p-3">
-              Render time-to-interactive
+              Boot time-to-interactive
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right">
               −18ms (−3.2%)
@@ -257,7 +303,7 @@ const ProvingPerformanceWinsPage = () => {
           </tr>
           <tr>
             <td className="border border-blitz-charcoal/20 p-3">
-              Framework phase (the phase the diff governs)
+              The boot phase the diff actually governs
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
               −5ms (−6.7%)
@@ -271,7 +317,7 @@ const ProvingPerformanceWinsPage = () => {
           </tr>
           <tr>
             <td className="border border-blitz-charcoal/20 p-3">
-              Selection-to-interactive (untouched, used as a control)
+              A later phase the diff never touches (used as a control)
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right text-blitz-charcoal/50">
               —
@@ -310,15 +356,15 @@ const ProvingPerformanceWinsPage = () => {
             measures, so the saving has nowhere to hide.
           </li>
           <li>
-            <strong>Removing CPU work</strong> (an RPC proxy that did redundant
-            property lookups) was microseconds of main-thread time sitting{' '}
+            <strong>Removing CPU work</strong> (redundant property lookups in a
+            hot code path) was microseconds of main-thread time sitting{' '}
             <em>inside</em> a phase, not between phases. Real cost, wrong
             instrument.
           </li>
           <li>
-            <strong>Removing retained resources</strong> (refcounted
-            subscriptions cutting listener count and heap) has no column in a
-            timings table at all. You cannot report what you never measured.
+            <strong>Removing retained resources</strong> (lazier subscriptions
+            cutting listener count and heap) has no column in a timings table at
+            all. You cannot report what you never measured.
           </li>
         </ul>
         <p className="text-sm mt-3">
@@ -659,20 +705,29 @@ const ProvingPerformanceWinsPage = () => {
       <p>
         Each integration compared only against itself, so partner mix cannot
         manufacture this. Integrations that were already fast gained nothing.
-        Integrations that were slow gained 20 to 56%: 531ms to 232ms, 532 to
-        306, 526 to 311.
+        The slowest ones gained 40 to 56%:
       </p>
+
+      <BeforeAfterBars
+        unit="ms"
+        reductionSuffix="% faster"
+        items={[
+          { label: 'slow caller A', before: 531, after: 232, reduction: 56 },
+          { label: 'slow caller B', before: 532, after: 306, reduction: 42 },
+          { label: 'slow caller C', before: 526, after: 311, reduction: 41 },
+        ]}
+      />
 
       <p>
         That shape is the signature of removing a barrier, and it is the one
         pattern no available confounder can imitate. The change removed a hard
-        wait on an iframe <code>load</code> event. Where the boot phase was
-        already fast, <code>load</code> had fired before the transport needed it
-        and there was no wait to remove. Where it was slow, that wait was most
-        of the cost. Traffic mix, hour of day and cohort bias all distribute
-        themselves across integrations independently of baseline speed. Only a
-        change that removes a barrier produces an effect size that tracks how
-        much barrier each caller had.
+        wait on a readiness signal that was stricter than necessary. Where the
+        boot phase was already fast, that signal had arrived before anything
+        needed it and there was no wait to remove. Where boot was slow, the wait
+        was most of the cost. Traffic mix, hour of day and cohort bias all
+        distribute themselves across integrations independently of baseline
+        speed. Only a change that removes a barrier produces an effect size that
+        tracks how much barrier each caller had.
       </p>
 
       <p>
@@ -1068,6 +1123,13 @@ const ProvingPerformanceWinsPage = () => {
           that decide what you pick up. Being product-first here is not about
           writing better summaries after the fact, it is about the measurement
           being designed into the work rather than reconstructed from it.
+        </li>
+        <li>
+          <strong>Leverage while exploring, delegate once you know.</strong> The
+          candidate list is where your judgment is worth the most, so stay in
+          the loop and iterate fast. The rollout is where breadth is worth the
+          most, so hand it off. Doing it backwards is the most expensive habit I
+          see.
         </li>
         <li>
           <strong>Get an elasticity, then use it as a bound.</strong> One number

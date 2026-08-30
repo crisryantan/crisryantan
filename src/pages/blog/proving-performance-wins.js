@@ -8,23 +8,21 @@ const ProvingPerformanceWinsPage = () => {
   return (
     <ArticleLayout
       title="Shipping Was the Easy Part: How to Prove a Performance Win Actually Mattered"
-      description="Two SDK performance initiatives cut boot latency 10-12%, and the win held from p50 all the way out to p95. The engineering took weeks. Proving it moved the business took longer, and nearly produced four wrong answers first."
+      description="Two SDK performance initiatives cut boot latency 10-12%, holding from p50 out to p95. The engineering took weeks. Proving it moved the business took longer, and nearly produced four wrong answers first."
       date="August 30, 2026"
-      readTime="14 min read"
+      readTime="12 min read"
       category="Performance"
       slug="/blog/proving-performance-wins"
       tags={['Performance', 'Experimentation', 'A/B Testing', 'Claude Skills']}
     >
       <p className="text-lg text-blitz-charcoal/70 italic mb-8">
-        <strong>TL;DR:</strong> I rejoined a company whose codebase I already
-        knew, spent a few months running ordinary frontend performance
-        techniques through its web SDK, and two of them turned out to matter
-        enormously. Combined, they cut boot time-to-interactive by{' '}
-        <strong>10-12%</strong>, and the win held from the median all the way
-        out to p95. The code was the easy part. Getting to a number our
-        stakeholders could actually plan around took four failed measurements, a
-        placebo build, and a 13x sample rescue. This is that story, and the two
-        skills I wrote so nobody has to repeat it.
+        <strong>TL;DR:</strong> I rejoined a codebase I already knew, ran
+        ordinary frontend performance techniques through its web SDK, and two of
+        them cut boot time-to-interactive by <strong>10-12%</strong> from the
+        median out to p95. The code was the easy part. Getting to a number
+        stakeholders could plan around took four failed measurements, a placebo
+        build, and a 13x sample rescue. Here's the method, plus the two skills I
+        wrote so nobody repeats it.
       </p>
 
       <h2>Nobody Claps for 46 Milliseconds</h2>
@@ -33,82 +31,49 @@ const ProvingPerformanceWinsPage = () => {
         I love this stuff. Genuinely, unreasonably. Shaving a hundred
         milliseconds off a boot path is one of the few things in software where
         it feels like physics is pushing back, and I will happily lose a weekend
-        to a flame chart and a waterfall. Which is why it stung the first time I
-        walked a real win into a room and watched everyone stay politely still.
+        to a flame chart. Which is why it stung the first time I walked a real
+        win into a room and watched everyone stay politely still.
       </p>
 
       <p>
         You know the meeting. Three weeks on a boot-path optimization, a
-        dashboard where the p50 line steps down, and then a completely fair
-        question: so what does that mean for us? I didn't have an answer. I had
-        measured latency and they had asked about outcomes, and those are not
-        the same sentence. That is not the room's failure. It is a translation I
-        hadn't done.
+        dashboard where the p50 line steps down, and then a fair question: so
+        what does that mean for us? I'd measured latency and they'd asked about
+        outcomes. Those are not the same sentence, and the translation between
+        them is our job, not theirs.
       </p>
 
       <p>
-        That gap is the whole problem, and it belongs to us. Latency is what
-        engineers control, outcomes are what the company is funded for, and
-        between the two sits an inference almost nobody on the engineering side
-        picks up. So the work gets described in the only currency we have,
-        milliseconds, and it lands as a technical detail instead of something a
-        stakeholder can plan around. The optimization was real. The case for it
-        never got made.
-      </p>
-
-      <p>
-        Closing that gap is mostly a mindset thing, and I've come to think of it
-        as the difference between doing engineering well and being{' '}
-        <strong>product-first</strong> about it. A product-first engineer treats
-        the inference as part of the job rather than someone else's problem:
-        what outcome is this millisecond attached to, who feels it, how would I
-        know if I were wrong. That shows up long before the readout. It changes
-        which optimizations you pick up, because you favour the ones whose
-        effect you can actually defend over the ones that are merely satisfying
-        to write. It changes how you instrument, because you add the marker
-        while the change is still cheap to change instead of reconstructing an
-        answer afterwards. And it changes what you report, because "who did this
-        help, and by how much" is a product question that a fleet-wide
-        percentile quietly refuses to answer.
-      </p>
-
-      <p>
-        The alternative is the version I've done plenty of times: solve the
-        interesting technical problem, ship it, describe it in milliseconds, and
-        let someone else decide whether it counted. It usually doesn't count.
-        Not because the work was bad, but because nobody translated it, and
-        untranslated work gets filed as maintenance.
+        That translation is what being <strong>product-first</strong> actually
+        buys you, and it starts long before the readout. It changes which
+        optimizations you pick up, favouring the ones whose effect you can
+        defend over the ones that are satisfying to write. It changes how you
+        instrument, because you add the marker while the change is still cheap.
+        And it changes what you report, because "who did this help, and by how
+        much" is a product question that a fleet-wide percentile refuses to
+        answer.
       </p>
 
       <h3>Why This Isn't a Vanity Metric</h3>
 
       <p>
-        Here's why I care as much as I do in this particular job. We don't own
-        the page our code runs on. Rokt embeds its SDK directly into partner
-        pages, the checkout and confirmation flows of retailers, airlines,
-        ticketing sites, sitting right there alongside their own code and inside
-        their load budget. Every millisecond we spend booting is a millisecond
-        we are spending out of someone else's page.
+        We don't own the page our code runs on. Rokt embeds its SDK directly
+        into partner pages, the checkout and confirmation flows of retailers,
+        airlines and ticketing sites, sitting alongside their code and inside
+        their load budget. Every millisecond we spend booting is spent out of
+        someone else's page. A slow third-party script isn't a slightly worse
+        experience, it's a cost you're imposing on a team that agreed to host
+        you, and they can see it in their own numbers. Being fast is the price
+        of being welcome there.
       </p>
 
       <p>
-        That reframes the whole thing for me. A slow third-party script isn't
-        just a slightly worse experience, it's a cost you are imposing on a team
-        that agreed to host you, and they can see it in their own numbers. Being
-        fast is the price of being welcome on that page. It's also the moment
-        that matters most for the consumer, the few seconds right after they've
-        paid, where attention is short and a spinner is fatal. Performance here
-        isn't polish. It is the product.
-      </p>
-
-      <p>
-        And usefully, we had a conversion rate for it. An internal
-        latency-injection study gave us an elasticity: roughly 3-4% revenue
-        movement per second of time-to-interactive. One number, and suddenly a
-        millisecond becomes a sentence a stakeholder can plan around. That is
-        also exactly what makes sloppy measurement dangerous, because a wrong
-        latency number now converts straight into a wrong revenue claim, said
-        confidently, to people making real decisions.
+        We also had a conversion rate for it. An internal latency-injection
+        study gave us an elasticity: roughly 3-4% revenue movement per second of
+        time-to-interactive. One number turns a millisecond into a sentence a
+        stakeholder can plan around. It also raises the stakes on measurement,
+        because a wrong latency number now converts straight into a wrong
+        revenue claim.
       </p>
 
       <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-8 rounded-lg my-8">
@@ -152,57 +117,46 @@ const ProvingPerformanceWinsPage = () => {
       </div>
 
       <p>
-        The 10-12% band matters more than any single figure, because a win that
-        holds from p50 to p95 is a different animal from one that only shows up
-        in an average. It means the slowest sessions, the ones on tired phones
-        and bad networks where people actually abandon, got the same
-        proportional relief as the fast ones.
+        The band matters more than any single figure. A win that holds from p50
+        to p95 is a different animal from one that shows up in an average: the
+        slowest sessions, on tired phones and bad networks where people actually
+        abandon, got the same proportional relief as the fast ones.
       </p>
 
       <p>
-        And that last pair of numbers is the reason anyone outside my team
-        cared. Same work, same commits, two different sentences. "We made boot
-        11% faster" is a status update. "This is worth an estimated 0.3-1.9% of
-        revenue on the surface it touches" is a decision input. The engineering
-        did not change between those two sentences. The measurement did.
+        The last pair of numbers is why anyone outside my team cared. Same work,
+        same commits, two sentences. "We made boot 11% faster" is a status
+        update. "This is worth an estimated 0.3-1.9% of revenue on the surface
+        it touches" is a decision input. The engineering didn't change between
+        them. The measurement did.
       </p>
 
       <h2>Coming Back Knowing Where the Debt Was</h2>
 
       <p>
-        Some context on how this started, because I don't think the result was
-        mostly about cleverness. I'm a boomerang. I worked here, left, worked
-        elsewhere, and came back. That turns out to be an unreasonable advantage
-        for performance work, because the expensive part of speeding up a mature
-        codebase is not writing the optimization. It is knowing which slow
-        things are slow for a good reason and which are slow because nobody got
-        around to them. I already had that map. Some of the debt I had helped
-        create.
+        I'm a boomerang. Worked here, left, came back. That's an unreasonable
+        advantage for performance work, because the expensive part of speeding
+        up a mature codebase isn't writing the optimization, it's knowing which
+        slow things are slow for a good reason. I already had that map. Some of
+        the debt I helped create.
       </p>
 
       <p>
         So I didn't start with a profiler and a blank mind. I started with a
-        list I'd been carrying around for years: every place I remembered as
-        needlessly eager, needlessly serial, or needlessly large. Then I let my
-        brain run absolutely flat out for a few months. Pull a thread, measure
-        it, drop it, pull the next one. No ceremony, no roadmap, no falling in
-        love with the first idea. Honestly some of the most fun I've had at
-        work.
-      </p>
-
-      <p>
-        Most of them went nowhere, which is the part nobody puts in the
-        retrospective. Two of them turned out to be worth more than everything
-        else combined, and I could not have told you in advance which two.
+        list I'd been carrying for years: every place I remembered as needlessly
+        eager, needlessly serial, or needlessly large. Then I let my brain run
+        flat out for a few months. Pull a thread, measure it, drop it, pull the
+        next one. No ceremony, no roadmap, no falling in love with the first
+        idea. Some of the most fun I've had at work. Most went nowhere. Two were
+        worth more than everything else combined, and I couldn't have told you
+        in advance which two.
       </p>
 
       <h3>None of the Techniques Were Clever</h3>
 
       <p>
-        Let me be honest about this bit, because performance writing loves to
-        imply exotic insight. There wasn't any. This was the standard frontend
-        performance checklist, the stuff you already know, applied by someone
-        who happened to know where to point it:
+        This was the standard frontend checklist, applied by someone who knew
+        where to point it:
       </p>
 
       <ul>
@@ -249,61 +203,50 @@ const ProvingPerformanceWinsPage = () => {
       </ul>
 
       <p>
-        That last bullet is the one I'd defend hardest to a skeptical manager.
-        Instrumentation is not overhead you add when you have spare time, it is
-        what makes every subsequent optimization arguable.
+        That last bullet is the one I'd defend hardest. Instrumentation isn't
+        overhead you add when you have spare time, it's what makes every
+        subsequent optimization arguable.
       </p>
 
       <h3>Leverage First, Delegate Second</h3>
 
       <p>
-        The pace only worked because of how I split the work with AI, and it
-        followed exactly the model I wrote about in{' '}
+        The pace only worked because of how I split the work with AI, following
+        the model I wrote about in{' '}
         <Link
           to="/blog/ai-coding-workflows"
           className="text-blitz-accent hover:underline"
         >
           AI-Assisted Coding Workflows: Delegating vs Leveraging
         </Link>
-        . Exploration is a leverage problem, not a delegation problem. When I
-        did not yet know whether a candidate was real, I stayed in the loop
-        constantly: read this hot path with me, tell me what is awaited
-        sequentially here, show me what this actually pulls into the bundle,
-        argue against my hypothesis. Fast rounds, tight feedback, my judgment on
-        every turn. That is how a list of vague memories became a ranked set of
-        candidates in days rather than months.
+        . Exploration is a leverage problem. While I didn't yet know whether a
+        candidate was real I stayed in the loop: read this hot path with me,
+        tell me what's awaited sequentially here, show me what this pulls into
+        the bundle, argue against my hypothesis. Fast rounds, my judgment every
+        turn. That's how a list of vague memories became a ranked set of
+        candidates in days.
       </p>
 
       <p>
-        Delegation came second, after a candidate proved out and the shape of
-        the change was no longer in question. At that point the work is
-        mechanical and wide: apply the pattern across the call sites, keep the
-        behavior identical, write the tests, handle the failure mode. That is
-        where you hand it off and go start the next investigation. Getting those
-        two modes the wrong way round is the most common way I see people waste
-        an AI workflow, delegating the thinking and then micromanaging the
-        typing.
+        Delegation came second, once the shape of the change was settled and the
+        work went mechanical and wide: apply the pattern across call sites, keep
+        behavior identical, write the tests. Hand that off and start the next
+        investigation. Getting the two modes the wrong way round, delegating the
+        thinking and then micromanaging the typing, is the most expensive habit
+        I see.
       </p>
 
       <h3>What the Two Winners Had in Common</h3>
 
       <p>
-        Both of the changes that mattered removed a <em>wait</em> rather than
-        making anything compute faster. One stopped a large piece of work
-        sitting on the critical path when it did not need to be there. The other
-        stopped two components waiting on a stricter readiness signal than
-        either of them actually required.
+        Both removed a <em>wait</em> rather than making anything compute faster.
+        One took a large piece of work off the critical path. The other stopped
+        two components waiting on a stricter readiness signal than either
+        needed. That distinction decides whether a change is measurable at all,
+        which is where this stops being about engineering.
       </p>
 
-      <p>
-        That distinction turns out to decide whether a change is measurable at
-        all, which is where this story stops being about engineering.
-      </p>
-
-      <p>
-        Here is the isolated readout for the second of the two, measured in its
-        own randomized arm:
-      </p>
+      <p>The isolated readout for the second one, in its own randomized arm:</p>
 
       <table className="w-full border-collapse border border-blitz-charcoal/20 my-6">
         <thead>
@@ -369,11 +312,10 @@ const ProvingPerformanceWinsPage = () => {
       </table>
 
       <p>
-        Two things in that table are doing more work than the headline. The
-        saving lands in exactly the phase the changed files govern, and the
-        phase they don't touch holds still. That's not a nicer way of saying the
-        same thing; it's the difference between "latency improved after we
-        deployed" and "latency improved{' '}
+        Two rows there matter more than the headline. The saving lands in
+        exactly the phase the changed files govern, and the phase they don't
+        touch holds still. That's the difference between "latency improved after
+        we deployed" and "latency improved{' '}
         <em>where our diff could have improved it</em>."
       </p>
 
@@ -414,41 +356,39 @@ const ProvingPerformanceWinsPage = () => {
       <h2>Four Ways I Nearly Reported the Wrong Number</h2>
 
       <p>
-        Here is the uncomfortable part, and the reason I find this genuinely
-        thrilling rather than tedious. Every failed measurement below produced a
-        plausible number. None of them errored, none of them looked suspicious,
-        and two of them were <em>more</em> statistically impressive than the
-        truth. If I had stopped at any of them I would have handed a confident,
-        wrong number to teams planning their next quarter around it.
+        Every failed measurement below produced a plausible number. None
+        errored, none looked suspicious, and two were <em>more</em>{' '}
+        statistically impressive than the truth. Stopping at any of them means
+        handing a confident wrong number to teams planning their quarter around
+        it.
       </p>
 
       <h3>Trap 1: Reading the Deploy</h3>
 
       <p>
         The instinct is before-and-after. Deploy at 02:00, compare Tuesday to
-        Monday. It does not work, and it fails in a way that flatters you.
+        Monday. It fails in a way that flatters you.
       </p>
 
       <p>
         Our boot latency swings <strong>23% over the course of a day</strong>{' '}
-        purely on traffic mix and hour of day: p50 ranges from 1092ms to 1346ms
-        with no code changing at all. A table of consecutive releases ordered by
-        build number will look monotonically improving whether or not anyone
-        wrote any code, because each release occupies a different slice of the
-        clock. Any absolute-level time series over a rollout is unsafe. Only a
-        randomized within-window contrast is valid.
+        purely on traffic mix and hour: p50 ranges from 1092ms to 1346ms with no
+        code changing. A table of consecutive releases ordered by build number
+        looks monotonically improving whether or not anyone wrote code, because
+        each release occupies a different slice of the clock. Any absolute-level
+        time series over a rollout is unsafe. Only a randomized within-window
+        contrast is valid.
       </p>
 
       <h3>Trap 2: Cohorting on the Outcome</h3>
 
       <p>
-        We had a variant column written onto every rendered row, which is
-        wonderfully convenient: no join, no marker, just slice by arm. It is
-        also a trap when the question involves anything upstream of rendering,
-        because rows only exist for sessions that <em>rendered</em>. Filter your
-        population by an outcome table and you have conditioned on survival. If
-        the treatment changes survival at all, every downstream metric is biased
-        and nothing warns you.
+        We had a variant column on every rendered row, which is wonderfully
+        convenient: no join, no marker, just slice by arm. It's a trap for any
+        question upstream of rendering, because rows only exist for sessions
+        that <em>rendered</em>. Filter your population by an outcome table and
+        you've conditioned on survival. If the treatment changes survival at
+        all, every downstream metric is biased and nothing warns you.
       </p>
 
       <p>
@@ -467,25 +407,22 @@ const ProvingPerformanceWinsPage = () => {
 
       <p>
         At one point a query reported a referral-rate gain of{' '}
-        <strong>+5.51% at p &lt; 1e-300</strong>. That is the kind of result you
-        want to put in a title slide.
+        <strong>+5.51% at p &lt; 1e-300</strong>. Title-slide material.
       </p>
 
       <p>
         It was entirely composition. A configured subset of integrations runs
-        the control path by design, and they had not been excluded from{' '}
-        <em>both</em> arms, so the control group carried a different traffic mix
-        rather than a different treatment. The p-value was real. The effect was
-        not.
+        the control path by design and hadn't been excluded from <em>both</em>{' '}
+        arms, so the control group carried a different traffic mix rather than a
+        different treatment. The p-value was real. The effect wasn't.
       </p>
 
       <p>
-        What caught it was not a statistical test, it was the elasticity. A
-        latency win of that size permits a revenue effect somewhere around 0.3%.
-        The measurement claimed 17-39x that. Any effect far larger than your
-        physical model permits is a bug in the query, not a triumph. Having a
-        known elasticity gave me a sanity bound I could check a result against,
-        and that turned out to be worth more than the significance test.
+        What caught it was the elasticity, not a statistical test. A latency win
+        that size permits a revenue effect around 0.3%. The measurement claimed
+        17-39x that. Any effect far larger than your physical model permits is a
+        query bug, not a triumph, and that sanity bound was worth more than the
+        significance test.
       </p>
 
       <h3>Trap 4: The Split That Looks Fine</h3>
@@ -499,21 +436,20 @@ const ProvingPerformanceWinsPage = () => {
 
       <p>
         The cause was duplicate marker emission on boots that abort before
-        rendering: a latch that was supposed to fire once per session was living
-        on the wrong object. The arms were assigned correctly. The{' '}
-        <em>counting</em> was wrong, which was enough to make enrolled counts
-        useless as a drop-off denominator while leaving the render-conditional
-        metrics interpretable. Those are two very different verdicts, and you
-        only get to distinguish them if you localize the mismatch instead of
-        noting it and moving on.
+        rendering: a latch meant to fire once per session was living on the
+        wrong object. The arms were assigned correctly, the <em>counting</em>{' '}
+        was wrong, which made enrolled counts useless as a drop-off denominator
+        while leaving the render-conditional metrics interpretable. Two very
+        different verdicts, and you only get to distinguish them by localizing
+        the mismatch instead of noting it and moving on.
       </p>
 
       <h2>The Measurement That Held</h2>
 
       <p>
-        The version I was willing to defend came from a combined holdback: one
-        randomized cohort with several independent latency optimizations all off
-        versus all on, split 50/50, read on a closed window.
+        The version I'd defend came from a combined holdback: one randomized
+        cohort with several independent latency optimizations all off versus all
+        on, split 50/50, read on a closed window.
       </p>
 
       <table className="w-full border-collapse border border-blitz-charcoal/20 my-6">
@@ -581,84 +517,73 @@ const ProvingPerformanceWinsPage = () => {
 
       <p>
         15.3M rendered rows per arm, five full days, arm split holding within
-        0.08pp every single day, daily latency deltas all in the same direction.
-        The latency result is decisive. The revenue results are the honest
-        version of a partial answer: both positive, both landing inside the
-        range the elasticity predicts, neither individually significant.
+        0.08pp every day, daily latency deltas all in the same direction. The
+        latency result is decisive. The revenue results are a partial answer,
+        honestly stated: both positive, both inside the range the elasticity
+        predicts, neither individually significant.
       </p>
 
       <p>
-        It is worth pausing on that +0.20%, because a number that small is easy
-        to dismiss and that instinct is usually wrong. Percentages only mean
-        something once you multiply them by a base. The company I work for has
-        publicly talked about approaching a billion dollars in annual revenue,
-        and the surface this SDK renders on is a large slice of that. At that
-        scale, a fifth of one percent is not a rounding error, it is a
-        meaningful line item that recurs every year for as long as the code
-        keeps running. Two tenths of a percent on a small base is noise. Two
-        tenths of a percent on a base that size pays for real things, every
-        year, without anyone having to touch it again. A fraction of a percent
-        sounds trivial right up until you multiply it by the base it lands on,
-        and nobody does that multiplication for you.
+        That +0.20% is easy to dismiss, and dismissing it is a mistake.
+        Percentages only mean something once you multiply them by a base. My
+        employer has publicly talked about approaching a billion dollars in
+        annual revenue, and the surface this SDK renders on is a large slice of
+        it. Two tenths of a percent on a small base is noise. Two tenths of a
+        percent on a base that size is a line item that recurs every year for as
+        long as the code runs, without anyone touching it again. A fraction of a
+        percent sounds trivial right up until you multiply it by the base it
+        lands on, and nobody does that multiplication for you.
       </p>
 
       <p>
-        This is the arithmetic that tends to be missing when engineers describe
-        their own work. We report the percentage because it is what the test
-        gives us, then let it sit there looking unimpressive, when the sentence
-        that actually lands is the percentage multiplied by the thing it applies
-        to. A product-first read of the same table does that multiplication out
-        loud. It also stays honest about the direction of the evidence: at this
-        sample size +0.20% is directionally encouraging and consistent with the
-        elasticity, not a proven revenue result, and the right framing is "here
-        is the value at stake if this holds" rather than "here is the money we
-        made."
+        Engineers skip that arithmetic constantly. We report the percentage
+        because it's what the test gives us and let it sit there looking
+        unimpressive. Doing the multiplication out loud is the product-first
+        read, and it stays honest about direction: +0.20% at this sample size is
+        value at stake if it holds, not money we made.
       </p>
 
       <p>
-        And that combination, a decisive latency win next to two non-significant
-        revenue movements, is where most performance readouts either overclaim
-        or give up. There is a third option, and it starts with the sample.
+        A decisive latency win next to two non-significant revenue movements is
+        where most readouts either overclaim or give up. There's a third option,
+        and it starts with the sample.
       </p>
 
       <h3>The 13x Sample Rescue</h3>
 
       <p>
         The standard method cohorts from an enrollment marker emitted at
-        randomization. For this experiment that instrument was only trustworthy
-        for a 12-hour stretch: a mid-experiment change left a large and{' '}
+        randomization. Here that instrument was only trustworthy for a 12-hour
+        stretch: a mid-experiment change left a large and{' '}
         <em>arm-asymmetric</em> share of markers without a usable join key,
-        which silently breaks cohorting while leaving the allocation ratio
-        looking perfectly healthy.
+        which silently breaks cohorting while the allocation ratio still looks
+        healthy.
       </p>
 
       <p>
         Instead of accepting 12 hours, we cohorted on the variant field recorded
-        on the rendered row itself. It is written from the variant that actually
-        executed, so it needs no join and cannot be affected by a missing marker
+        on the rendered row itself. It's written from the variant that actually
+        executed, so it needs no join and can't be affected by a missing marker
         key. That turned 12 hours into 5 days:{' '}
         <strong>1.2M rows per arm became 15.3M</strong>, and the confidence
         interval tightened by <strong>4.7x</strong>.
       </p>
 
       <p>
-        The tightening is the whole point. The earlier 12-hour read had put
-        revenue at −1.65% with an interval spanning [−4.01%, +0.71%]: wide
-        enough to be uninformative and negative enough to be uncomfortable, and
-        if that had been the number I reported, a good change would have looked
-        like a possible regression. Same experiment, same code, better
-        instrument.
+        The tightening is the point. The 12-hour read had put revenue at −1.65%
+        across [−4.01%, +0.71%], wide enough to be uninformative and negative
+        enough that a good change would have read as a possible regression. Same
+        experiment, same code, better instrument.
       </p>
 
       <p>
-        Validation before trusting the substitution: applied to the original
-        12-hour window it reproduced the marker-based row count exactly and its
-        latency mean to within 0.01ms. Two constraints came with it, and both go
-        in the writeup rather than a footnote. It cannot measure drop-off, since
-        sessions that never render have no row, so render neutrality has to be
-        established another way first. And integrations configured to run the
-        control path by design must be excluded from both arms, which is exactly
-        the omission that produced Trap 3.
+        Validation first: applied to the original 12-hour window the substitute
+        reproduced the marker-based row count exactly and its latency mean to
+        within 0.01ms. Two constraints came with it, both in the writeup rather
+        than a footnote. It can't measure drop-off, since sessions that never
+        render have no row, so render neutrality has to be established another
+        way. And integrations configured to run the control path by design must
+        be excluded from both arms, which is exactly the omission behind Trap 3.
       </p>
 
       <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">
@@ -742,9 +667,9 @@ const ProvingPerformanceWinsPage = () => {
       </table>
 
       <p>
-        Each integration compared only against itself, so partner mix cannot
-        manufacture this. Integrations that were already fast gained nothing.
-        The slowest ones gained 40 to 56%:
+        Each integration compared only against itself, so partner mix can't
+        manufacture this. The already-fast ones gained nothing. The slowest
+        gained 40 to 56%:
       </p>
 
       <BeforeAfterBars
@@ -758,23 +683,20 @@ const ProvingPerformanceWinsPage = () => {
       />
 
       <p>
-        That shape is the signature of removing a barrier, and it is the one
-        pattern no available confounder can imitate. The change removed a hard
-        wait on a readiness signal that was stricter than necessary. Where the
-        boot phase was already fast, that signal had arrived before anything
-        needed it and there was no wait to remove. Where boot was slow, the wait
-        was most of the cost. Traffic mix, hour of day and cohort bias all
-        distribute themselves across integrations independently of baseline
-        speed. Only a change that removes a barrier produces an effect size that
-        tracks how much barrier each caller had.
+        That shape is the signature of removing a barrier, and no available
+        confounder can imitate it. Where the boot phase was already fast, the
+        readiness signal had arrived before anything needed it and there was no
+        wait to remove. Where boot was slow, the wait was most of the cost.
+        Traffic mix, hour of day and cohort bias all distribute across
+        integrations independently of baseline speed. Only a barrier removal
+        produces an effect size that tracks how much barrier each caller had.
       </p>
 
       <p>
-        It also reframes the headline, and this is the part I would push hardest
-        on anyone doing this work. The fleet-level −5.5% is not a uniform saving
-        spread evenly. It is a large saving concentrated on the slowest traffic,
-        diluted by a majority who had nothing to gain. Reported as a single
-        percentile, the fleet number{' '}
+        It also reframes the headline. The fleet-level −5.5% isn't a uniform
+        saving, it's a large saving concentrated on the slowest traffic, diluted
+        by a majority who had nothing to gain. Reported as a single percentile,
+        the fleet number{' '}
         <strong>
           understated what the change did for the traffic it actually helped by
           a factor of four
@@ -785,19 +707,17 @@ const ProvingPerformanceWinsPage = () => {
 
       <h2>Calibrate Your Instrument With a Placebo</h2>
 
-      <p>One more technique, because it is cheap and almost nobody does it.</p>
-
       <p>
         Not every change can wait for an experiment gate. Sometimes you're
         reconstructing a controlled comparison after the fact, from a canary
-        that runs the new build while the fleet runs the previous one at
-        identical wall clock. That structure is sound, but it has an unknown
-        noise floor, so a 2% movement is unreadable and you can't tell which.
+        running the new build while the fleet runs the previous one at identical
+        wall clock. Sound structure, unknown noise floor, so a 2% movement is
+        unreadable.
       </p>
 
       <p>
-        We got lucky: one release in the sequence modified nothing but three
-        monitoring config files. Its shipped bundle was byte-identical to its
+        We got lucky. One release in the sequence modified nothing but three
+        monitoring config files, so its shipped bundle was byte-identical to its
         predecessor apart from the version string. Running the identical
         comparison on that release measures pure noise:
       </p>
@@ -880,35 +800,30 @@ const ProvingPerformanceWinsPage = () => {
       </table>
 
       <p>
-        Those last two rows are the valuable ones. Both moved the right way. I
-        did not claim either. Metrics that include page behavior outside our
-        control carry floors wide enough to swallow the entire effect, and the
-        credibility you spend claiming an unclaimable number is the credibility
-        you need for the one that is real.
+        The last two rows are the valuable ones. Both moved the right way. I
+        claimed neither. Metrics that include page behavior outside our control
+        carry floors wide enough to swallow the entire effect, and the
+        credibility you spend on an unclaimable number is the credibility you
+        need for the real one.
       </p>
 
       <p>
-        The placebo also surfaced a systematic bias I would otherwise have
-        argued about for a week: across every release in the sequence, the
-        canary cohort ran slightly <em>slower</em> than the fleet, placebo
-        included. So four of five releases showed a small apparent regression
-        that was entirely cohort bias, and the one real improvement was the only
-        release that crossed below the line, against a baseline systematically
-        working against it. Without the placebo I would have had five results
-        and no way to tell them apart.
+        The placebo also caught a systematic bias: across every release in the
+        sequence the canary cohort ran slightly <em>slower</em> than the fleet,
+        placebo included. Four of five releases showed a small apparent
+        regression that was entirely cohort bias, and the one real improvement
+        was the only release that crossed below the line, against a baseline
+        working against it. Without the placebo I'd have had five results and no
+        way to tell them apart.
       </p>
 
       <h2>Latency Wins Are Cheap. Revenue Wins Are Expensive.</h2>
 
       <p>
-        This is the single most useful thing I learned, and it belongs in the
-        conversation before you write any code, not after the readout
-        disappoints.
-      </p>
-
-      <p>
-        Apply the elasticity, then work out how much traffic each claim needs at
-        80% power. For a boot-latency win in the tens of milliseconds:
+        This belongs in the conversation before you write code, not after the
+        readout disappoints. Apply the elasticity, then work out how much
+        traffic each claim needs at 80% power. For a boot-latency win in the
+        tens of milliseconds:
       </p>
 
       <table className="w-full border-collapse border border-blitz-charcoal/20 my-6">
@@ -975,8 +890,8 @@ const ProvingPerformanceWinsPage = () => {
 
       <p>
         A 45ms latency win resolves over lunch. The 0.2% revenue movement it
-        implies takes a financial quarter. That asymmetry is not a measurement
-        failure, it is arithmetic, and it has four honest responses:
+        implies takes a financial quarter. That asymmetry is arithmetic, not a
+        measurement failure, and it has four honest responses:
       </p>
 
       <ol className="list-decimal list-inside space-y-3 ml-4 text-lg my-6">
@@ -1017,10 +932,10 @@ const ProvingPerformanceWinsPage = () => {
       <h2>Making It Repeatable: Two Skills</h2>
 
       <p>
-        Everything above is a set of hard-won rules that lived in my head and in
-        a folder of dated markdown reports. That is not durable. The next
-        engineer to run a performance experiment would rediscover every trap at
-        full price, and I would rediscover half of them myself in six months.
+        All of the above lived in my head and in a folder of dated markdown
+        reports, which isn't durable. The next engineer to run a performance
+        experiment rediscovers every trap at full price, and I'd rediscover half
+        of them myself in six months.
       </p>
 
       <p>
@@ -1096,9 +1011,9 @@ const ProvingPerformanceWinsPage = () => {
       </div>
 
       <p>
-        The rules in them are not clever. They are the specific ways this
-        measurement can fail silently, each one written down the day it cost me
-        something. A few examples of what that looks like in practice:
+        The rules aren't clever. They're the specific ways this measurement
+        fails silently, each written down the day it cost me something. A few in
+        practice:
       </p>
 
       <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">
@@ -1145,12 +1060,11 @@ const ProvingPerformanceWinsPage = () => {
       </div>
 
       <p>
-        The reason I put these in skills rather than a wiki page is that a wiki
-        page is consulted by people who already suspect they need it. A skill
-        loads when the work starts. Asking "did the experiment work" now pulls
-        in the trap list, the denominator table and the power helper
-        automatically, before the first query gets written, which is the only
-        moment at which any of it can still save you.
+        Skills rather than a wiki page, because a wiki page is consulted by
+        people who already suspect they need it. A skill loads when the work
+        starts. Asking "did the experiment work" now pulls in the trap list, the
+        denominator table and the power helper before the first query gets
+        written, which is the only moment any of it can still save you.
       </p>
 
       <h2>What I'd Tell You to Do</h2>
@@ -1217,39 +1131,34 @@ const ProvingPerformanceWinsPage = () => {
       <h2>Closing Thoughts</h2>
 
       <p>
-        The engineering in this post is ordinary. Don't do work early that
-        doesn't need to be early, don't wait on a signal stricter than the one
-        you need, load lazily what most people won't use. Any decent engineer
-        lands on the same changes given the same map. None of it is hard to
-        explain, which is exactly why I find it so satisfying: the leverage is
-        sitting in plain sight in most codebases, waiting for someone to care
-        enough to look.
+        The engineering here is ordinary. Don't do work early that doesn't need
+        to be early, don't wait on a signal stricter than the one you need, load
+        lazily what most people won't use. Any decent engineer lands on the same
+        changes given the same map. That's exactly why I find it satisfying: the
+        leverage sits in plain sight in most codebases, waiting for someone to
+        care enough to look.
       </p>
 
       <p>
-        The measurement was the hard part, and it was where all the risk lived.
-        Four different plausible answers, two of them more statistically
-        impressive than the truth, and only one that survived being attacked.
-        The same discipline I've written about for{' '}
+        The measurement was the hard part and where all the risk lived. Four
+        plausible answers, two more statistically impressive than the truth, one
+        that survived being attacked. Same discipline as{' '}
         <Link
           to="/blog/cutting-load-times-at-lorikeet"
           className="text-blitz-accent hover:underline"
         >
           bundle and transfer work
-        </Link>{' '}
-        applies here, just with much higher stakes on getting the statistics
-        right: instrument, measure, verify, and be specific about what you are
-        not entitled to say.
+        </Link>
+        , with higher stakes on the statistics: instrument, measure, verify, and
+        be specific about what you aren't entitled to say.
       </p>
 
       <p>
-        Shipping the optimization is table stakes. Being able to say what it was
-        worth, with an interval around it and an honest list of what you did not
-        prove, is what turns performance work from a technical detail into
-        something your stakeholders can plan around. That translation isn't
-        overhead bolted onto the engineering and it isn't a communication skill
-        you pick up at the end. It's where being product-first actually pays,
-        and it starts the same moment the work does.
+        Shipping the optimization is table stakes. Saying what it was worth,
+        with an interval around it and an honest list of what you didn't prove,
+        is what turns performance work into something stakeholders can plan
+        around. That translation isn't a communication skill you pick up at the
+        end. It starts the same moment the work does.
       </p>
 
       <p>The numbers matter. So does earning the right to quote them.</p>

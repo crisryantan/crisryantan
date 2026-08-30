@@ -235,41 +235,13 @@ const ProvingPerformanceWinsPage = () => {
         That distinction sounds like a footnote, but it's what decided whether I
         could prove anything at all. Both changes lived in the gap between two
         timestamps we were already recording, which is the one kind of saving a
-        phase-boundary metric can actually see.
+        phase-boundary metric can see. Other improvements from the same run were
+        real and had nowhere to show up, like main-thread work saved{' '}
+        <em>inside</em> a phase rather than between phases, or memory held onto
+        longer than it needed to be. Worth knowing before you write "no
+        improvement detected" when the honest sentence is "we pointed the wrong
+        instrument at it."
       </p>
-
-      <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">
-        <p className="font-semibold text-blitz-charcoal mb-2">
-          Why one change showed up and two didn't
-        </p>
-        <p className="text-sm mb-3">
-          Three performance changes shipped that week. Only one moved the
-          metric, and the reason is instrumentation, not code quality:
-        </p>
-        <ul className="space-y-2 text-sm">
-          <li>
-            <strong>Removing a wait</strong> shows up immediately. Dead time
-            between two timestamps is exactly what a phase-boundary metric
-            measures, so the saving has nowhere to hide.
-          </li>
-          <li>
-            <strong>Removing CPU work</strong> (redundant property lookups in a
-            hot path) was microseconds of main-thread time sitting{' '}
-            <em>inside</em> a phase rather than between phases. Real cost, wrong
-            instrument.
-          </li>
-          <li>
-            <strong>Removing retained resources</strong> (lazier subscriptions
-            cutting listener count and heap) has no column in a timings table at
-            all. You can't report what you never measured.
-          </li>
-        </ul>
-        <p className="text-sm mt-3">
-          A phase-boundary table can only see changes that remove a barrier.
-          Knowing that up front stops you writing "no improvement detected" when
-          the honest sentence is "we pointed the wrong instrument at it."
-        </p>
-      </div>
 
       <h2>Now, How Do We Measure It?</h2>
 
@@ -321,41 +293,18 @@ const ProvingPerformanceWinsPage = () => {
       <p>
         The number I'd defend came from a combined holdback. One randomized
         cohort, several independent latency optimizations all off versus all on,
-        split 50/50, read on a closed window.
+        split 50/50, read on a closed window. That's where the 10-12% comes
+        from, and it's the claim I'd put my name on.
       </p>
 
-      <table className="w-full border-collapse border border-blitz-charcoal/20 my-6">
-        <thead>
-          <tr className="bg-blitz-charcoal/5">
-            <th className="border border-blitz-charcoal/20 p-3 text-left">
-              SDK time to interactive
-            </th>
-            <th className="border border-blitz-charcoal/20 p-3 text-right">
-              p50
-            </th>
-            <th className="border border-blitz-charcoal/20 p-3 text-right">
-              p95
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              Treatment versus holdback
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              −11%
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              −12%
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
       <p>
-        Five days, arm split holding, daily deltas steady the whole way through.
-        That's the one I'd put my name on.
+        Most of that was waiting. A latency difference this size turns up in the
+        data quickly, but turning up isn't the same as settling, so we let the
+        arms soak for days before reading anything, and considerably longer than
+        that before saying anything about revenue. What you're waiting for is
+        the split to hold and the daily deltas to stop wandering. Reading an arm
+        the moment it looks good is how you end up defending a number that
+        drifts back to nothing the following week.
       </p>
 
       <p>
@@ -671,9 +620,8 @@ const ProvingPerformanceWinsPage = () => {
         fewer brittle assumptions about what has to finish before what, less
         code shipped to people who were never going to need it. That's a real
         result with no chart attached, and it makes the next change cheaper for
-        whoever picks it up. The engineering is ordinary, too, which is the
-        appealing part. Most codebases have this much leverage sitting in plain
-        sight.
+        whoever picks it up. There's more of this available in most codebases
+        than people assume.
       </p>
 
       <p>

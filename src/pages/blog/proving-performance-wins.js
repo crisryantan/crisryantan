@@ -21,29 +21,39 @@ const ProvingPerformanceWinsPage = () => {
         techniques through its web SDK, and two of them turned out to matter
         enormously. Combined, they cut boot time-to-interactive by{' '}
         <strong>10-12%</strong>, and the win held from the median all the way
-        out to p95. The code was the easy part. Getting a number my VP could act
-        on took four failed measurements, a placebo build, and a 13x sample
-        rescue. This is that story, and the two skills I wrote so nobody has to
-        repeat it.
+        out to p95. The code was the easy part. Getting to a number our
+        stakeholders could actually plan around took four failed measurements, a
+        placebo build, and a 13x sample rescue. This is that story, and the two
+        skills I wrote so nobody has to repeat it.
       </p>
 
       <h2>Nobody Claps for 46 Milliseconds</h2>
 
       <p>
-        Every performance engineer has had this meeting. You've spent three
-        weeks on a boot-path optimization. You show a dashboard. The p50 line
-        goes down. Someone asks, politely, "so what does that mean for us?" And
-        you don't have an answer, because you measured latency and they asked
-        about money.
+        I love this stuff. Genuinely, unreasonably. Shaving a hundred
+        milliseconds off a boot path is one of the few things in software where
+        it feels like physics is pushing back, and I will happily lose a weekend
+        to a flame chart and a waterfall. Which is why it stung the first time I
+        walked a real win into a room and watched everyone stay politely still.
       </p>
 
       <p>
-        That gap is the whole problem. Latency is what we control and revenue is
-        what we're funded for, and the two are separated by an inference nobody
-        on the engineering side usually owns. So the work gets described in the
-        only currency we have, milliseconds, and it lands as a technical detail
-        rather than a business result. The optimization was real. The case for
-        it was not made.
+        You know the meeting. Three weeks on a boot-path optimization, a
+        dashboard where the p50 line steps down, and then a completely fair
+        question: so what does that mean for us? I didn't have an answer. I had
+        measured latency and they had asked about outcomes, and those are not
+        the same sentence. That is not the room's failure. It is a translation I
+        hadn't done.
+      </p>
+
+      <p>
+        That gap is the whole problem, and it belongs to us. Latency is what
+        engineers control, outcomes are what the company is funded for, and
+        between the two sits an inference almost nobody on the engineering side
+        picks up. So the work gets described in the only currency we have,
+        milliseconds, and it lands as a technical detail instead of something a
+        stakeholder can plan around. The optimization was real. The case for it
+        never got made.
       </p>
 
       <p>
@@ -70,15 +80,35 @@ const ProvingPerformanceWinsPage = () => {
         untranslated work gets filed as maintenance.
       </p>
 
+      <h3>Why This Isn't a Vanity Metric</h3>
+
       <p>
-        Our SDK loads inside other companies' checkout pages. Every millisecond
-        we spend booting is a millisecond of someone else's page load, which
-        means latency is not a vanity metric here, it is the product. We also
-        had, from an internal latency-injection study, an elasticity: roughly
-        3-4% revenue movement per second of time-to-interactive. That single
-        number is what turns a millisecond into a sentence a business leader can
-        use. It is also what makes an unsound measurement dangerous, because now
-        a wrong latency number converts directly into a wrong revenue claim.
+        Here's why I care as much as I do in this particular job. We don't own
+        the page our code runs on. Rokt embeds its SDK directly into partner
+        pages, the checkout and confirmation flows of retailers, airlines,
+        ticketing sites, sitting right there alongside their own code and inside
+        their load budget. Every millisecond we spend booting is a millisecond
+        we are spending out of someone else's page.
+      </p>
+
+      <p>
+        That reframes the whole thing for me. A slow third-party script isn't
+        just a slightly worse experience, it's a cost you are imposing on a team
+        that agreed to host you, and they can see it in their own numbers. Being
+        fast is the price of being welcome on that page. It's also the moment
+        that matters most for the consumer, the few seconds right after they've
+        paid, where attention is short and a spinner is fatal. Performance here
+        isn't polish. It is the product.
+      </p>
+
+      <p>
+        And usefully, we had a conversion rate for it. An internal
+        latency-injection study gave us an elasticity: roughly 3-4% revenue
+        movement per second of time-to-interactive. One number, and suddenly a
+        millisecond becomes a sentence a stakeholder can plan around. That is
+        also exactly what makes sloppy measurement dangerous, because a wrong
+        latency number now converts straight into a wrong revenue claim, said
+        confidently, to people making real decisions.
       </p>
 
       <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-8 rounded-lg my-8">
@@ -151,22 +181,28 @@ const ProvingPerformanceWinsPage = () => {
       </p>
 
       <p>
-        So I did not begin with a profiler and a blank mind. I began with a list
-        I had been carrying around for years: the places I remembered as
+        So I didn't start with a profiler and a blank mind. I started with a
+        list I'd been carrying around for years: every place I remembered as
         needlessly eager, needlessly serial, or needlessly large. Then I let my
-        brain run at full blast for a few months, cycling through candidates
-        fast and cheaply instead of picking one and marrying it. Most of them
-        went nowhere. Two of them turned out to be worth more than everything
-        else combined.
+        brain run absolutely flat out for a few months. Pull a thread, measure
+        it, drop it, pull the next one. No ceremony, no roadmap, no falling in
+        love with the first idea. Honestly some of the most fun I've had at
+        work.
+      </p>
+
+      <p>
+        Most of them went nowhere, which is the part nobody puts in the
+        retrospective. Two of them turned out to be worth more than everything
+        else combined, and I could not have told you in advance which two.
       </p>
 
       <h3>None of the Techniques Were Clever</h3>
 
       <p>
-        This is the part I want to be honest about, because performance writing
-        tends to imply exotic insight. Nothing in the portfolio was exotic. It
-        was the standard frontend performance checklist, applied by someone who
-        knew where to point it:
+        Let me be honest about this bit, because performance writing loves to
+        imply exotic insight. There wasn't any. This was the standard frontend
+        performance checklist, the stuff you already know, applied by someone
+        who happened to know where to point it:
       </p>
 
       <ul>
@@ -378,11 +414,12 @@ const ProvingPerformanceWinsPage = () => {
       <h2>Four Ways I Nearly Reported the Wrong Number</h2>
 
       <p>
-        Here is the uncomfortable part. Every failed measurement below produced
-        a plausible number. None of them errored, none of them looked
-        suspicious, and two of them were <em>more</em> statistically impressive
-        than the truth. If I had stopped at any of them I would have shipped a
-        confident, wrong claim to people who make budget decisions.
+        Here is the uncomfortable part, and the reason I find this genuinely
+        thrilling rather than tedious. Every failed measurement below produced a
+        plausible number. None of them errored, none of them looked suspicious,
+        and two of them were <em>more</em> statistically impressive than the
+        truth. If I had stopped at any of them I would have handed a confident,
+        wrong number to teams planning their next quarter around it.
       </p>
 
       <h3>Trap 1: Reading the Deploy</h3>
@@ -559,8 +596,10 @@ const ProvingPerformanceWinsPage = () => {
         scale, a fifth of one percent is not a rounding error, it is a
         meaningful line item that recurs every year for as long as the code
         keeps running. Two tenths of a percent on a small base is noise. Two
-        tenths of a percent on a base that size is a headcount's worth of value,
-        several times over.
+        tenths of a percent on a base that size pays for real things, every
+        year, without anyone having to touch it again. A fraction of a percent
+        sounds trivial right up until you multiply it by the base it lands on,
+        and nobody does that multiplication for you.
       </p>
 
       <p>
@@ -1178,10 +1217,13 @@ const ProvingPerformanceWinsPage = () => {
       <h2>Closing Thoughts</h2>
 
       <p>
-        The engineering in this post is ordinary: defer construction, don't wait
-        on an event you don't need, load a chunk lazily. Any competent engineer
-        would arrive at the same changes given the same profile. Nothing about
-        it is hard to explain.
+        The engineering in this post is ordinary. Don't do work early that
+        doesn't need to be early, don't wait on a signal stricter than the one
+        you need, load lazily what most people won't use. Any decent engineer
+        lands on the same changes given the same map. None of it is hard to
+        explain, which is exactly why I find it so satisfying: the leverage is
+        sitting in plain sight in most codebases, waiting for someone to care
+        enough to look.
       </p>
 
       <p>
@@ -1204,10 +1246,10 @@ const ProvingPerformanceWinsPage = () => {
         Shipping the optimization is table stakes. Being able to say what it was
         worth, with an interval around it and an honest list of what you did not
         prove, is what turns performance work from a technical detail into
-        something the business can act on. That translation is not overhead on
-        top of the engineering, and it is not a communication skill bolted on at
-        the end. It is the part of the job where a product-first engineer earns
-        their keep, and it starts at the same moment the work does.
+        something your stakeholders can plan around. That translation isn't
+        overhead bolted onto the engineering and it isn't a communication skill
+        you pick up at the end. It's where being product-first actually pays,
+        and it starts the same moment the work does.
       </p>
 
       <p>The numbers matter. So does earning the right to quote them.</p>

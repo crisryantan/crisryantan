@@ -46,6 +46,30 @@ const ProvingPerformanceWinsPage = () => {
       </p>
 
       <p>
+        Closing that gap is mostly a mindset thing, and I've come to think of it
+        as the difference between doing engineering well and being{' '}
+        <strong>product-first</strong> about it. A product-first engineer treats
+        the inference as part of the job rather than someone else's problem:
+        what outcome is this millisecond attached to, who feels it, how would I
+        know if I were wrong. That shows up long before the readout. It changes
+        which optimizations you pick up, because you favour the ones whose
+        effect you can actually defend over the ones that are merely satisfying
+        to write. It changes how you instrument, because you add the marker
+        while the change is still cheap to change instead of reconstructing an
+        answer afterwards. And it changes what you report, because "who did this
+        help, and by how much" is a product question that a fleet-wide
+        percentile quietly refuses to answer.
+      </p>
+
+      <p>
+        The alternative is the version I've done plenty of times: solve the
+        interesting technical problem, ship it, describe it in milliseconds, and
+        let someone else decide whether it counted. It usually doesn't count.
+        Not because the work was bad, but because nobody translated it, and
+        untranslated work gets filed as maintenance.
+      </p>
+
+      <p>
         Our SDK loads inside other companies' checkout pages. Every millisecond
         we spend booting is a millisecond of someone else's page load, which
         means latency is not a vanity metric here, it is the product. We also
@@ -478,6 +502,32 @@ const ProvingPerformanceWinsPage = () => {
         The latency result is decisive. The revenue results are the honest
         version of a partial answer: both positive, both landing inside the
         range the elasticity predicts, neither individually significant.
+      </p>
+
+      <p>
+        It is worth pausing on that +0.20%, because a number that small is easy
+        to dismiss and that instinct is usually wrong. Percentages only mean
+        something once you multiply them by a base. The company I work for has
+        publicly talked about approaching a billion dollars in annual revenue,
+        and the surface this SDK renders on is a large slice of that. At that
+        scale, a fifth of one percent is not a rounding error, it is a
+        meaningful line item that recurs every year for as long as the code
+        keeps running. Two tenths of a percent on a small base is noise. Two
+        tenths of a percent on a base that size is a headcount's worth of value,
+        several times over.
+      </p>
+
+      <p>
+        This is the arithmetic that tends to be missing when engineers describe
+        their own work. We report the percentage because it is what the test
+        gives us, then let it sit there looking unimpressive, when the sentence
+        that actually lands is the percentage multiplied by the thing it applies
+        to. A product-first read of the same table does that multiplication out
+        loud. It also stays honest about the direction of the evidence: at this
+        sample size +0.20% is directionally encouraging and consistent with the
+        elasticity, not a proven revenue result, and the right framing is "here
+        is the value at stake if this holds" rather than "here is the money we
+        made."
       </p>
 
       <p>
@@ -1013,6 +1063,13 @@ const ProvingPerformanceWinsPage = () => {
 
       <ol className="list-decimal list-inside space-y-3 ml-4 text-lg">
         <li>
+          <strong>Own the translation, not just the change.</strong> Decide what
+          outcome your milliseconds are attached to before you start, and let
+          that decide what you pick up. Being product-first here is not about
+          writing better summaries after the fact, it is about the measurement
+          being designed into the work rather than reconstructed from it.
+        </li>
+        <li>
           <strong>Get an elasticity, then use it as a bound.</strong> One number
           converting your metric to business value does two jobs: it makes the
           work legible to people who fund it, and it gives you a sanity check
@@ -1085,9 +1142,13 @@ const ProvingPerformanceWinsPage = () => {
         Shipping the optimization is table stakes. Being able to say what it was
         worth, with an interval around it and an honest list of what you did not
         prove, is what turns performance work from a technical detail into
-        something the business can act on. The numbers matter. So does earning
-        the right to quote them.
+        something the business can act on. That translation is not overhead on
+        top of the engineering, and it is not a communication skill bolted on at
+        the end. It is the part of the job where a product-first engineer earns
+        their keep, and it starts at the same moment the work does.
       </p>
+
+      <p>The numbers matter. So does earning the right to quote them.</p>
     </ArticleLayout>
   )
 }

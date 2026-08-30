@@ -6,6 +6,17 @@ const blogPosts = [
   {
     id: 0,
     title:
+      'Shipping Was the Easy Part: How to Prove a Performance Win Actually Mattered',
+    excerpt:
+      'Two SDK performance initiatives cut boot latency by 113ms at p50 and 474ms at p95. The engineering took weeks. Proving it moved the business took longer, and nearly produced four wrong answers first.',
+    date: 'August 30, 2026',
+    readTime: '14 min read',
+    category: 'Performance',
+    link: '/blog/proving-performance-wins',
+  },
+  {
+    id: 1,
+    title:
       'Compression, Preloading, and Tree-Shaking: Cutting Load Times by 75% at Lorikeet',
     excerpt:
       'How a performance audit uncovered three independent optimizations that cut cold load transfer by 75%, reduced widget load time to 681ms, and trimmed 630KB from our bundles, and how they amplified each other.',
@@ -15,7 +26,7 @@ const blogPosts = [
     link: '/blog/cutting-load-times-at-lorikeet',
   },
   {
-    id: 1,
+    id: 2,
     title: 'Maximizing Productivity with AI Coding Agents',
     excerpt:
       'A comprehensive guide to AI coding tools, team workflows, and building institutional knowledge for AI-assisted development.',
@@ -25,7 +36,7 @@ const blogPosts = [
     link: '/blog/ai-agents-productivity',
   },
   {
-    id: 2,
+    id: 3,
     title: 'Claude Skills: Turning Personal Expertise into Team Superpowers',
     excerpt:
       'How Claude Skills transform individual knowledge into institutional capability, making specialized expertise available to your entire team automatically.',
@@ -35,7 +46,7 @@ const blogPosts = [
     link: '/blog/claude-skills-institutional-knowledge',
   },
   {
-    id: 3,
+    id: 4,
     title: 'AI-Assisted Coding Workflows: Delegating vs Leveraging',
     excerpt:
       'Learn the mental model for working with AI coding assistants: when to delegate tasks and walk away vs when to leverage AI as your pair programming partner.',
@@ -45,7 +56,7 @@ const blogPosts = [
     link: '/blog/ai-coding-workflows',
   },
   {
-    id: 4,
+    id: 5,
     title:
       'From SDK to SSR: Performance Optimization Lessons Across Frameworks',
     excerpt:

@@ -15,7 +15,11 @@ const EASE = [0.22, 1, 0.36, 1]
  * client they collapse on mount and grow when scrolled into view. Transform-only
  * (scaleX) so there's no layout thrash / CLS.
  */
-const BeforeAfterBars = ({ items, unit = 'KB' }) => {
+const BeforeAfterBars = ({
+  items,
+  unit = 'KB',
+  reductionSuffix = '% smaller',
+}) => {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, amount: 0.3 })
   const max = Math.max(...items.map((i) => i.before))
@@ -27,7 +31,7 @@ const BeforeAfterBars = ({ items, unit = 'KB' }) => {
           <div className="mb-1 flex items-baseline justify-between text-sm">
             <span className="font-mono text-blitz-primary">{it.label}</span>
             <span className="font-medium text-green-600">
-              <CountUp value={it.reduction} suffix="% smaller" />
+              <CountUp value={it.reduction} suffix={reductionSuffix} />
             </span>
           </div>
           <div className="relative h-7 overflow-hidden rounded bg-blitz-charcoal/5">

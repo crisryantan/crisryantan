@@ -8,7 +8,7 @@ const ProvingPerformanceWinsPage = () => {
   return (
     <ArticleLayout
       title="Shipping Was the Easy Part: How to Prove a Performance Win Actually Mattered"
-      description="Two SDK performance initiatives cut boot latency 10-12%, holding from p50 out to p95, worth an estimated 0.3-1.9% of revenue on the surface it touches. Here's how we measured it, and the two A/B skills that made the method repeatable."
+      description="Two performance initiatives cut our SDK's time to interactive by 10-12%, holding from p50 out to p95, worth an estimated 0.3-1.9% of revenue on the surface it touches. Here's how we measured it, and the two A/B skills that made the method repeatable."
       date="August 30, 2026"
       readTime="10 min read"
       category="Performance"
@@ -17,22 +17,25 @@ const ProvingPerformanceWinsPage = () => {
     >
       <p className="text-lg text-blitz-charcoal/70 italic mb-8">
         <strong>TL;DR:</strong> Two performance initiatives cut our web SDK's
-        boot time-to-interactive by <strong>10-12%</strong>, holding from the
-        median out to p95, worth an estimated <strong>0.3-1.9%</strong> of
-        revenue on the surface it renders on. The code was the easy part. What
-        turned it into a number stakeholders could plan around was the
-        measurement, so I packaged that method into two Claude skills,{' '}
-        <code>ab-setup</code> and <code>ab-diagnose</code>, and the whole team
-        now gets it for free.
+        time to interactive by <strong>10-12%</strong>, holding from the median
+        out to p95, worth an estimated <strong>0.3-1.9%</strong> of revenue on
+        the surface it renders on. The code was the easy part. What turned it
+        into a number stakeholders could plan around was the measurement, so I
+        packaged that method into two Claude skills, <code>ab-setup</code> and{' '}
+        <code>ab-diagnose</code>, and the whole team now gets it for free.
       </p>
 
-      <h2>We Cut Boot Time 10-12%. Here's What That Was Worth.</h2>
+      <h2>
+        We Cut Our SDK's Time to Interactive by 10-12%. Here's What That Was
+        Worth.
+      </h2>
 
       <p>
         Two initiatives, shipped over a few months into a web SDK that boots on
-        other companies' checkout pages. Together they took 10-12% off boot
-        time-to-interactive, and the win held from the median all the way out to
-        p95. Run through our internal latency-to-revenue elasticity, that's an
+        other companies' checkout pages. Together they took 10-12% off the SDK's
+        time to interactive, the span from our code starting to our content
+        being usable, and the win held from the median all the way out to p95.
+        Run through our internal latency-to-revenue elasticity, that's an
         estimated 0.3-1.9% of revenue on the surface the SDK renders on.
       </p>
 
@@ -46,7 +49,7 @@ const ProvingPerformanceWinsPage = () => {
               <CountUp value={11} prefix="−" suffix="%" />
             </p>
             <p className="text-sm text-blitz-charcoal/70">
-              Boot time-to-interactive at the median
+              SDK time to interactive at the median
             </p>
           </div>
           <div>
@@ -54,7 +57,7 @@ const ProvingPerformanceWinsPage = () => {
               <CountUp value={12} prefix="−" suffix="%" />
             </p>
             <p className="text-sm text-blitz-charcoal/70">
-              Boot time-to-interactive at p95, so the win holds in the tail
+              SDK time to interactive at p95, so the win holds in the tail
             </p>
           </div>
           <div>
@@ -79,26 +82,24 @@ const ProvingPerformanceWinsPage = () => {
       <p>
         The band matters more than any single figure. A win that holds from p50
         to p95 is a different animal from one that shows up in an average: the
-        slowest sessions, on tired phones and bad networks where people actually
+        slowest sessions, on old phones and bad networks where people actually
         abandon, got the same proportional relief as the fast ones.
       </p>
 
       <p>
         And that second pair of numbers is why anyone outside my team cared.
-        Same work, same commits, two sentences. "We made boot 11% faster" is a
-        status update. "This is worth an estimated 0.3-1.9% of revenue on the
-        surface it touches" is a decision input. The engineering didn't change
-        between them. The measurement did.
+        Same work, same commits, two sentences. "We cut time to interactive by
+        11%" is a status update. "This is worth an estimated 0.3-1.9% of revenue
+        on the surface it touches" is a decision input. The engineering didn't
+        change between them. The measurement did.
       </p>
 
       <p>
-        I love this stuff. Genuinely, unreasonably. Shaving a hundred
-        milliseconds off a boot path is one of the few things in software where
-        it feels like physics is pushing back, and I will happily lose a weekend
-        to a flame chart. Which is why it stung, years ago, to walk a real win
-        into a room and get a fair question back: so what does that mean for us?
-        I'd measured latency and they'd asked about outcomes. Those are not the
-        same sentence, and the translation between them is our job, not theirs.
+        Performance work is the part of this job I like most, and a table like
+        that one is the payoff. But I've carried a result like it into a room
+        before and got a fair question back: so what does that mean for us? I'd
+        measured latency and they'd asked about outcomes. Those aren't the same
+        sentence, and the translation between them is our job, not theirs.
       </p>
 
       <p>
@@ -126,22 +127,25 @@ const ProvingPerformanceWinsPage = () => {
       </p>
 
       <p>
-        We also had a conversion rate for it. An internal latency-injection
-        study gave us an elasticity: roughly 3-4% revenue movement per second of
-        time-to-interactive. One number turns a millisecond into a sentence a
-        stakeholder can plan around. It also raises the stakes on measurement,
-        because a wrong latency number now converts straight into a wrong
-        revenue claim.
+        We also had a conversion rate for it. A latency-injection study, where
+        you deliberately slow a random slice of traffic and watch what happens
+        to the outcome you care about, gives you an elasticity. Ours came out
+        around 3-4% revenue movement per second of time to interactive. If your
+        team doesn't have that number, it's the single highest-leverage
+        experiment you can run, because one constant turns every millisecond
+        into a sentence a stakeholder can plan around. It also raises the stakes
+        on measurement, in that a wrong latency number now converts straight
+        into a wrong revenue claim.
       </p>
 
       <h2>Coming Back Knowing Where the Debt Was</h2>
 
       <p>
-        I'm a boomerang. Worked here, left, came back. That's an unreasonable
-        advantage for performance work, because the expensive part of speeding
-        up a mature codebase isn't writing the optimization, it's knowing which
-        slow things are slow for a good reason. I already had that map. Some of
-        the debt I helped create.
+        I'm a boomerang. Worked here, left, came back. That turns out to be a
+        real advantage for performance work, because the expensive part of
+        speeding up a mature codebase isn't writing the optimization, it's
+        knowing which slow things are slow for a good reason. I already had that
+        map. Some of the debt I helped create.
       </p>
 
       <p>
@@ -150,9 +154,8 @@ const ProvingPerformanceWinsPage = () => {
         eager, needlessly serial, or needlessly large. Then I let my brain run
         flat out for a few months. Pull a thread, measure it, drop it, pull the
         next one. No ceremony, no roadmap, no falling in love with the first
-        idea. Some of the most fun I've had at work. Most went nowhere. Two were
-        worth more than everything else combined, and I couldn't have told you
-        in advance which two.
+        idea. Most were small. Two were disproportionate, and I couldn't have
+        told you in advance which two.
       </p>
 
       <h3>None of the Techniques Were Clever</h3>
@@ -209,6 +212,17 @@ const ProvingPerformanceWinsPage = () => {
         That last bullet is the one I'd defend hardest. Instrumentation isn't
         overhead you add when you have spare time, it's what makes every
         subsequent optimization arguable.
+      </p>
+
+      <p>
+        Only two items on that list moved the headline, and counting only those
+        two is the wrong read. A memoized factory, a subscription that stops
+        attaching eagerly, a chunk that no longer ships to people who never open
+        it: individually none of them survive a significance test, and together
+        they lower the baseline every later change gets measured against. They
+        compound in a second way too, because each thing you fix and measure
+        sharpens where you look next. Ship the small ones. Just don't claim them
+        individually.
       </p>
 
       <h3>Leverage First, Delegate Second</h3>
@@ -271,7 +285,7 @@ const ProvingPerformanceWinsPage = () => {
         <tbody>
           <tr>
             <td className="border border-blitz-charcoal/20 p-3">
-              Boot time-to-interactive
+              SDK time to interactive
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right">
               −18ms (−3.2%)
@@ -285,7 +299,7 @@ const ProvingPerformanceWinsPage = () => {
           </tr>
           <tr>
             <td className="border border-blitz-charcoal/20 p-3">
-              The boot phase the diff actually governs
+              Framework startup phase, which the diff governs
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
               −5ms (−6.7%)
@@ -384,7 +398,7 @@ const ProvingPerformanceWinsPage = () => {
         <tbody>
           <tr>
             <td className="border border-blitz-charcoal/20 p-3">
-              Render time-to-interactive
+              SDK time to interactive
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
               −73.8ms (−5.54%)
@@ -398,7 +412,7 @@ const ProvingPerformanceWinsPage = () => {
           </tr>
           <tr>
             <td className="border border-blitz-charcoal/20 p-3">
-              Referral rate
+              Engagement rate
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right">
               +0.14%
@@ -463,7 +477,7 @@ const ProvingPerformanceWinsPage = () => {
         <thead>
           <tr className="bg-blitz-charcoal/5">
             <th className="border border-blitz-charcoal/20 p-3 text-left">
-              Integration's own baseline
+              Caller's own baseline
             </th>
             <th className="border border-blitz-charcoal/20 p-3 text-right">
               Count
@@ -523,7 +537,7 @@ const ProvingPerformanceWinsPage = () => {
       </table>
 
       <p>
-        Each integration compared only against itself, so partner mix can't
+        Each caller compared only against itself, so partner mix can't
         manufacture this. The already-fast ones gained nothing. The slowest
         gained 40 to 56%:
       </p>
@@ -540,12 +554,12 @@ const ProvingPerformanceWinsPage = () => {
 
       <p>
         That shape is the signature of removing a barrier, and no available
-        confounder can imitate it. Where the boot phase was already fast, the
-        readiness signal had arrived before anything needed it and there was no
-        wait to remove. Where boot was slow, the wait was most of the cost.
-        Traffic mix, hour of day and cohort bias all distribute across
-        integrations independently of baseline speed. Only a barrier removal
-        produces an effect size that tracks how much barrier each caller had.
+        confounder can imitate it. Where startup was already fast, the readiness
+        signal had arrived before anything needed it and there was no wait to
+        remove. Where startup was slow, the wait was most of the cost. Traffic
+        mix, hour of day and cohort bias all distribute across callers
+        independently of baseline speed. Only a barrier removal produces an
+        effect size that tracks how much barrier each caller had.
       </p>
 
       <p>
@@ -598,7 +612,7 @@ const ProvingPerformanceWinsPage = () => {
         <tbody>
           <tr>
             <td className="border border-blitz-charcoal/20 p-3">
-              Render time-to-interactive
+              SDK time to interactive
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right">
               ±2%
@@ -612,7 +626,7 @@ const ProvingPerformanceWinsPage = () => {
           </tr>
           <tr>
             <td className="border border-blitz-charcoal/20 p-3">
-              Framework phase
+              Framework startup phase
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right">
               ±3%
@@ -626,7 +640,7 @@ const ProvingPerformanceWinsPage = () => {
           </tr>
           <tr>
             <td className="border border-blitz-charcoal/20 p-3">
-              Page time-to-interactive
+              Page time to interactive
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right">
               ±9% at p90
@@ -640,7 +654,7 @@ const ProvingPerformanceWinsPage = () => {
           </tr>
           <tr>
             <td className="border border-blitz-charcoal/20 p-3">
-              End-to-end time-to-interactive
+              End-to-end time to interactive
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right">
               ±4.5%
@@ -678,8 +692,8 @@ const ProvingPerformanceWinsPage = () => {
       <p>
         This belongs in the conversation before you write code, not after the
         readout disappoints. Apply the elasticity, then work out how much
-        traffic each claim needs at 80% power. For a boot-latency win in the
-        tens of milliseconds:
+        traffic each claim needs at 80% power. For a time-to-interactive win in
+        the tens of milliseconds:
       </p>
 
       <table className="w-full border-collapse border border-blitz-charcoal/20 my-6">
@@ -710,7 +724,7 @@ const ProvingPerformanceWinsPage = () => {
           </tr>
           <tr>
             <td className="border border-blitz-charcoal/20 p-3">
-              Referral rate moved
+              Engagement rate moved
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right">
               ~70M
@@ -757,9 +771,10 @@ const ProvingPerformanceWinsPage = () => {
           and say so confidently.
         </li>
         <li>
-          <strong>Target a rate, not a sum.</strong> Referral rate is roughly 5x
-          cheaper in traffic than revenue per transaction for the same effect,
-          because a proportion has far less variance than a heavy-tailed sum.
+          <strong>Target a rate, not a sum.</strong> An engagement rate is
+          roughly 5x cheaper in traffic than revenue per transaction for the
+          same effect, because a proportion has far less variance than a
+          heavy-tailed sum.
         </li>
         <li>
           <strong>Bundle into a combined holdback.</strong> Randomize one cohort
@@ -876,75 +891,68 @@ const ProvingPerformanceWinsPage = () => {
       </div>
 
       <p>
-        The rules aren't clever. They're the specific ways this measurement
-        fails silently, each written down the day it cost me something. A few in
-        practice:
+        None of the rules are clever. Each one is a way this kind of measurement
+        fails quietly, which is exactly why they're worth writing down:
       </p>
 
       <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">
         <ul className="space-y-3 text-sm">
           <li>
-            <strong>Run 50/50, not 5/95.</strong> Power scales with the smaller
-            arm. At 5/95 that arm needs 10x the calendar time for the same
-            per-arm sample, and even at fixed total traffic the unequal split
-            costs ~5.3x the sample for the same detectable effect. Ramp through
-            small percentages for safety if you want, just don't mistake the
-            safety ramp for the measurement window.
+            <strong>Split 50/50, not 5/95.</strong> Power scales with the
+            smaller arm, so an uneven split costs you roughly 5x the sample for
+            the same detectable effect. Ramp small for safety, but don't mistake
+            the safety ramp for the measurement window.
           </li>
           <li>
             <strong>
               Emit the enrollment marker before the thing you're measuring can
               fail.
             </strong>{' '}
-            The marker defines the population. If it fires only after a
-            successful render, dropped sessions have no marker and drop-off
-            becomes invisible. This is the most common way to build an
-            unmeasurable experiment.
+            The marker defines your population. If it only fires after a
+            successful render, failed sessions leave no trace and drop-off
+            becomes invisible.
           </li>
           <li>
-            <strong>Declare the subsample ladder up front.</strong> "Start at
-            1/16, widen to 1/4, then full traffic." Widening <em>after</em>{' '}
-            seeing a non-significant result is a second look at the same data,
-            and two looks at α=0.05 give a true error rate nearer 8% than 5%.
+            <strong>Declare the traffic ladder up front.</strong> Widening
+            traffic <em>after</em> seeing a non-significant result is a second
+            look at the same data, and two looks at α=0.05 put your true error
+            rate nearer 8% than 5%.
           </li>
           <li>
             <strong>
               Don't stack a new experiment on the same mechanism as a live one.
             </strong>{' '}
-            Two treatments that both alter how a chunk loads interact, so
-            neither arm means what its label says. Independent mechanisms can
-            run concurrently without issue.
+            Two treatments that both change how a chunk loads will interact, and
+            then neither arm means what its label says.
           </li>
           <li>
-            <strong>An MDE is not a confidence bound.</strong> "Render rates are
-            equal to within the MDE" is unsupported: an MDE is the effect
-            detectable at 80% power, and a non-significant result can have an
-            interval extending well past it.
+            <strong>An MDE is not a confidence bound.</strong> It's the effect
+            you could detect at 80% power. A non-significant result can still
+            have an interval extending well past it, so "equal to within the
+            MDE" claims more than you measured.
           </li>
           <li>
             <strong>
               Never read an absolute time series across a rollout.
             </strong>{' '}
-            Our boot latency swings 23% over a day on traffic mix alone, so
-            consecutive releases ordered by build number look monotonically
-            improving whether or not anyone wrote code. Only a randomized
-            within-window contrast is valid.
+            Third-party latency can swing 20% or more within a single day on
+            traffic mix alone, so releases ordered by build number look
+            monotonically better whether or not anyone wrote code. Only a
+            randomized within-window contrast is valid.
           </li>
           <li>
             <strong>
-              Use the elasticity as a ceiling, not just a translator.
+              Use your elasticity as a ceiling, not just a translator.
             </strong>{' '}
-            If a result is far larger than your latency-to-revenue model
-            permits, it's a query bug rather than a triumph. That check caught a
-            composition artifact a p-value of 1e-300 was happily endorsing.
+            A result far bigger than your model permits is a query bug, not a
+            triumph. That check has caught a p-value of 1e-300 that turned out
+            to be pure traffic composition.
           </li>
           <li>
-            <strong>
-              When an instrument breaks, find a second signal for the same fact.
-            </strong>{' '}
-            Then validate the substitute against the original on the window
-            where both work, and state plainly what the substitute cannot see.
-            That last step is what separates a rescue from a rationalization.
+            <strong>Validate any instrument you substitute.</strong> When the
+            primary signal breaks, find a second one for the same fact, check
+            the two agree on the window where both work, and say what the
+            replacement can't see.
           </li>
         </ul>
       </div>
@@ -1024,9 +1032,8 @@ const ProvingPerformanceWinsPage = () => {
         The engineering here is ordinary. Don't do work early that doesn't need
         to be early, don't wait on a signal stricter than the one you need, load
         lazily what most people won't use. Any decent engineer lands on the same
-        changes given the same map. That's exactly why I find it satisfying: the
-        leverage sits in plain sight in most codebases, waiting for someone to
-        care enough to look.
+        changes given the same map. That's the appealing part: this much
+        leverage is sitting in plain sight in most codebases.
       </p>
 
       <p>

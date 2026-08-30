@@ -10,7 +10,7 @@ const blogPosts = [
     excerpt:
       'A run of performance changes to Rokt web SDK, two of them outliers, took 10-12% off our time to interactive from the median out to p95. Writing the code was the easier half. Here is how we measured what it was worth, and the two A/B skills that turned measurement from a project into a step.',
     date: 'August 30, 2026',
-    readTime: '8 min read',
+    readTime: '12 min read',
     category: 'Performance',
     link: '/blog/proving-performance-wins',
   },

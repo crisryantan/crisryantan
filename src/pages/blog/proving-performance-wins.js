@@ -9,7 +9,7 @@ const ProvingPerformanceWinsPage = () => {
       title="10-12% Off Our SDK's Time to Interactive, and the A/B Skills That Measured It"
       description="A run of performance changes to Rokt's web SDK, two of them outliers, took 10-12% off our time to interactive from the median out to p95. Writing the code was the easier half. Here's how we measured what it was worth, and the two A/B skills that turned measurement from a project into a step."
       date="August 30, 2026"
-      readTime="8 min read"
+      readTime="12 min read"
       category="Performance"
       slug="/blog/proving-performance-wins"
       tags={['Performance', 'Experimentation', 'A/B Testing', 'Claude Skills']}
@@ -114,11 +114,24 @@ const ProvingPerformanceWinsPage = () => {
         couldn't have told you in advance which two.
       </p>
 
-      <h3>None of the Techniques Were Clever</h3>
+      <h3>Ship Less, Wait Less</h3>
 
       <p>
-        This was the standard frontend checklist, pointed at the right places:
+        Before any of the optimizations, one piece of plumbing: a bundle-size
+        budget in CI that comments the delta on every pull request. Size
+        regressions became a review conversation instead of a discovery three
+        months later. Instrumentation isn't overhead you get to when there's
+        spare time. It's what makes every later optimization arguable, and I'd
+        defend it ahead of anything else here.
       </p>
+
+      <p>
+        After that it was the standard frontend checklist, which sorts into two
+        piles. Either you put less on the critical path, or you stop things
+        waiting on it.
+      </p>
+
+      <h4 className="text-lg mt-8 mb-3">Ship less</h4>
 
       <ul>
         <li>
@@ -133,6 +146,16 @@ const ProvingPerformanceWinsPage = () => {
           emits rather than what you assume it emits.
         </li>
         <li>
+          <strong>Deleting always-on work behind disabled features.</strong>{' '}
+          Paths that still cost every single session even when the feature they
+          exist for is switched off everywhere.
+        </li>
+      </ul>
+
+      <h4 className="text-lg mt-8 mb-3">Wait less</h4>
+
+      <ul>
+        <li>
           <strong>Ordering async work.</strong> Walk the await chains and find
           the sequential awaits that never had a data dependency on each other.
           Then find the places waiting on the strictest available signal when a
@@ -144,39 +167,25 @@ const ProvingPerformanceWinsPage = () => {
           has to finish before the user sees anything, and what was only there
           first because someone wrote it first.
         </li>
-        <li>
-          <strong>Deleting always-on work behind disabled features.</strong>{' '}
-          Paths that still cost every single session even when the feature they
-          exist for is switched off everywhere.
-        </li>
-        <li>
-          <strong>The usual small mechanics.</strong> Memoize hot factories,
-          make event subscriptions lazy and refcounted instead of eager, cancel
-          superseded in-flight requests, prune speculative preloads that had
-          stopped paying for themselves.
-        </li>
-        <li>
-          <strong>Measurement infrastructure, first.</strong> Before most of the
-          above, a bundle-size budget in CI that comments the delta on every
-          pull request. Size regressions became a review conversation instead of
-          a discovery three months later.
-        </li>
       </ul>
 
       <p>
-        That last one is the bullet I'd defend hardest. Instrumentation isn't
-        overhead you get to when there's spare time. It's what makes every later
-        optimization arguable.
+        Then the mechanics that don't sit cleanly in either pile: memoize hot
+        factories, make event subscriptions lazy and refcounted instead of
+        eager, cancel superseded in-flight requests, prune speculative preloads
+        that had stopped paying for themselves.
       </p>
 
       <p>
-        Only two items on that list moved the headline, and if you count only
-        those two you've misread it. A memoized factory, a subscription that
-        stops attaching eagerly, a chunk that no longer ships to people who
-        never open it. None of them survives a significance test on its own.
-        Together they lower the baseline every later change gets measured
-        against, and each one you fix and measure sharpens where you look next.
-        Ship the small ones. Just don't try to claim them individually.
+        The two piles are worth holding onto, because one of the outliers came
+        out of each. Only those two moved the headline, though, and if you count
+        only those two you've misread the run. A memoized factory, a
+        subscription that stops attaching eagerly, a chunk that no longer ships
+        to people who never open it. None of them survives a significance test
+        on its own. Together they lower the baseline every later change gets
+        measured against, and each one you fix and measure sharpens where you
+        look next. Ship the small ones. Just don't try to claim them
+        individually.
       </p>
 
       <h3>Leverage First, Delegate Second</h3>

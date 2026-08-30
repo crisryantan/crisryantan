@@ -113,7 +113,7 @@ const ProvingPerformanceWinsPage = () => {
         answer.
       </p>
 
-      <h3>Why This Isn't a Vanity Metric</h3>
+      <h3>Why Milliseconds Matter at Rokt Specifically</h3>
 
       <p>
         We don't own the page our code runs on. Rokt embeds its SDK directly
@@ -288,13 +288,13 @@ const ProvingPerformanceWinsPage = () => {
               SDK time to interactive
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right">
-              −18ms (−3.2%)
+              −3.2%
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              −46ms (−5.3%)
+              −5.3%
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              −135ms (−6.0%)
+              −6.0%
             </td>
           </tr>
           <tr>
@@ -302,38 +302,25 @@ const ProvingPerformanceWinsPage = () => {
               Framework startup phase, which the diff governs
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              −5ms (−6.7%)
+              −6.7%
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              −10ms (−5.5%)
+              −5.5%
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              −170ms (−17.7%)
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              A later phase the diff never touches (used as a control)
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right text-blitz-charcoal/50">
-              —
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right text-blitz-charcoal/50">
-              −1.2% (flat)
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right text-blitz-charcoal/50">
-              —
+              −17.7%
             </td>
           </tr>
         </tbody>
       </table>
 
       <p>
-        Two rows there matter more than the headline. The saving lands in
-        exactly the phase the changed files govern, and the phase they don't
-        touch holds still. That's the difference between "latency improved after
-        we deployed" and "latency improved{' '}
-        <em>where our diff could have improved it</em>."
+        The second row matters more than the first. The saving lands in exactly
+        the phase the changed files govern, and a later phase the diff never
+        touches held flat in the same readout. Predict where an effect should
+        show up, then confirm it showed up there and nowhere it shouldn't.
+        That's the difference between "latency improved after we deployed" and
+        "latency improved <em>where our diff could have improved it</em>."
       </p>
 
       <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">
@@ -382,71 +369,39 @@ const ProvingPerformanceWinsPage = () => {
         <thead>
           <tr className="bg-blitz-charcoal/5">
             <th className="border border-blitz-charcoal/20 p-3 text-left">
-              Metric
+              SDK time to interactive
             </th>
             <th className="border border-blitz-charcoal/20 p-3 text-right">
-              Δ
+              p50
             </th>
             <th className="border border-blitz-charcoal/20 p-3 text-right">
-              p
-            </th>
-            <th className="border border-blitz-charcoal/20 p-3 text-left">
-              95% CI (relative)
+              p95
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td className="border border-blitz-charcoal/20 p-3">
-              SDK time to interactive
+              Treatment versus holdback
             </td>
             <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              −73.8ms (−5.54%)
+              −11%
             </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              &lt;1e-300
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3">
-              [−5.67%, −5.42%]
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              Engagement rate
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              +0.14%
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              0.362
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3">
-              [−0.16%, +0.45%]
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              Revenue per transaction
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              +0.20%
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              0.520
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3">
-              [−0.40%, +0.79%]
+            <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
+              −12%
             </td>
           </tr>
         </tbody>
       </table>
 
       <p>
-        Five days, closed window, with the arm split and the daily latency
-        deltas holding steady throughout. The latency result is decisive. The
-        revenue results are a partial answer, honestly stated: both positive,
-        both inside the range the elasticity predicts, neither individually
-        significant.
+        Five days, closed window, with the arm split and the daily deltas
+        holding steady throughout. The latency result is decisive at both
+        percentiles. The outcome metrics are a partial answer, honestly stated:
+        engagement rate and revenue per transaction both moved positive, both
+        landed inside the range the elasticity predicts, and neither was
+        individually significant at this sample size. Revenue per transaction
+        came in at +0.20%.
       </p>
 
       <p>
@@ -563,7 +518,7 @@ const ProvingPerformanceWinsPage = () => {
       </p>
 
       <p>
-        It also reframes the headline. The fleet-level −5.5% isn't a uniform
+        It also reframes the headline. The fleet-level −5.3% isn't a uniform
         saving, it's a large saving concentrated on the slowest traffic, diluted
         by a majority who had nothing to gain. Reported as a single percentile,
         the fleet number{' '}
@@ -586,10 +541,11 @@ const ProvingPerformanceWinsPage = () => {
       </p>
 
       <p>
-        We got lucky. One release in the sequence modified nothing but three
-        monitoring config files, so its shipped bundle was byte-identical to its
-        predecessor apart from the version string. Running the identical
-        comparison on that release measures pure noise:
+        The fix is a placebo. Look back through your release history for a
+        config-only change, one whose shipped bundle was byte-identical to its
+        predecessor apart from the version string. Run your exact comparison on
+        that release and whatever it reports is pure noise, because nothing
+        about the code was different:
       </p>
 
       <table className="w-full border-collapse border border-blitz-charcoal/20 my-6">
@@ -638,43 +594,16 @@ const ProvingPerformanceWinsPage = () => {
               Yes, clears by ~20x
             </td>
           </tr>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              Page time to interactive
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              ±9% at p90
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              −11.1% at p90
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-blitz-charcoal/60">
-              No, inside the floor
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              End-to-end time to interactive
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              ±4.5%
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              −1.1% at p50
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-blitz-charcoal/60">
-              No, inside the floor
-            </td>
-          </tr>
         </tbody>
       </table>
 
       <p>
-        The last two rows are the valuable ones. Both moved the right way. I
-        claimed neither. Metrics that include page behavior outside our control
-        carry floors wide enough to swallow the entire effect, and the
-        credibility you spend on an unclaimable number is the credibility you
-        need for the real one.
+        Two other metrics in the same readout are the more useful lesson. Both
+        moved the right way and I claimed neither, because both sat inside their
+        own noise floors. Anything measuring the whole page rather than just
+        your code carries a floor wide enough to swallow the entire effect, and
+        the credibility you spend on an unclaimable number is the credibility
+        you need for the real one.
       </p>
 
       <p>
@@ -690,114 +619,57 @@ const ProvingPerformanceWinsPage = () => {
       <h2>Latency Wins Are Cheap. Revenue Wins Are Expensive.</h2>
 
       <p>
-        This belongs in the conversation before you write code, not after the
-        readout disappoints. Apply the elasticity, then work out how much
-        traffic each claim needs at 80% power. For a time-to-interactive win in
-        the tens of milliseconds:
+        This is why the revenue number earlier carries a caveat instead of a
+        victory lap, and it's the piece most performance write-ups skip. Once
+        you have an elasticity you can work out in advance how much traffic each
+        claim needs at 80% power, and the gap between the two claims is brutal.
+        A latency win in the tens of milliseconds resolves in hours. The
+        fraction-of-a-percent revenue movement that same win implies needs
+        orders of magnitude more traffic, which is months. Shrink the latency
+        win to a third and the revenue timeline stretches into years, because
+        the sample you need scales with the inverse square of the effect you're
+        chasing.
       </p>
 
-      <table className="w-full border-collapse border border-blitz-charcoal/20 my-6">
-        <thead>
-          <tr className="bg-blitz-charcoal/5">
-            <th className="border border-blitz-charcoal/20 p-3 text-left">
-              Claim
-            </th>
-            <th className="border border-blitz-charcoal/20 p-3 text-right">
-              Traffic needed per arm
-            </th>
-            <th className="border border-blitz-charcoal/20 p-3 text-right">
-              Calendar time at fleet scale
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              The latency win itself (~45ms)
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              ~200K
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right font-medium text-green-600">
-              ~2 hours
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              Engagement rate moved
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              ~70M
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              ~25 days
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              Revenue per transaction moved
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              ~280M
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              ~100 days
-            </td>
-          </tr>
-          <tr>
-            <td className="border border-blitz-charcoal/20 p-3">
-              Revenue, from a 15ms win
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right">
-              ~2.6B
-            </td>
-            <td className="border border-blitz-charcoal/20 p-3 text-right text-red-600">
-              ~2.5 years
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
       <p>
-        A 45ms latency win resolves over lunch. The 0.2% revenue movement it
-        implies takes a financial quarter. That asymmetry is arithmetic, not a
-        measurement failure, and it has four honest responses:
+        That asymmetry is arithmetic, not a measurement failure, and it has four
+        honest responses:
       </p>
 
       <ol className="list-decimal list-inside space-y-3 ml-4 text-lg my-6">
         <li>
           <strong>Claim the latency win alone.</strong> Fully defensible,
-          resolves in hours, a real result. Most latency work should stop here
-          and say so confidently.
+          resolves fast, a real result. Most latency work should stop here and
+          say so confidently.
         </li>
         <li>
-          <strong>Target a rate, not a sum.</strong> An engagement rate is
-          roughly 5x cheaper in traffic than revenue per transaction for the
-          same effect, because a proportion has far less variance than a
-          heavy-tailed sum.
+          <strong>Target a rate, not a sum.</strong> A proportion carries far
+          less variance than a heavy-tailed sum, so an engagement rate resolves
+          several times cheaper than revenue per transaction for the same
+          underlying effect.
         </li>
         <li>
           <strong>Bundle into a combined holdback.</strong> Randomize one cohort
           with several independent optimizations all off versus all on. The
           latency wins stack, the expected revenue effect scales with the sum,
           and the timeline collapses by roughly an order of magnitude. The cost
-          is that the result attributes to the bundle, not to any single change,
-          which is the right trade when the alternative is a per-change answer
-          you will never get.
+          is that the result attributes to the bundle rather than any single
+          change, which is the right trade when the alternative is a per-change
+          answer you'll never get.
         </li>
         <li>
           <strong>Declare revenue a guardrail, in advance.</strong> A wide
-          interval still rules out a large regression. That is a legitimate
+          interval still rules out a large regression. That's a legitimate
           finding, as long as you said so before you saw the number.
         </li>
       </ol>
 
       <p>
-        Say the unaffordable thing out loud, early. Below roughly 50ms of
-        expected improvement, the implied revenue effect is smaller than fleet
-        traffic can resolve in any window anyone will wait for. Deciding that
-        while the experiment is still cheap to change is a completely different
-        conversation from discovering it at readout.
+        Do that arithmetic before you write the code. There is a threshold below
+        which the revenue effect your win implies is simply smaller than your
+        traffic can resolve in any window anyone will wait for, and finding that
+        out while the experiment is still cheap to change is a completely
+        different conversation from finding it out at readout.
       </p>
 
       <h2>Making It Repeatable: Two A/B Skills</h2>

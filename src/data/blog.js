@@ -6,9 +6,9 @@ const blogPosts = [
   {
     id: 0,
     title:
-      "We Cut Our SDK's Time to Interactive by 10-12%. Now How Do We Measure the Impact?",
+      "We Cut Our SDK's Time to Interactive by 10-12%. Then We Built the A/B Skills to Measure the Impact.",
     excerpt:
-      'A run of performance changes to Rokt web SDK, two of them outliers, took 10-12% off our time to interactive from the median out to p95. Writing the code was the easier half. Here is how we measured what it was worth, and the two A/B skills that made it repeatable.',
+      'A run of performance changes to Rokt web SDK, two of them outliers, took 10-12% off our time to interactive from the median out to p95. Writing the code was the easier half. Here is how we measured what it was worth, and the two A/B skills that turned measurement from a project into a step.',
     date: 'August 30, 2026',
     readTime: '8 min read',
     category: 'Performance',

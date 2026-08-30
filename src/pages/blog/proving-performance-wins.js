@@ -6,8 +6,8 @@ import CountUp from '../../components/motion/CountUp'
 const ProvingPerformanceWinsPage = () => {
   return (
     <ArticleLayout
-      title="We Cut Our SDK's Time to Interactive by 10-12%. Now How Do We Measure the Impact?"
-      description="A run of performance changes to Rokt's web SDK, two of them outliers, took 10-12% off our time to interactive from the median out to p95. Writing the code was the easier half. Here's how we measured what it was worth, and the two A/B skills that made it repeatable."
+      title="We Cut Our SDK's Time to Interactive by 10-12%. Then We Built the A/B Skills to Measure the Impact."
+      description="A run of performance changes to Rokt's web SDK, two of them outliers, took 10-12% off our time to interactive from the median out to p95. Writing the code was the easier half. Here's how we measured what it was worth, and the two A/B skills that turned measurement from a project into a step."
       date="August 30, 2026"
       readTime="8 min read"
       category="Performance"
@@ -223,15 +223,19 @@ const ProvingPerformanceWinsPage = () => {
       <h3>What the Two Winners Had in Common</h3>
 
       <p>
-        Both of them removed a <em>wait</em>. Neither made anything compute
-        faster. One took a big piece of work off the critical path, the other
-        stopped two components waiting on a stricter readiness signal than
-        either of them needed.
+        Neither of them made anything compute faster. Both shortened the
+        critical path itself, just from opposite directions. One cut down how
+        much had to arrive and be parsed before we could render at all, so there
+        was less sitting on the path to begin with. The other took a piece of
+        work off the path entirely, so nothing downstream was waiting on it any
+        more.
       </p>
 
       <p>
-        That sounds like a footnote. It's actually what decided whether I could
-        prove anything at all.
+        That distinction sounds like a footnote, but it's what decided whether I
+        could prove anything at all. Both changes lived in the gap between two
+        timestamps we were already recording, which is the one kind of saving a
+        phase-boundary metric can actually see.
       </p>
 
       <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">

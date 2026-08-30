@@ -8,72 +8,32 @@ const ProvingPerformanceWinsPage = () => {
   return (
     <ArticleLayout
       title="Shipping Was the Easy Part: How to Prove a Performance Win Actually Mattered"
-      description="Two SDK performance initiatives cut boot latency 10-12%, holding from p50 out to p95. The engineering took weeks. Proving it moved the business took longer, and nearly produced four wrong answers first."
+      description="Two SDK performance initiatives cut boot latency 10-12%, holding from p50 out to p95, worth an estimated 0.3-1.9% of revenue on the surface it touches. Here's how we measured it, and the two A/B skills that made the method repeatable."
       date="August 30, 2026"
-      readTime="12 min read"
+      readTime="10 min read"
       category="Performance"
       slug="/blog/proving-performance-wins"
       tags={['Performance', 'Experimentation', 'A/B Testing', 'Claude Skills']}
     >
       <p className="text-lg text-blitz-charcoal/70 italic mb-8">
-        <strong>TL;DR:</strong> I rejoined a codebase I already knew, ran
-        ordinary frontend performance techniques through its web SDK, and two of
-        them cut boot time-to-interactive by <strong>10-12%</strong> from the
-        median out to p95. The code was the easy part. Getting to a number
-        stakeholders could plan around took four failed measurements, a placebo
-        build, and a 13x sample rescue. Here's the method, plus the two skills I
-        wrote so nobody repeats it.
+        <strong>TL;DR:</strong> Two performance initiatives cut our web SDK's
+        boot time-to-interactive by <strong>10-12%</strong>, holding from the
+        median out to p95, worth an estimated <strong>0.3-1.9%</strong> of
+        revenue on the surface it renders on. The code was the easy part. What
+        turned it into a number stakeholders could plan around was the
+        measurement, so I packaged that method into two Claude skills,{' '}
+        <code>ab-setup</code> and <code>ab-diagnose</code>, and the whole team
+        now gets it for free.
       </p>
 
-      <h2>Nobody Claps for 46 Milliseconds</h2>
+      <h2>We Cut Boot Time 10-12%. Here's What That Was Worth.</h2>
 
       <p>
-        I love this stuff. Genuinely, unreasonably. Shaving a hundred
-        milliseconds off a boot path is one of the few things in software where
-        it feels like physics is pushing back, and I will happily lose a weekend
-        to a flame chart. Which is why it stung the first time I walked a real
-        win into a room and watched everyone stay politely still.
-      </p>
-
-      <p>
-        You know the meeting. Three weeks on a boot-path optimization, a
-        dashboard where the p50 line steps down, and then a fair question: so
-        what does that mean for us? I'd measured latency and they'd asked about
-        outcomes. Those are not the same sentence, and the translation between
-        them is our job, not theirs.
-      </p>
-
-      <p>
-        That translation is what being <strong>product-first</strong> actually
-        buys you, and it starts long before the readout. It changes which
-        optimizations you pick up, favouring the ones whose effect you can
-        defend over the ones that are satisfying to write. It changes how you
-        instrument, because you add the marker while the change is still cheap.
-        And it changes what you report, because "who did this help, and by how
-        much" is a product question that a fleet-wide percentile refuses to
-        answer.
-      </p>
-
-      <h3>Why This Isn't a Vanity Metric</h3>
-
-      <p>
-        We don't own the page our code runs on. Rokt embeds its SDK directly
-        into partner pages, the checkout and confirmation flows of retailers,
-        airlines and ticketing sites, sitting alongside their code and inside
-        their load budget. Every millisecond we spend booting is spent out of
-        someone else's page. A slow third-party script isn't a slightly worse
-        experience, it's a cost you're imposing on a team that agreed to host
-        you, and they can see it in their own numbers. Being fast is the price
-        of being welcome there.
-      </p>
-
-      <p>
-        We also had a conversion rate for it. An internal latency-injection
-        study gave us an elasticity: roughly 3-4% revenue movement per second of
-        time-to-interactive. One number turns a millisecond into a sentence a
-        stakeholder can plan around. It also raises the stakes on measurement,
-        because a wrong latency number now converts straight into a wrong
-        revenue claim.
+        Two initiatives, shipped over a few months into a web SDK that boots on
+        other companies' checkout pages. Together they took 10-12% off boot
+        time-to-interactive, and the win held from the median all the way out to
+        p95. Run through our internal latency-to-revenue elasticity, that's an
+        estimated 0.3-1.9% of revenue on the surface the SDK renders on.
       </p>
 
       <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-8 rounded-lg my-8">
@@ -124,11 +84,54 @@ const ProvingPerformanceWinsPage = () => {
       </p>
 
       <p>
-        The last pair of numbers is why anyone outside my team cared. Same work,
-        same commits, two sentences. "We made boot 11% faster" is a status
-        update. "This is worth an estimated 0.3-1.9% of revenue on the surface
-        it touches" is a decision input. The engineering didn't change between
-        them. The measurement did.
+        And that second pair of numbers is why anyone outside my team cared.
+        Same work, same commits, two sentences. "We made boot 11% faster" is a
+        status update. "This is worth an estimated 0.3-1.9% of revenue on the
+        surface it touches" is a decision input. The engineering didn't change
+        between them. The measurement did.
+      </p>
+
+      <p>
+        I love this stuff. Genuinely, unreasonably. Shaving a hundred
+        milliseconds off a boot path is one of the few things in software where
+        it feels like physics is pushing back, and I will happily lose a weekend
+        to a flame chart. Which is why it stung, years ago, to walk a real win
+        into a room and get a fair question back: so what does that mean for us?
+        I'd measured latency and they'd asked about outcomes. Those are not the
+        same sentence, and the translation between them is our job, not theirs.
+      </p>
+
+      <p>
+        That translation is what being <strong>product-first</strong> actually
+        buys you, and it starts long before the readout. It changes which
+        optimizations you pick up, favouring the ones whose effect you can
+        defend over the ones that are satisfying to write. It changes how you
+        instrument, because you add the marker while the change is still cheap.
+        And it changes what you report, because "who did this help, and by how
+        much" is a product question that a fleet-wide percentile refuses to
+        answer.
+      </p>
+
+      <h3>Why This Isn't a Vanity Metric</h3>
+
+      <p>
+        We don't own the page our code runs on. Rokt embeds its SDK directly
+        into partner pages, the checkout and confirmation flows of retailers,
+        airlines and ticketing sites, sitting alongside their code and inside
+        their load budget. Every millisecond we spend booting is spent out of
+        someone else's page. A slow third-party script isn't a slightly worse
+        experience, it's a cost you're imposing on a team that agreed to host
+        you, and they can see it in their own numbers. Being fast is the price
+        of being welcome there.
+      </p>
+
+      <p>
+        We also had a conversion rate for it. An internal latency-injection
+        study gave us an elasticity: roughly 3-4% revenue movement per second of
+        time-to-interactive. One number turns a millisecond into a sentence a
+        stakeholder can plan around. It also raises the stakes on measurement,
+        because a wrong latency number now converts straight into a wrong
+        revenue claim.
       </p>
 
       <h2>Coming Back Knowing Where the Debt Was</h2>
@@ -353,101 +356,10 @@ const ProvingPerformanceWinsPage = () => {
         </p>
       </div>
 
-      <h2>Four Ways I Nearly Reported the Wrong Number</h2>
-
-      <p>
-        Every failed measurement below produced a plausible number. None
-        errored, none looked suspicious, and two were <em>more</em>{' '}
-        statistically impressive than the truth. Stopping at any of them means
-        handing a confident wrong number to teams planning their quarter around
-        it.
-      </p>
-
-      <h3>Trap 1: Reading the Deploy</h3>
-
-      <p>
-        The instinct is before-and-after. Deploy at 02:00, compare Tuesday to
-        Monday. It fails in a way that flatters you.
-      </p>
-
-      <p>
-        Our boot latency swings <strong>23% over the course of a day</strong>{' '}
-        purely on traffic mix and hour: p50 ranges from 1092ms to 1346ms with no
-        code changing. A table of consecutive releases ordered by build number
-        looks monotonically improving whether or not anyone wrote code, because
-        each release occupies a different slice of the clock. Any absolute-level
-        time series over a rollout is unsafe. Only a randomized within-window
-        contrast is valid.
-      </p>
-
-      <h3>Trap 2: Cohorting on the Outcome</h3>
-
-      <p>
-        We had a variant column on every rendered row, which is wonderfully
-        convenient: no join, no marker, just slice by arm. It's a trap for any
-        question upstream of rendering, because rows only exist for sessions
-        that <em>rendered</em>. Filter your population by an outcome table and
-        you've conditioned on survival. If the treatment changes survival at
-        all, every downstream metric is biased and nothing warns you.
-      </p>
-
-      <p>
-        This one bit hard. Cohorting on rows that carried an enrollment marker
-        gave a time-to-interactive improvement of −186ms. Cohorting on the full
-        population, using the one arm label observable without any marker, gave{' '}
-        <strong>−10.8ms with a confidence interval containing zero</strong>. The
-        sessions missing markers were up <em>+1376ms</em>, because slow and
-        abandoned boots differentially lose both their outcome row and their
-        marker, by arm. Marker conditioning moved the estimate by 15x the size
-        of the real effect. That is a textbook collider, and the seductive
-        version was the one with the beautiful p-value.
-      </p>
-
-      <h3>Trap 3: The Composition Artifact</h3>
-
-      <p>
-        At one point a query reported a referral-rate gain of{' '}
-        <strong>+5.51% at p &lt; 1e-300</strong>. Title-slide material.
-      </p>
-
-      <p>
-        It was entirely composition. A configured subset of integrations runs
-        the control path by design and hadn't been excluded from <em>both</em>{' '}
-        arms, so the control group carried a different traffic mix rather than a
-        different treatment. The p-value was real. The effect wasn't.
-      </p>
-
-      <p>
-        What caught it was the elasticity, not a statistical test. A latency win
-        that size permits a revenue effect around 0.3%. The measurement claimed
-        17-39x that. Any effect far larger than your physical model permits is a
-        query bug, not a triumph, and that sanity bound was worth more than the
-        significance test.
-      </p>
-
-      <h3>Trap 4: The Split That Looks Fine</h3>
-
-      <p>
-        Enrolled counts of 152.0M and 152.2M look like a healthy 50/50 to any
-        human being. At that sample size the standard error on the split is
-        0.0029 percentage points, so a 0.08pp skew is <strong>z ≈ 29</strong>.
-        Eyeballing the table passes it; the arithmetic screams.
-      </p>
-
-      <p>
-        The cause was duplicate marker emission on boots that abort before
-        rendering: a latch meant to fire once per session was living on the
-        wrong object. The arms were assigned correctly, the <em>counting</em>{' '}
-        was wrong, which made enrolled counts useless as a drop-off denominator
-        while leaving the render-conditional metrics interpretable. Two very
-        different verdicts, and you only get to distinguish them by localizing
-        the mismatch instead of noting it and moving on.
-      </p>
-
       <h2>The Measurement That Held</h2>
 
       <p>
-        The version I'd defend came from a combined holdback: one randomized
+        The number I'd defend came from a combined holdback: one randomized
         cohort with several independent latency optimizations all off versus all
         on, split 50/50, read on a closed window.
       </p>
@@ -516,11 +428,11 @@ const ProvingPerformanceWinsPage = () => {
       </table>
 
       <p>
-        15.3M rendered rows per arm, five full days, arm split holding within
-        0.08pp every day, daily latency deltas all in the same direction. The
-        latency result is decisive. The revenue results are a partial answer,
-        honestly stated: both positive, both inside the range the elasticity
-        predicts, neither individually significant.
+        Five days, closed window, with the arm split and the daily latency
+        deltas holding steady throughout. The latency result is decisive. The
+        revenue results are a partial answer, honestly stated: both positive,
+        both inside the range the elasticity predicts, neither individually
+        significant.
       </p>
 
       <p>
@@ -543,65 +455,9 @@ const ProvingPerformanceWinsPage = () => {
         value at stake if it holds, not money we made.
       </p>
 
-      <p>
-        A decisive latency win next to two non-significant revenue movements is
-        where most readouts either overclaim or give up. There's a third option,
-        and it starts with the sample.
-      </p>
-
-      <h3>The 13x Sample Rescue</h3>
-
-      <p>
-        The standard method cohorts from an enrollment marker emitted at
-        randomization. Here that instrument was only trustworthy for a 12-hour
-        stretch: a mid-experiment change left a large and{' '}
-        <em>arm-asymmetric</em> share of markers without a usable join key,
-        which silently breaks cohorting while the allocation ratio still looks
-        healthy.
-      </p>
-
-      <p>
-        Instead of accepting 12 hours, we cohorted on the variant field recorded
-        on the rendered row itself. It's written from the variant that actually
-        executed, so it needs no join and can't be affected by a missing marker
-        key. That turned 12 hours into 5 days:{' '}
-        <strong>1.2M rows per arm became 15.3M</strong>, and the confidence
-        interval tightened by <strong>4.7x</strong>.
-      </p>
-
-      <p>
-        The tightening is the point. The 12-hour read had put revenue at −1.65%
-        across [−4.01%, +0.71%], wide enough to be uninformative and negative
-        enough that a good change would have read as a possible regression. Same
-        experiment, same code, better instrument.
-      </p>
-
-      <p>
-        Validation first: applied to the original 12-hour window the substitute
-        reproduced the marker-based row count exactly and its latency mean to
-        within 0.01ms. Two constraints came with it, both in the writeup rather
-        than a footnote. It can't measure drop-off, since sessions that never
-        render have no row, so render neutrality has to be established another
-        way. And integrations configured to run the control path by design must
-        be excluded from both arms, which is exactly the omission behind Trap 3.
-      </p>
-
-      <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">
-        <p className="font-semibold text-blitz-charcoal mb-2">
-          The generalizable lesson
-        </p>
-        <p className="text-sm">
-          When an instrument is broken, look for a second signal that records
-          the same fact by a different route. Then validate the substitute
-          against the original on the window where both work, and state what the
-          substitute cannot see. That last step is what separates a rescue from
-          a rationalization.
-        </p>
-      </div>
-
       <h3>The Result That Actually Convinced People</h3>
 
-      <p>None of the tables above is what closed the argument. This is:</p>
+      <p>Neither table above is what closed the argument. This is:</p>
 
       <table className="w-full border-collapse border border-blitz-charcoal/20 my-6">
         <thead>
@@ -929,17 +785,18 @@ const ProvingPerformanceWinsPage = () => {
         conversation from discovering it at readout.
       </p>
 
-      <h2>Making It Repeatable: Two Skills</h2>
+      <h2>Making It Repeatable: Two A/B Skills</h2>
 
       <p>
-        All of the above lived in my head and in a folder of dated markdown
-        reports, which isn't durable. The next engineer to run a performance
-        experiment rediscovers every trap at full price, and I'd rediscover half
-        of them myself in six months.
+        This is the part I'd actually hand to another team. Every rule above
+        lived in my head and in a folder of dated markdown reports, which isn't
+        durable. The next engineer to run a performance experiment pays full
+        price for the same lessons, and I'd re-derive half of them myself in six
+        months.
       </p>
 
       <p>
-        So I wrote it down as two{' '}
+        So I wrote the method down as two{' '}
         <Link
           to="/blog/claude-skills-institutional-knowledge"
           className="text-blitz-accent hover:underline"
@@ -958,7 +815,8 @@ const ProvingPerformanceWinsPage = () => {
           <ul className="space-y-2 text-sm text-blitz-charcoal/80">
             <li>
               Scaffold the bucket module and the paired control/sample markers,
-              including the latch that stops the double-emission bug from Trap 4
+              including the once-per-session latch that keeps aborted boots from
+              double-counting an arm
             </li>
             <li>
               Plumb the ramp percentage through config with no default, so
@@ -991,10 +849,17 @@ const ProvingPerformanceWinsPage = () => {
               Confirm the markers are still live in the deployed branch before
               trusting a single row
             </li>
-            <li>Cohort at enrollment, never at outcome (Trap 2)</li>
+            <li>
+              Cohort at enrollment, never at an outcome table, so the population
+              isn't conditioned on having survived
+            </li>
             <li>
               Sample-ratio-mismatch check before any outcome metric, with the
-              z-score, not the eyeball (Trap 4)
+              z-score rather than the eyeball
+            </li>
+            <li>
+              Exclude traffic configured to run the control path by design from{' '}
+              <em>both</em> arms, so composition can't masquerade as effect
             </li>
             <li>
               Treat the drop-off rate as a gate, and require a pre-declared
@@ -1056,13 +921,38 @@ const ProvingPerformanceWinsPage = () => {
             detectable at 80% power, and a non-significant result can have an
             interval extending well past it.
           </li>
+          <li>
+            <strong>
+              Never read an absolute time series across a rollout.
+            </strong>{' '}
+            Our boot latency swings 23% over a day on traffic mix alone, so
+            consecutive releases ordered by build number look monotonically
+            improving whether or not anyone wrote code. Only a randomized
+            within-window contrast is valid.
+          </li>
+          <li>
+            <strong>
+              Use the elasticity as a ceiling, not just a translator.
+            </strong>{' '}
+            If a result is far larger than your latency-to-revenue model
+            permits, it's a query bug rather than a triumph. That check caught a
+            composition artifact a p-value of 1e-300 was happily endorsing.
+          </li>
+          <li>
+            <strong>
+              When an instrument breaks, find a second signal for the same fact.
+            </strong>{' '}
+            Then validate the substitute against the original on the window
+            where both work, and state plainly what the substitute cannot see.
+            That last step is what separates a rescue from a rationalization.
+          </li>
         </ul>
       </div>
 
       <p>
         Skills rather than a wiki page, because a wiki page is consulted by
         people who already suspect they need it. A skill loads when the work
-        starts. Asking "did the experiment work" now pulls in the trap list, the
+        starts. Asking "did the experiment work" now pulls in the rule list, the
         denominator table and the power helper before the first query gets
         written, which is the only moment any of it can still save you.
       </p>
@@ -1140,9 +1030,11 @@ const ProvingPerformanceWinsPage = () => {
       </p>
 
       <p>
-        The measurement was the hard part and where all the risk lived. Four
-        plausible answers, two more statistically impressive than the truth, one
-        that survived being attacked. Same discipline as{' '}
+        The measurement was the hard part and where all the risk lived, which is
+        why the durable output of this quarter isn't the two optimizations. It's{' '}
+        <code>ab-setup</code> and <code>ab-diagnose</code>. The optimizations
+        shipped once. The skills make the next win arguable, and the one after
+        that. Same discipline as{' '}
         <Link
           to="/blog/cutting-load-times-at-lorikeet"
           className="text-blitz-accent hover:underline"

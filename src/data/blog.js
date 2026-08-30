@@ -8,9 +8,9 @@ const blogPosts = [
     title:
       'Shipping Was the Easy Part: How to Prove a Performance Win Actually Mattered',
     excerpt:
-      'Two SDK performance initiatives cut boot latency 10-12%, holding from p50 out to p95. The engineering took weeks. Proving it moved the business took longer, and nearly produced four wrong answers first.',
+      'Two SDK performance initiatives cut boot latency 10-12% from p50 out to p95, worth an estimated 0.3-1.9% of revenue on the surface they touch. Here is how we measured the impact, and the two A/B skills that made the method repeatable.',
     date: 'August 30, 2026',
-    readTime: '12 min read',
+    readTime: '10 min read',
     category: 'Performance',
     link: '/blog/proving-performance-wins',
   },

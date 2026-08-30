@@ -5,11 +5,12 @@
 const blogPosts = [
   {
     id: 0,
-    title: "Making It Faster Was the Easy Part. Making Anyone Care Wasn't.",
+    title:
+      "We Cut Our SDK's Time to Interactive by 10-12%. Now How Do We Measure the Impact?",
     excerpt:
-      'We took 10-12% off our web SDK time to interactive, holding from the median out to p95. Writing the code was the easy bit. Here is how I worked out what it was actually worth, and the two A/B skills that made the method stick.',
+      'A run of performance changes to Rokt web SDK, two of them outliers, took 10-12% off our time to interactive from the median out to p95. Writing the code was the easier half. Here is how we measured what it was worth, and the two A/B skills that made it repeatable.',
     date: 'August 30, 2026',
-    readTime: '9 min read',
+    readTime: '8 min read',
     category: 'Performance',
     link: '/blog/proving-performance-wins',
   },

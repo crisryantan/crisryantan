@@ -255,15 +255,13 @@ const CuttingLoadTimesAtLorikeetPage = () => {
         <strong className="text-blitz-primary">
           1.81 MB → 795 KB (<CountUp value={56} suffix="%" /> smaller)
         </strong>{' '}
-        across 17 assets plus the font.
+        across 17 assets.
       </p>
 
       <p>
-        The chat widget reduction is lower because the woff2 font (346 kB) is
-        already compressed, so CDN compression does not help much. We have not
-        done a font audit yet. That includes checking whether it bundles
-        multiple weights or large glyph ranges, and whether subsetting makes
-        sense.
+        The chat widget reduction is lower because a meaningful share of its
+        payload is already-compressed binary assets, and CDN compression has
+        nothing left to take off those.
       </p>
 
       <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">
@@ -285,8 +283,8 @@ const CuttingLoadTimesAtLorikeetPage = () => {
       <p>
         The chat widget is embedded on customer websites as a third-party
         script. When a user opens the widget, the browser needs to download all
-        the JS, CSS, and font assets before anything renders. On a cold load,
-        that means hitting the network for every asset. The preparative iframe
+        the JS and CSS assets before anything renders. On a cold load, that
+        means hitting the network for every asset. The preparative iframe
         changes this by loading a lightweight{' '}
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Speculative_loading"
@@ -610,10 +608,8 @@ const CuttingLoadTimesAtLorikeetPage = () => {
       </table>
 
       <p>
-        The two assets that still hit the network are a hash-specific route
-        chunk and the font file, which have different cache keys between the
-        preload and widget routes. The font is the largest remaining payload. A
-        dedicated font size pass is not covered here.
+        The assets that still hit the network are hash-specific route chunks
+        whose cache keys differ between the preload and widget routes.
       </p>
 
       <h3>Trade-offs</h3>
@@ -699,13 +695,6 @@ const CuttingLoadTimesAtLorikeetPage = () => {
         lightweight export from that file was used by the widget. Splitting
         those files and removing unused re-exports from the barrel prevented the
         bundler from pulling in dependencies the widget never needed.
-      </p>
-
-      <p>
-        <strong>4. Preload the font:</strong> The Inter font was being
-        downloaded during widget load. We added a{' '}
-        <code>&lt;link rel="preload"&gt;</code> to the preload route so the font
-        is cached during the preparative iframe phase.
       </p>
 
       <h3>Bundle Impact</h3>

@@ -6,7 +6,7 @@ import CountUp from '../../components/motion/CountUp'
 const ProvingPerformanceWinsPage = () => {
   return (
     <ArticleLayout
-      title="We Cut Our SDK's Time to Interactive by 10-12%. Then We Built the A/B Skills to Measure the Impact."
+      title="10-12% Off Our SDK's Time to Interactive, and the A/B Skills That Measured It"
       description="A run of performance changes to Rokt's web SDK, two of them outliers, took 10-12% off our time to interactive from the median out to p95. Writing the code was the easier half. Here's how we measured what it was worth, and the two A/B skills that turned measurement from a project into a step."
       date="August 30, 2026"
       readTime="8 min read"
@@ -24,7 +24,7 @@ const ProvingPerformanceWinsPage = () => {
         reading the next one is now a step rather than a project.
       </p>
 
-      <h2>We Took 10-12% Off Our SDK's Time to Interactive</h2>
+      <h2>Where the 10-12% Landed</h2>
 
       <p>
         Over a few months I shipped a run of performance changes into Rokt's web
@@ -220,7 +220,7 @@ const ProvingPerformanceWinsPage = () => {
         I see.
       </p>
 
-      <h3>What the Two Winners Had in Common</h3>
+      <h3>What the Two Outliers Had in Common</h3>
 
       <p>
         Neither of them made anything compute faster. Both shortened the
@@ -666,19 +666,32 @@ const ProvingPerformanceWinsPage = () => {
       <h2>Closing Thoughts</h2>
 
       <p>
-        The engineering here is ordinary. Don't do work early that doesn't need
-        to be early, don't wait on a signal stricter than the one you need, load
-        lazily what most people won't use. Any decent engineer lands on the same
-        changes given the same map. That's the appealing part, really: this much
-        leverage is sitting in plain sight in most codebases.
+        Improving a system is worth doing on its own terms. Every one of these
+        changes left the codebase in better shape than it found it. Less debt,
+        fewer brittle assumptions about what has to finish before what, less
+        code shipped to people who were never going to need it. That's a real
+        result with no chart attached, and it makes the next change cheaper for
+        whoever picks it up. The engineering is ordinary, too, which is the
+        appealing part. Most codebases have this much leverage sitting in plain
+        sight.
       </p>
 
       <p>
-        The measurement was the hard part and where all the risk lived, which is
-        why the durable output of this quarter isn't the two optimizations. It's{' '}
-        <code>ab-setup</code> and <code>ab-diagnose</code>. The optimizations
-        shipped once. The skills make the next win arguable, and the one after
-        that. Same discipline as the{' '}
+        It gets considerably better when you can also say what the improvement
+        was worth. Not because the code needs justifying, but because a latency
+        chart and a revenue sentence get read by different people, and only one
+        of them puts your team in the conversation about what to fund next. Left
+        as a chart, a quarter of this work reads as maintenance. Attached to an
+        outcome, the same work reads as something worth doing again.
+      </p>
+
+      <p>
+        That's the part I'd push on. The measurement was harder than the code
+        and it's where all the risk lived, which is why the durable output here
+        isn't the two optimizations. It's <code>ab-setup</code> and{' '}
+        <code>ab-diagnose</code>. The optimizations shipped once. The skills
+        make the next win arguable, and the one after that. Same discipline as
+        the{' '}
         <Link
           to="/blog/cutting-load-times-at-lorikeet"
           className="text-blitz-accent hover:underline"
@@ -690,11 +703,10 @@ const ProvingPerformanceWinsPage = () => {
       </p>
 
       <p>
-        Shipping the optimization is table stakes. Saying what it was worth,
-        with an interval around it and an honest list of what you didn't prove,
-        is what turns performance work into something a team gets properly
-        credited for. That translation isn't a communication skill you pick up
-        at the end. It starts the same moment the work does.
+        None of that translation is a communication skill you pick up at the
+        end. It starts the same moment the work does, and it's what turns a run
+        of quiet improvements into something your team gets properly credited
+        for.
       </p>
 
       <p>The numbers matter. So does earning the right to quote them.</p>

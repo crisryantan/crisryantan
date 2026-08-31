@@ -5,12 +5,11 @@
 const blogPosts = [
   {
     id: 0,
-    title:
-      "10-12% Off Our SDK's Time to Interactive, and the A/B Skills That Measured It",
+    title: "We Cut SDK Time to Interactive by 10–12%. Here's How We Proved It",
     excerpt:
-      'A run of performance changes to Rokt web SDK, two of them outliers, took 10-12% off our time to interactive from the median out to p95. Writing the code was the easier half. Here is how we measured what it was worth, and the two A/B skills that turned measurement from a project into a step.',
+      "Two changes cut Rokt's web SDK time to interactive by 11% at the median and 12% at p95. Here's how we tested the result and connected latency to revenue.",
     date: 'August 30, 2026',
-    readTime: '12 min read',
+    readTime: '8 min read',
     category: 'Performance',
     link: '/blog/proving-performance-wins',
   },

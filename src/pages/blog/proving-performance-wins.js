@@ -15,12 +15,13 @@ const ProvingPerformanceWinsPage = () => {
       tags={['Performance', 'Experimentation', 'A/B Testing', 'Claude Skills']}
     >
       <p className="text-lg text-blitz-charcoal/70 italic mb-8">
-        <strong>TL;DR:</strong> Two changes cut Rokt's web SDK time to
-        interactive by <strong>11% at the median</strong> and{' '}
-        <strong>12% at p95</strong>. That was the fun part. Proving what it was
-        worth took longer. Revenue moved in the expected direction, but not with
-        enough statistical power to call it a win, so I turned the experiment
-        setup and analysis into two Claude skills for the next one.
+        <strong>TL;DR:</strong> A run of performance changes to Rokt's web SDK,
+        two of which turned out to be outliers, took <strong>10-12%</strong> off
+        our time to interactive, and the win held from the median out to p95.
+        Writing the code was the easier half. The harder half was measuring what
+        it was worth, so I packaged that method into two Claude skills,{' '}
+        <code>ab-setup</code> and <code>ab-diagnose</code>. Setting up and
+        reading the next one is now a step rather than a project.
       </p>
 
       <h2>Where the 10-12% Landed</h2>

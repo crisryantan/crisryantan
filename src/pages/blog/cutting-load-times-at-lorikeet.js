@@ -72,11 +72,10 @@ const CuttingLoadTimesAtLorikeetPage = () => {
           </div>
           <div>
             <p className="text-3xl font-bold text-blitz-accent">
-              ~2.1 MB to 795 KB
+              1.81 MB to 795 KB
             </p>
             <p className="text-sm text-blitz-charcoal/70">
-              Chat widget cold load transfer, uncompressed baseline (62%
-              reduction)
+              Chat widget cold load transfer (56% reduction)
             </p>
           </div>
           <div>
@@ -98,6 +97,15 @@ const CuttingLoadTimesAtLorikeetPage = () => {
         bubble, with no visible loading state. For customers with users in
         high-latency regions far from our infrastructure, smaller payloads mean
         disproportionately bigger wins.
+      </p>
+
+      <p>
+        One caveat before the numbers: all latency measurements in this post
+        (681ms, 769ms, and so on) come from a single development machine hitting
+        production. They represent the improvement we observed, not a
+        population-wide benchmark. Real-world numbers will vary across p50–p95
+        depending on geography, device, and network conditions. Transfer size
+        reductions are deterministic and don't have this caveat.
       </p>
 
       <p>
@@ -272,20 +280,17 @@ const CuttingLoadTimesAtLorikeetPage = () => {
           These are shared CDN assets that every route depends on. Smaller
           assets mean the browser downloads, parses, and executes JavaScript
           faster, leading to faster Remix hydration, earlier route loader
-          execution, and quicker time-to-interactive across every page. For the
-          chat widget, which customers embed on their own sites, every KB shaved
-          is less overhead on their page load.
+          execution, and quicker time-to-interactive across every page.
         </p>
       </div>
 
       <h2>2. Preparative Iframe: Warming the Cache Before Users Need It</h2>
 
       <p>
-        The chat widget is embedded on customer websites as a third-party
-        script. When a user opens the widget, the browser needs to download all
-        the JS and CSS assets before anything renders. On a cold load, that
-        means hitting the network for every asset. The preparative iframe
-        changes this by loading a lightweight{' '}
+        When a user opens the widget, the browser needs to download all the JS
+        and CSS assets before anything renders. On a cold load, that means
+        hitting the network for every asset. The preparative iframe changes this
+        by loading a lightweight{' '}
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Speculative_loading"
           className="text-blitz-accent hover:underline"
@@ -933,15 +938,6 @@ const CuttingLoadTimesAtLorikeetPage = () => {
         <code>lorikeet:performance</code> postMessage event, which includes{' '}
         <code>timeToReady</code>. For tree-shaking, we compared Vite's build
         output before and after.
-      </p>
-
-      <p>
-        A note on the timing numbers throughout this post: all latency
-        measurements (681ms, 769ms, etc.) come from a single development machine
-        hitting production. They represent the improvement we observed, not a
-        population-wide benchmark. Real-world numbers will vary across p50–p95
-        depending on geography, device, and network conditions. Transfer size
-        reductions are deterministic and don't have this caveat.
       </p>
 
       <p>

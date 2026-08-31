@@ -5,13 +5,21 @@ const ClaudeSkillsPage = () => {
   return (
     <ArticleLayout
       title="Claude Skills: Turning Personal Expertise into Team Superpowers"
-      description="How Claude Skills transform individual knowledge into institutional capability, making specialized expertise available to your entire team automatically."
+      description="We built around 60 Claude Skills at Lorikeet. Here are the ones that stuck, the structural patterns behind them, and the lessons we learned the hard way."
       date="December 30, 2025"
-      readTime="10 min read"
+      readTime="8 min read"
       category="AI & Productivity"
       slug="/blog/claude-skills-institutional-knowledge"
       tags={['AI & Productivity', 'Claude Skills', 'Knowledge Sharing']}
     >
+      <p className="text-lg text-blitz-charcoal/70 italic mb-8">
+        <strong>TL;DR:</strong> Claude Skills let you hand your hard-won
+        workflows to the AI directly, so expertise becomes ambient instead of
+        buried in docs nobody reads. We built around 60 at Lorikeet. This post
+        covers the ones that became daily tools, the four structural patterns
+        they fall into, and the mistakes we made so you don't have to.
+      </p>
+
       <h2>The Knowledge Transfer Problem</h2>
 
       <p>
@@ -107,18 +115,12 @@ const ClaudeSkillsPage = () => {
         third. Each sub-guide has the specific queries, patterns, and decision
         trees for that category. We call this the "hub-and-spoke" pattern, and
         it's become our go-to for any skill that needs to handle multiple
-        scenarios.
+        scenarios. Its sibling <code>debug-local-setup</code> uses the same
+        shape: a routing table under 90 lines that maps error patterns to five
+        sub-guides for Docker, database, auth, dependency, and service issues.
       </p>
 
-      <p>
-        We've also built <code>diagnose-and-track</code>, which extends this
-        further. After diagnosing an issue, it searches for duplicate tracking
-        tickets, creates or enriches tickets with the diagnosis, and can reply
-        to Slack threads with findings. It turns incident response into a
-        systematic workflow rather than ad-hoc debugging.
-      </p>
-
-      <h3>Development Workflow Skills</h3>
+      <h3>Shipping Skills</h3>
 
       <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">
         <ul className="space-y-4">
@@ -128,37 +130,19 @@ const ClaudeSkillsPage = () => {
             performs self-review, runs security scans, monitors CI, handles
             review feedback, merges, and monitors deployment. This is our best
             example of skill composition. It orchestrates eight other skills,
-            each of which works independently too.
+            each of which works independently too, including{' '}
+            <code>pr-feedback</code> (fetches and triages review comments) and{' '}
+            <code>ci-monitor</code> (polls CI, fetches failure logs, attempts
+            fixes for common issues).
           </li>
-          <li>
-            <strong>pr-feedback:</strong> Fetches PR review comments, filters
-            out bot noise, categorizes each comment (actionable, unclear,
-            discussion, skip), and works through them systematically. Commits
-            fixes with clear descriptions of what was addressed. Includes
-            fallback paths for when tooling isn't available.
-          </li>
-          <li>
-            <strong>ci-monitor:</strong> Polls CI status and monitors for new
-            review comments in parallel. Fetches failure logs when checks fail,
-            attempts fixes for common issues, and adapts its polling interval
-            based on how long jobs typically take. Includes judgment criteria
-            for which comments to act on immediately vs. discuss first.
-          </li>
-        </ul>
-      </div>
-
-      <h3>Code Quality Skills</h3>
-
-      <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">
-        <ul className="space-y-4">
           <li>
             <strong>security-pass:</strong> A filter pipeline with early exits.
-            First, it checks if any changed files are in paths that always
-            require human review (auth, migrations, infrastructure), it stops
-            and flags. Then it auto-passes anything that's clearly safe (test
-            files, styling). Everything else gets checked against our threat
-            model: auth middleware, secrets, tenant isolation. It only produces
-            output when there's something to report.
+            If any changed files are in paths that always require human review
+            (auth, migrations, infrastructure), it stops and flags. Then it
+            auto-passes anything clearly safe (test files, styling). Everything
+            else gets checked against our threat model: auth middleware,
+            secrets, tenant isolation. It only produces output when there's
+            something to report.
           </li>
           <li>
             <strong>find-similar-bugs:</strong> After fixing a bug, it analyzes
@@ -178,32 +162,12 @@ const ClaudeSkillsPage = () => {
         </ul>
       </div>
 
-      <h3>DevOps Skills</h3>
-
-      <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">
-        <ul className="space-y-4">
-          <li>
-            <strong>local-setup:</strong> Sets up a complete local development
-            environment from scratch. Handles environment files, dependency
-            installation, Docker builds, and service startup in the right order.
-            Includes verification steps with expected outputs and a fallback
-            path when prerequisites aren't available.
-          </li>
-          <li>
-            <strong>debug-local-setup:</strong> Another hub-and-spoke skill. The
-            main file is under 90 lines, mostly a routing table that maps error
-            patterns to five specialized sub-guides (Docker, database, auth,
-            dependencies, services). Each sub-guide has diagnostic commands and
-            common fixes for that category.
-          </li>
-          <li>
-            <strong>deploy-monitor:</strong> Watches deployments after merge,
-            polling build status and reporting completion or failure. Uses
-            different output templates for success (timestamps, what deployed)
-            vs. failure (log links, which jobs failed).
-          </li>
-        </ul>
-      </div>
+      <p>
+        A handful of DevOps skills round out the set: <code>local-setup</code>{' '}
+        builds a development environment from scratch with verification steps,
+        and <code>deploy-monitor</code> watches deployments after merge with
+        different output templates for success and failure.
+      </p>
 
       <h2>Structural Patterns We've Found</h2>
 
@@ -333,8 +297,7 @@ const ClaudeSkillsPage = () => {
 
       <p>
         Here's a realistic example of what a well-structured skill looks like.
-        This is a simplified version of a troubleshooting skill using the
-        hub-and-spoke pattern:
+        This is a simplified version of our local-dev troubleshooting skill:
       </p>
 
       <pre className="bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-6">
@@ -368,10 +331,8 @@ Run these in order, stop at the first failure:
       </pre>
 
       <p>
-        Notice how the main file stays small and acts as a router. The
-        specialized knowledge lives in sub-guides that can be updated
-        independently. The routing table handles the branching logic that makes
-        troubleshooting hard to do from memory.
+        The main file stays small and acts as a router, while the specialized
+        knowledge lives in sub-guides that can be updated independently.
       </p>
 
       <h3>What Makes Skills Effective</h3>
@@ -424,15 +385,11 @@ Run these in order, stop at the first failure:
       <p>
         When someone improves a skill, everyone benefits on their next
         conversation. It's documentation that gets used because Claude uses it
-        for you.
-      </p>
-
-      <p>
-        That said, skills aren't a silver bullet. They need maintenance, they
-        can go stale, and they work best for repeatable processes with clear
-        structure. But for the workflows your team runs every day (shipping
-        code, debugging incidents, onboarding new hires), the effort of writing
-        a good skill pays for itself quickly.
+        for you. Skills aren't a silver bullet: they need maintenance, and they
+        work best for repeatable processes with clear structure. But for the
+        workflows your team runs every day (shipping code, debugging incidents,
+        onboarding new hires), the effort of writing a good one pays for itself
+        quickly.
       </p>
 
       <h2>Get Started</h2>

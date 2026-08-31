@@ -102,14 +102,14 @@ const ProvingPerformanceWinsPage = () => {
         after it easier to judge.
       </p>
 
-      <h3>Ship Less, Wait Less</h3>
+      <h3>Two Ways We Cut Startup Time</h3>
 
       <p>
-        I grouped the runtime work around two questions: can we ship less, or
-        can we wait less?
+        I grouped the runtime work into two categories: reduce the JavaScript
+        needed before render, and remove unnecessary delays from startup.
       </p>
 
-      <h4 className="text-lg mt-8 mb-3">Ship less</h4>
+      <h4 className="text-lg mt-8 mb-3">Load Less JavaScript Before Render</h4>
 
       <ul>
         <li>
@@ -122,7 +122,7 @@ const ProvingPerformanceWinsPage = () => {
         <li>Stopped loading code for features disabled in configuration.</li>
       </ul>
 
-      <h4 className="text-lg mt-8 mb-3">Wait less</h4>
+      <h4 className="text-lg mt-8 mb-3">Remove Startup Delays</h4>
 
       <ul>
         <li>

@@ -411,8 +411,9 @@ const ProvingPerformanceWinsPage = () => {
       <h2>Closing Thoughts</h2>
 
       <p>
-        Even without a revenue estimate, I'd be proud of this work. We ship less
-        code, make fewer brittle assumptions during startup, and give people a
+        Even without a revenue estimate, I'd be proud of this work. The SDK now
+        sends less JavaScript during startup. We also removed brittle
+        assumptions about what must finish before rendering, giving people a
         faster experience, especially on slower sessions. The codebase is easier
         for the next engineer to change too. Those outcomes matter on their own.
       </p>
@@ -429,9 +430,9 @@ const ProvingPerformanceWinsPage = () => {
         The measurement took more effort than the optimizations, which is why{' '}
         <code>ab-setup</code> and <code>ab-diagnose</code> are probably what I'm
         happiest about. The code changes improve the product today. The skills
-        give the next experiment a better starting point, with the
-        assignment, power and analysis rules already written down. It's the same
-        lesson I took from the{' '}
+        give the next experiment a better starting point, with the assignment,
+        power and analysis rules already written down. It's the same lesson I
+        took from the{' '}
         <Link
           to="/blog/cutting-load-times-at-lorikeet"
           className="text-blitz-accent hover:underline"

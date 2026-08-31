@@ -7,7 +7,7 @@ const ProvingPerformanceWinsPage = () => {
   return (
     <ArticleLayout
       title="10-12% Off Our SDK's Time to Interactive, and the A/B Skills That Measured It"
-      description="Two changes cut Rokt's web SDK time to interactive by 11% at the median and 12% at p95. Here's how we tested the result and connected latency to revenue."
+      description="Two changes cut Rokt's web SDK time to interactive by 11% at p50 and 12% at p95. Here's how we tested the result and connected latency to revenue."
       date="August 30, 2026"
       readTime="8 min read"
       category="Performance"
@@ -17,9 +17,9 @@ const ProvingPerformanceWinsPage = () => {
       <p className="text-lg text-blitz-charcoal/70 italic mb-8">
         <strong>TL;DR:</strong> A run of performance changes to Rokt's web SDK,
         two of which turned out to be outliers, took <strong>10-12%</strong> off
-        our time to interactive, and the win held from the median out to p95.
-        Writing the code was the easier half. The harder half was measuring what
-        it was worth, so I packaged that method into two Claude skills,{' '}
+        our time to interactive, and the win held from p50 to p95. Writing the
+        code was the easier half. The harder half was measuring what it was
+        worth, so I packaged that method into two Claude skills,{' '}
         <code>ab-setup</code> and <code>ab-diagnose</code>. Setting up and
         reading the next one is now a step rather than a project.
       </p>
@@ -44,7 +44,7 @@ const ProvingPerformanceWinsPage = () => {
               <CountUp value={11} prefix="−" suffix="%" />
             </p>
             <p className="text-sm text-blitz-charcoal/70">
-              Time to interactive at the median
+              Time to interactive at p50
             </p>
           </div>
           <div>
@@ -60,7 +60,7 @@ const ProvingPerformanceWinsPage = () => {
               <CountUp value={0.3} decimals={1} suffix="–0.5%" />
             </p>
             <p className="text-sm text-blitz-charcoal/70">
-              Modeled revenue impact for a median session
+              Modeled revenue impact at p50
             </p>
           </div>
           <div>
@@ -68,7 +68,7 @@ const ProvingPerformanceWinsPage = () => {
               <CountUp value={1.4} decimals={1} suffix="–1.9%" />
             </p>
             <p className="text-sm text-blitz-charcoal/70">
-              Modeled revenue impact for the slowest 5% of sessions
+              Modeled revenue impact at p95
             </p>
           </div>
         </div>
@@ -281,11 +281,10 @@ const ProvingPerformanceWinsPage = () => {
       </p>
 
       <p>
-        The model estimated a <strong>0.3–0.5%</strong> revenue improvement for
-        a median session and <strong>1.4–1.9%</strong> for the slowest 5% of
-        sessions. The second range is higher because the model uses seconds, not
-        percentages. Saving 12% from a slow session removes more milliseconds
-        than saving 11% from a fast one.
+        The model estimated a <strong>0.3–0.5%</strong> revenue improvement at
+        p50 and <strong>1.4–1.9%</strong> at p95. The p95 range is higher
+        because the model uses seconds, not percentages. Saving 12% at p95
+        removes more milliseconds than saving 11% at p50.
       </p>
 
       <p>

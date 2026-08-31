@@ -5,7 +5,8 @@
 const blogPosts = [
   {
     id: 0,
-    title: "We Cut SDK Time to Interactive by 10–12%. Here's How We Proved It",
+    title:
+      "10-12% Off Our SDK's Time to Interactive, and the A/B Skills That Measured It",
     excerpt:
       "Two changes cut Rokt's web SDK time to interactive by 11% at the median and 12% at p95. Here's how we tested the result and connected latency to revenue.",
     date: 'August 30, 2026',

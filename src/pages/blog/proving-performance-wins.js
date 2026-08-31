@@ -6,7 +6,7 @@ import CountUp from '../../components/motion/CountUp'
 const ProvingPerformanceWinsPage = () => {
   return (
     <ArticleLayout
-      title="We Cut SDK Time to Interactive by 10–12%. Here's How We Proved It"
+      title="10-12% Off Our SDK's Time to Interactive, and the A/B Skills That Measured It"
       description="Two changes cut Rokt's web SDK time to interactive by 11% at the median and 12% at p95. Here's how we tested the result and connected latency to revenue."
       date="August 30, 2026"
       readTime="8 min read"
@@ -17,24 +17,25 @@ const ProvingPerformanceWinsPage = () => {
       <p className="text-lg text-blitz-charcoal/70 italic mb-8">
         <strong>TL;DR:</strong> Two changes cut Rokt's web SDK time to
         interactive by <strong>11% at the median</strong> and{' '}
-        <strong>12% at p95</strong>. A randomized holdback confirmed the latency
-        result. Revenue moved in the expected direction, but not with enough
-        statistical power to call it a win. I turned the experiment setup and
-        analysis into two Claude skills so the next test is easier to run.
+        <strong>12% at p95</strong>. That was the fun part. Proving what it was
+        worth took longer. Revenue moved in the expected direction, but not with
+        enough statistical power to call it a win, so I turned the experiment
+        setup and analysis into two Claude skills for the next one.
       </p>
 
-      <h2>The Result</h2>
+      <h2>Where the 10-12% Landed</h2>
 
       <p>
         Rokt's web SDK renders offers inside partners' checkout and confirmation
         pages. Over several months, I shipped a group of performance changes.
-        Most made small improvements. Two accounted for most of the measurable
-        reduction in startup time.
+        Most made small improvements. Two were outliers and accounted for most
+        of the measurable reduction in startup time. I could not have told you
+        in advance which two they would be.
       </p>
 
       <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-8 rounded-lg my-8">
         <p className="text-xl font-semibold text-blitz-primary mb-4">
-          Measured latency and modeled business impact
+          What the Two Outliers Bought
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div>
@@ -73,32 +74,35 @@ const ProvingPerformanceWinsPage = () => {
       </div>
 
       <p>
-        The p95 result matters because it covers the sessions most affected by
-        slow devices and networks. The relative improvement was similar to the
-        median, while the absolute time saved was larger.
+        Seeing the same proportional improvement at p95 was the part I was
+        happiest about. Those sessions are the ones most affected by slow
+        devices and networks, and the absolute time saved was larger.
       </p>
 
-      <h2>What Changed</h2>
+      <h2>I Came Back With a List</h2>
 
       <p>
-        I'm a boomerang employee: I worked at Rokt, left, then came back. I
-        returned with a shortlist of performance problems I had noticed the
-        first time around. That gave me a practical place to start instead of a
-        blank profiler trace.
+        I'm a boomerang, and I had some unfinished business to prove myself. I
+        came back with a shortlist of performance problems I had noticed the
+        first time around, which gave me somewhere practical to start instead of
+        a blank profiler trace.
       </p>
 
       <p>
-        Before changing runtime code, I added a bundle-size budget in CI. Every
+        The first change was not glamorous: a bundle-size budget in CI. Every
         pull request now shows its size delta, so regressions are visible during
-        review rather than months later.
+        review rather than months later. That bit of plumbing made every change
+        after it easier to judge.
       </p>
+
+      <h3>Ship Less, Wait Less</h3>
 
       <p>
         I grouped the runtime work around two questions: can we ship less, or
         can we wait less?
       </p>
 
-      <h3>Ship less</h3>
+      <h4 className="text-lg mt-8 mb-3">Ship less</h4>
 
       <ul>
         <li>
@@ -111,7 +115,7 @@ const ProvingPerformanceWinsPage = () => {
         <li>Stopped loading code for features disabled in configuration.</li>
       </ul>
 
-      <h3>Wait less</h3>
+      <h4 className="text-lg mt-8 mb-3">Wait less</h4>
 
       <ul>
         <li>
@@ -127,34 +131,18 @@ const ProvingPerformanceWinsPage = () => {
       <p>
         Smaller changes helped too: memoizing hot factories, making event
         subscriptions lazy, cancelling superseded requests, and removing
-        speculative preloads that no longer paid off. I would still ship those
-        changes, but I would not present each one as a statistically proven
-        improvement.
+        speculative preloads that no longer paid off. None produced a headline
+        number alone, but I would ship every one of them again.
       </p>
 
-      <h3>Shorten the critical path</h3>
+      <h3>Leverage First, Delegate Second</h3>
 
       <p>
-        The two largest gains did not make an individual calculation faster. One
-        reduced how much JavaScript had to arrive and be parsed before render.
-        The other moved nonessential work until after render. Both shortened the
-        startup path that users wait for.
-      </p>
-
-      <p>
-        Existing timing markers already surrounded those phases, which made the
-        gains measurable. Other changes reduced CPU or memory within a phase and
-        did not necessarily move a phase-boundary metric. For every experiment,
-        we wrote down which timing should change before looking at the result.
-      </p>
-
-      <h3>How I used AI</h3>
-
-      <p>
-        AI helped me test more candidates quickly. During discovery, I worked
-        with it interactively: trace this await chain, show what enters this
-        bundle, and challenge this hypothesis. After I chose an approach, I
-        delegated repetitive call-site edits and tests. I describe that split in{' '}
+        AI helped me move through the list much faster. While an idea was still
+        unproven, I kept the work interactive: trace this await chain, show what
+        enters this bundle, and challenge this hypothesis. Once I chose an
+        approach, I delegated the repetitive call-site edits and tests. That is
+        the split I describe in{' '}
         <Link
           to="/blog/ai-coding-workflows"
           className="text-blitz-accent hover:underline"
@@ -164,13 +152,49 @@ const ProvingPerformanceWinsPage = () => {
         .
       </p>
 
-      <h2>How We Tested It</h2>
+      <h3>What the Two Outliers Had in Common</h3>
+
+      <p>
+        Neither of the two largest gains made an individual calculation faster.
+        One reduced how much JavaScript had to arrive and be parsed before
+        render. The other moved nonessential work until after render. Both
+        shortened the startup path that users wait for.
+      </p>
+
+      <p>
+        Existing timing markers already surrounded those phases, which made the
+        gains measurable. Other changes reduced CPU or memory within a phase and
+        did not necessarily move a phase-boundary metric. For every experiment,
+        we wrote down which timing should change before looking at the result.
+      </p>
+
+      <h2>Now, How Do We Measure It?</h2>
+
+      <p>
+        So we'd made it faster. That felt good, but a latency chart only answers
+        half the question. I also wanted to know whether the change appeared
+        where the code said it should and what those milliseconds might be
+        worth.
+      </p>
+
+      <h3>We're a Guest on Someone Else's Page</h3>
+
+      <p>
+        The SDK runs as third-party code on partner pages, so its startup time
+        comes directly from their page-load budget. Rokt had also run a
+        controlled delay study that estimated how revenue changes with each
+        added second of latency. We could use that relationship in reverse to
+        estimate the value of time saved.
+      </p>
+
+      <h3>The Measurement Was Harder Than the Code</h3>
 
       <p>
         The main result came from a combined holdback. Traffic was split 50/50:
         one cohort ran with the performance changes and one without them. We
         analyzed a closed window instead of checking the result each day and
-        stopping when it looked favorable.
+        stopping when it looked favorable. That is where the 10-12% comes from,
+        and it is the number I would put my name on.
       </p>
 
       <p>
@@ -241,14 +265,12 @@ const ProvingPerformanceWinsPage = () => {
         alone.
       </p>
 
-      <h2>From Milliseconds to Revenue</h2>
+      <h2>What's the Impact?</h2>
 
       <p>
-        The SDK runs as third-party code on partner pages, so its startup time
-        comes directly from their page-load budget. Rokt had also run a
-        controlled delay study that estimated how revenue changes with each
-        added second of latency. We used that relationship in reverse to
-        estimate the value of time saved.
+        This was the number I really wanted to understand. With the delay study
+        as a conversion between seconds and revenue, the latency result became
+        something we could estimate in business terms.
       </p>
 
       <p>
@@ -261,9 +283,10 @@ const ProvingPerformanceWinsPage = () => {
 
       <p>
         In the holdback itself, revenue per transaction moved{' '}
-        <strong>+0.20%</strong>. The direction matched the model, but the result
-        was not statistically significant at this sample size. I treat it as
-        supporting evidence, not a proven revenue increase.
+        <strong>+0.20%</strong>. Seeing that was exciting. The direction matched
+        the model, but the result was not statistically significant at this
+        sample size, so I treat it as supporting evidence rather than a proven
+        revenue increase.
       </p>
 
       <p>
@@ -281,11 +304,11 @@ const ProvingPerformanceWinsPage = () => {
         the observed movement was not conclusive.
       </p>
 
-      <h2>Making the Method Reusable</h2>
+      <h2>The Skills We Built So the Next One Is Easier</h2>
 
       <p>
-        The first experiment required too much manual setup and too many query
-        checks. I moved that work into two{' '}
+        Doing this once was expensive, and I did not want to reconstruct it six
+        months later. I moved the setup and query checks into two{' '}
         <Link
           to="/blog/claude-skills-institutional-knowledge"
           className="text-blitz-accent hover:underline"
@@ -299,7 +322,7 @@ const ProvingPerformanceWinsPage = () => {
         <div className="bg-blitz-accent/5 border border-blitz-accent/20 p-6 rounded-lg">
           <p className="font-mono text-sm text-blitz-accent mb-2">ab-setup</p>
           <p className="font-semibold text-blitz-charcoal mb-3">
-            Before the experiment
+            Before the data exists
           </p>
           <ul className="space-y-2 text-sm text-blitz-charcoal/80">
             <li>
@@ -322,7 +345,7 @@ const ProvingPerformanceWinsPage = () => {
             ab-diagnose
           </p>
           <p className="font-semibold text-blitz-charcoal mb-3">
-            After the experiment
+            After it has soaked
           </p>
           <ul className="space-y-2 text-sm text-blitz-charcoal/80">
             <li>
@@ -350,7 +373,7 @@ const ProvingPerformanceWinsPage = () => {
         and analysis from the same rules each time.
       </p>
 
-      <h2>What I'd Repeat</h2>
+      <h2>What I'd Tell You to Do</h2>
 
       <ol className="list-decimal list-inside space-y-3 ml-4 text-lg">
         <li>
@@ -378,20 +401,52 @@ const ProvingPerformanceWinsPage = () => {
         </li>
       </ol>
 
-      <h2>The Takeaway</h2>
+      <h2>Closing Thoughts</h2>
 
       <p>
-        The technical result is clear: time to interactive fell 11% at the
-        median and 12% at p95. The revenue evidence is encouraging but not
-        conclusive. The experiment design lets me state both without stretching
-        either one.
+        Improving a system is worth doing on its own terms. Every one of these
+        changes left the codebase in better shape than it found it. Less debt,
+        fewer brittle assumptions about what has to finish before what, less
+        code shipped to people who were never going to need it. That's a real
+        result with no chart attached, and it makes the next change cheaper for
+        whoever picks it up. There's more of this available in most codebases
+        than people assume.
       </p>
 
       <p>
-        The optimizations are already in production. The longer-term benefit is
-        a faster way to test the next idea without rebuilding the experiment
-        process from scratch.
+        It gets considerably better when you can also say what the improvement
+        was worth. Not because the code needs justifying, but because a latency
+        chart and a revenue sentence get read by different people, and only one
+        of them puts your team in the conversation about what to fund next. Left
+        as a chart, a quarter of this work reads as maintenance. Attached to an
+        outcome, the same work reads as something worth doing again.
       </p>
+
+      <p>
+        That's the part I'd push on. The measurement was harder than the code
+        and it's where all the risk lived, which is why the durable output here
+        isn't the two optimizations. It's <code>ab-setup</code> and{' '}
+        <code>ab-diagnose</code>. The optimizations shipped once. The skills
+        make the next win arguable, and the one after that. Same discipline as
+        the{' '}
+        <Link
+          to="/blog/cutting-load-times-at-lorikeet"
+          className="text-blitz-accent hover:underline"
+        >
+          bundle and transfer work
+        </Link>
+        , with higher stakes on the statistics: instrument, measure, verify, and
+        be specific about what you aren't entitled to say.
+      </p>
+
+      <p>
+        None of that translation is a communication skill you pick up at the
+        end. It starts the same moment the work does, and it's what turns a run
+        of quiet improvements into something your team gets properly credited
+        for.
+      </p>
+
+      <p>The numbers matter. So does earning the right to quote them.</p>
     </ArticleLayout>
   )
 }

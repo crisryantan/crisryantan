@@ -102,12 +102,6 @@
     @apply leading-relaxed;
   }
 
-  /* When the custom cursor is mounted, hide the native one (desktop / fine pointer only) */
-  html.has-custom-cursor,
-  html.has-custom-cursor * {
-    cursor: none !important;
-  }
-
   /*
    * Reduced-motion safety net. Framer's MotionConfig reducedMotion="user" handles
    * JS-driven motion; this neutralizes CSS keyframes (aurora, float, shimmer) and
@@ -123,10 +117,6 @@
       animation-duration: 0.001ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.001ms !important;
-    }
-    html.has-custom-cursor,
-    html.has-custom-cursor * {
-      cursor: auto !important;
     }
   }
 }

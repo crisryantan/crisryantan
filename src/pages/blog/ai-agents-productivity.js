@@ -6,121 +6,54 @@ const AIAgentsProductivityPage = () => {
   return (
     <ArticleLayout
       title="Maximizing Productivity with AI Coding Agents"
-      description="A comprehensive guide to AI coding tools, team workflows, and building institutional knowledge for AI-assisted development."
+      description="How our team wired Slack, Linear, and Cursor into a delegation pipeline, and why a single agents.md file did more for AI output quality than any tool upgrade."
       date="January 20, 2026"
-      readTime="14 min read"
+      readTime="9 min read"
       category="AI & Productivity"
       slug="/blog/ai-agents-productivity"
       tags={['AI & Productivity', 'AI Agents', 'Team Workflow']}
     >
+      <p className="text-lg text-blitz-charcoal/70 italic mb-8">
+        <strong>TL;DR:</strong> The productivity gain from AI agents doesn't
+        come from the tools themselves. It comes from the system around them: a
+        delegation pipeline from Slack to Linear to Cursor, an{' '}
+        <code>agents.md</code> file that teaches agents your codebase's
+        non-obvious patterns, and a team habit of writing down what works and
+        what doesn't.
+      </p>
+
       <h2>The AI Coding Agent Revolution</h2>
 
       <p>
         AI coding agents have evolved far beyond autocomplete. Today's tools can
-        autonomously implement features, debug complex issues, and handle entire
-        workflows while you focus on higher-level work. But here's the thing:
-        having access to powerful tools doesn't automatically make you
-        productive. The difference between "AI helps sometimes" and "AI makes me
-        3x more effective" comes down to how you set up your workflows and build
-        institutional knowledge.
-      </p>
-
-      <p>
-        This guide covers the practical side of AI-assisted development:
-        understanding the tool landscape, setting up efficient workflows, and
-        building team-wide capabilities that compound over time.
+        implement features, debug issues, and handle entire workflows while you
+        focus on higher-level work. But having access to powerful tools doesn't
+        automatically make you productive. The difference between "AI helps
+        sometimes" and "AI is how our team ships" comes down to workflow setup
+        and the institutional knowledge you build around it. This post covers
+        the practical side: the tool landscape in brief, the delegation pipeline
+        we actually use, and the documentation habits that compound over time.
       </p>
 
       <h2>Understanding the AI Coding Agent Landscape</h2>
 
       <p>
-        Modern AI coding agents generally fall into two categories, each suited
-        to different types of work:
-      </p>
-
-      <div className="grid md:grid-cols-2 gap-6 my-8">
-        <div className="bg-blitz-accent/5 border border-blitz-accent/20 p-6 rounded-lg">
-          <h4 className="font-semibold text-blitz-primary mb-3">
-            Autonomous Agents
-          </h4>
-          <p className="text-sm text-blitz-charcoal/80 mb-4">
-            Work independently on well-defined tasks. You assign work, they
-            execute, you review later.
-          </p>
-          <ul className="space-y-2 text-sm">
-            <li className="flex items-start">
-              <span className="text-blitz-accent mr-2">•</span>
-              <span>
-                <strong>Devin:</strong> Full-stack autonomous agent for complex
-                features
-              </span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-blitz-accent mr-2">•</span>
-              <span>
-                <strong>Cursor Background Agent:</strong> Cloud-based task
-                execution
-              </span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-blitz-accent mr-2">•</span>
-              <span>
-                <strong>Linear + Cursor:</strong> Assign issues directly to
-                Cursor's agent via @cursor
-              </span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-blitz-accent mr-2">•</span>
-              <span>
-                <strong>GitHub Copilot Workspace:</strong> Issue-to-PR
-                automation
-              </span>
-            </li>
-          </ul>
-        </div>
-
-        <div className="bg-blitz-soft/5 border border-blitz-soft/20 p-6 rounded-lg">
-          <h4 className="font-semibold text-blitz-primary mb-3">
-            Collaborative Agents
-          </h4>
-          <p className="text-sm text-blitz-charcoal/80 mb-4">
-            Work alongside you in real-time. Best for exploration, debugging,
-            and complex problem-solving.
-          </p>
-          <ul className="space-y-2 text-sm">
-            <li className="flex items-start">
-              <span className="text-blitz-soft mr-2">•</span>
-              <span>
-                <strong>Claude Code:</strong> Terminal-based pair programming
-              </span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-blitz-soft mr-2">•</span>
-              <span>
-                <strong>Cursor Composer:</strong> Multi-file editing with
-                context
-              </span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-blitz-soft mr-2">•</span>
-              <span>
-                <strong>Windsurf Cascade:</strong> Agentic IDE workflows
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <p>
-        Understanding which type of agent to use for which task is crucial. If
-        you haven't already, check out my{' '}
+        The specific products change every quarter, so I won't catalog them.
+        What stays stable is the split into two categories.{' '}
+        <strong>Autonomous agents</strong> (cloud agents you assign work to,
+        like Cursor's background agents or Devin) execute well-defined tasks
+        independently and hand you back a PR.{' '}
+        <strong>Collaborative agents</strong> (Claude Code, Cursor's composer,
+        and their peers) work alongside you in real time and are best for
+        exploration, debugging, and design. Matching the task to the category is
+        the core skill, and I wrote a whole{' '}
         <Link
           to="/blog/ai-coding-workflows"
           className="text-blitz-accent hover:underline"
         >
-          blog post on delegating vs leveraging
+          post on delegating vs leveraging
         </Link>{' '}
-        for a framework on matching tasks to the right workflow.
+        about exactly that.
       </p>
 
       <h2>Setting Up Your AI Workflow</h2>
@@ -128,19 +61,11 @@ const AIAgentsProductivityPage = () => {
       <h3>Cloud-Based Agents for Delegation</h3>
 
       <p>
-        Modern AI coding tools offer autonomous agent capabilities that can work
-        on tasks independently while you focus on other things. The workflow is
-        seamless: create a task in your project management tool, connect it to
-        your AI coding assistant (many tools offer integrations with Linear,
-        GitHub Issues, or Jira), assign it to an agent, and let it work
-        autonomously.
-      </p>
-
-      <p>
-        For example, we use cloud-based AI agents that can handle delegated
-        tasks in the background. The key is having a clear handoff process. The
-        agent needs to know exactly what to do, where to find relevant code, and
-        what success looks like.
+        Autonomous agents can work on tasks independently while you do something
+        else, but only if the handoff is clean. The agent needs to know exactly
+        what to do, where to find the relevant code, and what success looks
+        like. Create the task in your project management tool, enrich it with
+        context, assign it, and review later.
       </p>
 
       <div className="my-8 max-w-3xl mx-auto">
@@ -154,10 +79,10 @@ const AIAgentsProductivityPage = () => {
         </p>
       </div>
 
-      <h3>Project Management Integrations</h3>
+      <h3>The Slack → Linear → Cursor Pipeline</h3>
 
       <p>
-        The real power of autonomous agents comes from{' '}
+        The real power comes from{' '}
         <a
           href="https://linear.app/integrations/cursor"
           className="text-blitz-accent hover:underline"
@@ -166,23 +91,20 @@ const AIAgentsProductivityPage = () => {
         >
           project management integrations
         </a>{' '}
-        that let you delegate directly from your issue tracker. The{' '}
-        <strong>Linear + Cursor integration</strong> is a great example: you can
-        mention <code>@cursor</code> in any Linear issue comment or select
-        Cursor from the assignee menu, and the cloud agent automatically picks
-        up the task, works on it, and creates a PR when done, all while keeping
-        Linear updated with progress.
+        that let you delegate directly from your issue tracker. With the Linear
+        + Cursor integration, you mention <code>@cursor</code> in an issue
+        comment or pick Cursor from the assignee menu, and the cloud agent picks
+        up the task, works on it, and opens a PR when done, keeping Linear
+        updated with progress the whole way.
       </p>
 
       <p>
-        In our team, we've found a pretty convenient workflow (not an
-        endorsement, just what works for us): when non-engineers flag an issue
-        or bug in Slack, they can use{' '}
-        <code>@linear create a ticket based on this context</code>
-        to instantly create a properly formatted ticket with all the relevant
-        discussion. Then we just assign it to <code>@cursor</code> and let it
-        handle the investigation and fix. It's seamless because everything stays
-        in the tools we're already using, with no context switching required.
+        Here's the workflow our team landed on (not an endorsement, just what
+        works for us): when non-engineers flag a bug in Slack, they use{' '}
+        <code>@linear create a ticket based on this context</code> to turn the
+        discussion into a properly formatted ticket. We assign it to{' '}
+        <code>@cursor</code> and let it handle the investigation and fix.
+        Everything stays in tools we already use, with no context switching.
       </p>
 
       <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">
@@ -224,17 +146,12 @@ const AIAgentsProductivityPage = () => {
       <h2>Context Is Everything: The agents.md Pattern</h2>
 
       <p>
-        One thing I see people struggle with is giving AI the right context
-        about their codebase. You can't just say "update the context" and expect
-        your AI to know what you mean. Is it React Context? Some other state
-        management? A feature flag?
-      </p>
-
-      <p>
-        Here's what works: create a documentation file (like{' '}
-        <code>agents.md</code> or <code>.ai-context.md</code>) in your repo that
-        explains your codebase patterns. Not the whole architecture diagram.
-        Just the stuff that's confusing or non-obvious:
+        The biggest struggle I see is giving AI the right context about a
+        codebase. You can't say "update the context" and expect the AI to know
+        whether you mean React Context, your custom store, or a feature flag.
+        The fix is a documentation file (like <code>agents.md</code>) in your
+        repo that explains your codebase patterns. Not the whole architecture
+        diagram. Just the stuff that's confusing or non-obvious:
       </p>
 
       <div className="bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-6">
@@ -268,10 +185,9 @@ const AIAgentsProductivityPage = () => {
       </div>
 
       <p>
-        Now when you tell your AI "update the context to include user
-        preferences," it knows exactly what you mean. No more back-and-forth
-        clarifying which "context" you're talking about. This single file has
-        probably saved our team hours of miscommunication.
+        Now when you say "update the context to include user preferences," the
+        AI knows exactly what you mean. This single file has probably saved our
+        team hours of miscommunication.
       </p>
 
       <h3>What to Include in Your agents.md</h3>
@@ -307,105 +223,43 @@ const AIAgentsProductivityPage = () => {
       <h3>Codifying Your Debugging Process</h3>
 
       <p>
-        You can codify your systematic debugging workflows into reusable
-        patterns. Think about it: when you're hunting for a bug, you probably
-        follow the same process every time. Check recent git commits, look at
-        related files, trace the data flow, check the tests, etc.
-      </p>
-
-      <p>
-        Instead of manually guiding your AI through this process every time, you
-        can create a documented workflow or custom instruction set. Now when you
-        say "help me debug this checkout issue," your AI assistant automatically
-        knows to:
-      </p>
-
-      <ul className="list-disc list-inside space-y-2 ml-4">
-        <li>Check recent commits in the checkout-related files</li>
-        <li>Look for changes in payment processing logic</li>
-        <li>Review error logs and test failures</li>
-        <li>Trace the user flow through the code</li>
-        <li>Check for timing/race conditions</li>
-      </ul>
-
-      <p>
-        The agent works autonomously through your systematic debugging process
-        and comes back with either "found the bug" or "didn't find the bug,
-        here's what I checked." Either way, you saved 30 minutes of manual
-        investigation. Many AI coding tools support custom instructions,
-        project-level prompts, or skill systems to encode these workflows. Check
-        out my{' '}
+        When you hunt a bug, you probably follow the same process every time:
+        check recent commits, look at related files, trace the data flow, check
+        the tests. Instead of guiding the AI through that process manually every
+        time, encode it once as a custom instruction set or skill. Then "help me
+        debug this checkout issue" automatically triggers the whole
+        investigation, and the agent comes back with either "found the bug" or
+        "didn't find it, here's what I checked." Either way you saved 30 minutes
+        of manual digging. I go deeper on this in my{' '}
         <Link
           to="/blog/claude-skills-institutional-knowledge"
           className="text-blitz-accent hover:underline"
         >
-          blog post on turning expertise into reusable workflows
-        </Link>{' '}
-        to learn more.
+          post on turning expertise into reusable workflows
+        </Link>
+        .
       </p>
 
-      <h3>Creating Reusable Task Templates</h3>
+      <h3>Templates and Voice-to-Text</h3>
 
       <p>
-        For tasks you do repeatedly, create specification templates that capture
-        your requirements:
-      </p>
-
-      <div className="bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-6">
-        <pre className="text-sm">
-          {`## Feature Flag Removal Template
-
-**Task:** Remove [FLAG_NAME] feature flag
-
-**Context:**
-The [FLAG_NAME] feature flag has been enabled in production
-for [X] weeks with no issues. Time to clean up the old code path.
-
-**Requirements:**
-1. Remove flag definition from config/features.ts
-2. Remove all conditional checks for [FLAG_NAME]
-3. Keep the [new/old] code path
-4. Delete deprecated components: [list]
-5. Rename components (remove V2 suffix if applicable)
-6. Update all imports throughout the codebase
-7. Update tests to remove feature flag mocking
-
-**Success Criteria:**
-- No references to [FLAG_NAME] remain
-- All tests pass
-- Application builds without warnings`}
-        </pre>
-      </div>
-
-      <h3>Voice-to-Text for Faster Specs</h3>
-
-      <p>
-        One productivity hack that's been game-changing: use voice-to-text tools
-        like Super Whisper or the built-in dictation on your OS to quickly
-        capture task specifications. It's much faster to describe what you need
-        verbally than to type it out, especially for detailed requirements.
-      </p>
-
-      <p>
-        Speak your requirements, let the tool transcribe them, then quickly
-        clean up the text before creating your task. This alone has probably
-        doubled my delegation throughput.
+        Two smaller habits that compound. First, for tasks you delegate
+        repeatedly (feature flag removals, test backfills), keep a specification
+        template with the requirements and success criteria pre-written, so each
+        new task is a fill-in-the-blanks exercise rather than a fresh essay.
+        Second, use voice-to-text (Super Whisper, or your OS's built-in
+        dictation) to capture specs. Describing requirements out loud is much
+        faster than typing them, and it has probably doubled my delegation
+        throughput.
       </p>
 
       <h2>Building Team Capabilities</h2>
 
       <p>
-        Okay, so you've figured out how to be productive with AI. That's great
-        for you. But if you're on a team, the real win is getting everyone else
-        up to speed too. And that means documenting what works and what doesn't.
-      </p>
-
-      <h3>Expanding the agents.md Pattern</h3>
-
-      <p>
-        That <code>agents.md</code> file for context patterns? That's just the
-        start. Turn it into a living document that captures everything your team
-        learns about working with AI:
+        Being individually productive with AI is nice. The real win is getting
+        the whole team there, and that means writing down what works. That{' '}
+        <code>agents.md</code> file is just the start. Turn it into a living
+        document that captures everything your team learns:
       </p>
 
       <ul className="list-disc list-inside space-y-2 ml-4">
@@ -422,100 +276,23 @@ for [X] weeks with no issues. Time to clean up the old code path.
           codebase patterns
         </li>
         <li>
-          <strong>Agent Strengths:</strong> "Use Devin for full features, Claude
-          Code for debugging, Cursor for quick edits"
+          <strong>Agent Strengths:</strong> Which agent to reach for per task
+          type, based on your team's actual experience
         </li>
       </ul>
 
       <p>
-        Keep this in Notion or your wiki. Make it searchable. Update it when you
-        learn something new. This is how you go from "some people on the team
-        use AI sometimes" to "everyone on the team is 3x more productive."
+        Keep it searchable, update it when you learn something, and put it in
+        front of new hires on day one: tool setup, the agents.md walkthrough, a
+        pairing session watching someone delegate a real task, then their first
+        delegated task with feedback. That's the whole onboarding.
       </p>
-
-      <h3>Team Workflow Evolution</h3>
-
-      <div className="my-8">
-        <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-8 rounded-lg">
-          <p className="text-xl font-semibold mb-6 text-blitz-primary">
-            Maturity Progression
-          </p>
-          <pre className="text-sm leading-relaxed text-blitz-charcoal">
-            {`Stage 1: Individual Adoption
-└─ Engineers experiment with AI tools
-   └─ Ad-hoc usage patterns
-      └─ Inconsistent results
-
-Stage 2: Pattern Recognition
-└─ Team identifies what works
-   └─ Document successful approaches
-      └─ Share learnings informally
-
-Stage 3: Systematic Practice
-└─ Establish delegation/leverage framework
-   └─ Create specification templates
-      └─ Formal knowledge sharing
-
-Stage 4: Institutional Knowledge
-└─ AI workflows become default
-   └─ Onboarding includes AI patterns
-      └─ Continuous improvement culture`}
-          </pre>
-        </div>
-      </div>
-
-      <h3>Onboarding New Team Members</h3>
-
-      <p>
-        When bringing new engineers onto a team with established AI workflows,
-        include these in their onboarding:
-      </p>
-
-      <div className="bg-blitz-accent/5 border-l-4 border-blitz-accent p-6 my-8">
-        <ul className="space-y-3">
-          <li className="flex items-start">
-            <span className="text-blitz-accent mr-3 text-xl">1.</span>
-            <div>
-              <strong>Tool Setup:</strong> Which AI tools the team uses and how
-              to configure them
-            </div>
-          </li>
-          <li className="flex items-start">
-            <span className="text-blitz-accent mr-3 text-xl">2.</span>
-            <div>
-              <strong>agents.md Walkthrough:</strong> Review the codebase
-              context document
-            </div>
-          </li>
-          <li className="flex items-start">
-            <span className="text-blitz-accent mr-3 text-xl">3.</span>
-            <div>
-              <strong>Template Library:</strong> Show them existing task
-              templates and when to use them
-            </div>
-          </li>
-          <li className="flex items-start">
-            <span className="text-blitz-accent mr-3 text-xl">4.</span>
-            <div>
-              <strong>Pairing Session:</strong> Watch an experienced team member
-              use AI for a real task
-            </div>
-          </li>
-          <li className="flex items-start">
-            <span className="text-blitz-accent mr-3 text-xl">5.</span>
-            <div>
-              <strong>First Delegated Task:</strong> Guide them through
-              delegating their first task with feedback
-            </div>
-          </li>
-        </ul>
-      </div>
 
       <h2>Measuring Success</h2>
 
       <p>
-        How do you know if your AI workflows are actually working? Here are some
-        signals to watch:
+        How do you know if your AI workflows are actually working? Here are the
+        signals I watch:
       </p>
 
       <div className="grid md:grid-cols-2 gap-6 my-8">
@@ -576,62 +353,20 @@ Stage 4: Institutional Knowledge
         </div>
       </div>
 
-      <h2>Key Takeaways</h2>
-
-      <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-8 rounded-lg my-8">
-        <ol className="space-y-4 text-lg">
-          <li>
-            <strong>1. Understand the Tool Landscape:</strong> Match autonomous
-            agents to well-defined tasks, collaborative agents to exploration
-            and complex problems.
-          </li>
-          <li>
-            <strong>2. Invest in Workflow Setup:</strong> Project management
-            integrations and streamlined pipelines pay dividends in reduced
-            friction.
-          </li>
-          <li>
-            <strong>3. Create an agents.md File:</strong> Document non-obvious
-            patterns, gotchas, and conventions to give AI the context it needs.
-          </li>
-          <li>
-            <strong>4. Codify Repeatable Workflows:</strong> Turn debugging
-            processes and common tasks into reusable templates and custom
-            instructions.
-          </li>
-          <li>
-            <strong>5. Build Team Knowledge:</strong> Document successes and
-            failures, share learnings, include AI workflows in onboarding.
-          </li>
-          <li>
-            <strong>6. Measure and Iterate:</strong> Watch for positive and
-            negative signals, continuously improve your workflows based on what
-            you learn.
-          </li>
-        </ol>
-      </div>
-
       <h2>Wrapping Up</h2>
 
       <p>
-        The teams that will thrive in the AI era aren't just the ones with
-        access to the best tools. They're the ones that build systems around
-        those tools. Creating an agents.md file takes an hour. Setting up
-        project management integrations takes an afternoon. Building a culture
-        of sharing AI learnings takes consistent effort but pays off
-        exponentially.
+        The teams that thrive with AI aren't the ones with the best tools.
+        They're the ones that build systems around the tools. An agents.md file
+        takes an hour. A Linear integration takes an afternoon. A habit of
+        sharing what works takes consistency, but it's the part that compounds.
       </p>
 
       <p>
-        Start small. Create your first agents.md file today. Write one task
-        template for something you do often. Share what works with your team.
-        These small investments compound into massive productivity gains over
-        time.
-      </p>
-
-      <p>
-        The goal isn't just to make yourself more productive. It's to make your
-        entire team unstoppable.
+        Start small: create your first agents.md today, write one task template
+        for something you do often, and share the first spec that works with
+        your team. The goal isn't just to make yourself more productive. It's to
+        make the whole team faster than any one person could be.
       </p>
     </ArticleLayout>
   )

@@ -29,9 +29,9 @@ const blogPosts = [
     id: 2,
     title: 'Maximizing Productivity with AI Coding Agents',
     excerpt:
-      'A comprehensive guide to AI coding tools, team workflows, and building institutional knowledge for AI-assisted development.',
+      'How our team wired Slack, Linear, and Cursor into a delegation pipeline, and why a single agents.md file did more for AI output quality than any tool upgrade.',
     date: 'January 20, 2026',
-    readTime: '14 min read',
+    readTime: '9 min read',
     category: 'AI & Productivity',
     link: '/blog/ai-agents-productivity',
   },
@@ -39,9 +39,9 @@ const blogPosts = [
     id: 3,
     title: 'Claude Skills: Turning Personal Expertise into Team Superpowers',
     excerpt:
-      'How Claude Skills transform individual knowledge into institutional capability, making specialized expertise available to your entire team automatically.',
+      'We built around 60 Claude Skills at Lorikeet. Here are the ones that stuck, the structural patterns behind them, and the lessons we learned the hard way.',
     date: 'December 30, 2025',
-    readTime: '10 min read',
+    readTime: '8 min read',
     category: 'AI & Productivity',
     link: '/blog/claude-skills-institutional-knowledge',
   },
@@ -49,9 +49,9 @@ const blogPosts = [
     id: 4,
     title: 'AI-Assisted Coding Workflows: Delegating vs Leveraging',
     excerpt:
-      'Learn the mental model for working with AI coding assistants: when to delegate tasks and walk away vs when to leverage AI as your pair programming partner.',
+      'The mental model I use for AI coding assistants: delegate well-specified tasks and walk away, or leverage AI as a pair for diagnosis and design. Plus the migration that taught me when to switch.',
     date: 'March 17, 2026',
-    readTime: '12 min read',
+    readTime: '8 min read',
     category: 'AI & Productivity',
     link: '/blog/ai-coding-workflows',
   },
@@ -60,9 +60,9 @@ const blogPosts = [
     title:
       'From SDK to SSR: Performance Optimization Lessons Across Frameworks',
     excerpt:
-      'How systematic performance optimization reduced page load times by 68% in React/Remix applications, applying lessons learned from SDK development.',
+      "The instrument-measure-identify-optimize loop I learned building Rokt's SDK, applied to a slow Remix app at Lorikeet: parallel queries, defer, and skeleton UI cut observed page load from 2.2s to ~700ms.",
     date: 'December 29, 2025',
-    readTime: '12 min read',
+    readTime: '9 min read',
     category: 'Performance',
     link: '/blog/sdk-to-ssr-performance-optimization',
   },

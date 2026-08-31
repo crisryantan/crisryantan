@@ -411,46 +411,39 @@ const ProvingPerformanceWinsPage = () => {
       <h2>Closing Thoughts</h2>
 
       <p>
-        Improving a system is worth doing on its own terms. Every one of these
-        changes left the codebase in better shape than it found it. Less debt,
-        fewer brittle assumptions about what has to finish before what, less
-        code shipped to people who were never going to need it. That's a real
-        result with no chart attached, and it makes the next change cheaper for
-        whoever picks it up. There's more of this available in most codebases
-        than people assume.
+        Even without a revenue estimate, I'd be proud of this work. We ship less
+        code, make fewer brittle assumptions during startup, and give people a
+        faster experience, especially on slower sessions. The codebase is easier
+        for the next engineer to change too. Those outcomes matter on their own.
       </p>
 
       <p>
-        It gets considerably better when you can also say what the improvement
-        was worth. Not because the code needs justifying, but because a latency
-        chart and a revenue sentence get read by different people, and only one
-        of them puts your team in the conversation about what to fund next. Left
-        as a chart, a quarter of this work reads as maintenance. Attached to an
-        outcome, the same work reads as something worth doing again.
+        Putting a business estimate beside the latency result helped me explain
+        why the work deserves more investment. It also helps the team get credit
+        for improvements that can otherwise be dismissed as maintenance. That
+        translation should start with the work, not when someone asks for a
+        summary at the end.
       </p>
 
       <p>
-        That's the part I'd push on. The measurement was harder than the code
-        and it's where all the risk lived, which is why the durable output here
-        isn't the two optimizations. It's <code>ab-setup</code> and{' '}
-        <code>ab-diagnose</code>. The optimizations shipped once. The skills
-        make the next win arguable, and the one after that. Same discipline as
-        the{' '}
+        The measurement took more effort than the optimizations, which is why{' '}
+        <code>ab-setup</code> and <code>ab-diagnose</code> are probably what I'm
+        happiest about. The code changes improve the product today. The skills
+        give the next experiment a better starting point, with the
+        assignment, power and analysis rules already written down. It's the same
+        lesson I took from the{' '}
         <Link
           to="/blog/cutting-load-times-at-lorikeet"
           className="text-blitz-accent hover:underline"
         >
           bundle and transfer work
         </Link>
-        , with higher stakes on the statistics: instrument, measure, verify, and
-        be specific about what you aren't entitled to say.
+        : measure early and say exactly what the data shows.
       </p>
 
       <p>
-        None of that translation is a communication skill you pick up at the
-        end. It starts the same moment the work does, and it's what turns a run
-        of quiet improvements into something your team gets properly credited
-        for.
+        I'm proud of the 10-12%. I'm just as proud that we can explain where it
+        came from, what it might be worth, and where the evidence stops.
       </p>
 
       <p>The numbers matter. So does earning the right to quote them.</p>

@@ -3,7 +3,6 @@ import { AnimatePresence } from 'motion/react'
 import { ThemeProvider } from './src/context/ThemeContext'
 import MotionProvider from './src/components/motion/MotionProvider'
 import PageTransition from './src/components/motion/PageTransition'
-import CustomCursor from './src/components/motion/CustomCursor'
 import ScrollToTop from './src/components/motion/ScrollToTop'
 
 /**
@@ -12,7 +11,7 @@ import ScrollToTop from './src/components/motion/ScrollToTop'
  * is the usual cause of hydration warnings).
  *
  * - wrapRootElement: mounted once, persists across navigations → theme + motion
- *   context and the global overlays (custom cursor, back-to-top) live here.
+ *   context and the global back-to-top overlay live here.
  * - wrapPageElement: re-keyed per route so AnimatePresence can run exit/enter
  *   transitions on navigation.
  */
@@ -20,7 +19,6 @@ export const wrapRootElement = ({ element }) => (
   <ThemeProvider>
     <MotionProvider>
       {element}
-      <CustomCursor />
       <ScrollToTop />
     </MotionProvider>
   </ThemeProvider>

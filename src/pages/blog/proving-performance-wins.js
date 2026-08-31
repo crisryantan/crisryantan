@@ -27,10 +27,10 @@ const ProvingPerformanceWinsPage = () => {
 
       <p>
         Rokt's web SDK renders offers inside partners' checkout and confirmation
-        pages. Over several months, I shipped a group of performance changes.
-        Most made small improvements. Two were outliers and accounted for most
-        of the measurable reduction in startup time. I could not have told you
-        in advance which two they would be.
+        pages. Within a month, I shipped a group of performance changes. Most
+        made small improvements. Two were outliers and accounted for most of the
+        measurable reduction in startup time. I could not have told you in
+        advance which two they would be.
       </p>
 
       <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-8 rounded-lg my-8">
@@ -86,6 +86,12 @@ const ProvingPerformanceWinsPage = () => {
         came back with a shortlist of performance problems I had noticed the
         first time around, which gave me somewhere practical to start instead of
         a blank profiler trace.
+      </p>
+
+      <p>
+        Rokt talks a lot about “speed of iteration,” and I took that literally:
+        test an idea quickly, measure it, keep what worked, and move on from
+        what didn't.
       </p>
 
       <p>

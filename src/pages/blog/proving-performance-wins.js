@@ -83,10 +83,9 @@ const ProvingPerformanceWinsPage = () => {
       <h2>I Came Back With a List</h2>
 
       <p>
-        I'm a boomerang, and I had some unfinished business to prove myself. I
-        came back with a shortlist of performance problems I had noticed the
-        first time around, which gave me somewhere practical to start instead of
-        a blank profiler trace.
+        I'm a boomerang, and I came back with a shortlist of performance
+        problems I had noticed the first time around, which gave me somewhere
+        practical to start instead of a blank profiler trace.
       </p>
 
       <p>
@@ -175,7 +174,7 @@ const ProvingPerformanceWinsPage = () => {
         we wrote down which timing should change before looking at the result.
       </p>
 
-      <h2>Now, How Do We Measure It?</h2>
+      <h2>Now, How Do We Prove It's Faster?</h2>
 
       <p>
         So we'd made it faster. That felt good, but a latency chart only answers
@@ -272,7 +271,7 @@ const ProvingPerformanceWinsPage = () => {
         alone.
       </p>
 
-      <h2>What's the Impact?</h2>
+      <h2>What Could Faster Mean for Revenue?</h2>
 
       <p>
         This was the number I really wanted to understand. With the delay study
@@ -313,15 +312,17 @@ const ProvingPerformanceWinsPage = () => {
       <h2>The Skills We Built So the Next One Is Easier</h2>
 
       <p>
-        Doing this once was expensive, and I did not want to reconstruct it six
-        months later. I moved the setup and query checks into two{' '}
+        Proving the result took more work than writing either optimization. I
+        did not want anyone, including future me, to reconstruct the assignment,
+        power, and analysis rules from old queries six months later. So I split
+        the method into two{' '}
         <Link
           to="/blog/claude-skills-institutional-knowledge"
           className="text-blitz-accent hover:underline"
         >
           Claude Skills
         </Link>
-        , each with one job.
+        , one for each side of the experiment.
       </p>
 
       <div className="grid md:grid-cols-2 gap-6 my-8">
@@ -373,77 +374,101 @@ const ProvingPerformanceWinsPage = () => {
         </div>
       </div>
 
+      <h3>How the Next Experiment Connects Performance to Impact</h3>
+
+      <p>
+        Say the next idea is to move another startup task until after render.
+        Before writing the experiment plumbing, I can ask <code>ab-setup</code>{' '}
+        to prepare the test around that change.
+      </p>
+
+      <p>
+        I give it the proposed treatment, the timing phase expected to move, the
+        business outcome connected to that timing, and the available traffic.
+        The skill returns the assignment design, enrollment marker, control
+        behavior, primary metric, guardrails, power check, and removal plan. If
+        the expected business effect needs more traffic than we can reasonably
+        collect, that becomes clear before the experiment starts. We can make
+        the performance metric the primary claim instead of pretending the test
+        can prove more than the sample allows.
+      </p>
+
+      <p>
+        After the test has run for its pre-registered window,{' '}
+        <code>ab-diagnose</code> checks the production markers and sample ratio
+        first. It then rebuilds the cohorts from enrollment, applies the agreed
+        exclusions, and compares the target timing with the nearby metric that
+        should remain flat. Finally, it connects the measured time saved to the
+        delay model and reports each conclusion at the level the evidence
+        supports: measured performance, modeled impact, or directional business
+        movement.
+      </p>
+
+      <pre className="bg-blitz-charcoal text-blitz-white p-6 rounded-lg overflow-x-auto my-6">
+        {`Input to ab-setup
+├─ Treatment: move task X until after render
+├─ Expected mechanism: framework startup should fall
+├─ Primary metric: SDK time to interactive
+├─ Impact model: revenue sensitivity to time saved
+├─ Guardrail: downstream render phase stays flat
+└─ Available traffic and test window
+
+Output from ab-diagnose
+├─ Assignment and sample-ratio checks
+├─ Measured timing effect by percentile
+├─ Mechanism and guardrail results
+├─ Uncertainty and power
+└─ Measured performance, modeled impact, and directional business evidence`}
+      </pre>
+
+      <p>
+        The skills do not decide whether an experiment succeeded or manufacture
+        a business result. They make sure we ask the same questions, in the same
+        order, and preserve the line between a faster system and the impact we
+        can defensibly connect to it.
+      </p>
+
       <p>
         A document still depends on someone remembering to find it. A skill is
         available when the experiment starts and can generate the setup, checks
         and analysis from the same rules each time.
       </p>
 
-      <h2>What I'd Tell You to Do</h2>
-
-      <ol className="list-decimal list-inside space-y-3 ml-4 text-lg">
-        <li>
-          <strong>Choose the outcome before the optimization.</strong> Decide
-          which user timing should move and how it connects to a business
-          metric.
-        </li>
-        <li>
-          <strong>Test the mechanism.</strong> Name the phase that should change
-          and at least one nearby metric that should not.
-        </li>
-        <li>
-          <strong>Check power early.</strong> If the revenue effect needs months
-          of traffic, make latency the primary claim from the start.
-        </li>
-        <li>
-          <strong>Separate measurements from estimates.</strong> The 11–12%
-          latency reduction was measured; the revenue ranges were modeled; the
-          +0.20% observation was directional.
-        </li>
-        <li>
-          <strong>Use AI according to uncertainty.</strong> Work together while
-          exploring, then delegate repetitive implementation once the approach
-          is clear.
-        </li>
-      </ol>
-
       <h2>Closing Thoughts</h2>
 
       <p>
-        Even without a revenue estimate, I'd be proud of this work. The SDK now
-        sends less JavaScript during startup. We also removed brittle
-        assumptions about what must finish before rendering, giving people a
-        faster experience, especially on slower sessions. The codebase is easier
-        for the next engineer to change too. Those outcomes matter on their own.
+        This work improved two systems. The first was the SDK itself: it now
+        sends less JavaScript during startup and no longer assumes that
+        nonessential work must finish before rendering. That gave users a faster
+        experience from p50 through p95 and left the startup path easier for the
+        next engineer to change.
       </p>
 
       <p>
-        Putting a business estimate beside the latency result helped me explain
-        why the work deserves more investment. It also helps the team get credit
-        for improvements that can otherwise be dismissed as maintenance. That
-        translation should start with the work, not when someone asks for a
-        summary at the end.
+        The second was how we measure impact. A latency result tells us the
+        system is faster. The mechanism check tells us the improvement came from
+        the code we changed. The delay model helps us estimate what the saved
+        time could be worth. The holdback tells us whether the business outcome
+        moved in the same direction. Those are related signals, but they are not
+        interchangeable, and the strength of the claim should match the strength
+        of each one.
       </p>
 
       <p>
-        The measurement took more effort than the optimizations, which is why{' '}
-        <code>ab-setup</code> and <code>ab-diagnose</code> are probably what I'm
-        happiest about. The code changes improve the product today. The skills
-        give the next experiment a better starting point, with the assignment,
-        power and analysis rules already written down. It's the same lesson I
-        took from the{' '}
-        <Link
-          to="/blog/cutting-load-times-at-lorikeet"
-          className="text-blitz-accent hover:underline"
-        >
-          bundle and transfer work
-        </Link>
-        : measure early and say exactly what the data shows.
+        That connection should be designed with the optimization, not assembled
+        when someone asks for an impact summary at the end.{' '}
+        <code>ab-setup</code> starts with the expected system change, its
+        user-facing metric, and the business outcome it could influence.{' '}
+        <code>ab-diagnose</code> follows that chain back through the data and
+        reports exactly where the evidence stops.
       </p>
 
       <p>
-        I'm proud of the 10-12%. I'm just as proud that we can explain where it
-        came from, what it might be worth, and where the evidence stops.
+        The code changes improve the product today. The Skills make the next
+        improvement easier to measure and easier to connect to impact. I'm proud
+        of the 10-12%, but the number carries more weight because we can explain
+        where it came from, what it might be worth, and what we have not yet
+        proved.
       </p>
 
       <p>The numbers matter. So does earning the right to quote them.</p>

@@ -202,7 +202,8 @@ const html = `<!doctype html>
   <div class="mark"><span>${esc(profile.initials[0])}</span><span>${esc(profile.initials[1])}</span></div>
 
   <h2 class="side-h">Contact</h2>
-  <div class="contact-row">${icon.phone}<span>${esc(profile.phone)}</span></div>
+  <div class="contact-row">${icon.phone}<span>${esc(profile.phoneAu)} (AU)</span></div>
+  <div class="contact-row">${icon.phone}<span>${esc(profile.phoneUs)} (US)</span></div>
   <div class="contact-row">${icon.mail}<span>${esc(profile.email)}</span></div>
   <div class="contact-row">${icon.globe}<span>${esc(profile.website)}</span></div>
   <div class="contact-row">${icon.pin}<span>${esc(profile.location)}</span></div>
@@ -318,7 +319,8 @@ const body = [
     [
       profile.title,
       profile.location,
-      profile.phone,
+      `${profile.phoneAu} (AU)`,
+      `${profile.phoneUs} (US)`,
       profile.email,
       profile.website,
     ].join('  |  '),

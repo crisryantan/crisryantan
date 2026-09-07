@@ -8,9 +8,14 @@ const experience = [
   {
     role: 'Senior Software Engineer',
     company: 'Rokt',
-    location: 'Sydney, Australia',
+    location: 'New York, USA',
     period: 'Feb 2026 - Present',
     bullets: [
+      <>
+        Cut SDK{' '}
+        <strong>time to interactive by 11% at p50 and 12% at p95</strong>.
+        Modelled at a 0.3-1.9% revenue lift depending on percentile.
+      </>,
       <>
         Moved the web SDK's offer-selection path onto the platform's{' '}
         <strong>new backend architecture</strong>, ramping partner by partner
@@ -32,17 +37,9 @@ const experience = [
         halving what the team waits on for every change.
       </>,
       <>
-        Cut SDK{' '}
-        <strong>time to interactive by 11% at p50 and 12% at p95</strong>{' '}
-        through code-splitting, an explicit browser-support floor that let
-        legacy polyfills go, and phasing bootstrap into critical and deferred
-        work. Modelled at a 0.3-1.9% revenue lift depending on percentile.
-      </>,
-      <>
-        Rebuilt the on-call surface ahead of new engineers joining the rotation:
-        replaced a stale 9-code runbook with one covering the{' '}
-        <strong>~150 error codes the SDK actually emits</strong>, and added
-        back-tested per-code monitors.
+        Rebuilt the on-call surface ahead of new engineers joining the rotation.
+        Introduced a <strong>diagnose-alerts skill</strong> to help engineers
+        diagnose SDK issues.
       </>,
       <>
         Acted as the{' '}

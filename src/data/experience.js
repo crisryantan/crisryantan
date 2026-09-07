@@ -15,11 +15,7 @@ const experience = [
         Built the <strong>contract-testing (Pact) program</strong> from a
         single-repo experiment into cross-platform infrastructure covering all
         three SDK consumers (web, iOS, Android), the transactions provider, and
-        the server-to-server surface. Own the broker end to end, including
-        patching a <strong>critical (CVSS 10.0) CVE</strong>. Contract drift now
-        fails at PR time instead of in production, cutting a break's blast
-        radius from a whole release train to a single PR during the platform's
-        largest API migration.
+        the server-to-server surface.
       </>,
       <>
         Shipped the <strong>v2 offers path on both mobile SDKs</strong>: built

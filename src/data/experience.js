@@ -7,9 +7,62 @@ import React from 'react'
 const experience = [
   {
     role: 'Senior Software Engineer',
+    company: 'Rokt',
+    location: 'Sydney, Australia',
+    period: 'Feb 2026 - Present',
+    bullets: [
+      <>
+        Moved the web SDK's offer-selection path onto the platform's{' '}
+        <strong>new backend architecture</strong>, ramping partner by partner
+        behind routing controls with parity checks and per-partner monitoring at
+        each step, so any revenue impact stayed visible and reversible.
+      </>,
+      <>
+        Introduced <strong>contract testing (Pact)</strong> to de-risk that
+        migration, growing it from a single-repo experiment into shared
+        infrastructure across all three SDK consumers (web, iOS, Android), the
+        transactions provider, and the server-to-server surface, so client and
+        server drift surfaces at review time rather than after release.
+      </>,
+      <>
+        Modernised the web SDK's build and CI by consolidating on Nx with
+        affected-only scoping, sharding the PR pipeline, migrating npm to bun,
+        and surfacing bundle size per PR.{' '}
+        <strong>Cut PR build time by ~45% and mainline by ~33%</strong>, roughly
+        halving what the team waits on for every change.
+      </>,
+      <>
+        Cut SDK{' '}
+        <strong>time to interactive by 11% at p50 and 12% at p95</strong>{' '}
+        through code-splitting, an explicit browser-support floor that let
+        legacy polyfills go, and phasing bootstrap into critical and deferred
+        work. Modelled at a 0.3-1.9% revenue lift depending on percentile.
+      </>,
+      <>
+        Rebuilt the on-call surface ahead of new engineers joining the rotation:
+        replaced a stale 9-code runbook with one covering the{' '}
+        <strong>~150 error codes the SDK actually emits</strong>, and added
+        back-tested per-code monitors.
+      </>,
+      <>
+        Acted as the{' '}
+        <strong>SDK technical expert during partner onboarding</strong>,
+        fielding integration questions and clearing blockers for partners
+        including <strong>Cinemark, eBay, and Kroger</strong>.
+      </>,
+      <>
+        Invested in team leverage: guardrails for AI-generated code and
+        performance guidelines in <code>AGENTS.md</code> that keep
+        render-latency regressions from reaching partner pages, plus reusable
+        playbooks for pitching and code review.
+      </>,
+    ],
+  },
+  {
+    role: 'Senior Software Engineer',
     company: 'Lorikeet',
     location: 'Sydney, Australia',
-    period: 'Sept 2025 - Present',
+    period: 'Sept 2025 - Feb 2026',
     bullets: [
       <>
         Shipped <strong>Concierge</strong>, rebuilding Brands into Concierges as

@@ -27,17 +27,25 @@ const skillGroups = [
   {
     title: 'Testing & Tools',
     items: [
-      'Jest, Unit Testing',
-      'Integration & E2E Testing',
+      'Jest, Vitest, Playwright',
+      'Contract Testing (Pact)',
       'Webpack, Rollup, Storybook',
     ],
   },
   {
     title: 'DevOps & Performance',
     items: [
-      'Git, GitHub, CircleCI, Buildkite',
+      'Buildkite, CircleCI, Nx, Bun',
       'Lazy Loading, Code Splitting',
       'Tree Shaking, Caching',
+    ],
+  },
+  {
+    title: 'Observability & Experimentation',
+    items: [
+      'Datadog Monitors & Runbooks',
+      'A/B Design & Analysis',
+      'SQL, Trino Analytics',
     ],
   },
   {

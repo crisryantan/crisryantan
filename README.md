@@ -138,6 +138,23 @@ const socialLinks = [
 
 The blog posts are located in `src/pages/blog/` directory. Each blog post is a separate React component. You can add new blog posts by creating new files in this directory or updating the blog post data in `src/pages/index.js`.
 
+### Résumé
+
+`static/resume.pdf` and `static/resume.docx` are generated, not hand-edited. Edit the
+content in `resume/resume.data.mjs`, then:
+
+```bash
+npm run resume
+```
+
+That writes `resume/resume.html` (the designed two-column source, openable in a browser),
+prints it to `static/resume.pdf` with headless Chrome, and writes a single-column
+`static/resume.docx` for recruiters and ATS. No extra npm dependencies — it uses the
+local Google Chrome and the system `zip`.
+
+Keep `resume/resume.data.mjs` and `src/data/experience.js` in step. The older roles carry
+a trimmed bullet set in the résumé so it stays two pages.
+
 ### 5. Experience
 
 Update your work experience in `src/pages/index.js`:

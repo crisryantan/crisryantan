@@ -72,6 +72,18 @@ const Contact = () => (
           </MagneticButton>
         </Reveal>
 
+        <Reveal
+          as="p"
+          className="mt-4 text-sm text-blitz-charcoal/60"
+          delay={0.15}
+        >
+          Also available as a{' '}
+          <a href="/resume.docx" className="link-hover font-medium">
+            Word document
+          </a>
+          .
+        </Reveal>
+
         <Stagger
           className="mx-auto mt-12 grid max-w-md gap-6 sm:grid-cols-2"
           stagger={0.12}

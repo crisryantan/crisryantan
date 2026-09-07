@@ -36,6 +36,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
+    "resume": "node resume/build.mjs",
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",

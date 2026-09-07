@@ -7,9 +7,79 @@ import React from 'react'
 const experience = [
   {
     role: 'Senior Software Engineer',
+    company: 'Rokt',
+    location: 'Sydney, Australia',
+    period: 'Feb 2026 - Present',
+    bullets: [
+      <>
+        Built the <strong>contract-testing (Pact) program</strong> from a
+        single-repo experiment into cross-platform infrastructure covering all
+        three SDK consumers (web, iOS, Android), the transactions provider, and
+        the server-to-server surface. Own the broker end to end, including
+        patching a <strong>critical (CVSS 10.0) CVE</strong>. Contract drift now
+        fails at PR time instead of in production, cutting a break's blast
+        radius from a whole release train to a single PR during the platform's
+        largest API migration.
+      </>,
+      <>
+        Shipped the <strong>v2 offers path on both mobile SDKs</strong>: built
+        Android end to end, structured so retiring v1 later is a clean delete,
+        and carried a teammate's in-flight iOS work through to merged and
+        verified live against the provider.
+      </>,
+      <>
+        Modernised the web SDK's build and CI by consolidating on Nx with
+        affected-only scoping, sharding the PR pipeline, migrating npm to bun,
+        and surfacing bundle size per PR.{' '}
+        <strong>Roughly halved pipeline time</strong> (PR builds ~16 to 8-9 min,
+        mainline ~45 to ~30 min), an estimated{' '}
+        <strong>153-173 engineering hours saved per quarter</strong> across the
+        team.
+      </>,
+      <>
+        Traced a <strong>~325ms p95 render-latency regression</strong> on a
+        top-tier partner to always-on runtime code a rollout had introduced
+        behind a kill switch that could not fully disable it, and shipped the
+        fixes that <strong>recovered ~247ms</strong>, validated across 7.6M
+        sessions.
+      </>,
+      <>
+        Cut SDK{' '}
+        <strong>time to interactive by 11% at p50 and 12% at p95</strong>{' '}
+        through code-splitting, an explicit browser-support floor that let
+        legacy polyfills go, and phasing bootstrap into critical and deferred
+        work. Modelled at a 0.3-1.9% revenue lift depending on percentile.
+      </>,
+      <>
+        Rebuilt the on-call surface ahead of new engineers joining the rotation:
+        replaced a stale 9-code runbook with one covering the{' '}
+        <strong>~150 error codes the SDK actually emits</strong>, added
+        back-tested per-code monitors, and caught a silently soft-failing
+        Terraform step that had left 35 merged monitor changes undeployed.
+      </>,
+      <>
+        Ran the investigations that kept the migration window honest:
+        reclassified a reported multi-advertiser revenue loss down to the
+        handful actually affected, refuted a mis-tagging premise with the real
+        mechanism, and diagnosed a <strong>cookie public-suffix bug</strong>{' '}
+        where domain fallback resolved a partner's parent domain to a suffix
+        browsers reject, silently breaking first-party session continuity across
+        their subdomains during go-live.
+      </>,
+      <>
+        Invested in team leverage: guardrails for AI-generated code and
+        performance guidelines in <code>AGENTS.md</code>, reusable playbooks for
+        pitching and code review, three engineering initiatives pitched through
+        the internal accelerator, and an upstream fix merged into the
+        open-source <strong>testcafe-hammerhead</strong> project.
+      </>,
+    ],
+  },
+  {
+    role: 'Senior Software Engineer',
     company: 'Lorikeet',
     location: 'Sydney, Australia',
-    period: 'Sept 2025 - Present',
+    period: 'Sept 2025 - Feb 2026',
     bullets: [
       <>
         Shipped <strong>Concierge</strong>, rebuilding Brands into Concierges as

@@ -12,16 +12,17 @@ const experience = [
     period: 'Feb 2026 - Present',
     bullets: [
       <>
-        Built the <strong>contract-testing (Pact) program</strong> from a
-        single-repo experiment into cross-platform infrastructure covering all
-        three SDK consumers (web, iOS, Android), the transactions provider, and
-        the server-to-server surface.
-      </>,
-      <>
         Moved the web SDK's offer-selection path onto the platform's{' '}
         <strong>new backend architecture</strong>, ramping partner by partner
         behind routing controls with parity checks and per-partner monitoring at
         each step, so any revenue impact stayed visible and reversible.
+      </>,
+      <>
+        Introduced <strong>contract testing (Pact)</strong> to de-risk that
+        migration, growing it from a single-repo experiment into shared
+        infrastructure across all three SDK consumers (web, iOS, Android), the
+        transactions provider, and the server-to-server surface, so client and
+        server drift surfaces at review time rather than after release.
       </>,
       <>
         Modernised the web SDK's build and CI by consolidating on Nx with

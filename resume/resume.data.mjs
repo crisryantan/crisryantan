@@ -88,12 +88,12 @@ export const experience = [
     period: 'Feb 2026 - Present',
     bullets: [
       'Built the contract-testing (Pact) program from a single-repo experiment into cross-platform infrastructure covering all three SDK consumers (web, iOS, Android), the transactions provider, and the server-to-server surface.',
-      'Shipped the v2 offers path on both mobile SDKs: built Android end to end, structured so retiring v1 later is a clean delete, and carried a teammate’s in-flight iOS work through to merged and verified live against the provider.',
+      'Moved the web SDK’s offer-selection path onto the platform’s new backend architecture, ramping partner by partner behind routing controls with parity checks and per-partner monitoring at each step, so any revenue impact stayed visible and reversible.',
       'Modernised the web SDK’s build and CI by consolidating on Nx with affected-only scoping, sharding the PR pipeline, migrating npm to bun, and surfacing bundle size per PR. Roughly halved pipeline time (PR builds ~16 to 8-9 min, mainline ~45 to ~30 min), an estimated 153-173 engineering hours saved per quarter across the team.',
-      'Cut SDK time to interactive by 11% at p50 and 12% at p95 through code-splitting, an explicit browser-support floor that let legacy polyfills go, and phasing bootstrap into critical and deferred work. Separately traced a ~325ms p95 render-latency regression on a top-tier partner to always-on code a rollout had left behind an incomplete kill switch, recovering ~247ms across 7.6M sessions.',
+      'Cut SDK time to interactive by 11% at p50 and 12% at p95 through code-splitting, an explicit browser-support floor that let legacy polyfills go, and phasing bootstrap into critical and deferred work. Modelled at a 0.3-1.9% revenue lift depending on percentile.',
       'Rebuilt the on-call surface ahead of new engineers joining the rotation: replaced a stale 9-code runbook with one covering the ~150 error codes the SDK actually emits, added back-tested per-code monitors, and caught a silently soft-failing Terraform step that had left 35 merged monitor changes undeployed.',
-      'Ran the investigations that kept the migration window honest, reclassifying a reported multi-advertiser revenue loss down to the handful actually affected, and diagnosed a cookie public-suffix bug where domain fallback resolved a partner’s parent domain to a suffix browsers reject, silently breaking first-party session continuity across their subdomains during go-live.',
-      'Invested in team leverage: guardrails for AI-generated code and performance guidelines in AGENTS.md, reusable playbooks for pitching and code review, three engineering initiatives pitched through the internal accelerator, and an upstream fix merged into the open-source testcafe-hammerhead project.',
+      'Acted as the SDK technical expert during partner onboarding, fielding integration questions and clearing blockers for partners including Cinemark, eBay, and Kroger.',
+      'Invested in team leverage: guardrails for AI-generated code and performance guidelines in AGENTS.md that keep render-latency regressions from reaching partner pages, plus reusable playbooks for pitching and code review.',
     ],
   },
   {

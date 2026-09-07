@@ -40,9 +40,8 @@ const experience = [
       <>
         Rebuilt the on-call surface ahead of new engineers joining the rotation:
         replaced a stale 9-code runbook with one covering the{' '}
-        <strong>~150 error codes the SDK actually emits</strong>, added
-        back-tested per-code monitors, and caught a silently soft-failing
-        Terraform step that had left 35 merged monitor changes undeployed.
+        <strong>~150 error codes the SDK actually emits</strong>, and added
+        back-tested per-code monitors.
       </>,
       <>
         Acted as the{' '}

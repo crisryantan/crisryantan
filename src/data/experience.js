@@ -27,10 +27,8 @@ const experience = [
         Modernised the web SDK's build and CI by consolidating on Nx with
         affected-only scoping, sharding the PR pipeline, migrating npm to bun,
         and surfacing bundle size per PR.{' '}
-        <strong>Roughly halved pipeline time</strong> (PR builds ~16 to 8-9 min,
-        mainline ~45 to ~30 min), an estimated{' '}
-        <strong>153-173 engineering hours saved per quarter</strong> across the
-        team.
+        <strong>Cut PR build time by ~45% and mainline by ~33%</strong>, roughly
+        halving what the team waits on for every change.
       </>,
       <>
         Cut SDK{' '}

@@ -52,6 +52,16 @@ const icon = {
   ),
 }
 
+/* Letters step down the circle's diagonal, the way the original mark reads. */
+const monogram = [...profile.initials]
+  .map((ch, i, all) => {
+    const t = all.length === 1 ? 0.5 : i / (all.length - 1)
+    const top = 3.4 + t * 12.4
+    const left = 5.4 + t * 10.6
+    return `<span style="top:${top.toFixed(2)}mm;left:${left.toFixed(2)}mm">${esc(ch)}</span>`
+  })
+  .join('')
+
 const html = `<!doctype html>
 <html lang="en">
 <head>
@@ -114,11 +124,10 @@ const html = `<!doctype html>
     position: absolute;
     font-family: 'Lato', sans-serif;
     font-weight: 400;
-    font-size: 16pt;
+    font-size: 13pt;
+    line-height: 1;
     color: #fff;
   }
-  .mark span:first-child { top: 3.4mm; left: 5.6mm; }
-  .mark span:last-child  { bottom: 2.6mm; right: 5.6mm; }
 
   .side-h {
     font-family: 'Lato', sans-serif;
@@ -199,7 +208,7 @@ const html = `<!doctype html>
 <body>
 
 <aside class="sidebar">
-  <div class="mark"><span>${esc(profile.initials[0])}</span><span>${esc(profile.initials[1])}</span></div>
+  <div class="mark">${monogram}</div>
 
   <h2 class="side-h">Contact</h2>
   <div class="contact-row">${icon.phone}<span>${esc(profile.phoneAu)} (AU)</span></div>

@@ -5,13 +5,13 @@
  *
  * Kept as plain data (no JSX) so it can run under plain node. It mirrors
  * src/data/experience.js; when you change one, change the other. The older
- * roles carry a trimmed bullet set here so the résumé stays two pages -- the
- * site has room for the full list, a printed page does not.
+ * Leadbook and Tritontek roles carry a trimmed bullet set here so the résumé
+ * stays two pages -- the site has room for the full list, a printed page does not.
  */
 
 export const profile = {
   name: 'Cris Ryan Tan',
-  initials: 'CT',
+  initials: 'CRT',
   title: 'Software Engineer',
   phoneAu: '+61 433 697 883',
   phoneUs: '+1 201 978 7227',
@@ -120,8 +120,10 @@ export const experience = [
     bullets: [
       'Developed and maintained a robust frontend SDK, empowering enterprises to deliver targeted advertising seamlessly on e-commerce sites and apps.',
       'Achieved a 30% reduction in SDK load time and a 40% decrease in script size, significantly improving performance and user experience.',
+      'Built and maintained client-side UI components displayed as offers to customers using React, TypeScript, Redux, and RxJS.',
       'Adoption at scale: the SDK is deployed across top-tier companies including Ticketmaster, Best Buy, Domino’s, and AMC Theatres, powering customer engagement across millions of users.',
       'High-volume transactions: designed and developed an SDK handling over a million transactions daily, generating almost $2 million in daily revenue.',
+      'Established and enforced coding standards and best practices, and maintained app deployments through CI/CD pipelines.',
       'Implemented guardrails by adding integration tests, visual regression tests, and end-to-end tests to ensure application robustness and reliability.',
     ],
   },

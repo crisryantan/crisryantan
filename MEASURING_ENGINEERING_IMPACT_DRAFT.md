@@ -1,6 +1,6 @@
-# Paying Off Tech Debt Is the Easy Part. Proving It Mattered Is the Job.
+# What Is Your Work Actually Worth? Two Skills for Measuring Impact
 
-*August 30, 2026 · 7 min read · Performance*
+*September 18, 2026 · 6 min read · Performance*
 
 Have you ever wondered how much your work is actually worth to the business?
 

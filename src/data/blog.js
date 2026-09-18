@@ -5,14 +5,13 @@
 const blogPosts = [
   {
     id: 0,
-    title:
-      "10-12% Off Our SDK's Time to Interactive, and the A/B Skills That Measured It",
+    title: 'What Is Your Work Actually Worth? Two Skills for Measuring Impact',
     excerpt:
-      "Two changes cut Rokt's web SDK time to interactive by 11% at p50 and 12% at p95. Here's how we tested the result and connected latency to revenue.",
-    date: 'August 30, 2026',
-    readTime: '8 min read',
+      "Refactors, infra work and CI wins rarely survive the question 'so what did that get us?' Here are the two Claude Skills I built to measure impact properly.",
+    date: 'September 18, 2026',
+    readTime: '6 min read',
     category: 'Performance',
-    link: '/blog/proving-performance-wins',
+    link: '/blog/measuring-engineering-impact',
   },
   {
     id: 1,

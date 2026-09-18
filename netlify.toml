@@ -13,6 +13,18 @@
   framework = "gatsby"
 
 [[redirects]]
+  from = "/blog/proving-performance-wins"
+  to = "/blog/measuring-engineering-impact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/proving-performance-wins/"
+  to = "/blog/measuring-engineering-impact/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200 

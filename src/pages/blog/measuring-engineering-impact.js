@@ -205,8 +205,8 @@ const MeasuringEngineeringImpactPage = () => {
 
       <p>
         Every hop dilutes the effect, and every hop multiplies the data you
-        need. For us it was the difference between proving a latency win before
-        lunch and needing a quarter to say anything about revenue. When the
+        need. For us it was the difference between proving a latency win in an
+        afternoon and needing a quarter to say anything about revenue. When the
         claim you want turns out to be unaffordable, the skill says so before
         anyone commits: claim the nearer metric instead, pick a cheaper one, or
         bundle several changes into a single experiment and accept that the

@@ -12,9 +12,7 @@ A run of performance improvements I shipped to our web SDK made it meaningfully 
 
 There is a particular satisfaction in refactoring a system you know well enough to see the opportunities sitting in it.
 
-Those opportunities never show up in a sprint. They do not break anything and they do not page anyone. They quietly cost everyone a little, forever.
-
-So I took a run at it. The work fell into two piles.
+For this one I went after web performance. The work fell into two piles.
 
 **Load less JavaScript before render.** Code-split what most sessions never touch.
 

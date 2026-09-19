@@ -35,7 +35,7 @@ const MeasuringEngineeringImpactPage = () => {
         properly. So answering it became the project.
       </p>
 
-      <h2>Paying Off the Debt</h2>
+      <h2>What I Shipped</h2>
 
       <p>
         There is a particular satisfaction in refactoring a system you know well

@@ -8,7 +8,7 @@ The feature you shipped last quarter is the easy case. It is on the screen, some
 
 A run of performance improvements I shipped to our web SDK made it meaningfully faster, and I still could not answer that question properly. So answering it became the project.
 
-## Paying Off the Debt
+## What I Shipped
 
 There is a particular satisfaction in refactoring a system you know well enough to see the opportunities sitting in it. The SDK had plenty, starting with a startup path that awaited work it did not need to await.
 

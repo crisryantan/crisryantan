@@ -6,7 +6,7 @@ Have you ever wondered how much your work is actually worth to the business?
 
 The refactor. The module you untangled so the next person could change it safely. The button you changed from grey to blue. The page you made load a second faster. The twenty minutes you took off the CI pipeline, multiplied by every engineer, every day, for as long as the repo lives. That work is real and the value is real, and almost none of it survives the question "so what did that get us?"
 
-A run of performance improvements I shipped to our web SDK made it meaningfully faster, and I still could not answer that question properly. What I wanted was to be able to report it upward in a way that held up.
+A run of performance improvements I shipped to our web SDK made it meaningfully faster. I wanted to answer that question properly and back it with data. Did it increase revenue, did it lift page impressions, did it move anything the business already cares about? Whatever I change, we should be able to measure what it was worth.
 
 ## What I Shipped
 

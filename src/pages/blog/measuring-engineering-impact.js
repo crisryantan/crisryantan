@@ -30,9 +30,10 @@ const MeasuringEngineeringImpactPage = () => {
 
       <p>
         A run of performance improvements I shipped to our web SDK made it
-        meaningfully faster, and I still could not answer that question
-        properly. What I wanted was to be able to report it upward in a way that
-        held up.
+        meaningfully faster. I wanted to answer that question properly and back
+        it with data. Did it increase revenue, did it lift page impressions, did
+        it move anything the business already cares about? Whatever I change, we
+        should be able to measure what it was worth.
       </p>
 
       <h2>What I Shipped</h2>

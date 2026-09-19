@@ -285,7 +285,7 @@ const MeasuringEngineeringImpactPage = () => {
       </p>
 
       <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-8 rounded-lg my-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           <div>
             <p className="text-3xl font-bold text-blitz-accent">
               <CountUp value={11} prefix="−" suffix="%" />
@@ -300,22 +300,6 @@ const MeasuringEngineeringImpactPage = () => {
             </p>
             <p className="text-sm text-blitz-charcoal/70">
               Time to interactive at p95
-            </p>
-          </div>
-          <div>
-            <p className="text-3xl font-bold text-blitz-accent">
-              <CountUp value={0.3} decimals={1} suffix="–0.5%" />
-            </p>
-            <p className="text-sm text-blitz-charcoal/70">
-              Modeled revenue impact at p50
-            </p>
-          </div>
-          <div>
-            <p className="text-3xl font-bold text-blitz-accent">
-              <CountUp value={1.4} decimals={1} suffix="–1.9%" />
-            </p>
-            <p className="text-sm text-blitz-charcoal/70">
-              Modeled revenue impact at p95
             </p>
           </div>
         </div>
@@ -336,10 +320,11 @@ const MeasuringEngineeringImpactPage = () => {
       </p>
 
       <p>
-        On revenue, the holdback showed revenue per transaction moving{' '}
-        <strong>+0.20%</strong>. The direction matched the model. It was not
-        statistically significant at that sample size, so it is supporting
-        evidence, not a proven revenue increase.
+        Run through the delay model, that time saved converts into a revenue
+        number large enough to matter at fleet scale. The holdback itself moved
+        revenue per transaction in the same direction the model predicted, but
+        not far enough to clear significance at that sample size, so I treat it
+        as supporting evidence rather than a proven revenue increase.
       </p>
 
       <h2>So, What Do You Tell Your Manager?</h2>

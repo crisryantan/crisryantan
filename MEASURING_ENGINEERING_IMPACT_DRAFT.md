@@ -79,14 +79,12 @@ This is where the number stopped being something I quoted and became something I
 | --- | --- |
 | **−11%** | Time to interactive at p50 |
 | **−12%** | Time to interactive at p95 |
-| **0.3–0.5%** | Modeled revenue impact at p50 |
-| **1.4–1.9%** | Modeled revenue impact at p95 |
 
 Holding the same proportional improvement out at p95 was the part I was happiest about. Those are the sessions on slow devices and bad networks, where the absolute time saved is largest.
 
 Two changes turned out to be responsible for most of it, and I could not have told you in advance which two. Neither made an individual calculation faster. One reduced how much JavaScript had to arrive and be parsed before render, the other moved nonessential work until after it. Both shortened the path the user actually waits on.
 
-On revenue, the holdback showed revenue per transaction moving **+0.20%**. The direction matched the model. It was not statistically significant at that sample size, so it is supporting evidence, not a proven revenue increase.
+Run through the delay model, that time saved converts into a revenue number large enough to matter at fleet scale. The holdback itself moved revenue per transaction in the same direction the model predicted, but not far enough to clear significance at that sample size, so I treat it as supporting evidence rather than a proven revenue increase.
 
 ## So, What Do You Tell Your Manager?
 

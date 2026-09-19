@@ -189,7 +189,7 @@ const MeasuringEngineeringImpactPage = () => {
               One step downstream of it
             </td>
             <td className="border border-blitz-charcoal/20 p-3 font-medium">
-              Weeks
+              Days to weeks
             </td>
           </tr>
           <tr>
@@ -197,7 +197,7 @@ const MeasuringEngineeringImpactPage = () => {
               The business outcome at the end of the chain
             </td>
             <td className="border border-blitz-charcoal/20 p-3 font-medium text-blitz-charcoal/60">
-              Months, if ever
+              Weeks, sometimes never
             </td>
           </tr>
         </tbody>
@@ -205,12 +205,14 @@ const MeasuringEngineeringImpactPage = () => {
 
       <p>
         Every hop dilutes the effect, and every hop multiplies the data you
-        need. For us it was the difference between proving a latency win in an
-        afternoon and needing a quarter to say anything about revenue. When the
-        claim you want turns out to be unaffordable, the skill says so before
-        anyone commits: claim the nearer metric instead, pick a cheaper one, or
-        bundle several changes into a single experiment and accept that the
-        result belongs to the bundle.
+        need. What decides the cost is not the distance itself but how much of
+        the effect survives it. A change that moves revenue directly can resolve
+        in days. Ours reached revenue through two intermediate steps and arrived
+        as a sliver, which is why the latency win took an afternoon and the
+        revenue question took a quarter. When the claim you want turns out to be
+        unaffordable, the skill says so before anyone commits: claim the nearer
+        metric instead, pick a cheaper one, or bundle several changes into a
+        single experiment and accept that the result belongs to the bundle.
       </p>
 
       <p>

@@ -320,11 +320,11 @@ const MeasuringEngineeringImpactPage = () => {
       </p>
 
       <p>
-        Run through the delay model, that time saved converts into a revenue
-        number large enough to matter at fleet scale. The holdback itself moved
-        revenue per transaction in the same direction the model predicted, but
-        not far enough to clear significance at that sample size, so I treat it
-        as supporting evidence rather than a proven revenue increase.
+        Run through the delay model, that time saved converts into a significant
+        revenue impact at fleet scale. The holdback itself moved revenue per
+        transaction in the same direction the model predicted, though not by
+        enough to separate it from noise at that sample size, so I treat it as
+        supporting evidence rather than a proven revenue increase.
       </p>
 
       <h2>So, What Do You Tell Your Manager?</h2>

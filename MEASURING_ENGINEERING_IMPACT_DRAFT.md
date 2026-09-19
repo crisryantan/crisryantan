@@ -84,7 +84,7 @@ Holding the same proportional improvement out at p95 was the part I was happiest
 
 Two changes turned out to be responsible for most of it, and I could not have told you in advance which two. Neither made an individual calculation faster. One reduced how much JavaScript had to arrive and be parsed before render, the other moved nonessential work until after it. Both shortened the path the user actually waits on.
 
-Run through the delay model, that time saved converts into a revenue number large enough to matter at fleet scale. The holdback itself moved revenue per transaction in the same direction the model predicted, but not far enough to clear significance at that sample size, so I treat it as supporting evidence rather than a proven revenue increase.
+Run through the delay model, that time saved converts into a significant revenue impact at fleet scale. The holdback itself moved revenue per transaction in the same direction the model predicted, though not by enough to separate it from noise at that sample size, so I treat it as supporting evidence rather than a proven revenue increase.
 
 ## So, What Do You Tell Your Manager?
 

@@ -63,7 +63,7 @@ const MeasuringEngineeringImpactPage = () => {
 
       <p>This was, genuinely, good work. And then came the question.</p>
 
-      <h2>The Question That Follows a Good Refactor</h2>
+      <h2>The Question That Follows Good Work</h2>
 
       <p className="text-xl font-semibold text-blitz-primary my-8">
         "Nice. What did that get us?"
@@ -108,8 +108,8 @@ const MeasuringEngineeringImpactPage = () => {
 
       <p>
         Measuring it properly meant running an A/B test, and getting that right
-        turned out to be harder than the optimizations had been. I had already
-        written about{' '}
+        turned out to be harder than the changes themselves had been. I had
+        already written about{' '}
         <Link
           to="/blog/claude-skills-institutional-knowledge"
           className="text-blitz-accent hover:underline"
@@ -319,11 +319,12 @@ const MeasuringEngineeringImpactPage = () => {
       </p>
 
       <p>
-        Run through the delay model, that time saved converts into a significant
-        revenue impact at fleet scale. The holdback itself moved revenue per
-        transaction in the same direction the model predicted, though not by
-        enough to separate it from noise at that sample size, so I treat it as
-        supporting evidence rather than a proven revenue increase.
+        We had already measured what a second of latency costs us. Run that
+        model forward and the time saved converts into a significant revenue
+        impact at fleet scale. The holdback itself moved revenue per transaction
+        in the same direction the model predicted, though not by enough to
+        separate it from noise at that sample size, so I treat it as supporting
+        evidence rather than a proven revenue increase.
       </p>
 
       <h2>So, What Do You Tell Your Manager?</h2>
@@ -335,15 +336,15 @@ const MeasuringEngineeringImpactPage = () => {
 
       <ol className="space-y-3 my-6">
         <li>
-          <strong>The system is faster.</strong> Measured against a randomized
+          <strong>The metric moved.</strong> Measured against a randomized
           control.
         </li>
         <li>
-          <strong>It is faster because of my change.</strong> What I touched
-          moved, and what I did not touch stayed put.
+          <strong>It moved because of my change.</strong> What I touched moved,
+          and what I did not touch stayed put.
         </li>
         <li>
-          <strong>That speed is plausibly worth this much.</strong> Modeled, and
+          <strong>That move is plausibly worth this much.</strong> Modeled, and
           labelled as modeled every time.
         </li>
         <li>
@@ -366,9 +367,9 @@ const MeasuringEngineeringImpactPage = () => {
       </p>
 
       <p>
-        That chain has to be designed alongside the optimization, not assembled
-        the week before a performance review. <code>ab-setup</code> starts from
-        the expected change, its user-facing metric, and the business outcome it
+        That chain has to be designed alongside the work, not assembled the week
+        before a performance review. <code>ab-setup</code> starts from the
+        expected change, its user-facing metric, and the business outcome it
         might influence. <code>ab-diagnose</code> walks the same chain back
         through the data and reports where the evidence stops.
       </p>
@@ -376,7 +377,7 @@ const MeasuringEngineeringImpactPage = () => {
       <h2>Closing Thoughts</h2>
 
       <p>
-        None of this means "just A/B test your refactors." It worked because the
+        None of this means "just A/B test everything." It worked because the
         change had a user-facing metric hanging off it, already instrumented and
         already tied to a revenue relationship somebody had measured properly.
         Plenty of good work has nothing like that, and there the honest move is
@@ -388,8 +389,8 @@ const MeasuringEngineeringImpactPage = () => {
         "11-12% faster, here is what that is plausibly worth, and here is what I
         have not proven" is almost entirely method. The SDK ended up faster and
         easier for the next person to work in. The more durable win was the
-        method itself, which now lives in two skills that show up when the work
-        starts rather than in a document somebody has to remember exists.
+        method itself. It now lives in two skills that show up when the work
+        starts, rather than in a document somebody has to remember exists.
       </p>
 
       <p>

@@ -22,7 +22,7 @@ A dozen smaller things helped too.
 
 This was, genuinely, good work. And then came the question.
 
-## The Question That Follows a Good Refactor
+## The Question That Follows Good Work
 
 "Nice. What did that get us?"
 
@@ -40,7 +40,7 @@ Rokt had also run a controlled delay study estimating how revenue changes with e
 
 ## Two Skills, One for Each Half of the Problem
 
-Measuring it properly meant running an A/B test, and getting that right turned out to be harder than the optimizations had been. I had already written about [turning personal expertise into Claude Skills](https://www.crisryantan.com/blog/claude-skills-institutional-knowledge/), so I split the method in two. One skill sets an experiment up so the data you will need exists. The other reads that data once it is flowing. They happen months apart and fail in completely different ways, which is why they are two skills rather than one.
+Measuring it properly meant running an A/B test, and getting that right turned out to be harder than the changes themselves had been. I had already written about [turning personal expertise into Claude Skills](https://www.crisryantan.com/blog/claude-skills-institutional-knowledge/), so I split the method in two. One skill sets an experiment up so the data you will need exists. The other reads that data once it is flowing. They happen months apart and fail in completely different ways, which is why they are two skills rather than one.
 
 ### `ab-setup`: make the change measurable before it ships
 
@@ -84,27 +84,27 @@ Holding the same proportional improvement out at p95 was the part I was happiest
 
 Two changes turned out to be responsible for most of it, and I could not have told you in advance which two. Neither made an individual calculation faster. One reduced how much JavaScript had to arrive and be parsed before render, the other moved nonessential work until after it. Both shortened the path the user actually waits on.
 
-Run through the delay model, that time saved converts into a significant revenue impact at fleet scale. The holdback itself moved revenue per transaction in the same direction the model predicted, though not by enough to separate it from noise at that sample size, so I treat it as supporting evidence rather than a proven revenue increase.
+We had already measured what a second of latency costs us. Run that model forward and the time saved converts into a significant revenue impact at fleet scale. The holdback itself moved revenue per transaction in the same direction the model predicted, though not by enough to separate it from noise at that sample size, so I treat it as supporting evidence rather than a proven revenue increase.
 
 ## So, What Do You Tell Your Manager?
 
 "What was the impact?" is really four claims, and each one needs more evidence:
 
-1. **The system is faster.** Measured against a randomized control.
-2. **It is faster because of my change.** What I touched moved, and what I did not touch stayed put.
-3. **That speed is plausibly worth this much.** Modeled, and labelled as modeled every time.
+1. **The metric moved.** Measured against a randomized control.
+2. **It moved because of my change.** What I touched moved, and what I did not touch stayed put.
+3. **That move is plausibly worth this much.** Modeled, and labelled as modeled every time.
 4. **The business outcome moved.** Directional, underpowered, honestly captioned.
 
 Most of these conversations fail because someone claims the fourth and can only support the first. A reasonable question gets asked, the number does not hold, and the whole thing collapses back to "trust me, it's better," which is worse than where it started.
 
 So I say them in order, and stop where the evidence stops. "This part is measured, this part is modeled, this part I have not proven" lands better than one confident number with nothing underneath it.
 
-That chain has to be designed alongside the optimization, not assembled the week before a performance review. `ab-setup` starts from the expected change, its user-facing metric, and the business outcome it might influence. `ab-diagnose` walks the same chain back through the data and reports where the evidence stops.
+That chain has to be designed alongside the work, not assembled the week before a performance review. `ab-setup` starts from the expected change, its user-facing metric, and the business outcome it might influence. `ab-diagnose` walks the same chain back through the data and reports where the evidence stops.
 
 ## Closing Thoughts
 
-None of this means "just A/B test your refactors." It worked because the change had a user-facing metric hanging off it, already instrumented and already tied to a revenue relationship somebody had measured properly. Plenty of good work has nothing like that, and there the honest move is to say so rather than attach a number that does not belong to it.
+None of this means "just A/B test everything." It worked because the change had a user-facing metric hanging off it, already instrumented and already tied to a revenue relationship somebody had measured properly. Plenty of good work has nothing like that, and there the honest move is to say so rather than attach a number that does not belong to it.
 
-But when a metric is available, the gap between "it feels faster" and "11-12% faster, here is what that is plausibly worth, and here is what I have not proven" is almost entirely method. The SDK ended up faster and easier for the next person to work in. The more durable win was the method itself, which now lives in two skills that show up when the work starts rather than in a document somebody has to remember exists.
+But when a metric is available, the gap between "it feels faster" and "11-12% faster, here is what that is plausibly worth, and here is what I have not proven" is almost entirely method. The SDK ended up faster and easier for the next person to work in. The more durable win was the method itself. It now lives in two skills that show up when the work starts, rather than in a document somebody has to remember exists.
 
 So, back to the question at the top. Whatever you are working on right now is probably worth more than you can currently prove. Set the measurement up before you ship, and you get to show that impact for you and your team.

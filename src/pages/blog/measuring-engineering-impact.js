@@ -32,15 +32,15 @@ const MeasuringEngineeringImpactPage = () => {
       <p>
         A run of performance improvements I shipped to our web SDK made it
         meaningfully faster, and I still could not answer that question
-        properly. So answering it became the project.
+        properly. What I wanted was to be able to report it upward in a way that
+        held up.
       </p>
 
       <h2>What I Shipped</h2>
 
       <p>
         There is a particular satisfaction in refactoring a system you know well
-        enough to see the opportunities sitting in it. The SDK had plenty,
-        starting with a startup path that awaited work it did not need to await.
+        enough to see the opportunities sitting in it.
       </p>
 
       <p>
@@ -80,12 +80,14 @@ const MeasuringEngineeringImpactPage = () => {
         measurement, not an impact.
       </p>
 
-      <p>
-        So the project became: measure it properly, and be precise about where
-        the evidence runs out.
-      </p>
+      <p>So the project became: measure it properly.</p>
 
-      <h2>We're a Guest on Someone Else's Page</h2>
+      <h2>Why Time to Interactive</h2>
+
+      <p>
+        The metric you pick decides what you are able to claim later, so it is
+        worth choosing deliberately.
+      </p>
 
       <p>
         Our SDK renders offers inside our partners' checkout and confirmation

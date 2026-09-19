@@ -6,11 +6,11 @@ Have you ever wondered how much your work is actually worth to the business?
 
 The feature you shipped last quarter is the easy case. It is on the screen, someone can use it. The hard cases are everything else. The refactor. The module you untangled so the next person could change it safely. The twenty minutes you took off the CI pipeline, multiplied by every engineer, every day, for as long as the repo lives. That work is real and the value is real, and almost none of it survives the question "so what did that get us?"
 
-A run of performance improvements I shipped to our web SDK made it meaningfully faster, and I still could not answer that question properly. So answering it became the project.
+A run of performance improvements I shipped to our web SDK made it meaningfully faster, and I still could not answer that question properly. What I wanted was to be able to report it upward in a way that held up.
 
 ## What I Shipped
 
-There is a particular satisfaction in refactoring a system you know well enough to see the opportunities sitting in it. The SDK had plenty, starting with a startup path that awaited work it did not need to await.
+There is a particular satisfaction in refactoring a system you know well enough to see the opportunities sitting in it.
 
 That kind of debt never shows up in a sprint. It does not break and it does not page anyone. It quietly costs everyone a little, forever.
 
@@ -30,9 +30,11 @@ This was, genuinely, good work. And then came the question.
 
 I had a number. Time to interactive was down and I could point at the graph, which felt like an answer for about a day. Down by how much of what, and is that good? Nobody beyond the few people who own a metric knows whether a move in it was worth the engineering time. It is a measurement, not an impact.
 
-So the project became: measure it properly, and be precise about where the evidence runs out.
+So the project became: measure it properly.
 
-## We're a Guest on Someone Else's Page
+## Why Time to Interactive
+
+The metric you pick decides what you are able to claim later, so it is worth choosing deliberately.
 
 Our SDK renders offers inside our partners' checkout and confirmation pages, so its startup time comes out of their page-load budget, not ours. That makes latency an unusually honest metric for us: every millisecond we save is one we hand back to somebody who did not have to let us in.
 

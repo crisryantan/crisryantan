@@ -35,7 +35,7 @@ const MeasuringEngineeringImpactPage = () => {
         properly. So answering it became the project.
       </p>
 
-      <h2>The Debt Nobody Files a Ticket For</h2>
+      <h2>Paying Off the Debt</h2>
 
       <p>
         There is a particular satisfaction in refactoring a system you know well
@@ -331,7 +331,7 @@ const MeasuringEngineeringImpactPage = () => {
 
       <p>
         "What was the impact?" is really four claims, and each one needs more
-        evidence than the last:
+        evidence:
       </p>
 
       <ol className="space-y-3 my-6">

@@ -8,7 +8,7 @@ The feature you shipped last quarter is the easy case. It is on the screen, some
 
 A run of performance improvements I shipped to our web SDK made it meaningfully faster, and I still could not answer that question properly. So answering it became the project.
 
-## The Debt Nobody Files a Ticket For
+## Paying Off the Debt
 
 There is a particular satisfaction in refactoring a system you know well enough to see the opportunities sitting in it. The SDK had plenty, starting with a startup path that awaited work it did not need to await.
 
@@ -88,7 +88,7 @@ Run through the delay model, that time saved converts into a significant revenue
 
 ## So, What Do You Tell Your Manager?
 
-"What was the impact?" is really four claims, and each one needs more evidence than the last:
+"What was the impact?" is really four claims, and each one needs more evidence:
 
 1. **The system is faster.** Measured against a randomized control.
 2. **It is faster because of my change.** What I touched moved, and what I did not touch stayed put.

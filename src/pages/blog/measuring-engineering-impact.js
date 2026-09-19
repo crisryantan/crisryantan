@@ -20,13 +20,12 @@ const MeasuringEngineeringImpactPage = () => {
       </p>
 
       <p>
-        The feature you shipped last quarter is the easy case. It is on the
-        screen, someone can use it. The hard cases are everything else. The
-        refactor. The module you untangled so the next person could change it
-        safely. The twenty minutes you took off the CI pipeline, multiplied by
-        every engineer, every day, for as long as the repo lives. That work is
-        real and the value is real, and almost none of it survives the question
-        "so what did that get us?"
+        The refactor. The module you untangled so the next person could change
+        it safely. The button you changed from grey to blue. The page you made
+        load a second faster. The twenty minutes you took off the CI pipeline,
+        multiplied by every engineer, every day, for as long as the repo lives.
+        That work is real and the value is real, and almost none of it survives
+        the question "so what did that get us?"
       </p>
 
       <p>

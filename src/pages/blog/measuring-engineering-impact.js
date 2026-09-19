@@ -44,8 +44,9 @@ const MeasuringEngineeringImpactPage = () => {
       </p>
 
       <p>
-        That kind of debt never shows up in a sprint. It does not break and it
-        does not page anyone. It quietly costs everyone a little, forever.
+        Those opportunities never show up in a sprint. They do not break
+        anything and they do not page anyone. They quietly cost everyone a
+        little, forever.
       </p>
 
       <p>So I took a run at it. The work fell into two piles.</p>

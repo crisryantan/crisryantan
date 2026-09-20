@@ -104,29 +104,39 @@ const MeasuringEngineeringImpactPage = () => {
         into a made-up revenue number.
       </p>
 
-      <h2>Two Skills, One for Each Half of the Problem</h2>
+      <h2>Measuring a Change Has Two Halves</h2>
 
       <p>
         Measuring it properly meant running an A/B test, and getting that right
-        turned out to be harder than the changes themselves had been. I had
-        already written about{' '}
+        turned out to be harder than the changes themselves had been.
+      </p>
+
+      <p>
+        What makes it awkward is that the work splits across time. Before the
+        change ships you are deciding what you will be able to claim later, and
+        most of those decisions cannot be revisited once the code is out. Months
+        afterwards you are reading the data, and the failures there are quiet
+        ones where the query runs, the table looks plausible, and the conclusion
+        is wrong. Those are different problems, so it helps to treat them as two
+        separate procedures rather than one long one. I eventually wrote both
+        down as Claude Skills, <code>ab-setup</code> and{' '}
+        <code>ab-diagnose</code>, having already{' '}
         <Link
           to="/blog/claude-skills-institutional-knowledge"
           className="text-blitz-accent hover:underline"
         >
-          turning personal expertise into Claude Skills
+          packaged other expertise that way
         </Link>
-        , so I split the method in two. One skill sets an experiment up so the
-        data you will need exists. The other reads that data once it is flowing.
-        They happen months apart and fail in completely different ways, which is
-        why they are two skills rather than one.
+        , mainly so they turn up when the work starts.
       </p>
 
       <div className="grid md:grid-cols-2 gap-6 my-8">
         <div className="bg-blitz-accent/5 border border-blitz-accent/20 p-6 rounded-lg">
-          <p className="font-mono text-sm text-blitz-accent mb-2">ab-setup</p>
+          <p className="text-xs font-semibold uppercase tracking-wide text-blitz-accent mb-2">
+            Before it ships
+          </p>
           <p className="font-semibold text-blitz-charcoal mb-3">
-            Make the change measurable before it ships
+            Make the change measurable
           </p>
           <ul className="space-y-2 text-sm text-blitz-charcoal/80">
             <li>Size it, so you know what the claim will cost to prove</li>
@@ -135,11 +145,11 @@ const MeasuringEngineeringImpactPage = () => {
           </ul>
         </div>
         <div className="bg-blitz-soft/10 border border-blitz-soft/30 p-6 rounded-lg">
-          <p className="font-mono text-sm text-blitz-primary mb-2">
-            ab-diagnose
+          <p className="text-xs font-semibold uppercase tracking-wide text-blitz-primary mb-2">
+            Once the data is flowing
           </p>
           <p className="font-semibold text-blitz-charcoal mb-3">
-            Read the data once it is flowing
+            Read it in a fixed order
           </p>
           <ul className="space-y-2 text-sm text-blitz-charcoal/80">
             <li>
@@ -151,17 +161,17 @@ const MeasuringEngineeringImpactPage = () => {
         </div>
       </div>
 
-      <h3>ab-setup: make the change measurable before it ships</h3>
+      <h3>Before it ships: make the change measurable</h3>
 
       <p>
-        Whatever you are changing, the same things have to be in place before it
-        ships, or you will not be able to say anything about it afterwards.
+        Whatever you are changing, three things have to be in place beforehand,
+        or you will not be able to say much about it afterwards.
       </p>
 
       <p>
-        <strong>Size it first.</strong> This is the step people skip and the one
-        that saves you a quarter. The closer a metric sits to your change, the
-        cheaper it is to prove:
+        <strong>Size the claim first.</strong> This is the step people skip and
+        the one that saves you a quarter. The closer a metric sits to your
+        change, the cheaper it is to prove:
       </p>
 
       <table className="w-full border-collapse border border-blitz-charcoal/20 my-6">
@@ -210,9 +220,10 @@ const MeasuringEngineeringImpactPage = () => {
         in days. Ours reached revenue through two intermediate steps and arrived
         as a sliver, which is why the latency win took an afternoon and the
         revenue question took a quarter. When the claim you want turns out to be
-        unaffordable, the skill says so before anyone commits: claim the nearer
-        metric instead, pick a cheaper one, or bundle several changes into a
-        single experiment and accept that the result belongs to the bundle.
+        unaffordable, the useful thing is to find that out before anyone
+        commits: claim the nearer metric instead, pick a cheaper one, or bundle
+        several changes into a single experiment and accept that the result
+        belongs to the bundle.
       </p>
 
       <p>
@@ -231,12 +242,13 @@ const MeasuringEngineeringImpactPage = () => {
         decisions.
       </p>
 
-      <h3>ab-diagnose: read the data once it is flowing</h3>
+      <h3>Once the data is flowing: read it in a fixed order</h3>
 
       <p>
-        Setup means the data is arriving. This skill turns it into an answer, in
-        a fixed order, because every way it goes wrong is quiet: the query runs,
-        the table looks plausible, the conclusion is wrong.
+        The order matters more than any individual check. Each step can
+        invalidate everything below it, so reading the outcome metric first
+        tells you nothing reliable if the populations were built wrong, and
+        nothing in the output will tell you that they were.
       </p>
 
       <ol className="space-y-3 my-6">

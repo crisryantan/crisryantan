@@ -38,15 +38,17 @@ Our SDK renders offers inside our partners' checkout and confirmation pages, so 
 
 Rokt had also run a controlled delay study estimating how revenue changes with each added second of latency. That study is the bridge. It means a latency result is not only a latency result, because the relationship can be run in reverse to estimate what saved time is plausibly worth. Used carefully, it turns "the SDK is 11% faster" into something a business conversation can hold. Used carelessly, it turns into a made-up revenue number.
 
-## Two Skills, One for Each Half of the Problem
+## Measuring a Change Has Two Halves
 
-Measuring it properly meant running an A/B test, and getting that right turned out to be harder than the changes themselves had been. I had already written about [turning personal expertise into Claude Skills](https://www.crisryantan.com/blog/claude-skills-institutional-knowledge/), so I split the method in two. One skill sets an experiment up so the data you will need exists. The other reads that data once it is flowing. They happen months apart and fail in completely different ways, which is why they are two skills rather than one.
+Measuring it properly meant running an A/B test, and getting that right turned out to be harder than the changes themselves had been.
 
-### `ab-setup`: make the change measurable before it ships
+What makes it awkward is that the work splits across time. Before the change ships you are deciding what you will be able to claim later, and most of those decisions cannot be revisited once the code is out. Months afterwards you are reading the data, and the failures there are quiet ones where the query runs, the table looks plausible, and the conclusion is wrong. Those are different problems, so it helps to treat them as two separate procedures rather than one long one. I eventually wrote both down as Claude Skills, `ab-setup` and `ab-diagnose`, having already [packaged other expertise that way](https://www.crisryantan.com/blog/claude-skills-institutional-knowledge/), mainly so they turn up when the work starts.
 
-Whatever you are changing, the same things have to be in place before it ships, or you will not be able to say anything about it afterwards.
+### Before it ships: make the change measurable
 
-**Size it first.** This is the step people skip and the one that saves you a quarter. The closer a metric sits to your change, the cheaper it is to prove:
+Whatever you are changing, three things have to be in place beforehand, or you will not be able to say much about it afterwards.
+
+**Size the claim first.** This is the step people skip and the one that saves you a quarter. The closer a metric sits to your change, the cheaper it is to prove:
 
 | What you want to claim | What it costs to prove |
 | --- | --- |
@@ -54,15 +56,15 @@ Whatever you are changing, the same things have to be in place before it ships, 
 | One step downstream of it | Days to weeks |
 | The business outcome at the end of the chain | Weeks, sometimes never |
 
-Every hop dilutes the effect, and every hop multiplies the data you need. What decides the cost is not the distance itself but how much of the effect survives it. A change that moves revenue directly can resolve in days. Ours reached revenue through two intermediate steps and arrived as a sliver, which is why the latency win took an afternoon and the revenue question took a quarter. When the claim you want turns out to be unaffordable, the skill says so before anyone commits: claim the nearer metric instead, pick a cheaper one, or bundle several changes into a single experiment and accept that the result belongs to the bundle.
+Every hop dilutes the effect, and every hop multiplies the data you need. What decides the cost is not the distance itself but how much of the effect survives it. A change that moves revenue directly can resolve in days. Ours reached revenue through two intermediate steps and arrived as a sliver, which is why the latency win took an afternoon and the revenue question took a quarter. When the claim you want turns out to be unaffordable, the useful thing is to find that out before anyone commits: claim the nearer metric instead, pick a cheaper one, or bundle several changes into a single experiment and accept that the result belongs to the bundle.
 
 **Then instrument it so it can be read.** Mark both groups, not just the treated one. Mark them before the thing you are measuring can fail, or the cases you lose become invisible. Mark once per unit, because double-counting destroys your denominator. Fail closed when configuration is missing, so an unwired environment enrolls nobody rather than everybody.
 
 **Then write down what would count as an answer**, in the pull request, before any data exists: the primary metric, the expected effect, the window. Decisions made after seeing data are not the same decisions.
 
-### `ab-diagnose`: read the data once it is flowing
+### Once the data is flowing: read it in a fixed order
 
-Setup means the data is arriving. This skill turns it into an answer, in a fixed order, because every way it goes wrong is quiet: the query runs, the table looks plausible, the conclusion is wrong.
+The order matters more than any individual check. Each step can invalidate everything below it, so reading the outcome metric first tells you nothing reliable if the populations were built wrong, and nothing in the output will tell you that they were.
 
 1. **Confirm the instrumentation is live** in what is actually deployed, not just in your checkout.
 2. **Build the population from enrollment, never from outcomes.** If your change affects whether a case produces a result row at all, cohorting on those rows biases everything downstream.

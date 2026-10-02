@@ -1,25 +1,69 @@
 import React from 'react'
 
+// Each box is 1.5x the visible blob (the gradient fades to nothing at its edge),
+// offset so the blob centres sit where the old 60/55/50svh blurred circles did.
+const BLOBS = [
+  {
+    color: '--blitz-accent',
+    opacity: 0.2,
+    style: {
+      left: 'calc(-25% - 15svh)',
+      top: 'calc(-33.333% - 15svh)',
+      width: '90svh',
+      height: '90svh',
+    },
+  },
+  {
+    color: '--blitz-soft',
+    opacity: 0.2,
+    delay: '-6s',
+    style: {
+      right: '-13.75svh',
+      top: 'calc(25% - 13.75svh)',
+      width: '82.5svh',
+      height: '82.5svh',
+    },
+  },
+  {
+    color: '--blitz-coral',
+    opacity: 0.1,
+    delay: '-12s',
+    style: {
+      bottom: '-12.5svh',
+      left: 'calc(33.333% - 12.5svh)',
+      width: '75svh',
+      height: '75svh',
+    },
+  },
+]
+
 /**
  * Atmospheric animated gradient blobs in the blitz palette. Pure CSS (the `aurora`
- * keyframe lives in tailwind.config.js); the reduced-motion safety net in
- * global.css freezes it.
+ * keyframe lives in tailwind.config.js, the gradient in global.css); the
+ * reduced-motion safety net in global.css freezes it.
  *
- * Mobile flicker fix: blobs are sized in `svh` (small-viewport-height), which does
- * NOT change when the mobile URL bar shows/hides — so scrolling no longer resizes
- * and repaints them. Each blob sits on its own GPU layer (`will-change-transform`)
- * so it composites during scroll instead of repainting. With that in place the
- * animation runs on every screen size. Decorative + pointer-safe; needs a
- * `relative` parent.
+ * The soft edge comes from a radial gradient rather than `filter: blur()`, so each
+ * blob is rasterized once and the animation is transform-only on the compositor.
+ * Sized in `svh` so the mobile URL bar showing/hiding never resizes them.
+ * Decorative + pointer-safe; needs a `relative` parent.
  */
 const AuroraBackground = ({ className = '' }) => (
   <div
     className={`pointer-events-none absolute inset-0 -z-10 overflow-hidden ${className}`}
     aria-hidden="true"
   >
-    <div className="absolute -left-1/4 -top-1/3 h-[60svh] w-[60svh] rounded-full bg-blitz-accent/20 blur-3xl animate-aurora will-change-transform" />
-    <div className="absolute right-0 top-1/4 h-[55svh] w-[55svh] rounded-full bg-blitz-soft/20 blur-3xl animate-aurora [animation-delay:-6s] will-change-transform" />
-    <div className="absolute bottom-0 left-1/3 h-[50svh] w-[50svh] rounded-full bg-blitz-coral/10 blur-3xl animate-aurora [animation-delay:-12s] will-change-transform" />
+    {BLOBS.map((b) => (
+      <div
+        key={b.color}
+        className="aurora-blob absolute animate-aurora will-change-transform"
+        style={{
+          ...b.style,
+          '--blob': `var(${b.color})`,
+          opacity: b.opacity,
+          animationDelay: b.delay,
+        }}
+      />
+    ))}
   </div>
 )
 

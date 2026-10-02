@@ -63,6 +63,8 @@ module.exports = {
         'slide-in': 'slideIn 0.3s ease-out',
         float: 'float 6s ease-in-out infinite',
         aurora: 'aurora 18s ease-in-out infinite',
+        bob: 'bob 3s ease-in-out infinite',
+        nudge: 'nudge 1.8s ease-in-out infinite',
         shimmer: 'shimmer 6s linear infinite',
         'gradient-pan': 'gradientPan 8s ease infinite',
       },
@@ -83,10 +85,20 @@ module.exports = {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-20px)' },
         },
+        // Percentages are of the blob box, which is 1.5x the visible blob, so
+        // these drift the same distance the old 60svh blurred blobs did.
         aurora: {
           '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
-          '33%': { transform: 'translate(3%, -4%) scale(1.08)' },
-          '66%': { transform: 'translate(-3%, 3%) scale(0.96)' },
+          '33%': { transform: 'translate(2%, -2.7%) scale(1.08)' },
+          '66%': { transform: 'translate(-2%, 2%) scale(0.96)' },
+        },
+        bob: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        nudge: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(10px)' },
         },
         shimmer: {
           '0%': { backgroundPosition: '0% 50%' },

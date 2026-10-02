@@ -12,8 +12,8 @@ const EASE = [0.22, 1, 0.36, 1]
  * Uses the useInView hook + a controlled `animate` prop (the pattern that works
  * across this site) rather than `whileInView`, which doesn't fire its entrance
  * under our LazyMotion setup. SSR renders the bars full (no-JS safe); on the
- * client they collapse on mount and grow when scrolled into view. Transform-only
- * (scaleX) so there's no layout thrash / CLS.
+ * client they collapse on mount and grow when scrolled into view. Animates a full
+ * `transform` string so Motion runs it on the compositor, with no layout or CLS.
  */
 const BeforeAfterBars = ({ items, unit = 'KB' }) => {
   const ref = useRef(null)
@@ -34,16 +34,16 @@ const BeforeAfterBars = ({ items, unit = 'KB' }) => {
             <m.div
               className="absolute inset-y-0 left-0 origin-left rounded bg-blitz-lavender/25"
               style={{ width: `${(it.before / max) * 100}%` }}
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: inView ? 1 : 0 }}
+              initial={{ transform: 'scaleX(0)' }}
+              animate={{ transform: inView ? 'scaleX(1)' : 'scaleX(0)' }}
               transition={{ duration: 0.6, ease: EASE, delay: i * 0.08 }}
               aria-hidden="true"
             />
             <m.div
               className="absolute inset-y-0 left-0 origin-left rounded bg-blitz-accent/70"
               style={{ width: `${(it.after / max) * 100}%` }}
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: inView ? 1 : 0 }}
+              initial={{ transform: 'scaleX(0)' }}
+              animate={{ transform: inView ? 'scaleX(1)' : 'scaleX(0)' }}
               transition={{ duration: 0.7, ease: EASE, delay: 0.3 + i * 0.08 }}
             />
           </div>

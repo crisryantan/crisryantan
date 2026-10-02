@@ -3,7 +3,9 @@ import { m, AnimatePresence } from 'motion/react'
 
 /**
  * Animated back-to-top FAB. Appears after scrolling past 600px, springs in/out
- * via AnimatePresence. Mounted globally (wrapRootElement).
+ * via AnimatePresence. Mounted globally (wrapRootElement). Animates full
+ * `transform` strings so the entrance, which happens mid-scroll, stays on the
+ * compositor.
  */
 const ScrollToTop = () => {
   const [visible, setVisible] = useState(false)
@@ -26,11 +28,11 @@ const ScrollToTop = () => {
           onClick={toTop}
           aria-label="Scroll to top"
           className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-blitz-primary text-blitz-white shadow-hover ring-1 ring-white/10"
-          initial={{ opacity: 0, scale: 0.6, y: 12 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.6, y: 12 }}
-          whileHover={{ y: -3 }}
-          whileTap={{ scale: 0.92 }}
+          initial={{ opacity: 0, transform: 'translateY(12px) scale(0.6)' }}
+          animate={{ opacity: 1, transform: 'translateY(0px) scale(1)' }}
+          exit={{ opacity: 0, transform: 'translateY(12px) scale(0.6)' }}
+          whileHover={{ transform: 'translateY(-3px) scale(1)' }}
+          whileTap={{ transform: 'translateY(0px) scale(0.92)' }}
           transition={{ type: 'spring', stiffness: 300, damping: 22 }}
         >
           <svg

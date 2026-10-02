@@ -364,8 +364,10 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                 <m.div
                   className="absolute inset-y-0 origin-left bg-blue-500 rounded flex items-center justify-center overflow-hidden text-white font-mono"
                   style={{ left: '0%', width: '27.8%' }}
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: waterfallIn ? 1 : 0 }}
+                  initial={{ transform: 'scaleX(0)' }}
+                  animate={{
+                    transform: waterfallIn ? 'scaleX(1)' : 'scaleX(0)',
+                  }}
                   transition={{
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],
@@ -384,8 +386,10 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                 <m.div
                   className="absolute inset-y-0 origin-left bg-blue-400 rounded flex items-center justify-center overflow-hidden text-white font-mono"
                   style={{ left: '27.8%', width: '20.8%' }}
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: waterfallIn ? 1 : 0 }}
+                  initial={{ transform: 'scaleX(0)' }}
+                  animate={{
+                    transform: waterfallIn ? 'scaleX(1)' : 'scaleX(0)',
+                  }}
                   transition={{
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],
@@ -404,8 +408,10 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                 <m.div
                   className="absolute inset-y-0 origin-left bg-amber-500 rounded flex items-center justify-center overflow-hidden text-white font-mono"
                   style={{ left: '27.8%', width: '67.7%' }}
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: waterfallIn ? 1 : 0 }}
+                  initial={{ transform: 'scaleX(0)' }}
+                  animate={{
+                    transform: waterfallIn ? 'scaleX(1)' : 'scaleX(0)',
+                  }}
                   transition={{
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],
@@ -438,8 +444,10 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                 <m.div
                   className="absolute inset-y-0 origin-left bg-blue-500 rounded flex items-center justify-center overflow-hidden text-white font-mono"
                   style={{ left: '0%', width: '25.2%' }}
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: waterfallIn ? 1 : 0 }}
+                  initial={{ transform: 'scaleX(0)' }}
+                  animate={{
+                    transform: waterfallIn ? 'scaleX(1)' : 'scaleX(0)',
+                  }}
                   transition={{
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],
@@ -458,8 +466,10 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                 <m.div
                   className="absolute inset-y-0 origin-left bg-blue-400 rounded flex items-center justify-center overflow-hidden text-white font-mono"
                   style={{ left: '25.2%', width: '22.8%' }}
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: waterfallIn ? 1 : 0 }}
+                  initial={{ transform: 'scaleX(0)' }}
+                  animate={{
+                    transform: waterfallIn ? 'scaleX(1)' : 'scaleX(0)',
+                  }}
                   transition={{
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],
@@ -482,8 +492,10 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                     width: '1.5%',
                     minWidth: '6px',
                   }}
-                  initial={{ scaleX: 0 }}
-                  animate={waterfallIn ? { scaleX: 1 } : { scaleX: 0 }}
+                  initial={{ transform: 'scaleX(0)' }}
+                  animate={{
+                    transform: waterfallIn ? 'scaleX(1)' : 'scaleX(0)',
+                  }}
                   transition={{
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],
@@ -506,8 +518,10 @@ const CuttingLoadTimesAtLorikeetPage = () => {
                 <m.div
                   className="absolute inset-y-0 origin-left rounded bg-amber-500"
                   style={{ left: '25.2%', width: '7.3%' }}
-                  initial={{ scaleX: 0 }}
-                  animate={waterfallIn ? { scaleX: 1 } : { scaleX: 0 }}
+                  initial={{ transform: 'scaleX(0)' }}
+                  animate={{
+                    transform: waterfallIn ? 'scaleX(1)' : 'scaleX(0)',
+                  }}
                   transition={{
                     duration: 0.8,
                     ease: [0.22, 1, 0.36, 1],

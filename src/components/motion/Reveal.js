@@ -3,15 +3,37 @@ import { m, useInView } from 'motion/react'
 
 const EASE = [0.22, 1, 0.36, 1]
 
+// Full `transform` strings rather than x/y/scale: Motion only hands `transform` and
+// `opacity` to WAAPI, so these run on the compositor and never compete with the
+// scroll that triggered them. `transitionEnd` drops the identity transform after,
+// so a revealed block doesn't stay a stacking context.
+const shown = (transform) => ({
+  opacity: 1,
+  transform,
+  transitionEnd: { transform: 'none' },
+})
+
 const VARIANTS = {
-  up: { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } },
-  down: { hidden: { opacity: 0, y: -24 }, visible: { opacity: 1, y: 0 } },
-  left: { hidden: { opacity: 0, x: 24 }, visible: { opacity: 1, x: 0 } },
-  right: { hidden: { opacity: 0, x: -24 }, visible: { opacity: 1, x: 0 } },
+  up: {
+    hidden: { opacity: 0, transform: 'translateY(24px)' },
+    visible: shown('translateY(0px)'),
+  },
+  down: {
+    hidden: { opacity: 0, transform: 'translateY(-24px)' },
+    visible: shown('translateY(0px)'),
+  },
+  left: {
+    hidden: { opacity: 0, transform: 'translateX(24px)' },
+    visible: shown('translateX(0px)'),
+  },
+  right: {
+    hidden: { opacity: 0, transform: 'translateX(-24px)' },
+    visible: shown('translateX(0px)'),
+  },
   fade: { hidden: { opacity: 0 }, visible: { opacity: 1 } },
   scale: {
-    hidden: { opacity: 0, scale: 0.96 },
-    visible: { opacity: 1, scale: 1 },
+    hidden: { opacity: 0, transform: 'scale(0.96)' },
+    visible: shown('scale(1)'),
   },
 }
 

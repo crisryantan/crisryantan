@@ -5,11 +5,16 @@ import { animate, useInView, useReducedMotion } from 'motion/react'
 const useIsoLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
-const format = (n, decimals) =>
-  n.toLocaleString('en-US', {
+// One formatter per precision: toLocaleString with options builds a new
+// Intl.NumberFormat on every call, which adds up at one call per frame.
+const formatters = {}
+const format = (n, decimals) => {
+  formatters[decimals] ||= new Intl.NumberFormat('en-US', {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   })
+  return formatters[decimals].format(n)
+}
 
 /**
  * Counts a number up from 0 to `value` when it scrolls into view.
@@ -28,6 +33,7 @@ const CountUp = ({
   className,
 }) => {
   const ref = useRef(null)
+  const numRef = useRef(null)
   const inView = useInView(ref, { once: true, amount: 0.6 })
   const reduce = useReducedMotion()
   const [display, setDisplay] = useState(value)
@@ -38,18 +44,28 @@ const CountUp = ({
 
   useEffect(() => {
     if (!inView || reduce) return
+    let shown = ''
     const controls = animate(0, value, {
       duration,
       ease: [0.22, 1, 0.36, 1],
-      onUpdate: (v) => setDisplay(v),
+      // Write the text node directly rather than re-rendering React every frame,
+      // and only when the digits change: each write dirties layout, and the count
+      // runs exactly while the user is scrolling past it.
+      onUpdate: (v) => {
+        const next = format(v, decimals)
+        if (next === shown || !numRef.current) return
+        numRef.current.textContent = next
+        shown = next
+      },
+      onComplete: () => setDisplay(value),
     })
     return () => controls.stop()
-  }, [inView, value, reduce, duration])
+  }, [inView, value, reduce, duration, decimals])
 
   return (
     <span ref={ref} className={`tabular-nums ${className || ''}`}>
       {prefix}
-      {format(display, decimals)}
+      <span ref={numRef}>{format(display, decimals)}</span>
       {suffix}
     </span>
   )

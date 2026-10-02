@@ -109,10 +109,11 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     let raf = 0
-    let lastCommitted = window.scrollY
+    let latestY = window.scrollY
+    let lastCommitted = latestY
     const update = () => {
       raf = 0
-      const y = window.scrollY
+      const y = latestY
       setIsScrolled(y > 10)
       // Only flip hide/show once movement clears an 8px threshold. Mobile momentum
       // and iOS rubber-banding produce tiny up/down jitter that would otherwise
@@ -122,7 +123,11 @@ const Layout = ({ children }) => {
       setHidden(delta > 0 && y > 160)
       lastCommitted = y
     }
+    // Read scrollY in the scroll event, where layout is still clean. Reading it
+    // inside the rAF callback forces a synchronous layout whenever something
+    // earlier in the frame wrote to the DOM (a CountUp tick, for one).
     const onScroll = () => {
+      latestY = window.scrollY
       if (!raf) raf = requestAnimationFrame(update)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -135,9 +140,14 @@ const Layout = ({ children }) => {
   return (
     <div className="min-h-[100svh] bg-blitz-white">
       {/* Navigation */}
+      {/* A full `transform` string so Motion runs the hide/show on the compositor;
+          it fires mid-scroll, where a main-thread `y` animation stutters. */}
       <m.nav
-        initial={{ y: '-120%' }}
-        animate={{ y: hidden && !isMenuOpen ? '-120%' : '0%' }}
+        initial={{ transform: 'translateY(-120%)' }}
+        animate={{
+          transform:
+            hidden && !isMenuOpen ? 'translateY(-120%)' : 'translateY(0%)',
+        }}
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 z-50 w-full transition-colors duration-300 ${
           isScrolled || isMenuOpen

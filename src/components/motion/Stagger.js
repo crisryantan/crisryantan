@@ -5,7 +5,8 @@ const EASE = [0.22, 1, 0.36, 1]
 
 /**
  * Staggered container. Wrap a list/grid in <Stagger> and each child in
- * <StaggerItem> to get a cascade as the group scrolls into view.
+ * <StaggerItem> to get a cascade as the group scrolls into view. Items animate a
+ * full `transform` string so Motion runs them on the compositor (see Reveal).
  */
 const Stagger = ({
   children,
@@ -50,10 +51,11 @@ export const StaggerItem = ({
     <MotionTag
       className={className}
       variants={{
-        hidden: { opacity: 0, y: distance },
+        hidden: { opacity: 0, transform: `translateY(${distance}px)` },
         visible: {
           opacity: 1,
-          y: 0,
+          transform: 'translateY(0px)',
+          transitionEnd: { transform: 'none' },
           transition: { duration: 0.5, ease: EASE },
         },
       }}

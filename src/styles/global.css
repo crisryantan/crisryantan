@@ -358,3 +358,77 @@
     transition-delay: 0.3s;
   }
 }
+
+/*
+ * Scroll-performance rules. Kept outside @layer so Tailwind never purges them.
+ *
+ * Aurora blobs: a radial gradient whose falloff matches the old solid circle under
+ * blur(64px). Filters on an animating layer are re-run by the GPU every frame,
+ * which was the main source of scroll jank on phones; a gradient is rasterized
+ * once and then only composited.
+ */
+.aurora-blob {
+  background-image: radial-gradient(
+    closest-side,
+    rgb(var(--blob)) 0%,
+    rgb(var(--blob)) 33%,
+    rgb(var(--blob) / 0.84) 50%,
+    rgb(var(--blob) / 0.5) 67%,
+    rgb(var(--blob) / 0.16) 83%,
+    rgb(var(--blob) / 0) 100%
+  );
+}
+
+/*
+ * Scroll-driven animations run on the compositor, so they track the finger on
+ * mobile instead of trailing a main-thread scroll listener by a frame or two.
+ * Browsers without scroll timelines get a static hero and the JS progress bar.
+ *
+ * Longhands only: the minifier reorders declarations, and an `animation`
+ * shorthand landing after `animation-timeline` resets it to a 0s time-based
+ * animation stuck on its last frame.
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-timeline {
+      view-timeline-name: --hero;
+      view-timeline-axis: block;
+    }
+
+    .hero-parallax {
+      animation-name: hero-exit;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --hero;
+      animation-range: exit-crossing 0% exit-crossing 100%;
+    }
+  }
+}
+
+@keyframes hero-exit {
+  to {
+    transform: translateY(120px);
+    opacity: 0;
+  }
+}
+
+.reading-progress {
+  transform: scaleX(0);
+}
+
+@supports (animation-timeline: scroll()) {
+  .reading-progress {
+    animation-name: reading-progress-grow;
+    animation-duration: auto;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: scroll(root block);
+  }
+}
+
+@keyframes reading-progress-grow {
+  to {
+    transform: scaleX(1);
+  }
+}

@@ -11,10 +11,11 @@ const container = {
   visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
 }
 const item = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, transform: 'translateY(20px)' },
   visible: {
     opacity: 1,
-    y: 0,
+    transform: 'translateY(0px)',
+    transitionEnd: { transform: 'none' },
     transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
   },
 }
@@ -32,7 +33,7 @@ const NotFoundPage = () => (
       >
         <m.h1
           variants={item}
-          className="mb-4 animate-shimmer bg-[length:200%_auto] text-7xl font-black gradient-text md:text-9xl"
+          className="mb-4 text-7xl font-black gradient-text bg-[length:200%_auto] bg-right md:text-9xl [@media(hover:hover)]:animate-shimmer"
         >
           404
         </m.h1>

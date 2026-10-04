@@ -5,9 +5,9 @@
 const blogPosts = [
   {
     id: 0,
-    title: 'What Is Your Work Actually Worth? Two Skills for Measuring Impact',
+    title: 'Measuring the Impact of Engineering Work',
     excerpt:
-      "Refactors, infra work and CI wins rarely survive the question 'so what did that get us?' Here are the two Claude Skills I built to measure impact properly.",
+      'How I measured SDK performance improvements at Rokt, starting with the customer experience, and turned the experiment setup and analysis into two reusable Claude Skills.',
     date: 'September 18, 2026',
     readTime: '6 min read',
     category: 'Performance',

@@ -5,6 +5,16 @@
 const blogPosts = [
   {
     id: 0,
+    title: 'Harry Potter and the Order of the Agents',
+    excerpt:
+      'How I split my AI workflow into a themed fleet, with shared memory, cross-model review, and rough estimates of the token use and spend it could save.',
+    date: 'October 5, 2026',
+    readTime: '8 min read',
+    category: 'AI & Productivity',
+    link: '/blog/ai-agent-fleet',
+  },
+  {
+    id: 1,
     title: 'Measuring the Impact of Engineering Work',
     excerpt:
       'How I measured SDK performance improvements at Rokt, starting with the customer experience, and turned the experiment setup and analysis into two reusable Claude Skills.',
@@ -14,7 +24,7 @@ const blogPosts = [
     link: '/blog/measuring-engineering-impact',
   },
   {
-    id: 1,
+    id: 2,
     title:
       'Compression, Preloading, and Tree-Shaking: Cutting Load Times by 75% at Lorikeet',
     excerpt:
@@ -25,7 +35,7 @@ const blogPosts = [
     link: '/blog/cutting-load-times-at-lorikeet',
   },
   {
-    id: 2,
+    id: 3,
     title: 'Maximizing Productivity with AI Coding Agents',
     excerpt:
       'How our team wired Slack, Linear, and Cursor into a delegation pipeline, and why a single agents.md file did more for AI output quality than any tool upgrade.',
@@ -35,7 +45,7 @@ const blogPosts = [
     link: '/blog/ai-agents-productivity',
   },
   {
-    id: 3,
+    id: 4,
     title: 'Claude Skills: Turning Personal Expertise into Team Superpowers',
     excerpt:
       'We built around 60 Claude Skills at Lorikeet. Here are the ones that stuck, the structural patterns behind them, and the lessons we learned the hard way.',
@@ -45,7 +55,7 @@ const blogPosts = [
     link: '/blog/claude-skills-institutional-knowledge',
   },
   {
-    id: 4,
+    id: 5,
     title: 'AI-Assisted Coding Workflows: Delegating vs Leveraging',
     excerpt:
       'The mental model I use for AI coding assistants: delegate well-specified tasks and walk away, or leverage AI as a pair for diagnosis and design. Plus the migration that taught me when to switch.',
@@ -55,7 +65,7 @@ const blogPosts = [
     link: '/blog/ai-coding-workflows',
   },
   {
-    id: 5,
+    id: 6,
     title:
       'From SDK to SSR: Performance Optimization Lessons Across Frameworks',
     excerpt:

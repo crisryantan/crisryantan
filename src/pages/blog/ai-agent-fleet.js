@@ -250,16 +250,16 @@ const AIAgentFleetPage = () => (
     tags={['AI & Productivity', 'AI Agents', 'Shared Memory']}
   >
     <p className="text-lg italic mb-8">
-      For most of this year my AI workflow was one agent doing everything. It
-      wrote code, reviewed its own code, read CI logs, and remembered whatever
-      survived the end of a session. Every task piled into the same
-      conversation. The only reviewer was the model that wrote the code.
+      I already used several AI agents, each for a different kind of work, but
+      they didn't work as a fleet. Each one ran its own long session, nothing
+      managed how many tokens they burned, and nothing automatically sent one
+      agent's work to a different agent to check.
     </p>
     <p>
-      So I built a fleet. I haven't put it into live use yet. This is the design
-      I'm setting up, including the new model keeper, and a rough estimate of
-      what it could save. The percentages below model my previous workflow
-      against the proposed fleet. They are estimates, not measured results.
+      So I built a fleet. This post covers the design, including the new model
+      keeper, and a rough estimate of what it could save. The percentages below
+      model my previous workflow against the fleet. They are estimates, not
+      measured results.
     </p>
 
     <h2>What is an AI fleet?</h2>
@@ -277,8 +277,9 @@ const AIAgentFleetPage = () => (
       another person.
     </p>
     <p>
-      The point isn't to have more agents talking. It's to stop asking the same
-      agent to carry every task, remember everything, and check its own work.
+      The point isn't to have more agents talking. It's to stop each agent from
+      carrying its whole history, remembering everything alone, and checking its
+      own work.
     </p>
 
     <h2>The Harry Potter theme and roles</h2>
@@ -426,7 +427,8 @@ const AIAgentFleetPage = () => (
       Almost all of the estimated saving, about <strong>95%</strong>, comes from
       ending long sessions and restarting from a checkpoint. The model assumes
       those restarts don't add extra calls. If they do, the saving shrinks. This
-      is a rough estimate to test once the fleet is in live use.
+      is a rough estimate, and the next step is checking it against my real
+      usage.
     </p>
     <p>
       The productivity benefit I want is less babysitting and less rebuilding

@@ -14,12 +14,12 @@ const desks = [
   [
     'Harry',
     'Senior Engineer',
-    'Builds one task at a time in its own git worktree using Codex, with commits kept local for review.',
+    "Builds one task at a time in its own git worktree using Codex, then fixes review findings and answers teammates' PR comments, up to a set number of review rounds.",
   ],
   [
     'Hermione',
     'Staff Engineer',
-    'Reviews Codex-written code using Claude and fact-checks review comments on my PRs.',
+    "Reviews Codex-written code using Claude, including Harry's replies to my teammates, and fact-checks bot comments on my PRs.",
   ],
   [
     'Moody',
@@ -39,7 +39,7 @@ const desks = [
   [
     "Dumbledore's portrait",
     'Knowledge Manager',
-    'Reviews the day each weeknight and proposes memory fixes for me to accept or bin. He never applies them.',
+    'Reviews the day each weeknight and writes memory fixes. I let his additions apply on their own. Anything that edits or removes memory waits for me.',
   ],
   [
     'Ollivander',
@@ -93,9 +93,10 @@ const FleetMap = () => (
         <title id="fleet-map-title">From my ask to my merge</title>
         <desc id="fleet-map-description">
           Follow the trail from my ask to McGonagall, Harry, evidence, review by
-          Hermione or Moody, the push gate, Ron's patrol, and my merge. Findings
-          return to Harry. The Owlery, the Pensieve with Dumbledore's portrait,
-          and Ollivander's model shop sit alongside the task path.
+          Hermione or Moody, the push gate and draft PR, Ron's patrol, and my
+          merge. Review findings return to Harry. The Owlery, the Pensieve with
+          Dumbledore's portrait, and Ollivander's model shop sit alongside the
+          task path.
         </desc>
         <defs>
           <marker
@@ -154,7 +155,7 @@ const FleetMap = () => (
             y={30}
             label="DEPUTY'S OFFICE"
             name="McGonagall"
-            detail="TASK.md, then I say go"
+            detail="TASK.md, then I type go"
           />
           <MapRoom
             x={520}
@@ -169,7 +170,7 @@ const FleetMap = () => (
             width={160}
             label="TROPHY ROOM"
             name="Evidence"
-            detail="each check, per commit"
+            detail="checks, per commit"
           />
           <MapRoom
             x={740}
@@ -184,14 +185,14 @@ const FleetMap = () => (
             y={190}
             label="THE GATE"
             name="Push and PR"
-            detail="pass and my approval"
+            detail="draft PR on a pass"
           />
           <MapRoom
             x={270}
             y={190}
             label="THE HOOPS"
             name="Ron patrols"
-            detail="CI and bot comments"
+            detail="CI and review comments"
           />
           <MapRoom
             x={20}
@@ -215,7 +216,7 @@ const FleetMap = () => (
             width={380}
             label="OVERNIGHT · THE PENSIEVE"
             name="Dumbledore's portrait"
-            detail="Finds missing context, proposes a patch"
+            detail="Adds facts if I let him, edits wait"
             aside
           />
           <MapRoom
@@ -244,7 +245,7 @@ const AIAgentFleetPage = () => (
     title={title}
     description={description}
     date="October 5, 2026"
-    readTime="8 min read"
+    readTime="9 min read"
     category="AI & Productivity"
     slug="/blog/ai-agent-fleet"
     tags={['AI & Productivity', 'AI Agents', 'Shared Memory']}
@@ -256,7 +257,7 @@ const AIAgentFleetPage = () => (
       agent's work to a different agent to check.
     </p>
     <p>
-      So I built a fleet. This post covers the design, including the new model
+      So I built a fleet. This post covers the design, including the model
       keeper, and a rough estimate of what it could save. The percentages below
       model my previous workflow against the fleet. They are estimates, not
       measured results.
@@ -272,9 +273,10 @@ const AIAgentFleetPage = () => (
     <p>
       Each task gets a fresh start and a clear handoff. Scripts move the
       messages, prepare worktrees, run checks, and watch for changes. Models do
-      the parts that need judgment. I still approve the important steps,
-      including merges, deploys, credentials, settings, and anything sent to
-      another person.
+      the parts that need judgment. I still own the important calls: merges,
+      deploys, credentials, and settings. The few things the fleet does in my
+      name, like replying to a teammate's review comment, are switches I turn on
+      myself, and each one tells me what it did.
     </p>
     <p>
       The point isn't to have more agents talking. It's to stop each agent from
@@ -324,9 +326,10 @@ const AIAgentFleetPage = () => (
       wizard, so he fits the right model to the job.
     </p>
     <p>
-      There are scripts behind the desks too. The Owl Post carries messages, the
-      Marauder's Map watches PRs and CI, and Gringotts handles backups. Those
-      jobs don't need a model to keep running.
+      There are scripts behind the desks too. The Owl Post carries messages and
+      Gringotts handles backups. The Marauder's Map watches PRs and CI, hands
+      teammates' comments back to Harry, and closes merged tasks once they're
+      proven. Those jobs don't need a model to keep running.
     </p>
 
     <h2 id="map">The Marauder's Map</h2>
@@ -341,17 +344,21 @@ const AIAgentFleetPage = () => (
       <li>
         <strong>Ask and ticket.</strong> I tell McGonagall what I want. She can
         answer small things directly. For a build, she writes my words under
-        Intent in TASK.md, adds acceptance criteria and checks, and waits for my
-        go. Intent then stays frozen.
+        Intent in TASK.md, adds acceptance criteria and checks, and names the
+        repo, a new branch, and its base. When I'm happy with it, I type go with
+        the task id myself. Intent then stays frozen.
       </li>
       <li>
-        <strong>Build.</strong> A script prepares a fresh worktree. Harry builds
-        the change and leaves a handoff with a proposed commit message. The
-        review script makes the local commit outside his sandbox.
+        <strong>Build.</strong> My go registers the task, prepares a fresh
+        worktree on the new branch, and starts Harry. He builds the change and
+        leaves a handoff with a proposed commit message. The review script makes
+        the local commit outside his sandbox.
       </li>
       <li>
         <strong>Evidence.</strong> A verify script runs the acceptance checks
-        and records each command, exit code, and output against that commit.
+        and records each command, exit code, and output against that commit. A
+        check is either one command or plain words for the reviewer, never a
+        mix. Checks that only make sense after the merge wait until then.
         Scripts report facts. Reviewers judge them.
       </li>
       <li>
@@ -359,24 +366,37 @@ const AIAgentFleetPage = () => (
         on Claude. Claude-written work goes to Moody on Codex. Each gets a fresh
         session with the task, full diff, evidence, and repo rules. The review
         script records the verdict, and the store only counts a pass when the
-        model families differ. Any new commit voids it.
+        model families differ. Any new commit voids it. Harry's handoff starts
+        the review by itself. A CHANGES verdict sends him straight back to fix
+        it, and his next handoff starts the next review. After three review
+        rounds without a pass, or sooner if the reviewer wants me, it comes back
+        to me.
       </li>
       <li>
         <strong>Push and PR.</strong> A hook blocks an agent's push without a
-        pass for the exact commit, including in my own Claude sessions. A pass
-        doesn't replace my approval. Opening a ready PR still waits for my yes
-        because it notifies people. Pushes I make by hand stay mine.
+        pass for the exact commit, including in my own Claude sessions. I've
+        switched on one more step for Harry's work. When his review passes, a
+        script pushes exactly that commit and opens a draft PR from his commit
+        message and PR draft. It never opens a ready PR, force pushes, or
+        merges. Marking it ready stays my call, because that's what notifies
+        people. Pushes I make by hand stay mine.
       </li>
       <li>
         <strong>Patrol.</strong> The Map script checks PRs and CI without model
         calls. Ron wakes only when something changes. Hermione reproduces or
-        rebuts bot comments. Valid findings inside Intent go back to Harry;
-        anything outside becomes a follow-up.
+        rebuts bot comments. I've also switched on follow-ups. When a teammate
+        comments on a PR the fleet opened, their comments go back to Harry as
+        data, not orders. He fixes each one or answers it. Hermione reviews the
+        fix and every reply. Only then do the push and the replies go out in my
+        name. Nothing resolves a thread, marks a PR ready, or merges.
       </li>
       <li>
         <strong>Merge.</strong> Green, reviewed PRs wait in my queue. I merge
-        and deploy. A task closes only when I explicitly mark it managed with
-        its id. Silence never counts as approval.
+        and deploy. With auto-close switched on, the fleet then closes the task
+        once it can prove the work landed: the PR merged with exactly the
+        reviewed commit, CI is green on the merge commit, and any after-merge
+        checks pass. I get one line saying what proved it. If any of that fails,
+        it stops and tells me, and I close the task by hand.
       </li>
     </ol>
 
@@ -403,9 +423,11 @@ const AIAgentFleetPage = () => (
     </p>
     <p>
       Each weeknight, Dumbledore's portrait reviews the day and looks for places
-      where a desk had to find the same information again. He proposes memory
-      fixes. I accept or bin them. The review doesn't quietly rewrite what the
-      fleet knows.
+      where a desk had to find the same information again. He writes a patch of
+      memory fixes. I let his additions, new facts and notes, apply on their
+      own, and I get a line saying what applied. Anything that edits, retires,
+      or archives memory still waits for me, so the review never quietly
+      rewrites what the fleet already knows.
     </p>
 
     <h2>Closing thoughts</h2>
@@ -420,22 +442,26 @@ const AIAgentFleetPage = () => (
       <strong>31% lower cost per day</strong> at my normal pace, or about{' '}
       <strong>16% lower</strong> at the caps, using list prices. This isn't a
       forecast of my actual plan bill. Spend falls less than token use because
-      most of the history being cut is cheap cached input, while the new review
-      runs are full-price work.
+      most of the history being cut is cheap cached input, while the added
+      review runs are full-price work.
     </p>
     <p>
       Almost all of the estimated saving, about <strong>95%</strong>, comes from
       ending long sessions and restarting from a checkpoint. The model assumes
-      those restarts don't add extra calls. If they do, the saving shrinks. This
-      is a rough estimate, and the next step is checking it against my real
-      usage.
+      those restarts don't add extra calls. If they do, the saving shrinks. It
+      also doesn't count the extra review runs from teammates' PR comments or
+      after-merge checks. This is a rough estimate, and the next step is
+      checking it against my real usage.
     </p>
     <p>
       The productivity benefit I want is less babysitting and less rebuilding
       context. Scripts do the watching. A builder can focus on a task while a
-      reviewer from another model family checks the result. Checkpoints make
-      fresh starts practical, and the nightly review gives me a way to improve
-      memory deliberately. I spend my attention on decisions and approvals.
+      reviewer from another model family checks the result. It also cuts most of
+      the copy and paste between agents. My go starts the build, and the reviews
+      and fix rounds follow on their own. With my switches on, so do the draft
+      PR and closing the task once the merge is proven. Checkpoints make fresh
+      starts practical, and the nightly review gives me a way to improve memory
+      deliberately. I spend my attention on decisions and approvals.
     </p>
     <p>
       The fleet doesn't have to be Harry Potter themed. That's just how I like

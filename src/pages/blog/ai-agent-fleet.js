@@ -245,7 +245,7 @@ const AIAgentFleetPage = () => (
     title={title}
     description={description}
     date="October 5, 2026"
-    readTime="11 min read"
+    readTime="9 min read"
     category="AI & Productivity"
     slug="/blog/ai-agent-fleet"
     tags={['AI & Productivity', 'AI Agents', 'Shared Memory']}
@@ -434,49 +434,6 @@ const AIAgentFleetPage = () => (
       rewrites what the fleet already knows.
     </p>
 
-    <h2>What broke and what changed</h2>
-    <p>
-      A day after I first wrote this, I paused the fleet. It was still too
-      manual. I was the one nudging every task to its next step, and it used
-      more tokens than I wanted. I restarted it a day later after a focused
-      round of changes.
-    </p>
-    <p>
-      The first problem was a macOS one. The background jobs (the Owl Post, the
-      Map, and the closer) ran under launchd. macOS keeps launchd jobs out of
-      ~/Documents as a privacy protection, and that's where my repos are cloned.
-      So the automatic reviews failed for them. One fix was to give Python Full
-      Disk Access. I said no, because that grant goes to the system Python, so
-      every Python script on the Mac would get it. Instead, the jobs now run
-      under a small supervisor I start in a terminal pane. It runs each job on
-      its usual schedule, backs off one that keeps failing, and stops them all
-      when I close it.
-    </p>
-    <p>
-      The second problem was me being the glue. McGonagall can now pick the next
-      step after my go, but only as one typed action from a fixed list: send
-      review findings back to Harry, start the next review round, ask Snape a
-      question, open a draft PR after a pass, or send me a one-line update. A
-      script checks that the action is legal for that task before running it,
-      and anything else is refused. I treat her answer as untrusted input, the
-      same as anything a model writes. Her wakes are capped per task and per
-      day. Pushing, merging, closing, and the go itself stay with me.
-    </p>
-    <p>
-      A few smaller changes make it easier to leave alone. My phone pings me for
-      the moments that need me: a PR opened, a review that wants me, or a go
-      that was refused. When a model is down, a circuit breaker stops sending it
-      work and the desk moves to the next model in the same family. Reviews
-      never fail over to the author's family, so a review waits rather than lose
-      its cross-model check.
-    </p>
-    <p>
-      I built these changes the way the fleet is meant to work. Parallel builder
-      agents each took a change in their own git worktree, and a model from the
-      other family reviewed each one, with Codex reviewing the code Claude
-      wrote. After two review rounds, whatever was left got fixed directly.
-    </p>
-
     <h2>Closing thoughts</h2>
     <p>
       Compared with my previous workflow, I estimate about{' '}
@@ -497,9 +454,8 @@ const AIAgentFleetPage = () => (
       ending long sessions and restarting from a checkpoint. The model assumes
       those restarts don't add extra calls. If they do, the saving shrinks. It
       also doesn't count the extra review runs from teammates' PR comments or
-      after-merge checks. This is a rough estimate. The first real days used
-      more tokens than I wanted, which is part of why I paused, so checking it
-      against my real usage is still the next step.
+      after-merge checks. This is a rough estimate, and the next step is
+      checking it against my real usage.
     </p>
     <p>
       The productivity benefit I want is less babysitting and less rebuilding

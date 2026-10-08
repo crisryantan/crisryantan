@@ -9,7 +9,7 @@ const blogPosts = [
     excerpt:
       'How I split my AI workflow into a themed fleet, with shared memory, cross-model review, and rough estimates of the token use and spend it could save.',
     date: 'October 5, 2026',
-    readTime: '11 min read',
+    readTime: '9 min read',
     category: 'AI & Productivity',
     link: '/blog/ai-agent-fleet',
   },

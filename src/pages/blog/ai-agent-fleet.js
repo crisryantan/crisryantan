@@ -372,7 +372,9 @@ const AIAgentFleetPage = () => (
         rounds without a pass, or sooner if the reviewer wants me, it comes back
         to me. If a review fails for a tooling reason, like a broken worktree or
         a reviewer run that never gives a verdict, it's reported as blocked
-        instead of reaching me as a decision.
+        instead of reaching me as a decision. If a fix round dies before doing
+        any work, McGonagall starts it again herself, and after two in a row she
+        asks me instead.
       </li>
       <li>
         <strong>Push and PR.</strong> A hook blocks an agent's push without a
@@ -463,7 +465,9 @@ const AIAgentFleetPage = () => (
       reviewer from another model family checks the result. It also cuts most of
       the copy and paste between agents. My go starts the build, and the reviews
       and fix rounds follow on their own. With my switches on, so do the draft
-      PR and closing the task once the merge is proven. Checkpoints make fresh
+      PR and closing the task once the merge is proven. Each time a task moves,
+      one line reaches my phone saying where it stands and whether I need to do
+      anything. Checkpoints make fresh
       starts practical, and the nightly review gives me a way to improve memory
       deliberately. I spend my attention on decisions and approvals.
     </p>

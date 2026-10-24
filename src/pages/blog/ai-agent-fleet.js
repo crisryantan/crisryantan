@@ -19,12 +19,12 @@ const desks = [
   [
     'Hermione',
     'Staff Engineer',
-    "Reviews Codex-written code using Claude, including Harry's replies to my teammates, and fact-checks bot comments on my PRs.",
+    "Reviews Codex-written code using Claude, including Harry's replies to my teammates, and reviews PRs my teammates send her in chat.",
   ],
   [
     'Moody',
     'Security Reviewer',
-    'Uses Codex for a read-only review of Claude-written code, so the reviewer comes from the other model family.',
+    'Uses Codex for a read-only, security-first review of Claude-written code, and takes review requests in chat too.',
   ],
   [
     'Ron',
@@ -44,7 +44,7 @@ const desks = [
   [
     'Ollivander',
     'Model Keeper',
-    "A script desk that picks models within each desk's family; cheaper moves apply with a note, and costlier ones wait for my approval. A new model gets a trial and rolls back if both runs fail. When a model is down, its desks move to the next one in the same family.",
+    "A script desk that picks models within each desk's family; cheaper moves apply with a note, and costlier ones wait for my approval. When a model is down, its desks move to the next one in the family. When a CLI updates, only that family's desks pause until its sandbox is proven again.",
   ],
 ]
 
@@ -362,17 +362,13 @@ const AIAgentFleetPage = () => (
       <li>
         <strong>Cross-model review.</strong> Codex-written work goes to Hermione
         on Claude. Claude-written work goes to Moody on Codex. Each gets a fresh
-        session with the task, full diff, evidence, and repo rules. The review
-        script records the verdict, and the store only counts a pass when the
-        model families differ. Any new commit voids it. Harry's handoff starts
-        the review by itself. A CHANGES verdict sends him straight back to fix
-        it, and his next handoff starts the next review. After three review
-        rounds without a pass, or sooner if the reviewer wants me, it comes back
-        to me. If a review fails for a tooling reason, like a broken worktree or
-        a reviewer run that never gives a verdict, it's reported as blocked
-        instead of reaching me as a decision. If a fix round dies before doing
-        any work, McGonagall starts it again herself, and after two in a row she
-        asks me instead.
+        session with the task, full diff, evidence, and repo rules, and the
+        store only counts a pass when the model families differ. Any new commit
+        voids it. Harry's handoff starts the review by itself, and a CHANGES
+        verdict sends him straight back to fix it. After three rounds without a
+        pass, or sooner if the reviewer wants me, it comes back to me. A review
+        that fails for a tooling reason is reported as blocked, not handed to me
+        as a decision.
       </li>
       <li>
         <strong>Push and PR.</strong> A hook blocks an agent's push without a
@@ -405,10 +401,11 @@ const AIAgentFleetPage = () => (
     <p>
       Hermione and Moody also live in our team chat, each as its own app. A
       teammate mentions one with a pull request link, and a job on my Mac
-      reviews it read-only and answers in the thread. On GitHub the review reads
-      like a person's: comments on the lines that need them, then a comment, a
-      request for changes, or an approval on top. Approval needs a clean pass of
-      the whole diff, a switch I turned on, and a change that isn't high risk.
+      reviews it read-only and answers in the thread. With my switches on, the
+      review also lands on GitHub the way a person's would: comments on the
+      lines that need them, then a comment, a request for changes, or an
+      approval. An approval counts as mine, so it needs a second switch, a clean
+      pass of the whole diff, and a change that isn't high risk.
     </p>
     <p>
       Each review says how risky the change is, what it was checked against,
@@ -418,9 +415,11 @@ const AIAgentFleetPage = () => (
       reviews.
     </p>
     <p>
-      The model never sees what a teammate typed in a review request, only the
-      link. PR text is treated as untrusted data, everything posted is scrubbed,
-      and the reviewers can read but can't write, browse, or call other tools.
+      The model never sees the words a teammate typed in a review request, just
+      the link and anything they attached, which the job fetches. PR text and
+      attachments are untrusted data, everything posted is scrubbed, and the
+      model can't edit files, browse, or call other tools. The job does the
+      posting.
     </p>
 
     <h2>Shared memory without carrying the history</h2>
@@ -466,15 +465,16 @@ const AIAgentFleetPage = () => (
     <p>
       Almost all of the estimated saving, about <strong>95%</strong>, comes from
       ending long sessions and restarting from a checkpoint, assuming those
-      restarts add no extra calls. It doesn't count chat reviews or follow-up
-      runs. It's a rough estimate, and the next step is checking it against my
-      real usage.
+      restarts add no extra calls. It doesn't count chat reviews, teammates' PR
+      comments, or after-merge checks. It's a rough estimate, and the next step
+      is checking it against my real usage.
     </p>
     <p>
       The productivity benefit I want is less babysitting and less rebuilding
       context. Scripts do the watching, and a reviewer from another model family
-      checks every build. My go starts the build, and the reviews, fix rounds,
-      draft PR and closing follow on their own. Each time a task moves, one line
+      checks every build. My go starts the build, and the reviews and fix rounds
+      follow on their own. With my switches on, so do the draft PR and closing
+      the task once the merge is proven. Each time a task moves, one line
       reaches my phone saying where it stands. I spend my attention on decisions
       and approvals.
     </p>

@@ -257,10 +257,9 @@ const AIAgentFleetPage = () => (
       agent's work to a different agent to check.
     </p>
     <p>
-      So I built a fleet. This post covers the design, including the model
-      keeper, and a rough estimate of what it could save. The percentages below
-      model my previous workflow against the fleet. They are estimates, not
-      measured results.
+      So I built a fleet. This post covers the design and a rough estimate of
+      what it could save. The percentages below model my previous workflow
+      against the fleet. They are estimates, not measured results.
     </p>
 
     <h2>What is an AI fleet?</h2>
@@ -271,12 +270,11 @@ const AIAgentFleetPage = () => (
       without sharing one endless conversation.
     </p>
     <p>
-      Each task gets a fresh start and a clear handoff. Scripts move the
-      messages, prepare worktrees, run checks, and watch for changes. Models do
-      the parts that need judgment. I still own the important calls: merges,
-      deploys, credentials, and settings. The few things the fleet does in my
-      name, like replying to a teammate's review comment, are switches I turn on
-      myself, and each one tells me what it did.
+      Each task gets a fresh start and a clear handoff. Scripts move messages,
+      prepare worktrees, run checks, and watch for changes. Models do the parts
+      that need judgment. I own merges, deploys, credentials, and settings. The
+      few things the fleet does in my name are switches I turn on myself, and
+      each one tells me what it did.
     </p>
     <p>
       The point isn't to have more agents talking. It's to stop each agent from
@@ -319,11 +317,11 @@ const AIAgentFleetPage = () => (
       </table>
     </div>
     <p>
-      Ron kept goal for Gryffindor, which fits watching everything coming at the
-      hoops. Snape's potions book is full of corrections to the official recipe.
-      That's the attitude I want from whoever reads my data. Moody trusts
-      nothing he hasn't checked himself. Ollivander fits the right wand to the
-      wizard, so he fits the right model to the job.
+      Ron kept goal, which fits watching everything coming at the hoops. Snape's
+      potions book is full of corrections to the official recipe, the attitude I
+      want from whoever reads my data. Moody trusts nothing he hasn't checked
+      himself. Ollivander fits the right wand to the wizard, and the right model
+      to the job.
     </p>
     <p>
       There are scripts behind the desks too. The Owl Post carries messages and
@@ -387,12 +385,11 @@ const AIAgentFleetPage = () => (
       </li>
       <li>
         <strong>Patrol.</strong> The Map script checks PRs and CI without model
-        calls. Ron wakes only when something changes. Hermione reproduces or
-        rebuts bot comments. I've also switched on follow-ups. When a teammate
+        calls, and Ron wakes only when something changes. When a teammate
         comments on a PR the fleet opened, their comments go back to Harry as
-        data, not orders. He fixes each one or answers it. Hermione reviews the
-        fix and every reply. Only then do the push and the replies go out in my
-        name. Nothing resolves a thread, marks a PR ready, or merges.
+        data, not orders. He fixes or answers each one, Hermione reviews the fix
+        and every reply, and only then do they go out in my name. Nothing
+        resolves a thread, marks a PR ready, or merges.
       </li>
       <li>
         <strong>Merge.</strong> Green, reviewed PRs wait in my queue. I merge
@@ -400,19 +397,38 @@ const AIAgentFleetPage = () => (
         once it can prove the work landed: the PR merged with exactly the
         reviewed commit, CI is green on the merge commit, and any after-merge
         checks pass. I get one line saying what proved it. If any of that fails,
-        it stops and tells me, and I close the task by hand. At the end of a
-        day, one phrase closes everything that's provably done and names each
-        task still in flight that it refused to touch.
+        it stops and tells me, and I close the task by hand.
       </li>
     </ol>
+
+    <h2>Reviewers my teammates can ask</h2>
+    <p>
+      Hermione and Moody also live in our team chat, each as its own app. A
+      teammate mentions one with a pull request link, and a job on my Mac
+      reviews it read-only and answers in the thread. On GitHub the review reads
+      like a person's: comments on the lines that need them, then a comment, a
+      request for changes, or an approval on top. Approval needs a clean pass of
+      the whole diff, a switch I turned on, and a change that isn't high risk.
+    </p>
+    <p>
+      Each review says how risky the change is, what it was checked against,
+      what CI reported, and what it didn't verify. Afterwards the app follows
+      the PR and reviews new commits on its own. Teammates can ask it questions
+      in the thread or ask what it's working on, and it remembers its own past
+      reviews.
+    </p>
+    <p>
+      The model never sees what a teammate typed in a review request, only the
+      link. PR text is treated as untrusted data, everything posted is scrubbed,
+      and the reviewers can read but can't write, browse, or call other tools.
+    </p>
 
     <h2>Shared memory without carrying the history</h2>
     <p>
       Yes, the sessions share context. The Pensieve is a SQLite file with
       full-text search. When a session ends, a hook stores a capped extract of
       my prompts and the final replies. It leaves out tool output and scrubs
-      emails, IP addresses, tokens, and long hashes first. Capturing it doesn't
-      need a model call.
+      emails, IP addresses, tokens, and long hashes first.
     </p>
     <p>
       Facts know when they change. Only one fact per subject is current. A
@@ -421,19 +437,15 @@ const AIAgentFleetPage = () => (
       need a live lookup or must expire within a week.
     </p>
     <p>
-      A session starts with a short startup digest and its last checkpoint,
-      rather than hours of chat history. That gives the next session the task,
-      the decisions, and the next step without replaying every earlier turn.
-      Shared memory is stored context the session can look up, not a promise
-      that every agent remembers everything.
+      A session starts with a short digest and its last checkpoint, rather than
+      hours of chat history: the task, the decisions, and the next step, without
+      replaying every turn.
     </p>
     <p>
-      Each weeknight, Dumbledore's portrait reviews the day and looks for places
-      where a desk had to find the same information again. He writes a patch of
-      memory fixes. I let his additions, new facts and notes, apply on their
-      own, and I get a line saying what applied. Anything that edits, retires,
-      or archives memory still waits for me, so the review never quietly
-      rewrites what the fleet already knows.
+      Each weeknight, Dumbledore's portrait reviews the day for places where a
+      desk had to find the same information again, and writes memory fixes. His
+      additions apply on their own with a line telling me what changed. Anything
+      that edits or removes memory waits for me.
     </p>
 
     <h2>Closing thoughts</h2>
@@ -453,23 +465,18 @@ const AIAgentFleetPage = () => (
     </p>
     <p>
       Almost all of the estimated saving, about <strong>95%</strong>, comes from
-      ending long sessions and restarting from a checkpoint. The model assumes
-      those restarts don't add extra calls. If they do, the saving shrinks. It
-      also doesn't count the extra review runs from teammates' PR comments or
-      after-merge checks. This is a rough estimate, and the next step is
-      checking it against my real usage.
+      ending long sessions and restarting from a checkpoint, assuming those
+      restarts add no extra calls. It doesn't count chat reviews or follow-up
+      runs. It's a rough estimate, and the next step is checking it against my
+      real usage.
     </p>
     <p>
       The productivity benefit I want is less babysitting and less rebuilding
-      context. Scripts do the watching. A builder can focus on a task while a
-      reviewer from another model family checks the result. It also cuts most of
-      the copy and paste between agents. My go starts the build, and the reviews
-      and fix rounds follow on their own. With my switches on, so do the draft
-      PR and closing the task once the merge is proven. Each time a task moves,
-      one line reaches my phone saying where it stands and whether I need to do
-      anything. Checkpoints make fresh
-      starts practical, and the nightly review gives me a way to improve memory
-      deliberately. I spend my attention on decisions and approvals.
+      context. Scripts do the watching, and a reviewer from another model family
+      checks every build. My go starts the build, and the reviews, fix rounds,
+      draft PR and closing follow on their own. Each time a task moves, one line
+      reaches my phone saying where it stands. I spend my attention on decisions
+      and approvals.
     </p>
     <p>
       The fleet doesn't have to be Harry Potter themed. That's just how I like

@@ -19,7 +19,7 @@ const desks = [
   [
     'Hermione',
     'Staff Engineer',
-    "Reviews Codex-written code using Claude, including Harry's replies to my teammates, and reviews PRs my teammates send her in chat.",
+    "Reviews Codex-written code using Claude, including Harry's replies to my teammates, fact-checks bot comments, and reviews PRs teammates send her in chat.",
   ],
   [
     'Moody',
@@ -44,7 +44,7 @@ const desks = [
   [
     'Ollivander',
     'Model Keeper',
-    "A script desk that picks models within each desk's family; cheaper moves apply with a note, and costlier ones wait for my approval. When a model is down, its desks move to the next one in the family. When a CLI updates, only that family's desks pause until its sandbox is proven again.",
+    "A script desk that picks models within each desk's family; cheaper moves apply with a note, and costlier ones wait for my approval. When a model is down, its desks move to the next one in the family. When Codex updates, its desks pause until I've proven its sandbox again, and the Claude desks run on.",
   ],
 ]
 
@@ -408,18 +408,17 @@ const AIAgentFleetPage = () => (
       pass of the whole diff, and a change that isn't high risk.
     </p>
     <p>
-      Each review says how risky the change is, what it was checked against,
-      what CI reported, and what it didn't verify. Afterwards the app follows
-      the PR and reviews new commits on its own. Teammates can ask it questions
-      in the thread or ask what it's working on, and it remembers its own past
-      reviews.
+      Each review says how risky the change is, what CI reported, and what it
+      didn't verify, and on GitHub which commits it checked. Afterwards the app
+      follows the PR and reviews new commits on its own. Teammates can ask it
+      questions or what it's working on, and it remembers its own reviews.
     </p>
     <p>
       The model never sees the words a teammate typed in a review request, just
       the link and anything they attached, which the job fetches. PR text and
-      attachments are untrusted data, everything posted is scrubbed, and the
-      model can't edit files, browse, or call other tools. The job does the
-      posting.
+      attachments are untrusted data, what it writes is scrubbed before it's
+      posted, and the model can't write, browse, or reach anything beyond its
+      review folder. The job does the posting.
     </p>
 
     <h2>Shared memory without carrying the history</h2>

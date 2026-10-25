@@ -457,11 +457,11 @@ const AIAgentFleetPage = () => (
     </p>
     <p>
       The part I'd keep if everything else went away is the reviewers. A
-      teammate drops a pull request link in chat and gets a review from a
-      different model family within a few minutes, with comments on the lines on
-      GitHub, and a quick question gets an answer in about a minute. That's a
-      second pair of eyes on any change they send, without waiting for someone's
-      afternoon to free up.
+      teammate drops a pull request link in chat and gets a review from Claude
+      or Codex, whichever reviewer they ask, in a few minutes, with comments on
+      the lines on GitHub, and a quick question gets an answer in about a
+      minute. That's a second pair of eyes on any change they send, without
+      waiting for someone's afternoon to free up.
     </p>
     <p>
       For my own builds, scripts do the watching instead of me. When a task

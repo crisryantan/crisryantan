@@ -3,7 +3,7 @@ import ArticleLayout from '../../components/ArticleLayout'
 
 const title = 'Harry Potter and the Order of the Agents'
 const description =
-  'How I split my AI workflow into a themed fleet, with shared memory, cross-model review, and rough estimates of the token use and spend it could save.'
+  'How I split my AI workflow into a themed fleet, with shared memory, cross-model review, and what it did to my token use.'
 
 const desks = [
   [
@@ -257,9 +257,8 @@ const AIAgentFleetPage = () => (
       agent's work to a different agent to check.
     </p>
     <p>
-      So I built a fleet. This post covers the design and a rough estimate of
-      what it could save. The percentages below model my previous workflow
-      against the fleet. They are estimates, not measured results.
+      So I built a fleet. This post covers the design and what it did to my
+      token use.
     </p>
 
     <h2>What is an AI fleet?</h2>
@@ -448,48 +447,32 @@ const AIAgentFleetPage = () => (
 
     <h2>Closing thoughts</h2>
     <p>
-      Compared with my previous workflow, I estimate about{' '}
-      <strong>61% fewer tokens per day</strong> at my normal pace, or about{' '}
-      <strong>55% fewer</strong> if every background desk hits its daily run
-      cap. Those caps give busy days a ceiling.
+      Compared with the month before the fleet, my Claude token use, my own
+      sessions and the fleet together, is about{' '}
+      <strong>6% lower per day</strong>, and the average context per call in my
+      own sessions is about <strong>14% smaller</strong>. Spend moves with
+      tokens, since most of both is cached history. The fleet's own runs, the
+      desks and the chat reviewers, are <strong>under 1%</strong> of the total.
     </p>
     <p>
-      For token spend, the before-and-after estimate is about{' '}
-      <strong>31% lower cost per day</strong> at my normal pace, or about{' '}
-      <strong>16% lower</strong> at the caps, using list prices. This isn't a
-      forecast of my actual plan bill. Spend falls less than token use because
-      most of the history being cut is cheap cached input, while the added
-      review runs are full-price work.
+      The part I'd keep if everything else went away is the reviewers. A
+      teammate drops a pull request link in chat and gets a review from a
+      different model family in a minute or two, with comments on the lines on
+      GitHub, and a quick question gets an answer in seconds. That's a second
+      pair of eyes on every change without waiting for someone's afternoon to
+      free up.
     </p>
     <p>
-      Almost all of the estimated saving, about <strong>95%</strong>, comes from
-      ending long sessions and restarting from a checkpoint, assuming those
-      restarts add no extra calls. It doesn't count chat reviews, teammates' PR
-      comments, or after-merge checks. It's a rough estimate, and the next step
-      is checking it against my real usage.
-    </p>
-    <p>
-      The productivity benefit I want is less babysitting and less rebuilding
-      context. Scripts do the watching, and a reviewer from another model family
-      checks every build. My go starts the build, and the reviews and fix rounds
-      follow on their own. With my switches on, so do the draft PR and closing
-      the task once the merge is proven. Each time a task moves, one line
-      reaches my phone saying where it stands. I spend my attention on decisions
-      and approvals.
+      For my own builds, scripts do the watching instead of me. When a task
+      moves, one line reaches my phone saying where it stands, so my attention
+      goes to decisions and approvals.
     </p>
     <p>
       The fleet doesn't have to be Harry Potter themed. That's just how I like
-      it. The roles, handoffs, and boundaries are the useful part. If you want
-      to see how I put them together, the setup is in my{' '}
-      <a
-        href="https://github.com/crisryantan/hogwarts-fleet"
-        className="text-blitz-accent hover:underline"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        public repo
-      </a>
-      .
+      it. The roles, handoffs, and boundaries are the useful part, and they work
+      under any names. If I were starting again, I'd begin with one reviewer
+      from a different model family in the team chat and add desks only when I
+      felt the need.
     </p>
   </ArticleLayout>
 )

@@ -7,7 +7,7 @@ const blogPosts = [
     id: 0,
     title: 'Harry Potter and the Order of the Agents',
     excerpt:
-      'How I split my AI workflow into a themed fleet, with shared memory, cross-model review, and rough estimates of the token use and spend it could save.',
+      'How I split my AI workflow into a themed fleet, with shared memory, cross-model review, and what it did to my token use.',
     date: 'October 5, 2026',
     readTime: '9 min read',
     category: 'AI & Productivity',

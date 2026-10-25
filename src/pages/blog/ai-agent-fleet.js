@@ -447,20 +447,21 @@ const AIAgentFleetPage = () => (
 
     <h2>Closing thoughts</h2>
     <p>
-      Compared with the month before the fleet, my Claude token use, my own
-      sessions and the fleet together, is about{' '}
-      <strong>6% lower per day</strong>, and the average context per call in my
-      own sessions is about <strong>14% smaller</strong>. Spend moves with
-      tokens, since most of both is cached history. The fleet's own runs, the
-      desks and the chat reviewers, are <strong>under 1%</strong> of the total.
+      Compared with the month before the fleet, my Claude token use across my
+      own sessions and the fleet is about <strong>6% lower per day</strong>, and
+      the average context per call in my own sessions is about{' '}
+      <strong>14% smaller</strong>. Spend moves with tokens, since most of the
+      tokens and most of the spend are cached history. The fleet's own Claude
+      runs are <strong>under 1%</strong> of that total. Harry's builds and
+      Moody's reviews run on Codex, so they aren't in these numbers.
     </p>
     <p>
       The part I'd keep if everything else went away is the reviewers. A
       teammate drops a pull request link in chat and gets a review from a
-      different model family in a minute or two, with comments on the lines on
-      GitHub, and a quick question gets an answer in seconds. That's a second
-      pair of eyes on every change without waiting for someone's afternoon to
-      free up.
+      different model family within a few minutes, with comments on the lines on
+      GitHub, and a quick question gets an answer in about a minute. That's a
+      second pair of eyes on any change they send, without waiting for someone's
+      afternoon to free up.
     </p>
     <p>
       For my own builds, scripts do the watching instead of me. When a task

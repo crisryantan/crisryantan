@@ -7,263 +7,299 @@ const MeasuringEngineeringImpactPage = () => {
   return (
     <ArticleLayout
       title="Measuring the Impact of Engineering Work"
-      description="How I measured SDK performance improvements at Rokt, starting with the customer experience, and turned the experiment setup and analysis into two reusable Claude Skills."
-      date="September 18, 2026"
+      description="Every change we ship has a purpose. As AI writes more of our code, backing that purpose with numbers matters more than ever. A practical guide, with results from latency work at Rokt."
+      date="November 17, 2026"
       readTime="6 min read"
-      category="Performance"
+      category="Experimentation"
       slug="/blog/measuring-engineering-impact"
-      tags={['Experimentation', 'A/B Testing', 'Claude Skills', 'Performance']}
+      tags={['Experimentation', 'A/B Testing', 'Performance', 'Claude Skills']}
     >
       <p className="text-lg text-blitz-charcoal/70 mb-8">
-        Our web SDK at Rokt renders offers inside our partners' checkout and
-        confirmation pages. I wanted to make that experience smoother for
-        customers by getting offers ready sooner, with less delay as they move
-        through the flow.
+        Every change an engineer ships has a purpose: a faster page, fewer
+        errors, a lower bill, time back for the team, or revenue. As AI writes
+        more of the code, I think the job shifts toward choosing that purpose
+        and measuring its impact.
       </p>
 
       <p>
-        That meant making a series of performance improvements to the SDK. I
-        split out code that most sessions didn't need, ran independent work in
-        parallel, and moved nonessential work until after render.
+        Here's the playbook I use, followed by what it found for latency work on
+        Rokt's web SDK.
+      </p>
+
+      <h2>Start with the purpose</h2>
+
+      <p>
+        Write down what the change is for and the number that would show it
+        worked. A performance fix might target load time for the slowest users,
+        a reliability fix the error rate, a refactor the time to ship the next
+        feature, and a cost change the spend per request.
       </p>
 
       <p>
-        Improving the customer experience was the main goal. Revenue was
-        secondary, so seeing a revenue impact was a huge bonus.
+        If that number is a step toward a bigger goal, write the steps in
+        between. Faster loading might mean more people see an offer, click, then
+        generate revenue. Each step can shrink the effect.
       </p>
 
       <p>
-        Measuring the work took more effort than I expected. We needed an
-        experiment that could measure the changes, enough traffic to detect
-        their effects, and a way to account for sessions that never reached the
-        point we were timing. I eventually put the setup and analysis procedures
-        into two Claude Skills, <code>ab-setup</code> and{' '}
-        <code>ab-diagnose</code>, so I could use them again.
+        Then size the effect on the end goal, from earlier studies or a rough
+        estimate. If it's too small to detect in a reasonable time, report the
+        direct number and keep the end goal as a guardrail: decide the largest
+        loss you'd accept, and check that the results rule out anything worse.
       </p>
 
-      <h2>The results</h2>
+      <h2>Pick the comparison the change allows</h2>
 
       <p>
-        We split traffic 50/50 between versions with and without the performance
-        changes. We chose the analysis window before looking at the results.
+        Impact is a difference: what happened with the change against what would
+        have happened without it. You never see the second one, so you need a
+        stand-in. These are the ones I use.
       </p>
 
-      <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-8 rounded-lg my-8">
-        <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <p className="text-3xl font-bold text-blitz-accent">
-              <CountUp value={11} prefix="−" suffix="%" />
-            </p>
-            <p className="text-sm text-blitz-charcoal/70">
-              Time to interactive at p50
-            </p>
-          </div>
-          <div>
-            <p className="text-3xl font-bold text-blitz-accent">
-              <CountUp value={12} prefix="−" suffix="%" />
-            </p>
-            <p className="text-sm text-blitz-charcoal/70">
-              Time to interactive at p95
-            </p>
-          </div>
-        </div>
-      </div>
+      <h3>A random split</h3>
 
       <p>
-        I was particularly happy with the p95 result. The improvement extended
-        to the slower end of the distribution, where users were waiting longer.
-        These numbers describe the performance changes tested together; the
-        combined experiment doesn't tell us how much each individual change
-        contributed.
+        Randomly send some users or page loads to the new version and the rest
+        to the old one. Chance makes the two groups alike on average, so the
+        difference between them estimates the change's effect. Some difference
+        is always noise, so report it with an interval and only claim a gain
+        when the interval clears zero. Log each user's group before anything can
+        go wrong, so people who drop out early still count. Letting people opt
+        in doesn't count, because whatever made them opt in also affects the
+        outcome.
       </p>
 
       <p>
-        The work also had a revenue impact. The figures are internal, so I can't
-        share them in this public post.
+        Once related changes have each shown they work, you can combine them on
+        one split to measure what will ship. It saves time and traffic, but you
+        lose each change's separate share.
+      </p>
+
+      <h3>A staged ramp for risky changes</h3>
+
+      <p>
+        The same idea, but the new version's share grows in steps, such as 10%,
+        then 50%, then everyone. The small step catches problems early, and the
+        bigger one gives you enough data to measure the outcome. Write the bar
+        for each step before you start.
       </p>
 
       <p>
-        To estimate the revenue benefit from the time we saved, we used an
-        earlier controlled delay study at Rokt. That study estimated how revenue
-        changes when latency increases. Applying it here assumes the same
-        relationship holds for our changes and traffic.
+        If a step fails, hold, change one thing and read again. Limit the
+        retries, because enough attempts will eventually pass by luck, and
+        confirm the final setup with one fresh read over a window you fixed in
+        advance. Every change of share or setup restarts the clock. Compare
+        rates rather than raw counts, since counts jump whenever the share
+        moves.
       </p>
 
-      <h2>What needed to be decided before shipping</h2>
+      <h3>A canary compared with everyone else</h3>
 
       <p>
-        Time to interactive was a useful metric for this work because the
-        changes directly affected SDK startup. We were reducing how much code
-        had to load and how much work had to finish before the SDK became
-        interactive.
-      </p>
-
-      <p>
-        Revenue was a secondary outcome to investigate. Offers that are ready
-        sooner may be seen by more customers, and some of those customers may
-        choose to act on them. Each of those steps sits between faster startup
-        and revenue. The expected revenue effect was much smaller than the
-        latency effect, so it needed more data to measure reliably.
+        A canary sends a new build to a small group first. You can compare it
+        with everyone else over the same hours, but only if the groups match.
+        Pin each side to a single build so old cached versions don't mix in, and
+        compare each customer or region against itself. If the groups don't
+        match, treat the result as a lead rather than a finding.
       </p>
 
       <p>
-        In this project, the latency result took an afternoon to detect. We
-        spent a quarter on the revenue question. Those aren't useful timelines
-        to apply to every experiment, but they explain why I'd estimate the
-        required sample before committing to a revenue claim. The expected
-        effect, variation in the metric, and available traffic determine whether
-        the experiment is practical.
+        To see how much difference is just noise, repeat the comparison on a
+        build with no code changes, and check that a part of the system the
+        change didn't touch stays flat. Short windows suit big effects but can
+        miss rare errors and small regressions.
       </p>
 
-      <p>There were three things to work out before the test:</p>
+      <h3>When nothing can be split</h3>
 
-      <ol className="space-y-3 my-6">
+      <p>
+        Many changes can't be split at all: a refactor, a new build tool, a
+        database migration, a cost cut. That leaves before and after, which
+        misleads easily because other things change over time. Time of day alone
+        noticeably swings our median SDK time to interactive.
+      </p>
+
+      <p>
+        A few habits make it hold up. Use a baseline long enough to show the
+        normal ups and downs, and compare the same days of the week. Find
+        something that didn't change, like a similar service or another team,
+        and check that it stayed flat over the same period. Decide in advance
+        how big the change must be to beat the normal swings. If the end goal
+        moves slowly, pick a quicker signal that should move first, like build
+        time before release frequency. Even then it's weaker evidence than a
+        split, so note anything else that changed in the same window.
+      </p>
+
+      <h2>Check who you're comparing before reading outcomes</h2>
+
+      <p>Before looking at results, I check four things:</p>
+
+      <ul className="space-y-3 my-6">
         <li>
-          <strong>What result would be useful?</strong> Choose the primary
-          metric, the smallest improvement worth detecting, and the sample
-          needed to detect it. Use that to decide how long to run the
-          experiment.
+          <strong>
+            Do both groups reach the measurement at the same rate?
+          </strong>{' '}
+          If the new version makes some slow loads fail before they're timed, it
+          can look faster just by losing its slowest users.
         </li>
         <li>
-          <strong>How will both groups be recorded?</strong> Record assignment
-          to the experiment for the control and treatment groups, before the
-          operation being measured can fail. Count each experimental unit once.
-          If the experiment configuration is missing, enroll nobody.
+          <strong>Are the groups the size you intended?</strong> A planned 50/50
+          split that comes out lopsided usually points to a problem with
+          assignment, so explain it first.
         </li>
         <li>
-          <strong>How will we make the decision?</strong> Write down the
-          metrics, analysis window, and checks in the pull request before the
-          results are available.
+          <strong>Is everyone running the current version?</strong> Old cached
+          builds flipped an early revenue result of ours until we excluded them.
         </li>
-      </ol>
+        <li>
+          <strong>Does everyone belong in their group?</strong> Traffic meant to
+          be left out can end up counted as the control group.
+        </li>
+      </ul>
+
+      <h2>Break the outcome into its parts</h2>
 
       <p>
-        If the available traffic can't answer the business question in a
-        reasonable time, that affects the plan. You might measure a more direct
-        outcome or test several related improvements together. We used a
-        combined experiment, so the reported effect belongs to that set of
-        changes.
+        Most goals are made of parts. For us, revenue is offers shown, times
+        clicks per offer, times value per click. Build time might be time in the
+        queue plus time running plus time lost to retries. A flat part can hide
+        gains elsewhere, and the same change can help different places through
+        different parts.
       </p>
 
-      <h2>What I checked before interpreting the results</h2>
+      <h2>Write it down first, and make it repeatable</h2>
 
       <p>
-        The first check was whether the deployed code was actually recording the
-        experiment. A correct implementation in a local checkout doesn't
-        establish that the production data contains what the analysis needs.
-      </p>
-
-      <p>
-        Next came the population being compared. This is easy to get wrong
-        because a query can return plausible numbers while leaving out relevant
-        sessions.
-      </p>
-
-      <p>
-        Consider a session that enters the experiment but leaves before the SDK
-        becomes interactive. It might never produce a timing record. If you
-        build the experiment population from timing records, that session
-        disappears from the analysis. A faster SDK could change which sessions
-        produce those records, which also changes who is included in the timing
-        comparison.
+        Put the purpose, metric, comparison, analysis window and bar for acting
+        in the pull request before results exist.
       </p>
 
       <p>
-        That's why the analysis starts with enrollment. From there, check how
-        many sessions in each group reach the point being measured. If that rate
-        changes, report it and account for it when interpreting the timing
-        results.
-      </p>
-
-      <p>
-        I also checked the observed group sizes against the intended 50/50
-        split. An unexplained imbalance needs investigating before drawing
-        conclusions from the outcome metrics.
-      </p>
-
-      <p>
-        Once those checks were done, I could look at the outcomes and their
-        uncertainty. Confidence intervals help show how precisely an effect has
-        been estimated. For an inconclusive result, the question is whether the
-        experiment could detect an effect small enough to matter. An
-        inconclusive result doesn't establish that the changes had no effect.
-      </p>
-
-      <p>
-        Finally, save the report with the experiment definition, analysis
-        window, queries, and limitations before removing the experiment. That
-        gives the next person enough context to understand the result without
-        reconstructing the setup from old code.
-      </p>
-
-      <h2>What I put into the two skills</h2>
-
-      <p>
-        I had already been{' '}
+        I turned this into two Claude Skills, <code>ab-setup</code> and{' '}
+        <code>ab-diagnose</code>, as part of{' '}
         <Link
           to="/blog/claude-skills-institutional-knowledge/"
           className="text-blitz-accent hover:underline"
         >
           using Claude Skills to make technical workflows reusable
         </Link>
-        . This workflow had two distinct points where I wanted help: when
-        planning a change and when reading its results.
+        . <code>ab-setup</code> starts from the change and its metric, estimates
+        how much traffic you need and writes the plan before shipping.{' '}
+        <code>ab-diagnose</code> checks the groups before the outcomes and keeps
+        measured effects separate from estimates.
       </p>
 
-      <p>
-        <code>ab-setup</code> starts with the proposed change, the metric it
-        should affect, and the business outcome we think it might influence. It
-        guides the sample-size estimate, enrollment instrumentation, and written
-        analysis plan. The useful output is a plan we can review before
-        shipping, including whether we have enough traffic to answer the
-        question.
-      </p>
+      <h2>What this looked like for our latency work</h2>
 
       <p>
-        <code>ab-diagnose</code> works through the deployed instrumentation,
-        enrolled population, group split, and outcomes in that order. It
-        produces a report that distinguishes measured effects from estimates and
-        unresolved questions.
+        Rokt's web SDK shows offers on checkout and confirmation pages, and the
+        team shipped a run of latency work on it. The purpose throughout was
+        getting offers in front of shoppers sooner. The direct number was the
+        SDK's own time to interactive: how long until an offer is on screen and
+        ready, the part of the wait we control. Each piece of work called for a
+        different comparison.
       </p>
 
-      <p>
-        For this SDK project, that means explaining the original goal alongside
-        the results:
-      </p>
+      <h3>A smaller, faster startup</h3>
 
       <ul className="space-y-3 my-6">
         <li>
-          <strong>Customer experience:</strong> the goal was to make offers
-          available sooner and the checkout and confirmation flow feel smoother.
+          <strong>Purpose:</strong> a faster SDK for every partner, with no code
+          changes on their side. We deferred code, removed unnecessary work and
+          shrank the offer bundle.
         </li>
         <li>
-          <strong>Measured performance:</strong> time to interactive was 11%
-          lower at p50 and 12% lower at p95 in the combined experiment.
+          <strong>How we measured it:</strong> random splits first, then one
+          shared split for the combined changes. The expected revenue lift was
+          too small to measure in time, so revenue was a guardrail.
         </li>
         <li>
-          <strong>Revenue impact:</strong> the work had a revenue impact, but
-          the figures are internal and aren't disclosed in this post.
+          <strong>Impact:</strong> together with the startup change below,
+          median SDK time to interactive fell 11%, and 12% for the slowest 5% of
+          loads.
         </li>
       </ul>
 
-      <p>
-        Having those steps in skills gives me a procedure to follow on the next
-        project. I still need to review the experiment design and the
-        conclusions.
-      </p>
+      <h3>A startup change with no split</h3>
+
+      <ul className="space-y-3 my-6">
+        <li>
+          <strong>Purpose:</strong> shorten one phase of startup by changing the
+          order two SDK parts connect in.
+        </li>
+        <li>
+          <strong>How we measured it:</strong> it shipped without a split, so we
+          compared the canary build with the rest of the fleet over the same
+          hours, each side pinned to a single build and each partner against
+          itself. We repeated the comparison on a config-only build to see the
+          noise.
+        </li>
+        <li>
+          <strong>Impact:</strong> the targeted phase fell 18% for the slowest
+          10% of loads, well above that noise. Already fast partners gained
+          nothing and the slowest gained a median of 23%, the pattern you'd
+          expect from removing a wait.
+        </li>
+      </ul>
+
+      <h3>An undisclosed feature</h3>
+
+      <ul className="space-y-3 my-6">
+        <li>
+          <strong>Purpose:</strong> offers ready sooner, with an effect big
+          enough to aim at revenue directly. I can't share what it does.
+        </li>
+        <li>
+          <strong>How we measured it:</strong> a staged ramp per partner through
+          10%, 50% and 100%, with revenue in the bar at each step, a four-week
+          read at 50% and adjustments per partner along the way. Breaking
+          revenue into its parts showed where each gain came from.
+        </li>
+        <li>
+          <strong>Impact:</strong> for the three partners that finished the
+          ramp, median SDK time to interactive fell 27% to 76%, and revenue rose
+          4.0% to 5.7%, with every 95% interval above zero. The slowest partner
+          gained because about a quarter fewer shoppers left before the offer
+          appeared. The fastest gained mostly through value per click.
+        </li>
+      </ul>
+
+      <div className="bg-gradient-to-r from-blitz-accent/10 to-blitz-soft/10 border border-blitz-accent/20 p-8 rounded-lg my-8">
+        <div className="grid md:grid-cols-3 gap-6">
+          <div>
+            <p className="text-3xl font-bold text-blitz-accent">
+              <CountUp value={11} prefix="−" suffix="%" />
+            </p>
+            <p className="text-sm text-blitz-charcoal/70">
+              Median SDK time to interactive from the startup work (12% for the
+              slowest 5% of loads)
+            </p>
+          </div>
+          <div>
+            <p className="text-3xl font-bold text-blitz-accent">
+              <CountUp value={46} prefix="−" suffix="%" />
+            </p>
+            <p className="text-sm text-blitz-charcoal/70">
+              Median SDK time to interactive from the undisclosed feature,
+              average of three partners (27% to 76%)
+            </p>
+          </div>
+          <div>
+            <p className="text-3xl font-bold text-blitz-accent">
+              <CountUp value={4.8} decimals={1} prefix="+" suffix="%" />
+            </p>
+            <p className="text-sm text-blitz-charcoal/70">
+              Revenue from the same feature, average of the same three partners
+              (+4.0% to +5.7%)
+            </p>
+          </div>
+        </div>
+      </div>
 
       <p>
-        For this work, we had both a metric directly affected by the code and an
-        earlier study connecting latency to revenue. Other projects may need
-        different evidence. A refactor's value might take longer to observe, and
-        some work won't have a useful revenue estimate.
-      </p>
-
-      <p>
-        Before your next change ships, write down what you expect it to improve,
-        how you'll compare the result, and what evidence would be useful enough
-        to act on. Then make sure you're collecting the data needed to answer
-        that question.
+        Every change has a purpose, and it's worth knowing how much of it the
+        change delivered. As AI handles more implementation, I expect that to
+        become a larger part of engineering.
       </p>
     </ArticleLayout>
   )

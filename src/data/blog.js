@@ -17,10 +17,10 @@ const blogPosts = [
     id: 1,
     title: 'Measuring the Impact of Engineering Work',
     excerpt:
-      'How I measured SDK performance improvements at Rokt, starting with the customer experience, and turned the experiment setup and analysis into two reusable Claude Skills.',
-    date: 'September 18, 2026',
+      'Every change we ship has a purpose. As AI writes more of our code, backing that purpose with numbers matters more than ever. A practical guide, with results from latency work at Rokt.',
+    date: 'November 17, 2026',
     readTime: '6 min read',
-    category: 'Performance',
+    category: 'Experimentation',
     link: '/blog/measuring-engineering-impact',
   },
   {

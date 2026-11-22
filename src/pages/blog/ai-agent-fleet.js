@@ -3,7 +3,7 @@ import ArticleLayout from '../../components/ArticleLayout'
 
 const title = 'Harry Potter and the Order of the Agents'
 const description =
-  'How I split my software development across a themed fleet of AI agents, so changes get built, reviewed, and watched through CI while my time goes to decisions.'
+  'I split coding, review, and CI watching across a Harry Potter themed factory of AI agents. A task usually reaches a reviewed draft PR without me stepping in.'
 
 const desks = [
   [
@@ -14,7 +14,7 @@ const desks = [
   [
     'Harry',
     'Senior Engineer',
-    "Builds one task at a time in its own git worktree using Codex, then fixes review findings and answers teammates' PR comments, up to a set number of review rounds.",
+    "Builds one task at a time in its own git worktree, a separate checkout of the repo, using Codex, then fixes review findings and answers teammates' PR comments, up to a set number of review rounds.",
   ],
   [
     'Hermione',
@@ -44,7 +44,7 @@ const desks = [
   [
     'Ollivander',
     'Model Keeper',
-    "A script desk that picks models within each desk's family; cheaper moves apply with a note, and costlier ones wait for my approval. When a model is down, its desks move to the next one in the family. When Codex updates, he pauses its desks, reruns the sandbox checks on the new version himself, and resumes them once both pass. The Claude desks run on.",
+    'A script, not a model. He fits each desk with a model from its family the way he fits wands, moves desks along the family when a model is down, and rechecks the sandbox before the Codex desks resume after an update. Costlier moves wait for me.',
   ],
 ]
 
@@ -207,7 +207,7 @@ const FleetMap = () => (
             width={440}
             label="ALWAYS · THE OWLERY"
             name="Desks post only to their own outbox"
-            detail="The Owl Post stamps the sender. Silence is never a yes."
+            detail="The Owl Post stamps every sender."
             aside
           />
           <MapRoom
@@ -252,18 +252,19 @@ const AIAgentFleetPage = () => (
   >
     <p className="text-lg italic mb-8">
       I already used several AI agents, each for a different kind of work, but
-      they didn't work as a fleet. Each one ran its own long session, I was the
+      they didn't work together. Each one ran its own long session, I was the
       one carrying work between them and watching CI, and nothing automatically
       sent one agent's work to a different agent to check.
     </p>
     <p>
-      So I built a fleet. This post covers the design and how it changed the way
-      I ship code.
+      So I built the Hogwarts factory, and it runs on my Mac. Between my go on a
+      task and a reviewed draft PR, I usually don't need to step in. This post
+      covers how it works and where my time goes now.
     </p>
 
-    <h2>What is an AI fleet?</h2>
+    <h2>What I mean by a factory</h2>
     <p>
-      For me, an AI fleet is a set of agents with separate jobs, a way to hand
+      For me, an AI factory is a set of agents with separate jobs, a way to hand
       work between them, and clear rules about who can do what. One builds.
       Another reviews. Another investigates data. They share useful context
       without sharing one endless conversation.
@@ -272,24 +273,27 @@ const AIAgentFleetPage = () => (
       Each task gets a fresh start and a clear handoff. Scripts move messages,
       prepare worktrees, run checks, and watch for changes. Models do the parts
       that need judgment. I own merges, deploys, credentials, and settings. The
-      few things the fleet does in my name are switches I turn on myself, and
+      few things the factory does in my name are switches I turn on myself, and
       each one tells me what it did.
     </p>
     <p>
-      The point isn't to have more agents talking. It's to stop each agent from
-      carrying its whole history, remembering everything alone, and checking its
+      The point is that I stop being the conveyor belt. I don't carry work
+      between agents or keep checking whether the next step can start. Each
+      agent gets only the context its part needs, and none of them checks its
       own work.
     </p>
 
     <h2>The Harry Potter theme and roles</h2>
     <p>
-      I themed the fleet around Harry Potter because I like it, and the names
+      I themed the factory around Harry Potter because I like it, and the names
       make the jobs easy for me to remember. I'm the Headmaster. Each desk has a
-      narrow role, and important decisions come back to me.
+      narrow role, and important decisions come back to my office.
     </p>
     <div className="my-8 overflow-x-auto">
       <table className="w-full border-collapse text-left">
-        <caption className="sr-only">The fleet's desks and their jobs</caption>
+        <caption className="sr-only">
+          The factory's desks and their jobs
+        </caption>
         <thead>
           <tr className="border-b border-blitz-primary/20 bg-blitz-sand">
             <th scope="col" className="p-3">
@@ -318,23 +322,23 @@ const AIAgentFleetPage = () => (
     <p>
       Ron kept goal, which fits watching everything coming at the hoops. Snape's
       potions book is full of corrections to the official recipe, the attitude I
-      want from whoever reads my data. Moody trusts nothing he hasn't checked
-      himself. Ollivander fits the right wand to the wizard, and the right model
-      to the job.
+      want from whoever reads my data. Moody brings constant vigilance and
+      trusts nothing he hasn't checked himself. Ollivander fits the right wand
+      to the wizard, and the right model to the job.
     </p>
     <p>
       There are scripts behind the desks too. The Owl Post carries messages and
       Gringotts handles backups. The Marauder's Map watches PRs and CI, hands
-      teammates' comments back to Harry, and closes merged tasks once they're
-      proven. Those jobs don't need a model to keep running.
+      teammates' comments back to Harry, and closes merged tasks once it can
+      prove the work landed. Those jobs don't need a model to keep running.
     </p>
 
     <h2 id="map">The Marauder's Map</h2>
     <p>
-      This is how a task moves through the castle. The trail follows one change
-      from my ask to my merge. The rooms alongside it handle messages, memory,
-      and model choices. Ollivander is part of that supporting cast rather than
-      another approval step on every task.
+      This is how a task moves through the castle, footprints and all. The trail
+      follows one change from my ask to my merge. The rooms alongside it handle
+      messages, memory, and model choices. Ollivander is part of that supporting
+      cast rather than another approval step on every task.
     </p>
     <FleetMap />
     <ol className="list-decimal space-y-3">
@@ -356,18 +360,18 @@ const AIAgentFleetPage = () => (
         and records each command, exit code, and output against that commit. A
         check is either one command or plain words for the reviewer, never a
         mix. Checks that only make sense after the merge wait until then.
-        Scripts report facts. Reviewers judge them.
       </li>
       <li>
-        <strong>Cross-model review.</strong> Codex-written work goes to Hermione
-        on Claude. Claude-written work goes to Moody on Codex. Each gets a fresh
-        session with the task, full diff, evidence, and repo rules, and the
-        store only counts a pass when the model families differ. Any new commit
-        voids it. Harry's handoff starts the review by itself, and a CHANGES
-        verdict sends him straight back to fix it. After three rounds without a
-        pass, or sooner if the reviewer wants me, it comes back to me. A review
-        that fails for a tooling reason is reported as blocked, not handed to me
-        as a decision.
+        <strong>Cross-model review.</strong> Codex-written work, Harry's
+        included, goes to Hermione on Claude. Claude-written work, such as
+        changes from my own Claude sessions, goes to Moody on Codex. Each
+        reviewer starts fresh with the task, the full diff, the evidence, and
+        the repo rules. A pass only counts when the reviewer comes from the
+        other model family, and any new commit needs a new pass. Harry's handoff
+        starts the review by itself, and a CHANGES verdict sends him straight
+        back to fix it. After three rounds without a pass, or sooner if the
+        reviewer wants me, it comes back to me. A review that fails for a
+        tooling reason is reported as blocked, not handed to me as a decision.
       </li>
       <li>
         <strong>Push and PR.</strong> A hook blocks an agent's push without a
@@ -381,27 +385,27 @@ const AIAgentFleetPage = () => (
       <li>
         <strong>Patrol.</strong> The Map script checks PRs and CI without model
         calls, and Ron wakes only when something changes. When a teammate
-        comments on a PR the fleet opened, their comments go back to Harry as
+        comments on a PR the factory opened, their comments go back to Harry as
         data, not orders. He fixes or answers each one, Hermione reviews the fix
         and every reply, and only then do they go out in my name. Nothing
         resolves a thread, marks a PR ready, or merges.
       </li>
       <li>
         <strong>Merge.</strong> Green, reviewed PRs wait in my queue. I merge
-        and deploy. With auto-close switched on, the fleet then closes the task
-        once it can prove the work landed: the PR merged with exactly the
-        reviewed commit, CI is green on the merge commit, and any after-merge
-        checks pass. I get one line saying what proved it. If any of that fails,
-        it stops and tells me, and I close the task by hand.
+        and deploy. With auto-close switched on, the factory then declares
+        mischief managed and closes the task, but only once it can prove the
+        work landed: the PR merged with exactly the reviewed commit, CI is green
+        on the merge commit, and any after-merge checks pass. I get one line
+        saying what proved it. If any of that fails, it stops and tells me, and
+        I close the task by hand.
       </li>
     </ol>
     <p>
-      Ron also watches the deploy and release pipelines. Every build that
-      breaks, gets cancelled, rolls back, or gets stuck reaches him once, with
-      the failing logs scrubbed of secrets. He calls each one real, flaky, or
-      infra, and if he calls it flaky or infra while the build is still red, I
-      hear about it. The watch only reads. It never retries, rebuilds, or rolls
-      anything back, and its access token lives only in the macOS Keychain.
+      As Keeper, Ron also watches the deploy and release pipelines. When a build
+      fails or gets stuck, he reads the logs and gives me a first call: real,
+      flaky, or infra. If he calls it flaky or infra and no retry has passed, I
+      still hear about it. The watch only reads. I decide whether to retry or
+      roll back.
     </p>
 
     <h2>Reviewers my teammates can ask</h2>
@@ -414,11 +418,11 @@ const AIAgentFleetPage = () => (
       for risky changes, CI that isn't green, and a few other cases.
     </p>
     <p>
-      The words in a review request never reach the model, only the PR and
-      anything attached, which the job fetches. Follow-up questions and earlier
-      messages in the thread do reach it, as untrusted text to check rather than
-      instructions. The model can't browse or change anything outside its review
-      folder, and the job does the posting.
+      The job fetches the linked PR and anything attached, and that's what the
+      model sees, never the wording of the request. Follow-up questions and
+      earlier messages in the thread do reach it, marked as untrusted text
+      rather than instructions. The model can't browse or change anything
+      outside its review folder, and the job does the posting.
     </p>
 
     <h2>Shared memory without carrying the history</h2>
@@ -429,10 +433,10 @@ const AIAgentFleetPage = () => (
       emails, IP addresses, tokens, and long hashes first.
     </p>
     <p>
-      Facts know when they change. Only one fact per subject is current. A
-      replacement closes the old fact and keeps its dates, so yesterday's answer
-      doesn't silently become today's truth. Volatile facts such as PR status
-      need a live lookup or must expire within a week.
+      The Pensieve keeps one current fact per subject. When a fact changes, the
+      old one stays in the bowl with its dates instead of being overwritten, so
+      yesterday's answer doesn't quietly pass for today's. Things that change
+      fast, like PR status, have to be looked up live or expire within a week.
     </p>
     <p>
       A session starts with a short digest and its last checkpoint, rather than
@@ -448,8 +452,7 @@ const AIAgentFleetPage = () => (
 
     <h2>Closing thoughts</h2>
     <p>
-      The biggest change is where my time goes. Between my go and a reviewed
-      draft PR, usually nothing needs me. Harry builds, the checks run, a
+      The biggest change is where my time goes. Harry builds, the checks run, a
       reviewer from the other model family reads the diff, and a fix round
       starts on its own when the review asks for changes. Teammates' comments on
       those PRs go back to Harry first, and a broken build reaches me already
@@ -466,10 +469,12 @@ const AIAgentFleetPage = () => (
       history, but that was a side effect rather than the goal.
     </p>
     <p>
-      The fleet doesn't have to be Harry Potter themed. That's just how I like
+      The factory doesn't have to be Harry Potter themed. That's just how I like
       it. The roles, handoffs, and boundaries are the useful part, and they work
-      under any names. If I were starting again, I'd begin with one reviewer
-      from a different model family, and add desks only when I felt the need.
+      under any names. If I were starting again, I'd begin with one builder, one
+      reviewer from a different model family, and scripts for the handoffs and
+      CI watching. I'd add desks when I caught myself doing the same job by hand
+      again and again.
     </p>
   </ArticleLayout>
 )

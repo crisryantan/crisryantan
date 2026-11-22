@@ -7,7 +7,7 @@ const blogPosts = [
     id: 0,
     title: 'Harry Potter and the Order of the Agents',
     excerpt:
-      'How I split my software development across a themed fleet of AI agents, so changes get built, reviewed, and watched through CI while my time goes to decisions.',
+      'I split coding, review, and CI watching across a Harry Potter themed factory of AI agents. A task usually reaches a reviewed draft PR without me stepping in.',
     date: 'October 5, 2026',
     readTime: '8 min read',
     category: 'AI & Productivity',

@@ -29,7 +29,7 @@ const desks = [
   [
     'Ron',
     'Release Engineer',
-    'Sorts PR and CI changes into routine or needs-me, and writes the morning PR lineup and weekly scoreboard.',
+    'Sorts PR and CI changes into routine or needs-me, watches the deploy and release pipelines, and writes the morning PR lineup and weekly scoreboard.',
   ],
   [
     'Snape',
@@ -395,6 +395,15 @@ const AIAgentFleetPage = () => (
         it stops and tells me, and I close the task by hand.
       </li>
     </ol>
+    <p>
+      Ron also watches the deploy and release pipelines on Buildkite. Every
+      build that breaks, gets cancelled, rolls back, or gets stuck reaches him
+      once, with the failing logs scrubbed of secrets. He calls each one real,
+      flaky, or infra, and if he calls it flaky or infra while the build is
+      still red, I hear about it. The watch only reads. It never retries,
+      rebuilds, or rolls anything back, and its Buildkite token lives only in
+      the macOS Keychain.
+    </p>
 
     <h2>Reviewers my teammates can ask</h2>
     <p>
@@ -410,7 +419,17 @@ const AIAgentFleetPage = () => (
       Each review says how risky the change is, what CI reported, and what it
       didn't verify, and on GitHub which commits it checked. Afterwards the app
       follows the PR and reviews new commits on its own. Teammates can ask it
-      questions or what it's working on, and it remembers its own reviews.
+      questions or what it's working on, and it remembers its own reviews. In
+      the repo Moody watches, he also reviews new PRs without being asked, my
+      teammates' as well as the fleet's.
+    </p>
+    <p>
+      The reviewers read every CI check on the PR. That lets a review say
+      whether the tests for the changed code actually ran on that commit and
+      passed, and flag new tests that no check ran. A PR with a long list of
+      checks can still be approved once they pass. When CI holds an approval
+      back, the reply says why: a required check failed, the checks are still
+      running, or they couldn't be read.
     </p>
     <p>
       The model never sees the words a teammate typed in a review request, just

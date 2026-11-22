@@ -410,15 +410,15 @@ const AIAgentFleetPage = () => (
       with a pull request link, and a job on my Mac reviews it read-only against
       the whole repo and the PR's CI checks, then answers in the thread. With my
       switches on, the review also lands on GitHub with comments on the lines.
-      An approval counts as mine, so it needs its own switch, and it's held
-      back for risky changes, CI that isn't green, and a few other cases.
+      An approval counts as mine, so it needs its own switch, and it's held back
+      for risky changes, CI that isn't green, and a few other cases.
     </p>
     <p>
       The words in a review request never reach the model, only the PR and
       anything attached, which the job fetches. Follow-up questions and earlier
       messages in the thread do reach it, as untrusted text to check rather than
-      instructions. The model can't browse or change anything outside its
-      review folder, and the job does the posting.
+      instructions. The model can't browse or change anything outside its review
+      folder, and the job does the posting.
     </p>
 
     <h2>Shared memory without carrying the history</h2>

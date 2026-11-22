@@ -262,6 +262,39 @@ const AIAgentFleetPage = () => (
       reaches a reviewed draft PR without me stepping in. This post covers how
       it works and where my time goes now.
     </p>
+    <p>
+      You can see when it switched on. Over the summer I averaged about 90
+      GitHub contributions a week. The factory went live on 4 October, which was
+      also my first 100-contribution day, and since then it's been about 380 a
+      week. GitHub counts the commits, pull requests, and reviews under my
+      account, so that includes the work the factory does in my name.
+    </p>
+    <figure className="my-8">
+      <img
+        src={
+          require('../../assets/images/github-contributions-light.png').default
+        }
+        alt="GitHub contribution graph for the past year. Squares are light through the summer and turn much darker from the first week of October."
+        width="912"
+        height="228"
+        loading="lazy"
+        className="w-full h-auto rounded-lg border border-blitz-primary/20 dark:hidden"
+      />
+      <img
+        src={
+          require('../../assets/images/github-contributions-dark.png').default
+        }
+        alt="GitHub contribution graph for the past year. Squares are faint through the summer and turn much brighter from the first week of October."
+        width="912"
+        height="228"
+        loading="lazy"
+        className="hidden w-full h-auto rounded-lg border border-blitz-primary/20 dark:block"
+      />
+      <figcaption className="text-sm text-blitz-charcoal/60 italic mt-2 text-center">
+        My public GitHub contribution graph on 22 November 2026. The jump starts
+        the week the factory went live.
+      </figcaption>
+    </figure>
 
     <h2>What I mean by a factory</h2>
     <p>

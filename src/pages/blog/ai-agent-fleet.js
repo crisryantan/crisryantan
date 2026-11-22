@@ -417,7 +417,7 @@ const AIAgentFleetPage = () => (
       The words in a review request never reach the model, only the PR and
       anything attached, which the job fetches. Follow-up questions and earlier
       messages in the thread do reach it, as untrusted text to check rather than
-      instructions. The model can't write, browse, or reach anything beyond its
+      instructions. The model can't browse or change anything outside its
       review folder, and the job does the posting.
     </p>
 

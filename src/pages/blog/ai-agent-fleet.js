@@ -19,12 +19,12 @@ const desks = [
   [
     'Hermione',
     'Staff Engineer',
-    "Reviews Codex-written code using Claude, including Harry's replies to my teammates, fact-checks bot comments, and reviews PRs teammates send her in chat.",
+    "Reviews Codex-written code using Claude, including Harry's replies to my teammates, and fact-checks bot comments.",
   ],
   [
     'Moody',
     'Security Reviewer',
-    'Uses Codex for a read-only, security-first review of Claude-written code, and takes review requests in chat too.',
+    'Uses Codex for a read-only, security-first review of Claude-written code.',
   ],
   [
     'Ron',
@@ -245,7 +245,7 @@ const AIAgentFleetPage = () => (
     title={title}
     description={description}
     date="October 5, 2026"
-    readTime="9 min read"
+    readTime="8 min read"
     category="AI & Productivity"
     slug="/blog/ai-agent-fleet"
     tags={['AI & Productivity', 'AI Agents', 'Shared Memory']}
@@ -406,54 +406,19 @@ const AIAgentFleetPage = () => (
 
     <h2>Reviewers my teammates can ask</h2>
     <p>
-      Hermione and Moody also live in our team chat, each as its own app. A
-      teammate mentions one with a pull request link, and a job on my Mac
-      reviews it read-only and answers in the thread. With my switches on, the
-      review also lands on GitHub the way a person's would: comments on the
-      lines that need them, then a comment, a request for changes, or an
-      approval. An approval counts as mine, so it needs a second switch and a
-      clean pass of the whole diff. It's held back when the reviewer couldn't
-      read the whole repo or every changed file, when the change is high risk or
-      touches privacy or security code, when the PR's required checks aren't
-      green, or while my own earlier change request stands. A pass held for risk
-      or privacy comes to me privately, so I can decide whether to approve it.
+      Hermione and Moody also live in our team chat. A teammate mentions one
+      with a pull request link, and a job on my Mac reviews it read-only against
+      the whole repo and the PR's CI checks, then answers in the thread. With my
+      switches on, the review also lands on GitHub with comments on the lines.
+      An approval counts as mine, so it needs its own switch, and it's held
+      back for risky changes, CI that isn't green, and a few other cases.
     </p>
     <p>
-      Each review says how risky the change is, what CI reported, and what it
-      didn't verify, and on GitHub which commits it checked. When a review asks
-      for changes, the app follows the PR, reviews the fixes as they land, and
-      then hands the PR back to people. Teammates can ask it questions or what
-      it's working on, and it remembers its own reviews. In the repo Moody
-      watches, he also reviews new PRs without being asked, my teammates' as
-      well as the fleet's.
-    </p>
-    <p>
-      Each reviewer reads a read-only copy of the whole repo, plus related code,
-      so it judges a change against the code it affects. Its checklists depend
-      on which folders the change touches. A teammate can ask for a pair review,
-      and Hermione and Moody both review the PR, with their findings combined in
-      one reply. When someone dismisses one of their change requests on GitHub,
-      later reviews of that repo see the dismissal and the reason, and weigh
-      them against the code.
-    </p>
-    <p>
-      The reviewers read the CI checks on the PR, so a review says whether the
-      tests for the changed code actually ran on that commit and passed, and
-      flags new tests that no check ran. A PR with a long list of checks can
-      still be approved once they pass. When CI holds an approval back, the
-      reply says why: a required check failed, the checks are still running, or
-      they couldn't be read.
-    </p>
-    <p>
-      The words a teammate types in a review request never reach the model. It
-      gets the PR and anything they attached, which the job fetches. A review
-      also reads what teammates wrote earlier in the thread and other reviewers'
-      open comments on the PR, as claims to check rather than instructions, and
-      says which ones it confirmed. Questions teammates ask it do reach the
-      model, along with the thread's recent messages, all marked as untrusted
-      text. PR text and attachments are untrusted data too, what it writes is
-      scrubbed before it's posted, and the model can't write, browse, or reach
-      anything beyond its review folder. The job does the posting.
+      The words in a review request never reach the model, only the PR and
+      anything attached, which the job fetches. Follow-up questions and earlier
+      messages in the thread do reach it, as untrusted text to check rather than
+      instructions. The model can't write, browse, or reach anything beyond its
+      review folder, and the job does the posting.
     </p>
 
     <h2>Shared memory without carrying the history</h2>
@@ -491,14 +456,6 @@ const AIAgentFleetPage = () => (
       Moody's reviews run on Codex, so they aren't in these numbers.
     </p>
     <p>
-      The part I'd keep if everything else went away is the reviewers. A
-      teammate drops a pull request link in chat and gets a review from Claude
-      or Codex, whichever reviewer they ask, in a few minutes, with comments on
-      the lines on GitHub, and a quick question gets an answer in about a
-      minute. That's a second pair of eyes on any change they send, without
-      waiting for someone's afternoon to free up.
-    </p>
-    <p>
       For my own builds, scripts do the watching instead of me. When a task
       moves, a notification on my Mac says where it stands, so my attention goes
       to decisions and approvals.
@@ -507,8 +464,7 @@ const AIAgentFleetPage = () => (
       The fleet doesn't have to be Harry Potter themed. That's just how I like
       it. The roles, handoffs, and boundaries are the useful part, and they work
       under any names. If I were starting again, I'd begin with one reviewer
-      from a different model family in the team chat and add desks only when I
-      felt the need.
+      from a different model family, and add desks only when I felt the need.
     </p>
   </ArticleLayout>
 )

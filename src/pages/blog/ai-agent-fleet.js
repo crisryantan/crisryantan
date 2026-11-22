@@ -3,7 +3,7 @@ import ArticleLayout from '../../components/ArticleLayout'
 
 const title = 'Harry Potter and the Order of the Agents'
 const description =
-  'How I split my AI workflow into a themed fleet, with shared memory, cross-model review, and what it did to my token use.'
+  'How I split my software development across a themed fleet of AI agents, so changes get built, reviewed, and watched through CI while my time goes to decisions.'
 
 const desks = [
   [
@@ -248,17 +248,17 @@ const AIAgentFleetPage = () => (
     readTime="8 min read"
     category="AI & Productivity"
     slug="/blog/ai-agent-fleet"
-    tags={['AI & Productivity', 'AI Agents', 'Shared Memory']}
+    tags={['AI & Productivity', 'AI Agents', 'Developer Workflow']}
   >
     <p className="text-lg italic mb-8">
       I already used several AI agents, each for a different kind of work, but
-      they didn't work as a fleet. Each one ran its own long session, nothing
-      managed how many tokens they burned, and nothing automatically sent one
-      agent's work to a different agent to check.
+      they didn't work as a fleet. Each one ran its own long session, I was the
+      one carrying work between them and watching CI, and nothing automatically
+      sent one agent's work to a different agent to check.
     </p>
     <p>
-      So I built a fleet. This post covers the design and what it did to my
-      token use.
+      So I built a fleet. This post covers the design and how it changed the way
+      I ship code.
     </p>
 
     <h2>What is an AI fleet?</h2>
@@ -448,17 +448,22 @@ const AIAgentFleetPage = () => (
 
     <h2>Closing thoughts</h2>
     <p>
-      In the fleet's first weeks, my Claude token use across my own sessions and
-      the fleet was about <strong>6% lower per day</strong> than in the month
-      before, and the average context per call in my own sessions was about{' '}
-      <strong>14% smaller</strong>. Spend moves with tokens, since most of the
-      tokens and most of the spend are cached history. Harry's builds and
-      Moody's reviews run on Codex, so they aren't in these numbers.
+      The biggest change is where my time goes. Between my go and a reviewed
+      draft PR, usually nothing needs me. Harry builds, the checks run, a
+      reviewer from the other model family reads the diff, and a fix round
+      starts on its own when the review asks for changes. Teammates' comments on
+      those PRs go back to Harry first, and a broken build reaches me already
+      called real, flaky, or infra.
     </p>
     <p>
-      For my own builds, scripts do the watching instead of me. When a task
-      moves, a notification on my Mac says where it stands, so my attention goes
-      to decisions and approvals.
+      Scripts do the watching instead of me. When a task moves, a notification
+      on my Mac says where it stands, so my attention goes to decisions,
+      approvals, and merges. Teammates can get a review on a PR without waiting
+      for someone's afternoon to free up.
+    </p>
+    <p>
+      My token use came down a little too, since no session carries its whole
+      history, but that was a side effect rather than the goal.
     </p>
     <p>
       The fleet doesn't have to be Harry Potter themed. That's just how I like

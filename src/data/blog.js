@@ -7,9 +7,9 @@ const blogPosts = [
     id: 0,
     title: 'Harry Potter and the Order of the Agents',
     excerpt:
-      'How I split my AI workflow into a themed fleet, with shared memory, cross-model review, and what it did to my token use.',
+      'How I split my software development across a themed fleet of AI agents, so changes get built, reviewed, and watched through CI while my time goes to decisions.',
     date: 'October 5, 2026',
-    readTime: '9 min read',
+    readTime: '8 min read',
     category: 'AI & Productivity',
     link: '/blog/ai-agent-fleet',
   },

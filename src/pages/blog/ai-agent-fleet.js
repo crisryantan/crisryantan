@@ -44,7 +44,7 @@ const desks = [
   [
     'Ollivander',
     'Model Keeper',
-    "A script desk that picks models within each desk's family; cheaper moves apply with a note, and costlier ones wait for my approval. When a model is down, its desks move to the next one in the family. When Codex updates, he pauses its desks until the sandbox checks pass on the new version. With a switch I turned on, he runs those checks himself and resumes the desks once both pass. The Claude desks run on.",
+    "A script desk that picks models within each desk's family; cheaper moves apply with a note, and costlier ones wait for my approval. When a model is down, its desks move to the next one in the family. When Codex updates, he pauses its desks, reruns the sandbox checks on the new version himself, and resumes them once both pass. The Claude desks run on.",
   ],
 ]
 

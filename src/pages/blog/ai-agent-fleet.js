@@ -44,7 +44,7 @@ const desks = [
   [
     'Ollivander',
     'Model Keeper',
-    "A script desk that picks models within each desk's family; cheaper moves apply with a note, and costlier ones wait for my approval. When a model is down, its desks move to the next one in the family. When Codex updates, its desks pause until I've proven its sandbox again, and the Claude desks run on.",
+    "A script desk that picks models within each desk's family; cheaper moves apply with a note, and costlier ones wait for my approval. When a model is down, its desks move to the next one in the family. When Codex updates, he pauses its desks, reruns the sandbox checks on the new version himself, and resumes them once both checks pass. The Claude desks run on.",
   ],
 ]
 
@@ -396,13 +396,12 @@ const AIAgentFleetPage = () => (
       </li>
     </ol>
     <p>
-      Ron also watches the deploy and release pipelines on Buildkite. Every
-      build that breaks, gets cancelled, rolls back, or gets stuck reaches him
-      once, with the failing logs scrubbed of secrets. He calls each one real,
-      flaky, or infra, and if he calls it flaky or infra while the build is
-      still red, I hear about it. The watch only reads. It never retries,
-      rebuilds, or rolls anything back, and its Buildkite token lives only in
-      the macOS Keychain.
+      Ron also watches the deploy and release pipelines. Every build that
+      breaks, gets cancelled, rolls back, or gets stuck reaches him once, with
+      the failing logs scrubbed of secrets. He calls each one real, flaky, or
+      infra, and if he calls it flaky or infra while the build is still red, I
+      hear about it. The watch only reads. It never retries, rebuilds, or rolls
+      anything back, and its access token lives only in the macOS Keychain.
     </p>
 
     <h2>Reviewers my teammates can ask</h2>
@@ -412,31 +411,49 @@ const AIAgentFleetPage = () => (
       reviews it read-only and answers in the thread. With my switches on, the
       review also lands on GitHub the way a person's would: comments on the
       lines that need them, then a comment, a request for changes, or an
-      approval. An approval counts as mine, so it needs a second switch, a clean
-      pass of the whole diff, and a change that isn't high risk.
+      approval. An approval counts as mine, so it needs a second switch and a
+      clean pass of the whole diff. It's held back when the reviewer couldn't
+      read the whole repo or every changed file, when the change is high risk or
+      touches privacy or security code, when the PR's required checks aren't
+      green, or while my own earlier change request stands. A pass held for risk
+      or privacy comes to me privately, so I can decide whether to approve it.
     </p>
     <p>
       Each review says how risky the change is, what CI reported, and what it
-      didn't verify, and on GitHub which commits it checked. Afterwards the app
-      follows the PR and reviews new commits on its own. Teammates can ask it
-      questions or what it's working on, and it remembers its own reviews. In
-      the repo Moody watches, he also reviews new PRs without being asked, my
-      teammates' as well as the fleet's.
+      didn't verify, and on GitHub which commits it checked. When a review asks
+      for changes, the app follows the PR, reviews the fixes as they land, and
+      then hands the PR back to people. Teammates can ask it questions or what
+      it's working on, and it remembers its own reviews. In the repo Moody
+      watches, he also reviews new PRs without being asked, my teammates' as
+      well as the fleet's.
     </p>
     <p>
-      The reviewers read every CI check on the PR. That lets a review say
-      whether the tests for the changed code actually ran on that commit and
-      passed, and flag new tests that no check ran. A PR with a long list of
-      checks can still be approved once they pass. When CI holds an approval
-      back, the reply says why: a required check failed, the checks are still
-      running, or they couldn't be read.
+      Each reviewer reads a read-only copy of the whole repo, plus related code,
+      so it judges a change against the code it affects. Its checklists depend
+      on which folders the change touches. A teammate can ask for a pair review,
+      and Hermione and Moody both review the PR, with their findings combined in
+      one reply. When someone dismisses one of their change requests on GitHub,
+      later reviews of that repo see the dismissal and the reason, and weigh
+      them against the code.
     </p>
     <p>
-      The model never sees the words a teammate typed in a review request, just
-      the link and anything they attached, which the job fetches. PR text and
-      attachments are untrusted data, what it writes is scrubbed before it's
-      posted, and the model can't write, browse, or reach anything beyond its
-      review folder. The job does the posting.
+      The reviewers read the CI checks on the PR, so a review says whether the
+      tests for the changed code actually ran on that commit and passed, and
+      flags new tests that no check ran. A PR with a long list of checks can
+      still be approved once they pass. When CI holds an approval back, the
+      reply says why: a required check failed, the checks are still running, or
+      they couldn't be read.
+    </p>
+    <p>
+      The words a teammate types in a review request never reach the model. It
+      gets the PR and anything they attached, which the job fetches. A review
+      also reads what teammates wrote earlier in the thread and other reviewers'
+      open comments on the PR, as claims to check rather than instructions, and
+      says which ones it confirmed. Questions teammates ask it do reach the
+      model, along with the thread's recent messages, all marked as untrusted
+      text. PR text and attachments are untrusted data too, what it writes is
+      scrubbed before it's posted, and the model can't write, browse, or reach
+      anything beyond its review folder. The job does the posting.
     </p>
 
     <h2>Shared memory without carrying the history</h2>
@@ -466,12 +483,11 @@ const AIAgentFleetPage = () => (
 
     <h2>Closing thoughts</h2>
     <p>
-      Compared with the month before the fleet, my Claude token use across my
-      own sessions and the fleet is about <strong>6% lower per day</strong>, and
-      the average context per call in my own sessions is about{' '}
+      In the fleet's first weeks, my Claude token use across my own sessions and
+      the fleet was about <strong>6% lower per day</strong> than in the month
+      before, and the average context per call in my own sessions was about{' '}
       <strong>14% smaller</strong>. Spend moves with tokens, since most of the
-      tokens and most of the spend are cached history. The fleet's own Claude
-      runs are <strong>under 1%</strong> of that total. Harry's builds and
+      tokens and most of the spend are cached history. Harry's builds and
       Moody's reviews run on Codex, so they aren't in these numbers.
     </p>
     <p>
@@ -484,8 +500,8 @@ const AIAgentFleetPage = () => (
     </p>
     <p>
       For my own builds, scripts do the watching instead of me. When a task
-      moves, one line reaches my phone saying where it stands, so my attention
-      goes to decisions and approvals.
+      moves, a notification on my Mac says where it stands, so my attention goes
+      to decisions and approvals.
     </p>
     <p>
       The fleet doesn't have to be Harry Potter themed. That's just how I like

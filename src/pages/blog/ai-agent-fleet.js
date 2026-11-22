@@ -251,15 +251,16 @@ const AIAgentFleetPage = () => (
     tags={['AI & Productivity', 'AI Agents', 'Developer Workflow']}
   >
     <p className="text-lg italic mb-8">
-      I already used several AI agents, each for a different kind of work, but
-      they didn't work together. Each one ran its own long session, I was the
-      one carrying work between them and watching CI, and nothing automatically
-      sent one agent's work to a different agent to check.
+      For a while I had AI agents for different jobs, like writing code,
+      reviewing it, and digging into data. They didn't talk to each other, so I
+      did the in-between work myself: carrying changes from one to the next,
+      watching CI, and remembering to ask a second model to check.
     </p>
     <p>
-      So I built the Hogwarts factory, and it runs on my Mac. Between my go on a
-      task and a reviewed draft PR, I usually don't need to step in. This post
-      covers how it works and where my time goes now.
+      So I built the Hogwarts factory, a set of agents and scripts on my Mac
+      that hand work along on their own. Once I say go on a task, it usually
+      reaches a reviewed draft PR without me stepping in. This post covers how
+      it works and where my time goes now.
     </p>
 
     <h2>What I mean by a factory</h2>

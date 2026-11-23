@@ -240,6 +240,30 @@ const FleetMap = () => (
   </figure>
 )
 
+const HallShot = ({ light, dark, alt, caption }) => (
+  <figure className="my-8">
+    <img
+      src={light}
+      alt={alt}
+      width="1600"
+      height="1125"
+      loading="lazy"
+      className="w-full h-auto rounded-lg border border-blitz-primary/20 dark:hidden"
+    />
+    <img
+      src={dark}
+      alt={alt}
+      width="1600"
+      height="1125"
+      loading="lazy"
+      className="hidden w-full h-auto rounded-lg border border-blitz-primary/20 dark:block"
+    />
+    <figcaption className="text-sm text-blitz-charcoal/60 italic mt-2 text-center">
+      {caption}
+    </figcaption>
+  </figure>
+)
+
 const AIAgentFleetPage = () => (
   <ArticleLayout
     title={title}
@@ -494,6 +518,29 @@ const AIAgentFleetPage = () => (
       desk had to find the same information again, and writes memory fixes. His
       additions apply on their own with a line telling me what changed. Anything
       that edits or removes memory waits for me.
+    </p>
+
+    <h2>The Great Hall</h2>
+    <p>
+      The Great Hall is a small web page on my Mac that shows the whole factory
+      in one place: a card for every desk, a list of what's waiting on me, and a
+      feed of everything the factory did in the last two days. From there I can
+      open any desk to see its recent work, ask it a question, or handle a small
+      decision without going back to the terminal.
+    </p>
+    <HallShot
+      light={require('../../assets/images/great-hall-light.avif').default}
+      dark={require('../../assets/images/great-hall-dark.avif').default}
+      alt="The Great Hall page. A staff table of desk cards on the left, each with a portrait, role, status, runs, and cost. On the right, a Needs you panel with two items, each with a Dismiss button, and a feed called the Daily Prophet listing recent messages, events, and runs."
+      caption="The Great Hall, filled with made-up demo data. Every repo, task, and number in it is invented."
+    />
+    <p>
+      Each desk's page also has a conversation box, so I can ask Ron why a build
+      stopped, hand Harry a task, or send Moody a PR to review, and the answer
+      lands right there. The page never does the work itself. It only queues
+      what I send, and the factory's own jobs carry it out through the same
+      checks as everywhere else. It only runs on my machine, and merging and
+      deploying stay in my terminal.
     </p>
 
     <h2>Closing thoughts</h2>

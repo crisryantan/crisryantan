@@ -298,10 +298,15 @@ const AIAgentFleetPage = () => (
 
     <h2>What I mean by a factory</h2>
     <p>
-      For me, an AI factory is a set of agents with separate jobs, a way to hand
-      work between them, and clear rules about who can do what. One builds.
-      Another reviews. Another investigates data. They share useful context
-      without sharing one endless conversation.
+      For me, an AI factory takes a task and sees it through end to end. It
+      builds the change, gets it reviewed, fixes what the review finds, and gets
+      it shipped, and over time it needs less supervision from me to do that.
+    </p>
+    <p>
+      Underneath, it's a set of agents with separate jobs, a way to hand work
+      between them, and clear rules about who can do what. One builds. Another
+      reviews. Another investigates data. They share useful context without
+      sharing one endless conversation.
     </p>
     <p>
       Each task gets a fresh start and a clear handoff. Scripts move messages,
@@ -315,6 +320,13 @@ const AIAgentFleetPage = () => (
       between agents or keep checking whether the next step can start. Each
       agent gets only the context its part needs, and none of them checks its
       own work.
+    </p>
+    <p>
+      The direction is that I define and oversee the outcome while agents do
+      more of the work, and every step I hand to an agent comes with a way to
+      check it. Mine gets a task to a reviewed draft PR today. Merging and
+      deploying are still mine, and they're the next steps I want to hand over
+      once the factory can prove each one worked.
     </p>
 
     <h2>The Harry Potter theme and roles</h2>

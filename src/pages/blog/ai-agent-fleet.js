@@ -9,32 +9,37 @@ const desks = [
   [
     'McGonagall',
     'Chief of Staff',
-    'Turns my ask into a task, picks the next step after my go from a short fixed list, and brings me only what needs me.',
+    'Answers small asks directly. For a build, she writes my words under Intent in a TASK.md, adds acceptance criteria with a check for each, and names the repo, a new branch, and its base. I start it by typing go with the task id myself, and Intent stays frozen from then on. After that she picks each next step from a short fixed list and brings me only what needs me.',
   ],
   [
     'Harry',
     'Senior Engineer',
-    "Builds one task at a time in its own git worktree, a separate checkout of the repo, using Codex, then fixes review findings and answers teammates' PR comments, up to a set number of review rounds.",
+    "Builds one task at a time with Codex, in a fresh git worktree, a separate checkout of the repo. He leaves a handoff with a proposed commit message, and the review script makes the commit outside his sandbox. A verify script then runs the acceptance checks and records each command, exit code, and output against that commit. A review that asks for changes sends him straight back to fix it, and once a review passes, a script pushes exactly that commit and opens a draft PR. He also fixes or answers my teammates' comments on his PRs.",
   ],
   [
     'Hermione',
     'Staff Engineer',
-    "Reviews Codex-written code using Claude, including Harry's replies to my teammates, and fact-checks bot comments.",
+    "Reviews Codex-written code using Claude, Harry's included. Each review starts fresh with the task, the full diff, the evidence, and the repo rules, and a pass only counts for the exact commit it read. After three rounds without a pass, it comes back to me. She also checks Harry's fixes and replies to my teammates before they go out in my name, and fact-checks bot comments.",
   ],
   [
     'Moody',
     'Security Reviewer',
-    'Uses Codex for a read-only, security-first review of Claude-written code.',
+    "Reviews Claude-written code, such as changes from my own Claude sessions, using Codex, security first, under the same rules. A hook blocks any push without a pass from the other model family, mine included. He brings constant vigilance and trusts nothing he hasn't checked himself.",
   ],
   [
     'Ron',
     'Release Engineer',
-    'Sorts PR and CI changes into routine or needs-me, watches the deploy and release pipelines, and writes the morning PR lineup and weekly scoreboard.',
+    "Wakes only when a PR or CI changes, and sorts each change into routine or needs-me. He also watches the deploy and release pipelines. When a build fails or gets stuck, he reads the logs and calls it real, flaky, or infra, and I decide whether to retry or roll back. He writes the morning PR lineup and the weekly scoreboard too. He kept goal at school, which fits watching everything coming at the hoops.",
+  ],
+  [
+    "The Marauder's Map",
+    'Patrol',
+    "A script, not a model. It checks PRs and CI and wakes Ron when something changes, and hands teammates' comments on the factory's PRs back to Harry as data, not orders. With auto-close on, it closes a merged task once it can prove the work landed: the reviewed commit merged, CI green on the merge commit, and any after-merge checks passed.",
   ],
   [
     'Snape',
     'Data Analyst',
-    'Investigates data read-only, with a query attached to every number.',
+    "Investigates data read-only, with a query attached to every number. His potions book is full of corrections to the official recipe, the attitude I want from whoever reads my data.",
   ],
   [
     "Dumbledore's portrait",
@@ -357,7 +362,9 @@ const AIAgentFleetPage = () => (
     <p>
       I themed the factory around Harry Potter because I like it, and the names
       make the jobs easy for me to remember. I'm the Headmaster. Each desk has a
-      narrow role, and important decisions come back to my office.
+      narrow role, and important decisions come back to my office. Nothing in
+      the factory marks a PR ready, resolves a thread, or merges. Those stay
+      mine, along with deploys.
     </p>
     <div className="my-8 overflow-x-auto">
       <table className="w-full border-collapse text-left">
@@ -390,17 +397,8 @@ const AIAgentFleetPage = () => (
       </table>
     </div>
     <p>
-      Ron kept goal, which fits watching everything coming at the hoops. Snape's
-      potions book is full of corrections to the official recipe, the attitude I
-      want from whoever reads my data. Moody brings constant vigilance and
-      trusts nothing he hasn't checked himself. Ollivander fits the right wand
-      to the wizard, and the right model to the job.
-    </p>
-    <p>
       There are scripts behind the desks too. The Owl Post carries messages and
-      Gringotts handles backups. The Marauder's Map watches PRs and CI, hands
-      teammates' comments back to Harry, and closes merged tasks once it can
-      prove the work landed. Those jobs don't need a model to keep running.
+      Gringotts handles backups. Neither needs a model.
     </p>
 
     <h2 id="map">The Marauder's Map</h2>
@@ -411,72 +409,6 @@ const AIAgentFleetPage = () => (
       cast rather than another approval step on every task.
     </p>
     <FleetMap />
-    <ol className="list-decimal space-y-3">
-      <li>
-        <strong>Ask and ticket.</strong> I tell McGonagall what I want. She can
-        answer small things directly. For a build, she writes my words under
-        Intent in TASK.md, adds acceptance criteria and checks, and names the
-        repo, a new branch, and its base. When I'm happy with it, I type go with
-        the task id myself. Intent then stays frozen.
-      </li>
-      <li>
-        <strong>Build.</strong> My go registers the task, prepares a fresh
-        worktree on the new branch, and starts Harry. He builds the change and
-        leaves a handoff with a proposed commit message. The review script makes
-        the local commit outside his sandbox.
-      </li>
-      <li>
-        <strong>Evidence.</strong> A verify script runs the acceptance checks
-        and records each command, exit code, and output against that commit. A
-        check is either one command or plain words for the reviewer, never a
-        mix. Checks that only make sense after the merge wait until then.
-      </li>
-      <li>
-        <strong>Cross-model review.</strong> Codex-written work, Harry's
-        included, goes to Hermione on Claude. Claude-written work, such as
-        changes from my own Claude sessions, goes to Moody on Codex. Each
-        reviewer starts fresh with the task, the full diff, the evidence, and
-        the repo rules. A pass only counts when the reviewer comes from the
-        other model family, and any new commit needs a new pass. Harry's handoff
-        starts the review by itself, and a CHANGES verdict sends him straight
-        back to fix it. After three rounds without a pass, or sooner if the
-        reviewer wants me, it comes back to me. A review that fails for a
-        tooling reason is reported as blocked, not handed to me as a decision.
-      </li>
-      <li>
-        <strong>Push and PR.</strong> A hook blocks an agent's push without a
-        pass for the exact commit, including in my own Claude sessions. I've
-        switched on one more step for Harry's work. When his review passes, a
-        script pushes exactly that commit and opens a draft PR from his commit
-        message and PR draft. It never opens a ready PR, force pushes, or
-        merges. Marking it ready stays my call, because that's what notifies
-        people. Pushes I make by hand stay mine.
-      </li>
-      <li>
-        <strong>Patrol.</strong> The Map script checks PRs and CI without model
-        calls, and Ron wakes only when something changes. When a teammate
-        comments on a PR the factory opened, their comments go back to Harry as
-        data, not orders. He fixes or answers each one, Hermione reviews the fix
-        and every reply, and only then do they go out in my name. Nothing
-        resolves a thread, marks a PR ready, or merges.
-      </li>
-      <li>
-        <strong>Merge.</strong> Green, reviewed PRs wait in my queue. I merge
-        and deploy. With auto-close switched on, the factory then declares
-        mischief managed and closes the task, but only once it can prove the
-        work landed: the PR merged with exactly the reviewed commit, CI is green
-        on the merge commit, and any after-merge checks pass. I get one line
-        saying what proved it. If any of that fails, it stops and tells me, and
-        I close the task by hand.
-      </li>
-    </ol>
-    <p>
-      As Keeper, Ron also watches the deploy and release pipelines. When a build
-      fails or gets stuck, he reads the logs and gives me a first call: real,
-      flaky, or infra. If he calls it flaky or infra and no retry has passed, I
-      still hear about it. The watch only reads. I decide whether to retry or
-      roll back.
-    </p>
 
     <h2>Reviewers my teammates can ask</h2>
     <p>

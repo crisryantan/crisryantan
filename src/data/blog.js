@@ -7,9 +7,9 @@ const blogPosts = [
     id: 0,
     title: 'Harry Potter and the Order of the Agents',
     excerpt:
-      'I split coding, review, and CI watching across a Harry Potter themed factory of AI agents. A task usually reaches a reviewed draft PR without me stepping in.',
+      'Software factories are all the rage, so I built one that runs like Hogwarts. Once I say go, a task usually reaches a reviewed draft PR without me lifting a wand.',
     date: 'October 5, 2026',
-    readTime: '8 min read',
+    readTime: '6 min read',
     category: 'AI & Productivity',
     link: '/blog/ai-agent-fleet',
   },

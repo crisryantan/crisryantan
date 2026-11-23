@@ -3,23 +3,23 @@ import ArticleLayout from '../../components/ArticleLayout'
 
 const title = 'Harry Potter and the Order of the Agents'
 const description =
-  'I split coding, review, and CI watching across a Harry Potter themed factory of AI agents. A task usually reaches a reviewed draft PR without me stepping in.'
+  'Software factories are all the rage, so I built one that runs like Hogwarts. Once I say go, a task usually reaches a reviewed draft PR without me lifting a wand.'
 
 const desks = [
   [
     'McGonagall',
     'Chief of Staff',
-    'Answers small asks directly. For a build, she writes my words under Intent in a TASK.md, adds acceptance criteria with a check for each, and names the repo, a new branch, and its base. I start it by typing go with the task id myself, and Intent stays frozen from then on. After that she picks each next step from a short fixed list and brings me only what needs me.',
+    "Answers small asks directly. For a build, she writes my words down as the task's intent, adds acceptance checks, and names the repo and a new branch. I start it by typing go myself, and the intent stays frozen from then on. After that she brings me only what needs me.",
   ],
   [
     'Harry',
     'Senior Engineer',
-    "Builds one task at a time with Codex, in a fresh git worktree, a separate checkout of the repo. He leaves a handoff with a proposed commit message, and the review script makes the commit outside his sandbox. A verify script then runs the acceptance checks and records each command, exit code, and output against that commit. A review that asks for changes sends him straight back to fix it, and once a review passes, a script pushes exactly that commit and opens a draft PR. He also fixes or answers my teammates' comments on his PRs.",
+    "Builds one task at a time with Codex, in his own checkout of the repo. Scripts commit his work and run the acceptance checks. He fixes review findings until a pass lets a script open a draft PR, and he handles my teammates' comments on his PRs too.",
   ],
   [
     'Hermione',
     'Staff Engineer',
-    "Reviews Codex-written code using Claude, Harry's included. Each review starts fresh with the task, the full diff, the evidence, and the repo rules, and a pass only counts for the exact commit it read. After three rounds without a pass, it comes back to me. She also checks Harry's fixes and replies to my teammates before they go out in my name, and fact-checks bot comments.",
+    "Reviews Codex-written code using Claude, Harry's included. Each review starts fresh with the task, the diff, the evidence, and the repo rules, and a pass covers only the commit she read. After three rounds without a pass, I step in. She also checks Harry's replies to my teammates and fact-checks bot comments.",
   ],
   [
     'Moody',
@@ -34,7 +34,7 @@ const desks = [
   [
     "The Marauder's Map",
     'Patrol',
-    "A script, not a model. It checks PRs and CI and wakes Ron when something changes, and hands teammates' comments on the factory's PRs back to Harry as data, not orders. With auto-close on, it closes a merged task once it can prove the work landed: the reviewed commit merged, CI green on the merge commit, and any after-merge checks passed.",
+    "A script, not a model. It watches PRs and CI, wakes Ron when something changes, and passes teammates' comments to Harry as data, not orders. Once it can prove a merged task landed, it declares mischief managed and closes it.",
   ],
   [
     'Snape',
@@ -274,29 +274,27 @@ const AIAgentFleetPage = () => (
     title={title}
     description={description}
     date="October 5, 2026"
-    readTime="8 min read"
+    readTime="6 min read"
     category="AI & Productivity"
     slug="/blog/ai-agent-fleet"
     tags={['AI & Productivity', 'AI Agents', 'Developer Workflow']}
   >
     <p className="text-lg italic mb-8">
-      For a while I had AI agents for different jobs, like writing code,
-      reviewing it, and digging into data. They didn't talk to each other, so I
-      did the in-between work myself: carrying changes from one to the next,
-      watching CI, and remembering to ask a second model to check.
+      Software factories are all the rage, so I built one too. Mine
+      happens to run like Hogwarts.
     </p>
     <p>
-      So I built the Hogwarts factory, a set of agents and scripts on my Mac
-      that hand work along on their own. Once I say go on a task, it usually
-      reaches a reviewed draft PR without me stepping in. This post covers how
-      it works and where my time goes now.
+      McGonagall drafts the tasks. Harry builds them. Hermione and Moody
+      review the code from the other model family. Ron keeps goal on CI.
+      I'm the Headmaster, which mostly means making the calls they bring
+      back to my office.
     </p>
     <p>
-      You can see when it switched on. Over the summer I averaged about 90
-      GitHub contributions a week. The factory went live on 4 October, which was
-      also my first 100-contribution day, and since then it's been about 380 a
-      week. GitHub counts the commits, pull requests, and reviews under my
-      account, so that includes the work the factory does in my name.
+      It all runs on my Mac. Once I say go, a task usually reaches a
+      reviewed draft PR without me lifting a wand. You can see the day it
+      opened its doors: my GitHub contributions went from about 90 a week
+      over the summer to about 380. GitHub counts what the factory does in
+      my name, so that's the castle's work as well as mine.
     </p>
     <figure className="my-8">
       <img
@@ -327,44 +325,27 @@ const AIAgentFleetPage = () => (
 
     <h2>What I mean by a factory</h2>
     <p>
-      For me, an AI factory takes a task and sees it through end to end. It
-      builds the change, gets it reviewed, fixes what the review finds, and gets
-      it shipped, and over time it needs less supervision from me to do that.
+      For me, a factory carries a task through building, review, and fixes
+      without waiting for me to move it along.
     </p>
     <p>
-      Underneath, it's a set of agents with separate jobs, a way to hand work
-      between them, and clear rules about who can do what. One builds. Another
-      reviews. Another investigates data. They share useful context without
-      sharing one endless conversation.
+      Scripts handle messages, worktrees, checks, and watching for
+      changes. Models handle the parts that need judgment. Each task
+      starts fresh with only the context it needs, and no agent reviews
+      its own work.
     </p>
     <p>
-      Each task gets a fresh start and a clear handoff. Scripts move messages,
-      prepare worktrees, run checks, and watch for changes. Models do the parts
-      that need judgment. I own merges, deploys, credentials, and settings. The
-      few things the factory does in my name are switches I turn on myself, and
-      each one tells me what it did.
-    </p>
-    <p>
-      The point is that I stop being the conveyor belt. I don't carry work
-      between agents or keep checking whether the next step can start. Each
-      agent gets only the context its part needs, and none of them checks its
-      own work.
-    </p>
-    <p>
-      The direction is that I define and oversee the outcome while agents do
-      more of the work, and every step I hand to an agent comes with a way to
-      check it. Mine gets a task to a reviewed draft PR today. Merging and
-      deploying are still mine, and they're the next steps I want to hand over
-      once the factory can prove each one worked.
+      Each thing the factory does in my name is a switch I turn on myself,
+      and it tells me what it did. I want to hand over more, merging and
+      deploying next, but each new step needs a way to prove it worked.
     </p>
 
-    <h2>The Harry Potter theme and roles</h2>
+    <h2>Who's who at Hogwarts</h2>
     <p>
-      I themed the factory around Harry Potter because I like it, and the names
-      make the jobs easy for me to remember. I'm the Headmaster. Each desk has a
-      narrow role, and important decisions come back to my office. Nothing in
-      the factory marks a PR ready, resolves a thread, or merges. Those stay
-      mine, along with deploys.
+      I themed it around Harry Potter because I like it, and the names
+      make the jobs easy to remember. Each desk has a narrow role. Nothing
+      in the castle marks a PR ready, resolves a thread, or merges. Those
+      stay mine, along with deploys.
     </p>
     <div className="my-8 overflow-x-auto">
       <table className="w-full border-collapse text-left">
@@ -412,44 +393,37 @@ const AIAgentFleetPage = () => (
 
     <h2>Reviewers my teammates can ask</h2>
     <p>
-      Hermione and Moody also live in our team chat. A teammate mentions one
-      with a pull request link, and a job on my Mac reviews it read-only against
-      the whole repo and the PR's CI checks, then answers in the thread. With my
-      switches on, the review also lands on GitHub with comments on the lines.
-      An approval counts as mine, so it needs its own switch, and it's held back
-      for risky changes, CI that isn't green, and a few other cases.
+      My teammates can ask Hermione or Moody for a review in our team
+      chat. A job on my Mac reviews the PR read-only against the whole
+      repo and its CI checks, then replies in the thread. With my switches
+      on, the review lands on GitHub too. An approval counts as mine, so
+      it has its own switch, and it's held back for risky changes or CI
+      that isn't green.
     </p>
     <p>
-      The job fetches the linked PR and anything attached, and that's what the
-      model sees, never the wording of the request. Follow-up questions and
-      earlier messages in the thread do reach it, marked as untrusted text
-      rather than instructions. The model can't browse or change anything
+      The model sees the PR, never the wording of the request. Follow-up
+      messages reach it as untrusted text, it can't change anything
       outside its review folder, and the job does the posting.
     </p>
 
-    <h2>Shared memory without carrying the history</h2>
+    <h2>The Pensieve</h2>
     <p>
-      Yes, the sessions share context. The Pensieve is a SQLite file with
-      full-text search. When a session ends, a hook stores a capped extract of
-      my prompts and the final replies. It leaves out tool output and scrubs
-      emails, IP addresses, tokens, and long hashes first.
+      Yes, the desks share memory. The Pensieve is a SQLite file with
+      full-text search. When a session ends, a hook stores a short,
+      scrubbed extract of what was asked and answered, never the tool
+      output.
     </p>
     <p>
-      The Pensieve keeps one current fact per subject. When a fact changes, the
-      old one stays in the bowl with its dates instead of being overwritten, so
-      yesterday's answer doesn't quietly pass for today's. Things that change
-      fast, like PR status, have to be looked up live or expire within a week.
+      It keeps one current fact per subject. When a fact changes, the old
+      one stays in the bowl with its dates, so yesterday's answer never
+      passes for today's. A new session starts from a short digest and its
+      last checkpoint instead of hours of history.
     </p>
     <p>
-      A session starts with a short digest and its last checkpoint, rather than
-      hours of chat history: the task, the decisions, and the next step, without
-      replaying every turn.
-    </p>
-    <p>
-      Each weeknight, Dumbledore's portrait reviews the day for places where a
-      desk had to find the same information again, and writes memory fixes. His
-      additions apply on their own with a line telling me what changed. Anything
-      that edits or removes memory waits for me.
+      Each weeknight, Dumbledore's portrait reviews the day for anything a
+      desk had to look up twice and writes memory fixes. His additions
+      apply on their own with a note to me. Anything that edits or removes
+      memory waits for me.
     </p>
 
     <h2>The Great Hall</h2>
@@ -467,31 +441,21 @@ const AIAgentFleetPage = () => (
       caption="The Great Hall, filled with made-up demo data. Every repo, task, and number in it is invented."
     />
     <p>
-      Each desk's page also has a conversation box, so I can ask Ron why a build
-      stopped, hand Harry a task, or send Moody a PR to review, and the answer
-      lands right there. The page never does the work itself. It only queues
-      what I send, and the factory's own jobs carry it out through the same
-      checks as everywhere else. It only runs on my machine, and merging and
-      deploying stay in my terminal.
+      Each desk's page also has a conversation box, so I can ask Ron why a
+      build stopped, hand Harry a task, or send Moody a PR to review, and
+      the answer lands right there. The page only queues what I send, and
+      the factory's own jobs carry it out through the same checks as
+      everywhere else. Merging and deploying stay in my terminal.
     </p>
 
     <h2>Closing thoughts</h2>
     <p>
-      The biggest change is where my time goes. Harry builds, the checks run, a
-      reviewer from the other model family reads the diff, and a fix round
-      starts on its own when the review asks for changes. Teammates' comments on
-      those PRs go back to Harry first, and a broken build reaches me already
-      called real, flaky, or infra.
-    </p>
-    <p>
-      Scripts do the watching instead of me. When a task moves, a notification
-      on my Mac says where it stands, so my attention goes to decisions,
-      approvals, and merges. Teammates can get a review on a PR without waiting
-      for someone's afternoon to free up.
-    </p>
-    <p>
-      My token use came down a little too, since no session carries its whole
-      history, but that was a side effect rather than the goal.
+      The biggest change is where my time goes. Scripts do the watching,
+      fix rounds start on their own, and a broken build reaches me already
+      called real, flaky, or infra. My attention goes to decisions,
+      approvals, and merges, and teammates get a review without waiting
+      for someone's afternoon to free up. My token use came down a little
+      too, since no session carries its whole history.
     </p>
     <p>
       The factory doesn't have to be Harry Potter themed. That's just how I like

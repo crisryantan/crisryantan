@@ -443,7 +443,7 @@
 .theme-hogwarts {
   --blitz-primary: 74 28 28; /* #4A1C1C maroon headings */
   --blitz-primary-light: 110 48 40;
-  --blitz-accent: 184 137 43; /* #B8892B gold */
+  --blitz-accent: 122 90 18; /* #7A5A12 old gold, 5.4:1 on parchment for hover text */
   --blitz-soft: 125 31 31; /* #7D1F1F scarlet links */
   --blitz-coral: 168 72 40;
   --blitz-coral-light: 200 120 90;

@@ -63,6 +63,22 @@ const desks = [
   ],
 ]
 
+// Each desk's badge, drawn from the books' descriptions in one chibi style.
+const avatars = {
+  McGonagall: require('../../assets/images/avatars/mcgonagall.png').default,
+  Voldemort: require('../../assets/images/avatars/voldemort.png').default,
+  Harry: require('../../assets/images/avatars/harry.png').default,
+  Hermione: require('../../assets/images/avatars/hermione.png').default,
+  Moody: require('../../assets/images/avatars/moody.png').default,
+  Ron: require('../../assets/images/avatars/ron.png').default,
+  "The Marauder's Map": require('../../assets/images/avatars/map.png').default,
+  Snape: require('../../assets/images/avatars/snape.png').default,
+  "Dumbledore's portrait": require('../../assets/images/avatars/portrait.png')
+    .default,
+  Ollivander: require('../../assets/images/avatars/ollivander.png').default,
+  'The house-elves': require('../../assets/images/avatars/elves.png').default,
+}
+
 const MapRoom = ({ x, y, width = 190, label, name, detail, aside = false }) => (
   <g transform={`translate(${x} ${y})`}>
     <rect
@@ -306,6 +322,7 @@ const AIAgentFleetPage = () => (
     category="AI & Productivity"
     slug="/blog/ai-agent-fleet"
     tags={['AI & Productivity', 'AI Agents', 'Developer Workflow']}
+    theme="hogwarts"
   >
     <p className="text-lg italic mb-8">
       Software factories are all the rage, so I decided to join the bandwagon
@@ -374,6 +391,15 @@ const AIAgentFleetPage = () => (
       and every change inside it still reaches my teammates as one small PR.
     </p>
 
+    <h2 id="map">The Marauder's Map</h2>
+    <p>
+      This is how a task moves through the castle, footprints and all. The trail
+      follows one change from my ask to my merge. The rooms alongside it handle
+      messages, memory, model choices, big designs, and cleanup. They're the
+      supporting cast rather than another approval step on every task.
+    </p>
+    <FleetMap />
+
     <h2>The Order of the Agents roster</h2>
     <div className="my-8 overflow-x-auto">
       <table className="w-full border-collapse text-left">
@@ -382,6 +408,9 @@ const AIAgentFleetPage = () => (
         </caption>
         <thead>
           <tr className="border-b border-blitz-primary/20 bg-blitz-sand">
+            <th scope="col" className="hidden p-3 sm:table-cell">
+              <span className="sr-only">Badge</span>
+            </th>
             <th scope="col" className="p-3">
               Desk
             </th>
@@ -393,7 +422,25 @@ const AIAgentFleetPage = () => (
         <tbody>
           {desks.map(([name, role, job]) => (
             <tr key={name} className="border-b border-blitz-primary/10">
+              <td className="hidden p-3 align-top sm:table-cell">
+                <img
+                  src={avatars[name]}
+                  alt=""
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                  className="roster-avatar rounded-full"
+                />
+              </td>
               <th scope="row" className="p-3 align-top font-semibold">
+                <img
+                  src={avatars[name]}
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  className="mb-2 block h-10 w-10 rounded-full sm:hidden"
+                />
                 {name}
                 <span className="mt-1 block text-sm font-normal text-blitz-charcoal/70">
                   {role}
@@ -409,15 +456,6 @@ const AIAgentFleetPage = () => (
       There are scripts behind the desks too. The Owl Post carries messages and
       Gringotts handles backups. Neither needs a model.
     </p>
-
-    <h2 id="map">The Marauder's Map</h2>
-    <p>
-      This is how a task moves through the castle, footprints and all. The trail
-      follows one change from my ask to my merge. The rooms alongside it handle
-      messages, memory, model choices, big designs, and cleanup. They're the
-      supporting cast rather than another approval step on every task.
-    </p>
-    <FleetMap />
 
     <h2>The Pensieve</h2>
     <p>

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -431,4 +432,87 @@
   to {
     transform: scaleX(1);
   }
+}
+
+/*
+ * Hogwarts theme for the Order of the Agents post (ArticleLayout theme="hogwarts").
+ * Light is parchment by day: ink text, maroon headings, gold and scarlet accents.
+ * Dark is the castle at night: midnight stone, parchment text, candle-gold headings.
+ * Headings use IM Fell English, an old book face; body text stays Inter for reading.
+ */
+.theme-hogwarts {
+  --blitz-primary: 74 28 28; /* #4A1C1C maroon headings */
+  --blitz-primary-light: 110 48 40;
+  --blitz-accent: 184 137 43; /* #B8892B gold */
+  --blitz-soft: 125 31 31; /* #7D1F1F scarlet links */
+  --blitz-coral: 168 72 40;
+  --blitz-coral-light: 200 120 90;
+  --blitz-sand: 233 220 190; /* #E9DCBE deeper parchment surface */
+  --blitz-sand-light: 240 231 207;
+  --blitz-charcoal: 43 33 24; /* #2B2118 ink */
+  --blitz-lavender: 160 130 90; /* #A0825A sepia rule */
+  --blitz-white: 245 237 216; /* #F5EDD8 parchment page */
+  background-image:
+    radial-gradient(
+      ellipse at 15% 0%,
+      rgb(255 250 236 / 0.75),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 95% 35%,
+      rgb(206 178 124 / 0.22),
+      transparent 45%
+    ),
+    radial-gradient(ellipse at 5% 90%, rgb(206 178 124 / 0.18), transparent 40%);
+}
+
+.dark .theme-hogwarts {
+  --blitz-primary: 230 194 122; /* #E6C27A candle-gold headings */
+  --blitz-primary-light: 214 180 110;
+  --blitz-accent: 224 180 92; /* #E0B45C */
+  --blitz-soft: 240 179 126; /* #F0B37E ember links */
+  --blitz-coral: 229 138 107;
+  --blitz-coral-light: 240 170 140;
+  --blitz-sand: 26 32 52; /* #1A2034 raised stone */
+  --blitz-sand-light: 20 25 42;
+  --blitz-charcoal: 231 223 201; /* #E7DFC9 parchment text */
+  --blitz-lavender: 110 98 72; /* dim gold rule */
+  --blitz-white: 13 17 30; /* #0D111E midnight */
+  background-image:
+    radial-gradient(
+      1px 1px at 12% 8%,
+      rgb(255 236 190 / 0.55),
+      transparent 60%
+    ),
+    radial-gradient(1px 1px at 38% 3%, rgb(255 236 190 / 0.4), transparent 60%),
+    radial-gradient(
+      1.5px 1.5px at 71% 6%,
+      rgb(255 236 190 / 0.5),
+      transparent 60%
+    ),
+    radial-gradient(
+      1px 1px at 88% 14%,
+      rgb(255 236 190 / 0.35),
+      transparent 60%
+    ),
+    radial-gradient(ellipse at 50% 0%, rgb(60 72 120 / 0.35), transparent 60%);
+}
+
+.theme-hogwarts h1,
+.theme-hogwarts .prose-blitz h2,
+.theme-hogwarts .prose-blitz h3 {
+  font-family: 'IM Fell English', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+.theme-hogwarts .prose-blitz h2 {
+  border-bottom: 1px solid rgb(var(--blitz-accent) / 0.45);
+  padding-bottom: 0.35rem;
+}
+
+.theme-hogwarts .roster-avatar {
+  width: 3.5rem;
+  height: 3.5rem;
+  min-width: 3.5rem;
 }

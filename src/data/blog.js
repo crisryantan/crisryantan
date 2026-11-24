@@ -7,7 +7,7 @@ const blogPosts = [
     id: 0,
     title: 'Harry Potter and the Order of the Agents',
     excerpt:
-      'Software factories are all the rage, so I built one that runs like Hogwarts. Once I say go, a task usually reaches a reviewed draft PR without me lifting a wand.',
+      'Software factories are all the rage, so I decided to join the bandwagon and model mine on the magical world of Harry Potter.',
     date: 'October 5, 2026',
     readTime: '6 min read',
     category: 'AI & Productivity',

@@ -3,13 +3,18 @@ import ArticleLayout from '../../components/ArticleLayout'
 
 const title = 'Harry Potter and the Order of the Agents'
 const description =
-  'Software factories are all the rage, so I built one that runs like Hogwarts. Once I say go, a task usually reaches a reviewed draft PR without me lifting a wand.'
+  'Software factories are all the rage, so I decided to join the bandwagon and model mine on the magical world of Harry Potter.'
 
 const desks = [
   [
     'McGonagall',
     'Chief of Staff',
-    "Answers small asks directly. For a build, she writes my words down as the task's intent, adds acceptance checks, and names the repo and a new branch. I start it by typing go myself, and the intent stays frozen from then on. After that she brings me only what needs me.",
+    'Sizes the work to the ask. Small asks she just answers, and a clear change becomes one task with what done looks like written as checks. When I want a feature designed first, she writes the system design, and Hermione and Moody both review it before I do. A big project gets milestones on top, each made of tasks in the order they can land, and a definition of done for the whole thing. She delegates every task to Harry once I start it, picks the next step after every review, tells me what each merge unblocked, and brings me only what needs me.',
+  ],
+  [
+    'Voldemort',
+    'Systems Architect',
+    "Researches and writes the system design for the biggest projects, on the most capable model I have. Hermione and Moody review his designs like anyone else's work, and I approve them. He's the most powerful wizard in the castle, so he designs and never touches the code.",
   ],
   [
     'Harry',
@@ -24,12 +29,12 @@ const desks = [
   [
     'Moody',
     'Security Reviewer',
-    "Reviews Claude-written code, such as changes from my own Claude sessions, using Codex, security first, under the same rules. A hook blocks any push without a pass from the other model family, mine included. He brings constant vigilance and trusts nothing he hasn't checked himself.",
+    "Reviews Claude-written code, such as changes from my own Claude sessions, using Codex, security first, under the same rules. A hook blocks any push without a pass from the other model family, mine included. He brings constant vigilance and trusts nothing he hasn't checked himself. My teammates can ask him for a review in our team chat too.",
   ],
   [
     'Ron',
     'Release Engineer',
-    "Wakes only when a PR or CI changes, and sorts each change into routine or needs-me. He also watches the deploy and release pipelines. When a build fails or gets stuck, he reads the logs and calls it real, flaky, or infra, and I decide whether to retry or roll back. He writes the morning PR lineup and the weekly scoreboard too. He kept goal at school, which fits watching everything coming at the hoops.",
+    'Wakes only when a PR or CI changes, and sorts each change into routine or needs-me. He also watches the deploy and release pipelines. When a build fails or gets stuck, he reads the logs and calls it real, flaky, or infra, and I decide whether to retry or roll back. He writes the morning PR lineup and the weekly scoreboard too. He kept goal at school, which fits watching everything coming at the hoops.',
   ],
   [
     "The Marauder's Map",
@@ -39,7 +44,7 @@ const desks = [
   [
     'Snape',
     'Data Analyst',
-    "Investigates data read-only, with a query attached to every number. His potions book is full of corrections to the official recipe, the attitude I want from whoever reads my data.",
+    'Investigates data read-only, with a query attached to every number. His potions book is full of corrections to the official recipe, the attitude I want from whoever reads my data.',
   ],
   [
     "Dumbledore's portrait",
@@ -50,6 +55,11 @@ const desks = [
     'Ollivander',
     'Model Keeper',
     'A script, not a model. He fits each desk with a model from its family the way he fits wands, moves desks along the family when a model is down, and rechecks the sandbox before the Codex desks resume after an update. Costlier moves wait for me.',
+  ],
+  [
+    'The house-elves',
+    'Cleanup',
+    "Mostly scripts. Every night they clear out what's gone stale: old owls, logs, messages, and memories no desk uses anymore. Everything goes into a bin first, so it can be restored, and they never touch open work or the record of what was approved and reviewed. Like the real ones, they work while the castle sleeps.",
   ],
 ]
 
@@ -90,7 +100,7 @@ const FleetMap = () => (
       aria-label="Task map, scroll horizontally to explore the rooms"
     >
       <svg
-        viewBox="0 0 920 610"
+        viewBox="0 0 920 750"
         className="block w-full min-w-[920px] font-sans"
         role="img"
         aria-labelledby="fleet-map-title fleet-map-description"
@@ -100,8 +110,8 @@ const FleetMap = () => (
           Follow the trail from my ask to McGonagall, Harry, evidence, review by
           Hermione or Moody, the push gate and draft PR, Ron's patrol, and my
           merge. Review findings return to Harry. The Owlery, the Pensieve with
-          Dumbledore's portrait, and Ollivander's model shop sit alongside the
-          task path.
+          Dumbledore's portrait, Ollivander's model shop, Voldemort's chamber,
+          and the house-elves' kitchens sit alongside the task path.
         </desc>
         <defs>
           <marker
@@ -160,7 +170,7 @@ const FleetMap = () => (
             y={30}
             label="DEPUTY'S OFFICE"
             name="McGonagall"
-            detail="TASK.md, then I type go"
+            detail="plans it, sees it through"
           />
           <MapRoom
             x={520}
@@ -233,6 +243,24 @@ const FleetMap = () => (
             detail="Models matched to roles. Cheaper moves get a note; costlier moves wait for my yes. Families stay fixed."
             aside
           />
+          <MapRoom
+            x={20}
+            y={630}
+            width={440}
+            label="BEFORE BIG PROJECTS · THE CHAMBER"
+            name="Voldemort designs"
+            detail="Reviewed by Hermione and Moody, approved by me"
+            aside
+          />
+          <MapRoom
+            x={520}
+            y={630}
+            width={380}
+            label="NIGHTLY · THE KITCHENS"
+            name="The house-elves"
+            detail="Clear what's gone stale, into a bin first"
+            aside
+          />
           <text x="128" y="160" fontSize="13" opacity="0.85">
             next ask
           </text>
@@ -280,21 +308,19 @@ const AIAgentFleetPage = () => (
     tags={['AI & Productivity', 'AI Agents', 'Developer Workflow']}
   >
     <p className="text-lg italic mb-8">
-      Software factories are all the rage, so I built one too. Mine
-      happens to run like Hogwarts.
+      Software factories are all the rage, so I decided to join the bandwagon
+      and model mine on the magical world of Harry Potter.
     </p>
     <p>
-      McGonagall drafts the tasks. Harry builds them. Hermione and Moody
-      review the code from the other model family. Ron keeps goal on CI.
-      I'm the Headmaster, which mostly means making the calls they bring
-      back to my office.
+      McGonagall drafts the tasks. Harry builds them. Hermione and Moody review
+      the code from the other model family. Ron keeps goal on CI. Voldemort
+      designs the big projects, and the house-elves clean up overnight. I'm the
+      Headmaster, which mostly means making the calls they bring back to my
+      office.
     </p>
     <p>
-      It all runs on my Mac. Once I say go, a task usually reaches a
-      reviewed draft PR without me lifting a wand. You can see the day it
-      opened its doors: my GitHub contributions went from about 90 a week
-      over the summer to about 380. GitHub counts what the factory does in
-      my name, so that's the castle's work as well as mine.
+      Over the summer I averaged about 90 GitHub contributions a week. Since the
+      factory went live in October, it's been about 380.
     </p>
     <figure className="my-8">
       <img
@@ -329,24 +355,18 @@ const AIAgentFleetPage = () => (
       without waiting for me to move it along.
     </p>
     <p>
-      Scripts handle messages, worktrees, checks, and watching for
-      changes. Models handle the parts that need judgment. Each task
-      starts fresh with only the context it needs, and no agent reviews
-      its own work.
+      Scripts handle messages, worktrees, checks, and watching for changes.
+      Models handle the parts that need judgment. Each task starts fresh with
+      only the context it needs, and no agent reviews its own work.
     </p>
     <p>
-      Each thing the factory does in my name is a switch I turn on myself,
-      and it tells me what it did. I want to hand over more, merging and
-      deploying next, but each new step needs a way to prove it worked.
+      Big work runs as a project. It starts with a written design that two
+      reviewers and I sign off, then moves through milestones. A milestone is
+      something that works end to end, however many repos or weeks that takes,
+      and every change inside it still reaches my teammates as one small PR.
     </p>
 
-    <h2>Who's who at Hogwarts</h2>
-    <p>
-      I themed it around Harry Potter because I like it, and the names
-      make the jobs easy to remember. Each desk has a narrow role. Nothing
-      in the castle marks a PR ready, resolves a thread, or merges. Those
-      stay mine, along with deploys.
-    </p>
+    <h2>The Order of the Agents roster</h2>
     <div className="my-8 overflow-x-auto">
       <table className="w-full border-collapse text-left">
         <caption className="sr-only">
@@ -386,53 +406,44 @@ const AIAgentFleetPage = () => (
     <p>
       This is how a task moves through the castle, footprints and all. The trail
       follows one change from my ask to my merge. The rooms alongside it handle
-      messages, memory, and model choices. Ollivander is part of that supporting
-      cast rather than another approval step on every task.
+      messages, memory, model choices, big designs, and cleanup. They're the
+      supporting cast rather than another approval step on every task.
     </p>
     <FleetMap />
 
-    <h2>Reviewers my teammates can ask</h2>
-    <p>
-      My teammates can ask Hermione or Moody for a review in our team
-      chat. A job on my Mac reviews the PR read-only against the whole
-      repo and its CI checks, then replies in the thread. With my switches
-      on, the review lands on GitHub too. An approval counts as mine, so
-      it has its own switch, and it's held back for risky changes or CI
-      that isn't green.
-    </p>
-    <p>
-      The model sees the PR, never the wording of the request. Follow-up
-      messages reach it as untrusted text, it can't change anything
-      outside its review folder, and the job does the posting.
-    </p>
-
     <h2>The Pensieve</h2>
     <p>
-      Yes, the desks share memory. The Pensieve is a SQLite file with
-      full-text search. When a session ends, a hook stores a short,
-      scrubbed extract of what was asked and answered, never the tool
-      output.
+      The Pensieve is the context lake of my software factory: one pool of
+      memory every desk dips into, instead of each starting from scratch. Under
+      the hood it's a SQLite file with full-text search. When a session ends, a
+      hook stores a short, scrubbed extract of what was asked and answered,
+      never the tool output.
     </p>
     <p>
-      It keeps one current fact per subject. When a fact changes, the old
-      one stays in the bowl with its dates, so yesterday's answer never
-      passes for today's. A new session starts from a short digest and its
-      last checkpoint instead of hours of history.
+      It keeps one current fact per subject. When a fact changes, the old one
+      stays in the bowl with its dates, so yesterday's answer never passes for
+      today's. A new session starts from a short digest and its last checkpoint
+      instead of hours of history.
     </p>
     <p>
-      Each weeknight, Dumbledore's portrait reviews the day for anything a
-      desk had to look up twice and writes memory fixes. His additions
-      apply on their own with a note to me. Anything that edits or removes
-      memory waits for me.
+      Each weeknight, Dumbledore's portrait reviews the day for anything a desk
+      had to look up twice and writes memory fixes. His additions apply on their
+      own with a note to me. Anything that edits or removes memory waits for me.
+    </p>
+    <p>
+      A lake goes stale if nobody tends it. Every night the house-elves clear
+      out what's no longer useful: old owls, logs, messages, and facts no desk
+      cites anymore. It all goes into a bin first, and the record of what was
+      approved and reviewed is never touched.
     </p>
 
     <h2>The Great Hall</h2>
     <p>
-      The Great Hall is a small web page on my Mac that shows the whole factory
-      in one place: a card for every desk, a list of what's waiting on me, and a
-      feed of everything the factory did in the last two days. From there I can
-      open any desk to see its recent work, ask it a question, or handle a small
-      decision without going back to the terminal.
+      The Great Hall is a small web page on my machine that shows the whole
+      factory in one place: a card for every desk, a list of what's waiting on
+      me, and a feed of everything the factory did in the last two days. From
+      there I can open any desk to see its recent work, ask it a question, or
+      handle a small decision without going back to the terminal.
     </p>
     <HallShot
       light={require('../../assets/images/great-hall-light.avif').default}
@@ -441,21 +452,21 @@ const AIAgentFleetPage = () => (
       caption="The Great Hall, filled with made-up demo data. Every repo, task, and number in it is invented."
     />
     <p>
-      Each desk's page also has a conversation box, so I can ask Ron why a
-      build stopped, hand Harry a task, or send Moody a PR to review, and
-      the answer lands right there. The page only queues what I send, and
-      the factory's own jobs carry it out through the same checks as
-      everywhere else. Merging and deploying stay in my terminal.
+      Each desk's page also has a conversation box, so I can ask Ron why a build
+      stopped, hand Harry a task, or send Moody a PR to review, and the answer
+      lands right there. The page only queues what I send, and the factory's own
+      jobs carry it out through the same checks as everywhere else. Merging and
+      deploying stay in my terminal.
     </p>
 
     <h2>Closing thoughts</h2>
     <p>
-      The biggest change is where my time goes. Scripts do the watching,
-      fix rounds start on their own, and a broken build reaches me already
-      called real, flaky, or infra. My attention goes to decisions,
-      approvals, and merges, and teammates get a review without waiting
-      for someone's afternoon to free up. My token use came down a little
-      too, since no session carries its whole history.
+      The biggest change is where my time goes. Scripts do the watching, fix
+      rounds start on their own, and a broken build reaches me already called
+      real, flaky, or infra. My attention goes to decisions, approvals, and
+      merges, and teammates get a review without waiting for someone's afternoon
+      to free up. My token use came down a little too, since no session carries
+      its whole history.
     </p>
     <p>
       The factory doesn't have to be Harry Potter themed. That's just how I like

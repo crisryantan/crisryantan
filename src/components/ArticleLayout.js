@@ -201,7 +201,7 @@ const ArticleLayout = ({
               own (dark-on-light) colors. prose-blitz inherits the blitz tokens,
               which flip for dark mode automatically.
             */}
-              <article ref={proseRef} className="prose-blitz max-w-none">
+              <article ref={proseRef} className="prose-blitz min-w-0 max-w-none">
                 {children}
               </article>
 

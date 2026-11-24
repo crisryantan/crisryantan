@@ -460,10 +460,12 @@ const SoftwareFactoryPage = () => (
     <h2>The Pensieve</h2>
     <p>
       The Pensieve is the context lake of my software factory: one pool of
-      memory every desk dips into, instead of each starting from scratch. Under
-      the hood it's a SQLite file with full-text search. When a session ends, a
-      hook stores a short, scrubbed extract of what was asked and answered,
-      never the tool output.
+      memory every desk dips into, instead of each starting from scratch. Two
+      kinds of memory feed it: a knowledge folder that people write, and a table
+      of facts that scripts and accepted lessons write. One selector picks from
+      both for each run. The table lives in a SQLite file with full-text search.
+      When a session ends, a hook stores a short, scrubbed extract of what was
+      asked and answered, never the tool output.
     </p>
     <p>
       It keeps one current fact per subject. When a fact changes, the old one
@@ -477,10 +479,21 @@ const SoftwareFactoryPage = () => (
       own with a note to me. His edits and removals wait for me.
     </p>
     <p>
+      The lake reaches the reviews too. When Hermione or Moody reviews a change
+      to one of my private repos, they get the facts about the files it
+      touches, numbered and marked as data, never instructions. A fact can be
+      stale, so they check it against the code before a finding leans on it,
+      and cite its number when one does. Whoever writes a design, and both
+      reviewers who check it, get the same facts for the repos the project
+      touches. Public repos never get them.
+    </p>
+    <p>
       A lake goes stale if nobody tends it. Every night the house-elves clear
-      out what's no longer useful: old owls, logs, messages, and facts no desk
-      cites anymore. They follow fixed rules, everything goes into a bin first,
-      and the record of what was approved and reviewed is never touched.
+      out what's no longer useful: old owls, session extracts, logs, finished
+      run folders and drafts nobody started. Facts past their expiry date are
+      retired but kept with their dates. The elves follow fixed rules,
+      everything they remove goes to a bin first, and the record of what was
+      approved and reviewed is never touched.
     </p>
 
     <h2>The Great Hall</h2>

@@ -524,16 +524,14 @@ const SoftwareFactoryPage = () => (
       rounds start on their own, and a broken build reaches me already called
       real, flaky, or infra. My attention goes to decisions, approvals, and
       merges, and teammates get a review without waiting for someone's afternoon
-      to free up. My token use came down a little too, since no session carries
-      its whole history.
+      to free up.
     </p>
     <p>
-      The factory doesn't have to be Harry Potter themed. That's just how I like
-      it. The roles, handoffs, and boundaries are the useful part, and they work
-      under any names. If I were starting again, I'd begin with one builder, one
-      reviewer from a different model family, and scripts for the handoffs and
-      CI watching. I'd add desks when I caught myself doing the same job by hand
-      again and again.
+      The theme is optional. The roles, handoffs, and boundaries are the useful
+      part, and they work under any names. If I were starting again, I'd begin
+      with one builder, one reviewer from a different model family, and scripts
+      for the handoffs and CI watching, then add a desk each time I caught
+      myself doing the same job by hand.
     </p>
   </ArticleLayout>
 )

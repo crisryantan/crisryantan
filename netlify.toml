@@ -25,6 +25,18 @@
   force = true
 
 [[redirects]]
+  from = "/blog/ai-agent-fleet"
+  to = "/blog/software-factory"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/ai-agent-fleet/"
+  to = "/blog/software-factory/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200 

@@ -313,14 +313,14 @@ const HallShot = ({ light, dark, alt, caption }) => (
   </figure>
 )
 
-const AIAgentFleetPage = () => (
+const SoftwareFactoryPage = () => (
   <ArticleLayout
     title={title}
     description={description}
     date="October 5, 2026"
     readTime="6 min read"
     category="AI & Productivity"
-    slug="/blog/ai-agent-fleet"
+    slug="/blog/software-factory"
     tags={['AI & Productivity', 'AI Agents', 'Developer Workflow']}
     theme="hogwarts"
   >
@@ -525,4 +525,4 @@ const AIAgentFleetPage = () => (
   </ArticleLayout>
 )
 
-export default AIAgentFleetPage
+export default SoftwareFactoryPage

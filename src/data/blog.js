@@ -11,7 +11,7 @@ const blogPosts = [
     date: 'October 5, 2026',
     readTime: '6 min read',
     category: 'AI & Productivity',
-    link: '/blog/ai-agent-fleet',
+    link: '/blog/software-factory',
   },
   {
     id: 1,

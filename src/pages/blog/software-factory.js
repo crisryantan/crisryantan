@@ -480,12 +480,12 @@ const SoftwareFactoryPage = () => (
     </p>
     <p>
       The lake reaches the reviews too. When Hermione or Moody reviews a change
-      to one of my private repos, they get the facts about the files it
-      touches, numbered and marked as data, never instructions. A fact can be
-      stale, so they check it against the code before a finding leans on it,
-      and cite its number when one does. Whoever writes a design, and both
-      reviewers who check it, get the same facts for the repos the project
-      touches. Public repos never get them.
+      to one of my private repos, they get the facts about the files it touches,
+      numbered and marked as data, never instructions. A fact can be stale, so
+      they check it against the code before a finding leans on it, and cite its
+      number when one does. Whoever writes a design, and both reviewers who
+      check it, get the same facts for the repos the project touches. Public
+      repos never get them.
     </p>
     <p>
       A lake goes stale if nobody tends it. Every night the house-elves clear
@@ -507,7 +507,7 @@ const SoftwareFactoryPage = () => (
     <HallShot
       light={require('../../assets/images/great-hall-light.avif').default}
       dark={require('../../assets/images/great-hall-dark.avif').default}
-      alt="The Great Hall page. A staff table of desk cards on the left, each with a portrait, role, status, runs, and cost. On the right, a Needs you panel with two items, each with a Dismiss button, and a feed called the Daily Prophet listing recent messages, events, and runs."
+      alt="The Great Hall page. On the left, the staff table: a card for each desk with its portrait, role, status, runs, and cost, and a slim row for each background script under Behind the scenes. On the right, a Needs you panel with two items, and a feed called the Daily Prophet listing recent messages, events, and runs, with an Open PR button beside each line that names a pull request."
       caption="The Great Hall, filled with made-up demo data. Every repo, task, and number in it is invented."
     />
     <p>

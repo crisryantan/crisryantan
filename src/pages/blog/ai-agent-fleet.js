@@ -49,7 +49,7 @@ const desks = [
   [
     "Dumbledore's portrait",
     'Knowledge Manager',
-    'Reviews the day each weeknight and writes memory fixes. I let his additions apply on their own. Anything that edits or removes memory waits for me.',
+    'Reviews the day each weeknight and writes memory fixes. I let his additions apply on their own. His edits and removals wait for me.',
   ],
   [
     'Ollivander',
@@ -428,13 +428,13 @@ const AIAgentFleetPage = () => (
     <p>
       Each weeknight, Dumbledore's portrait reviews the day for anything a desk
       had to look up twice and writes memory fixes. His additions apply on their
-      own with a note to me. Anything that edits or removes memory waits for me.
+      own with a note to me. His edits and removals wait for me.
     </p>
     <p>
       A lake goes stale if nobody tends it. Every night the house-elves clear
       out what's no longer useful: old owls, logs, messages, and facts no desk
-      cites anymore. It all goes into a bin first, and the record of what was
-      approved and reviewed is never touched.
+      cites anymore. They follow fixed rules, everything goes into a bin first,
+      and the record of what was approved and reviewed is never touched.
     </p>
 
     <h2>The Great Hall</h2>

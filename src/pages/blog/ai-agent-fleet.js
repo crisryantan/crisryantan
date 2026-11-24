@@ -349,10 +349,18 @@ const AIAgentFleetPage = () => (
       </figcaption>
     </figure>
 
-    <h2>What I mean by a factory</h2>
+    <h2>What I mean by a software factory</h2>
     <p>
-      For me, a factory carries a task through building, review, and fixes
-      without waiting for me to move it along.
+      For me, a software factory is the whole path from an ask to a reviewed PR,
+      run by agents. I set the outcome and make the calls. The agents do the
+      work, and nothing moves on until it's been checked.
+    </p>
+    <p>
+      It's built in three layers. Every desk's job is written down in a plain
+      file: how to do it and what done looks like. Those jobs run in loops that
+      start on their own, so building, review, and fixes don't wait for me to
+      move them along. And the loops learn. What a reviewer catches becomes a
+      lesson the next build reads, so the same mistake shouldn't cost me twice.
     </p>
     <p>
       Scripts handle messages, worktrees, checks, and watching for changes.

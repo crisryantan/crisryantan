@@ -108,28 +108,33 @@ const FleetMap = () => (
   <figure className="my-8 overflow-hidden rounded-lg border border-blitz-primary/30 bg-blitz-sand text-blitz-primary shadow-soft">
     <figcaption className="flex flex-wrap justify-between gap-2 border-b border-blitz-primary/20 px-5 py-3 text-sm font-semibold">
       <span>The Marauder's Map</span>
-      <span>One task, from my ask to its merge</span>
+      <span>From my ask to a watched merge</span>
     </figcaption>
     <div
       className="overflow-x-auto p-3"
       tabIndex={0}
       role="region"
-      aria-label="Task map, scroll horizontally to explore the rooms"
+      aria-label="Factory map, scroll horizontally to explore the rooms"
     >
       <svg
-        viewBox="0 0 920 750"
+        viewBox="0 0 920 740"
         className="block w-full min-w-[920px] font-sans"
         role="img"
         aria-labelledby="fleet-map-title fleet-map-description"
       >
-        <title id="fleet-map-title">From my ask to the merge</title>
+        <title id="fleet-map-title">From my ask to a watched merge</title>
         <desc id="fleet-map-description">
-          Follow the trail from my ask to McGonagall, Harry, evidence, review by
-          Hermione or Moody, the push gate and draft PR, Ron's patrol, and the
-          merge once it's clean. Review findings return to Harry. The Owlery,
-          the Pensieve with Dumbledore's portrait, Ollivander's model shop,
-          Voldemort's chamber, and the house-elves' kitchens sit alongside the
-          task path.
+          Follow the trail from my ask to McGonagall, who sizes it. A big ask
+          gets a design from McGonagall or Voldemort, a design review by both
+          reviewers and me, and a plan I approve one milestone at a time. The
+          Express starts each step once it is ready: Harry builds, Snape reads,
+          and scripts poll checks. A small task goes straight to Harry. Each
+          change is reviewed by the other model family, which runs the code;
+          findings go back to Harry. The Sorting Hat sets its lane, it is merged
+          once clean, and Ron watches it for 24 hours. A red check pauses the
+          project and opens a draft revert. A milestone check leads to the next
+          plan, or to done. The Owlery, the Pensieve with Dumbledore's portrait,
+          Ollivander's model shop and the house-elves' kitchens sit alongside.
         </desc>
         <defs>
           <marker
@@ -150,30 +155,36 @@ const FleetMap = () => (
           strokeWidth="3.2"
           strokeDasharray="2 7"
           strokeLinecap="round"
-          d="M210,78 L270,78 M460,78 L520,78 M710,78 L740,78 M820,126 L820,190 M740,238 L710,238 M520,238 L460,238 M270,238 L210,238"
+          d="M210,78 L250,78 M440,78 L480,78 M670,78 L710,78 M805,126 L805,180 M710,228 L670,228 M480,228 L440,228 M250,228 L210,228 M115,276 L115,330 M210,378 L250,378 M440,378 L480,378 M670,378 L710,378"
         />
         <g fill="none" stroke="currentColor" strokeWidth="1.4" opacity="0.75">
           {[
-            'M262,78 L268,78',
-            'M512,78 L518,78',
-            'M732,78 L738,78',
-            'M820,182 L820,188',
-            'M718,238 L712,238',
-            'M468,238 L462,238',
-            'M218,238 L212,238',
+            'M242,78 L248,78',
+            'M472,78 L478,78',
+            'M702,78 L708,78',
+            'M805,172 L805,178',
+            'M678,228 L672,228',
+            'M448,228 L442,228',
+            'M218,228 L212,228',
+            'M115,322 L115,328',
+            'M242,378 L248,378',
+            'M472,378 L478,378',
+            'M702,378 L708,378',
           ].map((d) => (
             <path key={d} d={d} markerEnd="url(#fleet-map-arrow)" />
           ))}
-          <path
-            d="M115,190 C115,160 115,150 115,128"
-            markerEnd="url(#fleet-map-arrow)"
-            strokeDasharray="3 5"
-          />
-          <path
-            d="M772,190 C772,158 700,160 690,130"
-            markerEnd="url(#fleet-map-arrow)"
-            strokeDasharray="3 5"
-          />
+          {[
+            'M345,126 C345,150 345,160 345,178',
+            'M150,276 C165,310 300,310 325,280',
+            'M805,330 C805,312 805,298 805,280',
+          ].map((d) => (
+            <path
+              key={d}
+              d={d}
+              markerEnd="url(#fleet-map-arrow)"
+              strokeDasharray="3 5"
+            />
+          ))}
         </g>
         <g fill="currentColor">
           <MapRoom
@@ -184,59 +195,85 @@ const FleetMap = () => (
             detail="in my own words"
           />
           <MapRoom
-            x={270}
+            x={250}
             y={30}
             label="DEPUTY'S OFFICE"
             name="McGonagall"
-            detail="plans it, sees it through"
+            detail="a task, or a project"
           />
           <MapRoom
-            x={520}
+            x={480}
             y={30}
+            label="THE CHAMBER"
+            name="The design"
+            detail="hers, or Voldemort's"
+          />
+          <MapRoom
+            x={710}
+            y={30}
+            label="STAFF ROOM"
+            name="Design review"
+            detail="both reviewers, then me"
+          />
+          <MapRoom
+            x={710}
+            y={180}
+            label="HEADMASTER"
+            name="Plan approved"
+            detail="one milestone at a time"
+          />
+          <MapRoom
+            x={480}
+            y={180}
+            label="PLATFORM 9¾"
+            name="The Express"
+            detail="starts each ready step"
+          />
+          <MapRoom
+            x={250}
+            y={180}
             label="THE PITCH"
             name="Harry builds"
-            detail="Codex, own worktree"
-          />
-          <MapRoom
-            x={740}
-            y={30}
-            width={160}
-            label="TROPHY ROOM"
-            name="Evidence"
-            detail="checks, per commit"
-          />
-          <MapRoom
-            x={740}
-            y={190}
-            width={160}
-            label="LIBRARY"
-            name="Review"
-            detail="Hermione or Moody"
-          />
-          <MapRoom
-            x={520}
-            y={190}
-            label="THE GATE"
-            name="Push and PR"
-            detail="draft PR on a pass"
-          />
-          <MapRoom
-            x={270}
-            y={190}
-            label="THE HOOPS"
-            name="Ron patrols"
-            detail="CI and review comments"
+            detail="Snape reads, checks poll"
           />
           <MapRoom
             x={20}
-            y={190}
+            y={180}
+            label="THE LIBRARY"
+            name="Review"
+            detail="other family, runs code"
+          />
+          <MapRoom
+            x={20}
+            y={330}
+            label="THE SORTING HAT"
+            name="Lane set"
+            detail="low risk can merge itself"
+          />
+          <MapRoom
+            x={250}
+            y={330}
             label="HEADMASTER"
             name="Merged if clean"
-            detail="by me or an AI agent"
+            detail="me, an AI agent or the line"
+          />
+          <MapRoom
+            x={480}
+            y={330}
+            label="THE HOOPS"
+            name="Ron watches"
+            detail="24 hours after the merge"
+          />
+          <MapRoom
+            x={710}
+            y={330}
+            label="CLOCK TOWER"
+            name="Milestone check"
+            detail="next plan, or done"
           />
           <MapRoom
             x={20}
-            y={350}
+            y={480}
             width={440}
             label="ALWAYS · THE OWLERY"
             name="Desks post only to their own outbox"
@@ -244,46 +281,43 @@ const FleetMap = () => (
             aside
           />
           <MapRoom
-            x={520}
-            y={350}
-            width={380}
+            x={480}
+            y={480}
+            width={420}
             label="OVERNIGHT · THE PENSIEVE"
             name="Dumbledore's portrait"
-            detail="Adds facts if I let him, edits wait"
+            detail="What every desk knows, and why each rule exists"
             aside
           />
           <MapRoom
             x={20}
-            y={490}
-            width={880}
+            y={620}
+            width={440}
             label="ALONGSIDE · THE MODEL SHOP"
             name="Ollivander"
-            detail="Models matched to roles. Cheaper moves get a note; costlier moves wait for my yes. Families stay fixed."
+            detail="Models matched to roles; costlier moves wait for me"
             aside
           />
           <MapRoom
-            x={20}
-            y={630}
-            width={440}
-            label="BEFORE BIG PROJECTS · THE CHAMBER"
-            name="Voldemort designs"
-            detail="Reviewed by Hermione and Moody, approved by me"
-            aside
-          />
-          <MapRoom
-            x={520}
-            y={630}
-            width={380}
+            x={480}
+            y={620}
+            width={420}
             label="NIGHTLY · THE KITCHENS"
             name="The house-elves"
             detail="Clear what's gone stale, into a bin first"
             aside
           />
-          <text x="128" y="160" fontSize="13" opacity="0.85">
-            next ask
+          <text x="355" y="158" fontSize="13" opacity="0.85">
+            small task
           </text>
-          <text x="530" y="164" fontSize="13" opacity="0.85">
+          <text x="170" y="324" fontSize="13" opacity="0.85">
             changes? back to Harry
+          </text>
+          <text x="815" y="310" fontSize="13" opacity="0.85">
+            next milestone
+          </text>
+          <text x="490" y="452" fontSize="13" opacity="0.85">
+            red? the project pauses, a draft revert opens
           </text>
         </g>
       </svg>
@@ -395,10 +429,12 @@ const SoftwareFactoryPage = () => (
 
     <h2 id="map">The Marauder's Map</h2>
     <p>
-      This is how a task moves through the castle, footprints and all. The trail
-      follows one change from my ask to its merge. The rooms alongside it handle
-      messages, memory, model choices, big designs, and cleanup. They're the
-      supporting cast rather than another approval step on every task.
+      This is how work moves through the castle, footprints and all. The trail
+      follows an ask from my words to a watched merge. A small task takes the
+      short way to Harry, and a big one goes through a design and a plan first.
+      The rooms alongside handle messages, memory, model choices, and cleanup.
+      They're the supporting cast rather than another approval step on every
+      task.
     </p>
     <FleetMap />
 

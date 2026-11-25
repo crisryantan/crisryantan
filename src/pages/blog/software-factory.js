@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import ArticleLayout from '../../components/ArticleLayout'
 
 const title = 'Harry Potter and the Order of the Agents'
@@ -49,7 +50,7 @@ const desks = [
   [
     "Dumbledore's portrait",
     'Knowledge Manager',
-    'Reviews the day each weeknight and writes memory fixes. I let his additions apply on their own. His edits and removals wait for me.',
+    "Reviews the day each weeknight and keeps the factory's memory up to date.",
   ],
   [
     'Ollivander',
@@ -59,7 +60,7 @@ const desks = [
   [
     'The house-elves',
     'Cleanup',
-    "Mostly scripts. Every night they clear out what's gone stale: old owls, logs, messages, and memories no desk uses anymore. Everything goes into a bin first, so it can be restored, and they never touch open work or the record of what was approved and reviewed. Like the real ones, they work while the castle sleeps.",
+    "Mostly scripts. Every night they clear out what's gone stale: old owls, logs, run folders, drafts nobody started, and facts no desk uses anymore. Like the real ones, they work while the castle sleeps.",
   ],
 ]
 
@@ -385,10 +386,10 @@ const SoftwareFactoryPage = () => (
       only the context it needs, and no agent reviews its own work.
     </p>
     <p>
-      Big work runs as a project. It starts with a written design that two
-      reviewers and I sign off, then moves through milestones. A milestone is
-      something that works end to end, however many repos or weeks that takes,
-      and every change inside it still reaches my teammates as one small PR.
+      In a factory, code stops being something I write by hand and becomes what
+      the factory produces: the intent goes in as a written spec, agents turn it
+      into changes, and checks decide whether each change is good enough to move
+      on.
     </p>
 
     <h2 id="map">The Marauder's Map</h2>
@@ -490,10 +491,10 @@ const SoftwareFactoryPage = () => (
     <p>
       A lake goes stale if nobody tends it. Every night the house-elves clear
       out what's no longer useful: old owls, session extracts, logs, finished
-      run folders and drafts nobody started. Facts past their expiry date are
-      retired but kept with their dates. The elves follow fixed rules,
-      everything they remove goes to a bin first, and the record of what was
-      approved and reviewed is never touched.
+      run folders, drafts nobody started, and facts no desk uses anymore. Facts
+      past their expiry date are retired but kept with their dates. The elves
+      follow fixed rules, everything they remove goes to a bin first, and the
+      record of what was approved and reviewed is never touched.
     </p>
 
     <h2>The Great Hall</h2>
@@ -520,18 +521,32 @@ const SoftwareFactoryPage = () => (
 
     <h2>Closing thoughts</h2>
     <p>
-      The biggest change is where my time goes. Scripts do the watching, fix
+      The biggest change is what I no longer chase. Scripts do the watching, fix
       rounds start on their own, and a broken build reaches me already called
-      real, flaky, or infra. My attention goes to decisions, approvals, and
-      merges, and teammates get a review without waiting for someone's afternoon
-      to free up.
+      real, flaky, or infra. Teammates get a review without waiting for
+      someone's afternoon to free up.
     </p>
     <p>
-      The theme is optional. The roles, handoffs, and boundaries are the useful
-      part, and they work under any names. If I were starting again, I'd begin
-      with one builder, one reviewer from a different model family, and scripts
-      for the handoffs and CI watching, then add a desk each time I caught
-      myself doing the same job by hand.
+      Review the factory, not the code. When a change comes out wrong, the quick
+      fix is to patch the code and move on. That fixes one PR, and the next
+      build makes the same mistake, because nothing about the factory changed.
+      So I ask why the factory let it through and fix that instead: a job file
+      that never said what done looks like, a check nobody wrote, a reviewer
+      never told what to look for. That fix lands on every build after it. Most
+      of my factory was built this way, one escaped mistake at a time.
+    </p>
+    <p>
+      The time the factory gives back goes to impact: deciding what each change
+      is for, what evidence would show it worked, and what that evidence
+      actually supports. The factory can help run the measurement, but that last
+      call is still mine. I wrote about how we measure it in{' '}
+      <Link
+        to="/blog/measuring-engineering-impact/"
+        className="text-blitz-accent hover:underline"
+      >
+        Measuring the Impact of Engineering Work
+      </Link>
+      .
     </p>
   </ArticleLayout>
 )

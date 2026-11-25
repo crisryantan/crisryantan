@@ -108,7 +108,7 @@ const FleetMap = () => (
   <figure className="my-8 overflow-hidden rounded-lg border border-blitz-primary/30 bg-blitz-sand text-blitz-primary shadow-soft">
     <figcaption className="flex flex-wrap justify-between gap-2 border-b border-blitz-primary/20 px-5 py-3 text-sm font-semibold">
       <span>The Marauder's Map</span>
-      <span>One task, from my ask to my merge</span>
+      <span>One task, from my ask to its merge</span>
     </figcaption>
     <div
       className="overflow-x-auto p-3"
@@ -122,13 +122,14 @@ const FleetMap = () => (
         role="img"
         aria-labelledby="fleet-map-title fleet-map-description"
       >
-        <title id="fleet-map-title">From my ask to my merge</title>
+        <title id="fleet-map-title">From my ask to the merge</title>
         <desc id="fleet-map-description">
           Follow the trail from my ask to McGonagall, Harry, evidence, review by
-          Hermione or Moody, the push gate and draft PR, Ron's patrol, and my
-          merge. Review findings return to Harry. The Owlery, the Pensieve with
-          Dumbledore's portrait, Ollivander's model shop, Voldemort's chamber,
-          and the house-elves' kitchens sit alongside the task path.
+          Hermione or Moody, the push gate and draft PR, Ron's patrol, and the
+          merge once it's clean. Review findings return to Harry. The Owlery,
+          the Pensieve with Dumbledore's portrait, Ollivander's model shop,
+          Voldemort's chamber, and the house-elves' kitchens sit alongside the
+          task path.
         </desc>
         <defs>
           <marker
@@ -230,8 +231,8 @@ const FleetMap = () => (
             x={20}
             y={190}
             label="HEADMASTER"
-            name="I merge"
-            detail="and deploy, by hand"
+            name="Merged if clean"
+            detail="by me or an AI agent"
           />
           <MapRoom
             x={20}
@@ -395,7 +396,7 @@ const SoftwareFactoryPage = () => (
     <h2 id="map">The Marauder's Map</h2>
     <p>
       This is how a task moves through the castle, footprints and all. The trail
-      follows one change from my ask to my merge. The rooms alongside it handle
+      follows one change from my ask to its merge. The rooms alongside it handle
       messages, memory, model choices, big designs, and cleanup. They're the
       supporting cast rather than another approval step on every task.
     </p>

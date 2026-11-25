@@ -10,7 +10,7 @@ const desks = [
   [
     'McGonagall',
     'Chief of Staff',
-    'Sizes the work to the ask. Small asks she just answers, and a clear change becomes one task with what done looks like written as checks. When I want a feature designed first, she writes the system design, and Hermione and Moody both review it before I do. A big project gets milestones on top, each made of tasks in the order they can land, and a definition of done for the whole thing. She delegates every task to Harry once I start it, picks the next step after every review, tells me what each merge unblocked, and brings me only what needs me.',
+    'Sizes the work to the ask. Small asks she just answers, and a clear change becomes one task with what done looks like written as checks. When I want a feature designed first, she writes the system design, and Hermione and Moody both review it before I do. A big project gets milestones on top, each made of tasks in the order they can land, and a definition of done for the whole thing. She delegates every task to Harry once I start it or approve its milestone, picks the next step after every review, tells me what each merge unblocked, and brings me only what needs me.',
   ],
   [
     'Voldemort',
@@ -35,7 +35,7 @@ const desks = [
   [
     'Ron',
     'Release Engineer',
-    'Wakes only when a PR or CI changes, and sorts each change into routine or needs-me. He also watches the deploy and release pipelines. When a build fails or gets stuck, he reads the logs and calls it real, flaky, or infra, and I decide whether to retry or roll back. He writes the morning PR lineup and the weekly scoreboard too. He kept goal at school, which fits watching everything coming at the hoops.',
+    'Wakes only when a PR or CI changes, and sorts each change into routine or needs-me. He also watches the deploy and release pipelines. When a build fails or gets stuck, he reads the logs and calls it real, flaky, or infra, and I decide whether to retry or roll back. After a merge, he watches it for 24 hours, and a red check pauses the project and opens a draft revert. He writes the morning PR lineup and the weekly scoreboard too. He kept goal at school, which fits watching everything coming at the hoops.',
   ],
   [
     "The Marauder's Map",
@@ -213,7 +213,7 @@ const FleetMap = () => (
             y={30}
             label="STAFF ROOM"
             name="Design review"
-            detail="both reviewers, then me"
+            detail="Hermione, Moody, then me"
           />
           <MapRoom
             x={710}
@@ -241,7 +241,7 @@ const FleetMap = () => (
             y={180}
             label="THE LIBRARY"
             name="Review"
-            detail="other family, runs code"
+            detail="Hermione or Moody"
           />
           <MapRoom
             x={20}
